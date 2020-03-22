@@ -1,1 +1,1 @@
-export { default as Untitled } from "./src/screens/Untitled.js";
+export { default as Untitled } from "../App/mobil/mobil/routes/connectionPage/src/screens/Untitled.js.js";
