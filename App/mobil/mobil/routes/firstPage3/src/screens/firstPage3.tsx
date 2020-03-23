@@ -159,5 +159,3 @@ const styles = StyleSheet.create({
     marginLeft: 29
   }
 });
-
-export default Untitled5;

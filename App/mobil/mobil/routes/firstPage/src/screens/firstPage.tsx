@@ -1,5 +1,4 @@
 import React, { Component, useState } from "react";
-import * as Font from "expo-font";
 
 import {
   StyleSheet,

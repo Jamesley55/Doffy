@@ -5,7 +5,7 @@ import MaterialMapView1 from "../components/MaterialMapView1";
 import MaterialButtonPrimary from "../components/MaterialButtonPrimary";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 
-function Untitled17(props) {
+export function locationPage({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.icon1Row}>
@@ -134,5 +134,3 @@ const styles = StyleSheet.create({
     marginLeft: 16
   }
 });
-
-export default Untitled17;

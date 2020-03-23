@@ -3,7 +3,7 @@ import { StyleSheet, View, Image, Text } from "react-native";
 import IoniconsIcon from "react-native-vector-icons/Ionicons";
 import EntypoIcon from "react-native-vector-icons/Entypo";
 
-function Untitled9(props) {
+export function sellerSteps({ navigator }) {
   return (
     <View style={styles.container}>
       <View style={styles.image1Row}>
@@ -248,5 +248,3 @@ const styles = StyleSheet.create({
     marginTop: 22
   }
 });
-
-export default Untitled9;

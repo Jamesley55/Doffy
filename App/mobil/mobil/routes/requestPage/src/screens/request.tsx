@@ -6,7 +6,7 @@ import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommun
 import MaterialButtonPrimary from "../components/MaterialButtonPrimary";
 import MaterialIconTextButtonsFooter from "../components/MaterialIconTextButtonsFooter";
 
-function Untitled16(props) {
+export function requestPage({ navigator }) {
   return (
     <View style={styles.container}>
       <View style={styles.icon1Row}>
@@ -241,5 +241,3 @@ const styles = StyleSheet.create({
     marginTop: 20
   }
 });
-
-export default Untitled16;

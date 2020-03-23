@@ -5,7 +5,7 @@ import IoniconsIcon from "react-native-vector-icons/Ionicons";
 import MaterialSwitch2 from "../components/MaterialSwitch2";
 import MaterialChipWithCloseButton from "../components/MaterialChipWithCloseButton";
 
-function Untitled13(props) {
+export function schedulePage({ navigator }) {
   return (
     <View style={styles.container}>
       <View style={styles.icon1Row}>
@@ -474,5 +474,3 @@ const styles = StyleSheet.create({
     marginLeft: 116
   }
 });
-
-export default Untitled13;

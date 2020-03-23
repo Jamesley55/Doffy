@@ -7,7 +7,7 @@ import MaterialRadio from "../components/MaterialRadio";
 import MaterialFixedLabelTextbox from "../components/MaterialFixedLabelTextbox";
 import MaterialButtonPrimary from "../components/MaterialButtonPrimary";
 
-function Untitled15(props) {
+export function payout({ navigator }) {
   return (
     <View style={styles.container}>
       <View style={styles.icon1StackRow}>
@@ -379,5 +379,3 @@ const styles = StyleSheet.create({
     marginLeft: 37
   }
 });
-
-export default Untitled15;

@@ -5,7 +5,7 @@ import IoniconsIcon from "react-native-vector-icons/Ionicons";
 import MaterialIconsIcon from "react-native-vector-icons/MaterialIcons";
 import MaterialButtonPrimary from "../components/MaterialButtonPrimary";
 
-function Untitled14(props) {
+export function picDownload({ navigator }) {
   return (
     <View style={styles.container}>
       <View style={styles.icon1Row}>
@@ -167,5 +167,3 @@ const styles = StyleSheet.create({
     marginLeft: 37
   }
 });
-
-export default Untitled14;

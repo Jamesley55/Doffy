@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import MaterialButtonPrimary from "../components/MaterialButtonPrimary";
 
-function Untitled11(props) {
+export function serviceProvider({ navigator }) {
   return (
     <View style={styles.container}>
       <Text style={styles.loremIpsum}>
@@ -119,5 +119,3 @@ const styles = StyleSheet.create({
     marginLeft: 19
   }
 });
-
-export default Untitled11;

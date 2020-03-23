@@ -8,7 +8,7 @@ import CupertinoRadio2 from "../components/CupertinoRadio2";
 import CupertinoRadio3 from "../components/CupertinoRadio3";
 import MaterialButtonPrimary from "../components/MaterialButtonPrimary";
 
-function Untitled18(props) {
+export function payement({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.icon1Row}>
@@ -353,5 +353,3 @@ const styles = StyleSheet.create({
     marginLeft: 63
   }
 });
-
-export default Untitled18;

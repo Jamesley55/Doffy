@@ -3,7 +3,7 @@ import { StyleSheet, View, Text } from "react-native";
 import FeatherIcon from "react-native-vector-icons/Feather";
 import EntypoIcon from "react-native-vector-icons/Entypo";
 
-function Untitled10(props) {
+export function help({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.rect}>
@@ -115,5 +115,3 @@ const styles = StyleSheet.create({
     marginLeft: 26
   }
 });
-
-export default Untitled10;

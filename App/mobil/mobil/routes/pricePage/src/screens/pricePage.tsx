@@ -3,7 +3,7 @@ import { StyleSheet, View, Text } from "react-native";
 import MaterialSwitch from "../components/MaterialSwitch";
 import MaterialButtonPrimary from "../components/MaterialButtonPrimary";
 
-function Untitled12(props) {
+export function pricePage({ navigator }) {
   return (
     <View style={styles.container}>
       <View style={styles.rectStack}>
@@ -308,5 +308,3 @@ const styles = StyleSheet.create({
     marginLeft: 41
   }
 });
-
-export default Untitled12;
