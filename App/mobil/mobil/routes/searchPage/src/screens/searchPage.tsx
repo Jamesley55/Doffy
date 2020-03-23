@@ -9,7 +9,13 @@ export function searchPage({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.iconRow}>
-        <EntypoIcon name="arrow-left" style={styles.icon}></EntypoIcon>
+        <EntypoIcon
+          name="arrow-left"
+          style={styles.icon}
+          onPress={() => {
+            navigation.goBack();
+          }}
+        ></EntypoIcon>
         <Image
           source={require("../assets/images/shappeal1.png")}
           resizeMode="contain"

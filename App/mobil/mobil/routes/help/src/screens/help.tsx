@@ -7,7 +7,13 @@ export function help({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.rect}>
-        <FeatherIcon name="x" style={styles.icon}></FeatherIcon>
+        <FeatherIcon
+          name="x"
+          style={styles.icon}
+          onPress={() => {
+            navigation.goBack();
+          }}
+        ></FeatherIcon>
         <Text style={styles.help}>Help</Text>
         <View style={styles.icon2Row}>
           <EntypoIcon name="chat" style={styles.icon2}></EntypoIcon>
@@ -27,7 +33,8 @@ export function help({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    alignSelf: "center"
   },
   rect: {
     width: 336,

@@ -42,7 +42,7 @@ export function login({ navigation }) {
       </View>
       <Text
         style={styles.lOgIn1}
-        onPress={() => navigation.navigate("register")}
+        onPress={() => navigation.navigate("location")}
       >
         lOG IN
       </Text>

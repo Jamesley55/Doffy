@@ -3,7 +3,7 @@ import { StyleSheet, View, Image, Text } from "react-native";
 import IoniconsIcon from "react-native-vector-icons/Ionicons";
 import EntypoIcon from "react-native-vector-icons/Entypo";
 
-export function sellerSteps({ navigator }) {
+export function sellerSteps({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.image1Row}>
@@ -15,6 +15,9 @@ export function sellerSteps({ navigator }) {
         <IoniconsIcon
           name="md-help-circle-outline"
           style={styles.icon}
+          onPress={() => {
+            navigation.navigate("help");
+          }}
         ></IoniconsIcon>
       </View>
       <Text style={styles.welcomeName}>Welcome, $name$</Text>
@@ -69,7 +72,8 @@ export function sellerSteps({ navigator }) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    alignSelf: "center"
   },
   image1: {
     width: 191,

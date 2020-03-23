@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
-function MaterialButtonHamburger(props) {
+function MaterialButtonHamburger(props, { navigation }) {
   return (
     <TouchableOpacity style={[styles.container, props.style]}>
       <Icon name="menu" style={styles.caption}></Icon>
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   caption: {
     color: "#fff",
     fontSize: 24,
-    fontFamily: "Roboto"
+    fontFamily: "roboto-700"
   }
 });
 

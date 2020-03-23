@@ -5,14 +5,19 @@ import FeatherIcon from "react-native-vector-icons/Feather";
 import IoniconsIcon from "react-native-vector-icons/Ionicons";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import MaterialButtonPrimary from "../components/MaterialButtonPrimary";
-import * as Font from "expo-font";
-import AppLoading from "expo/build/launch/AppLoading";
 
 export function firstPage3({ navigation }) {
   return (
     <View style={styles.container}>
       <EntypoIcon name="chevron-thin-up" style={styles.icon1}></EntypoIcon>
-      <Text style={styles.goBack1}>Go back</Text>
+      <Text
+        style={styles.goBack1}
+        onPress={() => {
+          navigation.goBack();
+        }}
+      >
+        Go back
+      </Text>
       <Text style={styles.text}>
         you choose your price {"\n"} you do your schedule {"\n"}we do the
         marketing {"\n"}we bring the client
@@ -39,13 +44,21 @@ export function firstPage3({ navigation }) {
         text1="Continue "
         style={styles.materialButtonPrimary}
       ></MaterialButtonPrimary>
+      <Text
+        onPress={() => {
+          navigation.navigate("sellerSteps");
+        }}
+      >
+        temporary
+      </Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    alignSelf: "center"
   },
   icon1: {
     color: "rgba(128,128,128,1)",

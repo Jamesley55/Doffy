@@ -31,7 +31,7 @@ const getFont = () =>
     "armata-regular": require("../assets/fonts/armata-regular.ttf"),
     "alef-regular": require("../assets/fonts/alef-regular.ttf"),
     "arial-regular": require("../assets/fonts/arial-regular.ttf"),
-    "caliri-bold": require("../assets/fonts/calibri-bold.ttf"),
+    "calibri-bold": require("../assets/fonts/calibri-bold.ttf"),
     "roboto-700": require("../assets/fonts/roboto-700.ttf"),
     "roboto-regular": require("../assets/fonts/roboto-regular.ttf")
   });
@@ -51,7 +51,7 @@ export const Routes: React.FC<RouteProps> = ({}) => {
           <Stack.Screen name="homepage" component={HomePage} />
           <Stack.Screen name="option" component={option} />
           <Stack.Screen name="searchPage" component={searchPage} />
-          <Stack.Screen name="sellersSteps" component={sellerSteps} />
+          <Stack.Screen name="sellerSteps" component={sellerSteps} />
           <Stack.Screen name="help" component={help} />
           <Stack.Screen name="serviceProvider" component={serviceProvider} />
           <Stack.Screen name="pricePage" component={pricePage} />

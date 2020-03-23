@@ -3,8 +3,7 @@ import { StyleSheet, View, Text, Image } from "react-native";
 import MaterialButtonHamburger from "../components/MaterialButtonHamburger";
 import Icon from "react-native-vector-icons/Ionicons";
 import MaterialBasicFooter1 from "../components/MaterialBasicFooter1";
-import * as Font from "expo-font";
-import AppLoading from "expo/build/launch/AppLoading";
+import { ScrollView } from "react-native-gesture-handler";
 
 export function HomePage({ navigation }) {
   return (
@@ -16,10 +15,17 @@ export function HomePage({ navigation }) {
               <View style={styles.rect2}>
                 <Text style={styles.helloName}>Hello, $name$</Text>
               </View>
+
               <MaterialButtonHamburger
                 style={styles.materialButtonHamburger}
               ></MaterialButtonHamburger>
-              <Icon name="md-search" style={styles.icon}></Icon>
+              <Icon
+                name="md-search"
+                style={styles.icon}
+                onPress={() => {
+                  navigation.navigate("searchPage");
+                }}
+              ></Icon>
             </View>
             <Image
               source={require("../assets/images/shappeal1.png")}
@@ -27,26 +33,36 @@ export function HomePage({ navigation }) {
               style={styles.image}
             ></Image>
           </View>
-          <Text style={styles.yourRecentServices}>your recent services</Text>
-          <View style={styles.rect3Row}>
-            <View style={styles.rect3}></View>
-            <View style={styles.rect6}></View>
-          </View>
-          <Text style={styles.popularNearYou}>Popular near you</Text>
-          <View style={styles.rect7Row}>
-            <View style={styles.rect7}></View>
-            <View style={styles.rect8}></View>
-          </View>
-          <Text style={styles.barbershop}>Barbershop</Text>
-          <View style={styles.rect9Row}>
-            <View style={styles.rect9}></View>
-            <View style={styles.rect10}></View>
-          </View>
-          <Text style={styles.nailSalon}>Nail Salon</Text>
-          <View style={styles.rect11Row}>
-            <View style={styles.rect11}></View>
-            <View style={styles.rect12}></View>
-          </View>
+          <ScrollView>
+            <Text style={styles.yourRecentServices}>your recent services</Text>
+            <ScrollView horizontal={true}>
+              <View style={styles.rect3Row}>
+                <View style={styles.rect3}></View>
+                <View style={styles.rect6}></View>
+              </View>
+            </ScrollView>
+            <Text style={styles.popularNearYou}>Popular near you</Text>
+            <ScrollView horizontal={true}>
+              <View style={styles.rect7Row}>
+                <View style={styles.rect7}></View>
+                <View style={styles.rect8}></View>
+              </View>
+            </ScrollView>
+            <Text style={styles.barbershop}>Barbershop</Text>
+            <ScrollView horizontal={true}>
+              <View style={styles.rect9Row}>
+                <View style={styles.rect9}></View>
+                <View style={styles.rect10}></View>
+              </View>
+            </ScrollView>
+            <Text style={styles.nailSalon}>Nail Salon</Text>
+            <ScrollView horizontal={true}>
+              <View style={styles.rect11Row}>
+                <View style={styles.rect11}></View>
+                <View style={styles.rect12}></View>
+              </View>
+            </ScrollView>
+          </ScrollView>
         </View>
         <MaterialBasicFooter1
           icon1Name="heart"
@@ -66,9 +82,9 @@ export function HomePage({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
+    flexDirection: "column",
     flex: 1,
-    borderColor: "#000000",
-    borderWidth: 0
+    borderColor: "#000000"
   },
   rect: {
     top: 0,

@@ -22,7 +22,7 @@ export function firstPage({ navigation }) {
         />
         <View style={styles.rect2Row}>
           <View style={styles.rect2}>
-            <TouchableOpacity onPress={() => console.log("service")}>
+            <TouchableOpacity onPress={() => navigation.navigate("Page2")}>
               <Image
                 source={require("../assets/images/cut.jpg")}
                 resizeMode="contain"
@@ -32,7 +32,7 @@ export function firstPage({ navigation }) {
           </View>
           <View style={styles.rect3Stack}>
             <View style={styles.rect3}></View>
-            <TouchableOpacity onPress={() => console.log("offrir")}>
+            <TouchableOpacity onPress={() => navigation.navigate("Page3")}>
               <Image
                 source={require("../assets/images/barber.jpg")}
                 resizeMode="contain"
@@ -61,7 +61,7 @@ export function firstPage({ navigation }) {
               marginTop: -30,
               marginRight: 50
             }}
-            onPress={() => console.log("service")}
+            onPress={() => navigation.navigate("Page2")}
           >
             chercher un service
           </Text>
@@ -73,7 +73,7 @@ export function firstPage({ navigation }) {
               marginTop: -50,
               marginRight: 50
             }}
-            onPress={() => console.log("offrir")}
+            onPress={() => navigation.navigate("Page3")}
           >
             offrir a service
           </Text>
