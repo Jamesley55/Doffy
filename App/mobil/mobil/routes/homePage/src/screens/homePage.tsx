@@ -1,67 +1,67 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import { StyleSheet, View, Text, Image } from "react-native";
 import MaterialButtonHamburger from "../components/MaterialButtonHamburger";
 import Icon from "react-native-vector-icons/Ionicons";
 import MaterialBasicFooter1 from "../components/MaterialBasicFooter1";
+import * as Font from "expo-font";
+import AppLoading from "expo/build/launch/AppLoading";
 
-export class HomePage extends React.PureComponent {
-  render() {
-    return (
-      <View style={styles.container}>
-        <View style={styles.rectStack}>
-          <View style={styles.rect}>
-            <View style={styles.rect2StackStack}>
-              <View style={styles.rect2Stack}>
-                <View style={styles.rect2}>
-                  <Text style={styles.helloName}>Hello, $name$</Text>
-                </View>
-                <MaterialButtonHamburger
-                  style={styles.materialButtonHamburger}
-                ></MaterialButtonHamburger>
-                <Icon name="md-search" style={styles.icon}></Icon>
+export function HomePage({ navigation }) {
+  return (
+    <View style={styles.container}>
+      <View style={styles.rectStack}>
+        <View style={styles.rect}>
+          <View style={styles.rect2StackStack}>
+            <View style={styles.rect2Stack}>
+              <View style={styles.rect2}>
+                <Text style={styles.helloName}>Hello, $name$</Text>
               </View>
-              <Image
-                source={require("../assets/images/shappeal1.png")}
-                resizeMode="contain"
-                style={styles.image}
-              ></Image>
+              <MaterialButtonHamburger
+                style={styles.materialButtonHamburger}
+              ></MaterialButtonHamburger>
+              <Icon name="md-search" style={styles.icon}></Icon>
             </View>
-            <Text style={styles.yourRecentServices}>your recent services</Text>
-            <View style={styles.rect3Row}>
-              <View style={styles.rect3}></View>
-              <View style={styles.rect6}></View>
-            </View>
-            <Text style={styles.popularNearYou}>Popular near you</Text>
-            <View style={styles.rect7Row}>
-              <View style={styles.rect7}></View>
-              <View style={styles.rect8}></View>
-            </View>
-            <Text style={styles.barbershop}>Barbershop</Text>
-            <View style={styles.rect9Row}>
-              <View style={styles.rect9}></View>
-              <View style={styles.rect10}></View>
-            </View>
-            <Text style={styles.nailSalon}>Nail Salon</Text>
-            <View style={styles.rect11Row}>
-              <View style={styles.rect11}></View>
-              <View style={styles.rect12}></View>
-            </View>
+            <Image
+              source={require("../assets/images/shappeal1.png")}
+              resizeMode="contain"
+              style={styles.image}
+            ></Image>
           </View>
-          <MaterialBasicFooter1
-            icon1Name="heart"
-            text1="Favourite"
-            icon2Name="near-me"
-            text2="Nearby"
-            icon3Name="bell-ring"
-            text3="notification"
-            icon4Name="message"
-            text4="message "
-            style={styles.materialBasicFooter1}
-          ></MaterialBasicFooter1>
+          <Text style={styles.yourRecentServices}>your recent services</Text>
+          <View style={styles.rect3Row}>
+            <View style={styles.rect3}></View>
+            <View style={styles.rect6}></View>
+          </View>
+          <Text style={styles.popularNearYou}>Popular near you</Text>
+          <View style={styles.rect7Row}>
+            <View style={styles.rect7}></View>
+            <View style={styles.rect8}></View>
+          </View>
+          <Text style={styles.barbershop}>Barbershop</Text>
+          <View style={styles.rect9Row}>
+            <View style={styles.rect9}></View>
+            <View style={styles.rect10}></View>
+          </View>
+          <Text style={styles.nailSalon}>Nail Salon</Text>
+          <View style={styles.rect11Row}>
+            <View style={styles.rect11}></View>
+            <View style={styles.rect12}></View>
+          </View>
         </View>
+        <MaterialBasicFooter1
+          icon1Name="heart"
+          text1="Favourite"
+          icon2Name="near-me"
+          text2="Nearby"
+          icon3Name="bell-ring"
+          text3="notification"
+          icon4Name="message"
+          text4="message "
+          style={styles.materialBasicFooter1}
+        ></MaterialBasicFooter1>
       </View>
-    );
-  }
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({

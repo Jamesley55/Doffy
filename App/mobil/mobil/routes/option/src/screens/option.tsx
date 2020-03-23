@@ -1,29 +1,29 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import * as Font from "expo-font";
+import AppLoading from "expo/build/launch/AppLoading";
 
-export class option extends React.PureComponent {
-  render() {
-    return (
-      <View style={styles.container}>
-        <View style={styles.rect}>
-          <View style={styles.rect2}>
-            <View style={styles.iconRow}>
-              <Icon name="account" style={styles.icon}></Icon>
-              <Text style={styles.name}>$name$</Text>
-            </View>
+export function option({ navigation }) {
+  return (
+    <View style={styles.container}>
+      <View style={styles.rect}>
+        <View style={styles.rect2}>
+          <View style={styles.iconRow}>
+            <Icon name="account" style={styles.icon}></Icon>
+            <Text style={styles.name}>$name$</Text>
           </View>
-          <Text style={styles.offerAService}>Offer a service</Text>
-          <Text style={styles.paymentMethods}>Payment methods</Text>
-          <Text style={styles.getDiscount}>Get Discount</Text>
-          <Text style={styles.help}>Help</Text>
-          <Text style={styles.setting}>Setting</Text>
-          <Text style={styles.logOut}>Log out</Text>
-          <Text style={styles.setting1}>Legal v.1.1.9</Text>
         </View>
+        <Text style={styles.offerAService}>Offer a service</Text>
+        <Text style={styles.paymentMethods}>Payment methods</Text>
+        <Text style={styles.getDiscount}>Get Discount</Text>
+        <Text style={styles.help}>Help</Text>
+        <Text style={styles.setting}>Setting</Text>
+        <Text style={styles.logOut}>Log out</Text>
+        <Text style={styles.setting1}>Legal v.1.1.9</Text>
       </View>
-    );
-  }
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import * as Font from "expo-font";
 
 import {
@@ -7,94 +7,84 @@ import {
   Image,
   ImageBackground,
   Text,
-  Button,
-  TextInput,
-  Alert,
-  ScrollView,
   TouchableOpacity
 } from "react-native";
+import AppLoading from "expo/build/launch/AppLoading";
 
-export class firstPage extends React.PureComponent {
-  async UNSAFE_componentWillMount() {
-    await Font.loadAsync({
-      "arial-regular": require("../../../../assets/fonts/arial-regular.ttf")
-    });
-  }
-  render() {
-    return (
-      <View style={styles.container}>
-        <View style={styles.imageStack}>
-          <ImageBackground
-            source={require("../assets/images/barbershop.jpg")}
-            resizeMode="contain"
-            style={styles.image}
-            imageStyle={styles.image_imageStyle}
-          />
-          <View style={styles.rect2Row}>
-            <View style={styles.rect2}>
-              <TouchableOpacity onPress={() => console.log("service")}>
-                <Image
-                  source={require("../assets/images/cut.jpg")}
-                  resizeMode="contain"
-                  style={styles.image2}
-                ></Image>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.rect3Stack}>
-              <View style={styles.rect3}></View>
-              <TouchableOpacity onPress={() => console.log("offrir")}>
-                <Image
-                  source={require("../assets/images/barber.jpg")}
-                  resizeMode="contain"
-                  style={styles.image3}
-                ></Image>
-              </TouchableOpacity>
-            </View>
+export function firstPage({ navigation }) {
+  return (
+    <View style={styles.container}>
+      <View style={styles.imageStack}>
+        <ImageBackground
+          source={require("../assets/images/barbershop.jpg")}
+          resizeMode="contain"
+          style={styles.image}
+          imageStyle={styles.image_imageStyle}
+        />
+        <View style={styles.rect2Row}>
+          <View style={styles.rect2}>
+            <TouchableOpacity onPress={() => console.log("service")}>
+              <Image
+                source={require("../assets/images/cut.jpg")}
+                resizeMode="contain"
+                style={styles.image2}
+              ></Image>
+            </TouchableOpacity>
           </View>
+          <View style={styles.rect3Stack}>
+            <View style={styles.rect3}></View>
+            <TouchableOpacity onPress={() => console.log("offrir")}>
+              <Image
+                source={require("../assets/images/barber.jpg")}
+                resizeMode="contain"
+                style={styles.image3}
+              ></Image>
+            </TouchableOpacity>
+          </View>
+        </View>
 
-          <TouchableOpacity
+        <TouchableOpacity
+          style={{
+            height: 40,
+            width: 160,
+            borderRadius: 10,
+            marginLeft: 50,
+            marginRight: 50,
+            marginTop: 0,
+            marginBottom: 160,
+            zIndex: 4
+          }}
+        >
+          <Text
             style={{
               height: 40,
               width: 160,
-              borderRadius: 10,
-              marginLeft: 50,
-              marginRight: 50,
-              marginTop: 0,
-              marginBottom: 160,
-              zIndex: 4
+              marginTop: -30,
+              marginRight: 50
             }}
+            onPress={() => console.log("service")}
           >
-            <Text
-              style={{
-                height: 40,
-                width: 160,
-                marginTop: -30,
-                marginRight: 50
-              }}
-              onPress={() => console.log("service")}
-            >
-              chercher un service
-            </Text>
-            <Text
-              style={{
-                height: 40,
-                width: 160,
-                marginLeft: 175,
-                marginTop: -50,
-                marginRight: 50
-              }}
-              onPress={() => console.log("offrir")}
-            >
-              offrir a service
-            </Text>
-          </TouchableOpacity>
-        </View>
-        <Text style={styles.lOgIn1} onPress={() => console.log("tu a login")}>
-          lOG IN
-        </Text>
+            chercher un service
+          </Text>
+          <Text
+            style={{
+              height: 40,
+              width: 160,
+              marginLeft: 175,
+              marginTop: -50,
+              marginRight: 50
+            }}
+            onPress={() => console.log("offrir")}
+          >
+            offrir a service
+          </Text>
+        </TouchableOpacity>
       </View>
-    );
-  }
+      <Text style={styles.lOgIn1} onPress={() => navigation.navigate("login")}>
+        lOG IN
+      </Text>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({

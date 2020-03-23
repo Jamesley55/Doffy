@@ -1,46 +1,46 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import EntypoIcon from "react-native-vector-icons/Entypo";
 import FeatherIcon from "react-native-vector-icons/Feather";
 import IoniconsIcon from "react-native-vector-icons/Ionicons";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import MaterialButtonPrimary from "../components/MaterialButtonPrimary";
+import * as Font from "expo-font";
+import AppLoading from "expo/build/launch/AppLoading";
 
-export class firstPage3 extends React.PureComponent {
-  render() {
-    return (
-      <View style={styles.container}>
-        <EntypoIcon name="chevron-thin-up" style={styles.icon1}></EntypoIcon>
-        <Text style={styles.goBack1}>Go back</Text>
-        <Text style={styles.text}>
-          you choose your price {"\n"} you do your schedule {"\n"}we do the
-          marketing {"\n"}we bring the client
-        </Text>
-        <View style={styles.icon2Row}>
-          <FeatherIcon name="user" style={styles.icon2}></FeatherIcon>
-          <Text style={styles.createYourProfile}>Create your profile</Text>
-        </View>
-        <View style={styles.icon3Row}>
-          <EntypoIcon name="text" style={styles.icon3}></EntypoIcon>
-          <Text style={styles.doYourSchedule}>do your schedule</Text>
-        </View>
-        <View style={styles.icon4Row}>
-          <IoniconsIcon name="ios-images" style={styles.icon4}></IoniconsIcon>
-          <Text style={styles.doYourSchedule1}>
-            presente some preview of your work
-          </Text>
-        </View>
-        <View style={styles.icon5Row}>
-          <FontAwesomeIcon name="money" style={styles.icon5}></FontAwesomeIcon>
-          <Text style={styles.getPaid}>Get paid</Text>
-        </View>
-        <MaterialButtonPrimary
-          text1="Continue "
-          style={styles.materialButtonPrimary}
-        ></MaterialButtonPrimary>
+export function firstPage3({ navigation }) {
+  return (
+    <View style={styles.container}>
+      <EntypoIcon name="chevron-thin-up" style={styles.icon1}></EntypoIcon>
+      <Text style={styles.goBack1}>Go back</Text>
+      <Text style={styles.text}>
+        you choose your price {"\n"} you do your schedule {"\n"}we do the
+        marketing {"\n"}we bring the client
+      </Text>
+      <View style={styles.icon2Row}>
+        <FeatherIcon name="user" style={styles.icon2}></FeatherIcon>
+        <Text style={styles.createYourProfile}>Create your profile</Text>
       </View>
-    );
-  }
+      <View style={styles.icon3Row}>
+        <EntypoIcon name="text" style={styles.icon3}></EntypoIcon>
+        <Text style={styles.doYourSchedule}>do your schedule</Text>
+      </View>
+      <View style={styles.icon4Row}>
+        <IoniconsIcon name="ios-images" style={styles.icon4}></IoniconsIcon>
+        <Text style={styles.doYourSchedule1}>
+          presente some preview of your work
+        </Text>
+      </View>
+      <View style={styles.icon5Row}>
+        <FontAwesomeIcon name="money" style={styles.icon5}></FontAwesomeIcon>
+        <Text style={styles.getPaid}>Get paid</Text>
+      </View>
+      <MaterialButtonPrimary
+        text1="Continue "
+        style={styles.materialButtonPrimary}
+      ></MaterialButtonPrimary>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({

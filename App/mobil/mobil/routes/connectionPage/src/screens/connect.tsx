@@ -6,58 +6,50 @@ import MaterialButtonViolet1 from "../components/MaterialButtonViolet1";
 import EvilIconsIcon from "react-native-vector-icons/EvilIcons";
 import MaterialButtonDark from "../components/MaterialButtonDark";
 import * as Font from "expo-font";
+import { useState } from "react";
+import AppLoading from "expo/build/launch/AppLoading";
 
-export class connection extends React.PureComponent {
-  async UNSAFE_componentWillMount() {
-    await Font.loadAsync({
-      "armata-regular": require("../../../../assets/fonts/armata-regular.ttf")
-    });
-  }
-  render() {
-    return (
-      <View style={styles.container}>
-        <StatusBar animated={false} hidden={false}></StatusBar>
-        <View style={styles.materialButtonGreyStack}>
-          <MaterialButtonGrey
-            text1="Continue With Apple "
-            style={styles.materialButtonGrey}
-          ></MaterialButtonGrey>
-          <IoniconsIcon name="logo-apple" style={styles.icon}></IoniconsIcon>
-        </View>
-        <View style={styles.materialButtonViolet1Stack}>
-          <MaterialButtonViolet1
-            text1="Continue with Facebook "
-            style={styles.materialButtonViolet1}
-          ></MaterialButtonViolet1>
-          <EvilIconsIcon
-            name="sc-facebook"
-            style={styles.icon2}
-          ></EvilIconsIcon>
-        </View>
-        <Text style={styles.welcome}>Welcome</Text>
-        <MaterialButtonDark
-          text1="SIGN UP FREE"
-          style={styles.materialButtonDark}
-        ></MaterialButtonDark>
-        <Image
-          source={require("../assets/images/shappeal.png")}
-          resizeMode="contain"
-          style={styles.image}
-        ></Image>
-        <Text style={styles.lOgIn}>lOG IN</Text>
-        <View style={styles.materialButtonGrey1Stack}>
-          <MaterialButtonGrey
-            text1="Continue With Google"
-            style={styles.materialButtonGrey1}
-          ></MaterialButtonGrey>
-          <EvilIconsIcon
-            name="sc-google-plus"
-            style={styles.icon4}
-          ></EvilIconsIcon>
-        </View>
+export function connection({ navigate }) {
+  return (
+    <View style={styles.container}>
+      <StatusBar animated={false} hidden={false}></StatusBar>
+      <View style={styles.materialButtonGreyStack}>
+        <MaterialButtonGrey
+          text1="Continue With Apple "
+          style={styles.materialButtonGrey}
+        ></MaterialButtonGrey>
+        <IoniconsIcon name="logo-apple" style={styles.icon}></IoniconsIcon>
       </View>
-    );
-  }
+      <View style={styles.materialButtonViolet1Stack}>
+        <MaterialButtonViolet1
+          text1="Continue with Facebook "
+          style={styles.materialButtonViolet1}
+        ></MaterialButtonViolet1>
+        <EvilIconsIcon name="sc-facebook" style={styles.icon2}></EvilIconsIcon>
+      </View>
+      <Text style={styles.welcome}>Welcome</Text>
+      <MaterialButtonDark
+        text1="SIGN UP FREE"
+        style={styles.materialButtonDark}
+      ></MaterialButtonDark>
+      <Image
+        source={require("../assets/images/shappeal.png")}
+        resizeMode="contain"
+        style={styles.image}
+      ></Image>
+      <Text style={styles.lOgIn}>lOG IN</Text>
+      <View style={styles.materialButtonGrey1Stack}>
+        <MaterialButtonGrey
+          text1="Continue With Google"
+          style={styles.materialButtonGrey1}
+        ></MaterialButtonGrey>
+        <EvilIconsIcon
+          name="sc-google-plus"
+          style={styles.icon4}
+        ></EvilIconsIcon>
+      </View>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({

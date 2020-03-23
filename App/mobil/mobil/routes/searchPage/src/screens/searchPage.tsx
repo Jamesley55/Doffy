@@ -1,29 +1,29 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import { StyleSheet, View, Image, Text } from "react-native";
 import EntypoIcon from "react-native-vector-icons/Entypo";
 import MaterialUnderlineTextbox from "../components/MaterialUnderlineTextbox";
+import * as Font from "expo-font";
+import AppLoading from "expo/build/launch/AppLoading";
 
-export class searchPage extends React.PureComponent {
-  render() {
-    return (
-      <View style={styles.container}>
-        <View style={styles.iconRow}>
-          <EntypoIcon name="arrow-left" style={styles.icon}></EntypoIcon>
-          <Image
-            source={require("../assets/images/shappeal1.png")}
-            resizeMode="contain"
-            style={styles.image1}
-          ></Image>
-        </View>
-        <EntypoIcon name="cross" style={styles.icon2}></EntypoIcon>
-        <MaterialUnderlineTextbox
-          textInput1="What are you looking for?"
-          style={styles.materialUnderlineTextbox}
-        ></MaterialUnderlineTextbox>
-        <Text style={styles.loremIpsum}>What are you looking for?</Text>
+export function searchPage({ navigation }) {
+  return (
+    <View style={styles.container}>
+      <View style={styles.iconRow}>
+        <EntypoIcon name="arrow-left" style={styles.icon}></EntypoIcon>
+        <Image
+          source={require("../assets/images/shappeal1.png")}
+          resizeMode="contain"
+          style={styles.image1}
+        ></Image>
       </View>
-    );
-  }
+      <EntypoIcon name="cross" style={styles.icon2}></EntypoIcon>
+      <MaterialUnderlineTextbox
+        textInput1="What are you looking for?"
+        style={styles.materialUnderlineTextbox}
+      ></MaterialUnderlineTextbox>
+      <Text style={styles.loremIpsum}>What are you looking for?</Text>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({

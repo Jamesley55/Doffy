@@ -12,56 +12,46 @@ import MaterialMessageTextbox from "../Component/MaterialMessageTextbox";
 import * as Font from "expo-font";
 import MaterialMessagePassword from "../Component/MaterialMessagePassword.js";
 
-export class register extends React.PureComponent {
-  async UNSAFE_componentWillMount() {
-    await Font.loadAsync({
-      "armata-regular": require("../../../../assets/fonts/armata-regular.ttf")
-    });
-  }
-  render() {
-    return (
-      <ScrollView style={styles.container}>
-        <TouchableOpacity onPress={() => alert("image clicked")}>
-          <Image
-            source={require("../assets/images/shappeal.png")}
-            resizeMode="contain"
-            style={styles.image1}
-          />
-        </TouchableOpacity>
-        <Text style={styles.loremIpsum1}>
-          Pease enter a username &amp; password
-        </Text>
-        <View style={styles.icon1ColumnRow}>
-          <View style={styles.icon1Column}>
-            <EntypoIcon name="mail" style={styles.icon1}></EntypoIcon>
-            <EntypoIcon name="lock" style={styles.icon2}></EntypoIcon>
-            <EntypoIcon name="lock" style={styles.icon3}></EntypoIcon>
-          </View>
-          <View style={styles.materialMessageTextbox1Column}>
-            <MaterialMessageTextbox
-              textInput1="Email"
-              style={styles.materialMessageTextbox1}
-            ></MaterialMessageTextbox>
-            <MaterialMessagePassword
-              textInput1="Password"
-              style={styles.materialMessageTextbox2}
-            ></MaterialMessagePassword>
-            <MaterialMessagePassword
-              text1="Input "
-              textInput1="Re-enter Password"
-              style={styles.materialMessageTextbox3}
-            ></MaterialMessagePassword>
-          </View>
+export function register({ navigation }) {
+  return (
+    <ScrollView style={styles.container}>
+      <TouchableOpacity onPress={() => alert("image clicked")}>
+        <Image
+          source={require("../assets/images/shappeal.png")}
+          resizeMode="contain"
+          style={styles.image1}
+        />
+      </TouchableOpacity>
+      <Text style={styles.loremIpsum1}>
+        Pease enter a username &amp; password
+      </Text>
+      <View style={styles.icon1ColumnRow}>
+        <View style={styles.icon1Column}>
+          <EntypoIcon name="mail" style={styles.icon1}></EntypoIcon>
+          <EntypoIcon name="lock" style={styles.icon2}></EntypoIcon>
+          <EntypoIcon name="lock" style={styles.icon3}></EntypoIcon>
         </View>
-        <Text
-          style={styles.signIn}
-          onPress={() => console.log("tu ma presser")}
-        >
-          SIGN IN
-        </Text>
-      </ScrollView>
-    );
-  }
+        <View style={styles.materialMessageTextbox1Column}>
+          <MaterialMessageTextbox
+            textInput1="Email"
+            style={styles.materialMessageTextbox1}
+          ></MaterialMessageTextbox>
+          <MaterialMessagePassword
+            textInput1="Password"
+            style={styles.materialMessageTextbox2}
+          ></MaterialMessagePassword>
+          <MaterialMessagePassword
+            text1="Input "
+            textInput1="Re-enter Password"
+            style={styles.materialMessageTextbox3}
+          ></MaterialMessagePassword>
+        </View>
+      </View>
+      <Text style={styles.signIn} onPress={() => console.log("tu ma presser")}>
+        SIGN IN
+      </Text>
+    </ScrollView>
+  );
 }
 
 const styles = StyleSheet.create({

@@ -1,53 +1,53 @@
 import React, { Component, useState } from "react";
-import { StyleSheet, View, Image, Text, ScrollView } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Image,
+  Text,
+  ScrollView,
+  Button
+} from "react-native";
 import EntypoIcon from "react-native-vector-icons/Entypo";
 import MaterialMessageTextbox from "../components/MaterialMessageTextbox";
 import * as Font from "expo-font";
 import MaterialMessagePassword from "../components/MaterialMessagePassword";
+import { AppLoading } from "expo";
 
-export class login extends React.PureComponent {
-  async UNSAFE_componentWillMount() {
-    await Font.loadAsync({
-      "armata-regular": require("../../../../assets/fonts/armata-regular.ttf")
-    });
-  }
-
-  render() {
-    return (
-      <ScrollView style={styles.container}>
-        <Image
-          source={require("../assets/images/shappeal.png")}
-          resizeMode="contain"
-          style={styles.image1}
-        ></Image>
-        <Text style={styles.loremIpsum}>
-          PLease enter a username &amp; password
-        </Text>
-        <View style={styles.iconColumnRow}>
-          <View style={styles.iconColumn}>
-            <EntypoIcon name="mail" style={styles.icon}></EntypoIcon>
-            <EntypoIcon name="lock" style={styles.icon2}></EntypoIcon>
-          </View>
-          <View style={styles.materialMessageTextboxColumn}>
-            <MaterialMessageTextbox
-              textInput1="Email"
-              style={styles.materialMessageTextbox}
-            ></MaterialMessageTextbox>
-            <MaterialMessagePassword
-              textInput1="Password"
-              style={styles.materialMessageTextbox1}
-            ></MaterialMessagePassword>
-          </View>
+export function login({ navigation }) {
+  return (
+    <ScrollView style={styles.container}>
+      <Image
+        source={require("../assets/images/shappeal.png")}
+        resizeMode="contain"
+        style={styles.image1}
+      ></Image>
+      <Text style={styles.loremIpsum}>
+        PLease enter a username &amp; password
+      </Text>
+      <View style={styles.iconColumnRow}>
+        <View style={styles.iconColumn}>
+          <EntypoIcon name="mail" style={styles.icon}></EntypoIcon>
+          <EntypoIcon name="lock" style={styles.icon2}></EntypoIcon>
         </View>
-        <Text
-          style={styles.lOgIn1}
-          onPress={() => console.log("tu ma presser")}
-        >
-          lOG IN
-        </Text>
-      </ScrollView>
-    );
-  }
+        <View style={styles.materialMessageTextboxColumn}>
+          <MaterialMessageTextbox
+            textInput1="Email"
+            style={styles.materialMessageTextbox}
+          ></MaterialMessageTextbox>
+          <MaterialMessagePassword
+            textInput1="Password"
+            style={styles.materialMessageTextbox1}
+          ></MaterialMessagePassword>
+        </View>
+      </View>
+      <Text
+        style={styles.lOgIn1}
+        onPress={() => navigation.navigate("register")}
+      >
+        lOG IN
+      </Text>
+    </ScrollView>
+  );
 }
 
 const styles = StyleSheet.create({

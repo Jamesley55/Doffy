@@ -1,39 +1,31 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import Icon from "react-native-vector-icons/Entypo";
 import * as Font from "expo-font";
+import AppLoading from "expo/build/launch/AppLoading";
 
-export class firstPage2 extends React.PureComponent {
-  async UNSAFE_componentWillMount() {
-    await Font.loadAsync({
-      "roboto-regular": require("../../../../assets/fonts/robot-regular.ttf"),
-      "roboto-700": require("../../../../assets/fonts/robot-700.ttf")
-    });
-  }
-
-  render() {
-    return (
-      <View style={styles.container}>
-        <Icon name="chevron-thin-up" style={styles.icon}></Icon>
-        <Text style={styles.goBack}>Go back</Text>
-        <Text style={styles.loremIpsum}>
-          Choose the service that you need at the moment
-        </Text>
-        <View style={styles.rectRow}>
-          <View style={styles.rect}></View>
-          <View style={styles.rect1}></View>
-        </View>
-        <View style={styles.rect2Row}>
-          <View style={styles.rect2}></View>
-          <View style={styles.rect3}></View>
-        </View>
-        <View style={styles.rect4Row}>
-          <View style={styles.rect4}></View>
-          <View style={styles.rect5}></View>
-        </View>
+export function firstPage2({ navigation }) {
+  return (
+    <View style={styles.container}>
+      <Icon name="chevron-thin-up" style={styles.icon}></Icon>
+      <Text style={styles.goBack}>Go back</Text>
+      <Text style={styles.loremIpsum}>
+        Choose the service that you need at the moment
+      </Text>
+      <View style={styles.rectRow}>
+        <View style={styles.rect}></View>
+        <View style={styles.rect1}></View>
       </View>
-    );
-  }
+      <View style={styles.rect2Row}>
+        <View style={styles.rect2}></View>
+        <View style={styles.rect3}></View>
+      </View>
+      <View style={styles.rect4Row}>
+        <View style={styles.rect4}></View>
+        <View style={styles.rect5}></View>
+      </View>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
