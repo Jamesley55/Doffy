@@ -9,7 +9,7 @@ import * as Font from "expo-font";
 import { useState } from "react";
 import AppLoading from "expo/build/launch/AppLoading";
 
-export function connection({ navigate }) {
+export function connection({ navigation }) {
   return (
     <View style={styles.container}>
       <StatusBar animated={false} hidden={false}></StatusBar>

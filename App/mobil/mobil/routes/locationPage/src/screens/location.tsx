@@ -9,7 +9,13 @@ export function locationPage({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.icon1Row}>
-        <EntypoIcon name="arrow-left" style={styles.icon1}></EntypoIcon>
+        <EntypoIcon
+          name="arrow-left"
+          style={styles.icon1}
+          onPress={() => {
+            navigation.goBack();
+          }}
+        ></EntypoIcon>
         <Image
           source={require("../assets/images/shappeal1.png")}
           resizeMode="contain"

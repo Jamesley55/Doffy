@@ -1,18 +1,20 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import { StyleSheet, View, Switch } from "react-native";
 
 function MaterialSwitch2(props) {
+  const [value, setValue] = useState(false);
   return (
     <View style={[styles.container, props.style]}>
       <Switch
-        value={props.value ? true : false}
+        value={value}
         thumbColor={props.value ? "#3F51B5" : null}
         disabled={false}
         trackColor={{
-          true: "rgba(230, 230, 230,1)",
+          true: "green",
           false: "rgba(230, 230, 230,1)"
         }}
         style={styles.switch1}
+        onChange={() => setValue(!value)}
       ></Switch>
     </View>
   );

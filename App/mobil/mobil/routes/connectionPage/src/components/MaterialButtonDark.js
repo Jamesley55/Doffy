@@ -1,10 +1,19 @@
 import React, { Component } from "react";
 import { StyleSheet, TouchableOpacity, Text } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 function MaterialButtonDark(props) {
+  const navigation = useNavigation();
   return (
     <TouchableOpacity style={[styles.container, props.style]}>
-      <Text style={styles.caption}>{props.text1 || "BUTTON"}</Text>
+      <Text
+        style={styles.caption}
+        onPress={() => {
+          navigation.navigate("register");
+        }}
+      >
+        {props.text1 || "BUTTON"}
+      </Text>
     </TouchableOpacity>
   );
 }

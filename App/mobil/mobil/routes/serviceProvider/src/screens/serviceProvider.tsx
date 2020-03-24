@@ -1,10 +1,26 @@
 import React, { Component } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import MaterialButtonPrimary from "../components/MaterialButtonPrimary";
+import IoniconsIcon from "react-native-vector-icons/Ionicons";
+import EntypoIcon from "react-native-vector-icons/Entypo";
 
-export function serviceProvider({ navigator }) {
+export function serviceProvider({ navigation }) {
   return (
     <View style={styles.container}>
+      <EntypoIcon
+        name="arrow-left"
+        style={styles.icon}
+        onPress={() => {
+          navigation.goBack();
+        }}
+      ></EntypoIcon>
+      <IoniconsIcon
+        name="md-help-circle-outline"
+        style={styles.icon2}
+        onPress={() => {
+          navigation.navigate("help");
+        }}
+      ></IoniconsIcon>
       <Text style={styles.loremIpsum}>
         Choose the services that you are ready to provide
       </Text>
@@ -33,13 +49,23 @@ const styles = StyleSheet.create({
   container: {
     flex: 1
   },
+  icon: {
+    color: "rgba(128,128,128,1)",
+    fontSize: 40,
+    marginTop: 40
+  },
+  icon2: {
+    color: "rgba(128,128,128,1)",
+    fontSize: 40,
+    marginLeft: 248
+  },
   loremIpsum: {
     width: 342,
     height: 68,
     color: "#121212",
     fontSize: 26,
     fontFamily: "roboto-700",
-    marginTop: 68,
+    marginTop: 48,
     marginLeft: 17
   },
   rect1: {

@@ -5,14 +5,23 @@ import IoniconsIcon from "react-native-vector-icons/Ionicons";
 import MaterialIconsIcon from "react-native-vector-icons/MaterialIcons";
 import MaterialButtonPrimary from "../components/MaterialButtonPrimary";
 
-export function picDownload({ navigator }) {
+export function picDownload({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.icon1Row}>
-        <EntypoIcon name="arrow-left" style={styles.icon1}></EntypoIcon>
+        <EntypoIcon
+          name="arrow-left"
+          style={styles.icon1}
+          onPress={() => {
+            navigation.goBack();
+          }}
+        ></EntypoIcon>
         <IoniconsIcon
           name="md-help-circle-outline"
           style={styles.icon2}
+          onPress={() => {
+            navigation.navigate("help");
+          }}
         ></IoniconsIcon>
       </View>
       <View style={styles.profilPictureStack}>
@@ -41,7 +50,7 @@ export function picDownload({ navigator }) {
         </View>
       </View>
       <MaterialButtonPrimary
-        text1="Continue "
+        text1="Continue"
         style={styles.materialButtonPrimary1}
       ></MaterialButtonPrimary>
     </View>

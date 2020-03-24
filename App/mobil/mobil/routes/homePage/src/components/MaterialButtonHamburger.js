@@ -1,10 +1,18 @@
 import React, { Component } from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import { useNavigation } from "@react-navigation/native";
 
-function MaterialButtonHamburger(props, { navigation }) {
+function MaterialButtonHamburger(props) {
+  const navigation = useNavigation();
+
   return (
-    <TouchableOpacity style={[styles.container, props.style]}>
+    <TouchableOpacity
+      style={[styles.container, props.style]}
+      onPress={() => {
+        navigation.toggleDrawer();
+      }}
+    >
       <Icon name="menu" style={styles.caption}></Icon>
     </TouchableOpacity>
   );

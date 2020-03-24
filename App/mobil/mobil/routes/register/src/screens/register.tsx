@@ -47,7 +47,12 @@ export function register({ navigation }) {
           ></MaterialMessagePassword>
         </View>
       </View>
-      <Text style={styles.signIn} onPress={() => console.log("tu ma presser")}>
+      <Text
+        style={styles.signIn}
+        onPress={() => {
+          navigation.navigate("homepage");
+        }}
+      >
         SIGN IN
       </Text>
     </ScrollView>

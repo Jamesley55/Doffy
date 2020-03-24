@@ -79,6 +79,12 @@ export function firstPage({ navigation }) {
           </Text>
         </TouchableOpacity>
       </View>
+      <Text
+        style={styles.lOgIn1}
+        onPress={() => navigation.navigate("connection")}
+      >
+        Register
+      </Text>
       <Text style={styles.lOgIn1} onPress={() => navigation.navigate("login")}>
         lOG IN
       </Text>
@@ -90,6 +96,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1
   },
+
   image: {
     top: 0,
     left: 0,

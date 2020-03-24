@@ -191,7 +191,7 @@ const styles = StyleSheet.create({
   billOverview: {
     top: 0,
     left: 5,
-    width: 202,
+    width: "80%",
     height: 33,
     color: "rgba(59,33,33,1)",
     position: "absolute",
@@ -201,7 +201,7 @@ const styles = StyleSheet.create({
     letterSpacing: -1
   },
   rectStack: {
-    width: 347,
+    width: "100%",
     height: 187,
     marginTop: 19,
     marginLeft: 14
@@ -209,7 +209,7 @@ const styles = StyleSheet.create({
   loremIpsum: {
     top: 0,
     left: 0,
-    width: 322,
+    width: "100%",
     height: 44,
     color: "rgba(59,33,33,1)",
     position: "absolute",
@@ -221,7 +221,7 @@ const styles = StyleSheet.create({
   loremIpsum1: {
     top: 42,
     left: 0,
-    width: 322,
+    width: "100%",
     height: 44,
     color: "rgba(59,33,33,1)",
     position: "absolute",
@@ -231,7 +231,7 @@ const styles = StyleSheet.create({
     letterSpacing: -1
   },
   loremIpsumStack: {
-    width: 322,
+    width: "100%",
     height: 86,
     marginTop: 15,
     marginLeft: 19
@@ -251,7 +251,7 @@ const styles = StyleSheet.create({
   rect1: {
     top: 29,
     left: 0,
-    width: 347,
+    width: "100%",
     height: 171,
     backgroundColor: "rgba(230, 230, 230,1)",
     position: "absolute",
@@ -340,7 +340,7 @@ const styles = StyleSheet.create({
     marginLeft: 13
   },
   paymentMethodeStack: {
-    width: 347,
+    width: "100%",
     height: 200,
     marginTop: 1,
     marginLeft: 14

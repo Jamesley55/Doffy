@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   },
   checkIcon: {
     color: "#3F51B5",
-    fontFamily: "Roboto",
+    fontFamily: "roboto-regular",
     fontSize: 28,
     lineHeight: 28
   }

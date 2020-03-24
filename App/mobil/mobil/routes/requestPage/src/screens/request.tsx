@@ -6,20 +6,35 @@ import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommun
 import MaterialButtonPrimary from "../components/MaterialButtonPrimary";
 import MaterialIconTextButtonsFooter from "../components/MaterialIconTextButtonsFooter";
 
-export function requestPage({ navigator }) {
+export function requestPage({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.icon1Row}>
-        <EntypoIcon name="arrow-left" style={styles.icon1}></EntypoIcon>
+        <EntypoIcon
+          name="arrow-left"
+          style={styles.icon1}
+          onPress={() => {
+            navigation.goBack();
+          }}
+        ></EntypoIcon>
         <Image
           source={require("../assets/images/shappeal1.png")}
           resizeMode="contain"
           style={styles.image1}
         ></Image>
-        <IoniconsIcon name="md-search" style={styles.icon2}></IoniconsIcon>
+        <IoniconsIcon
+          name="md-search"
+          style={styles.icon2}
+          onPress={() => {
+            navigation.navigate("searchPage");
+          }}
+        ></IoniconsIcon>
         <MaterialCommunityIconsIcon
           name="account"
           style={styles.icon3}
+          onPress={() => {
+            navigation.navigate("option");
+          }}
         ></MaterialCommunityIconsIcon>
       </View>
       <View style={styles.rect}>
@@ -42,19 +57,28 @@ export function requestPage({ navigator }) {
       </View>
       <View style={styles.rect3}>
         <View style={styles.adressStack}>
-          <Text style={styles.adress}>Adress</Text>
-          <Text style={styles.disponibility}>Disponibility</Text>
+          <Text
+            style={styles.adress}
+            onPress={() => {
+              navigation.navigate("location");
+            }}
+          >
+            Adress
+          </Text>
+          <Text
+            style={styles.disponibility}
+            onPress={() => {
+              navigation.navigate("location");
+            }}
+          >
+            Disponibility
+          </Text>
         </View>
       </View>
       <MaterialButtonPrimary
         text1="Request an appointment"
         style={styles.materialButtonPrimary1}
       ></MaterialButtonPrimary>
-      <MaterialIconTextButtonsFooter
-        icon3Name="message"
-        text3="message"
-        style={styles.materialIconTextButtonsFooter1}
-      ></MaterialIconTextButtonsFooter>
     </View>
   );
 }
@@ -93,7 +117,7 @@ const styles = StyleSheet.create({
     marginRight: 14
   },
   rect: {
-    width: 375,
+    width: "100%",
     height: 170,
     backgroundColor: "rgba(230, 230, 230,1)",
     marginTop: 30
@@ -170,7 +194,7 @@ const styles = StyleSheet.create({
   rect2: {
     top: 26,
     left: 1,
-    width: 345,
+    width: "100%",
     height: 104,
     backgroundColor: "rgba(230, 230, 230,1)",
     position: "absolute"
@@ -178,7 +202,7 @@ const styles = StyleSheet.create({
   preview2: {
     top: 0,
     left: 0,
-    width: 246,
+    width: "100%",
     height: 38,
     color: "rgba(59,33,33,1)",
     position: "absolute",
@@ -188,13 +212,14 @@ const styles = StyleSheet.create({
     letterSpacing: -1
   },
   rect2Stack: {
-    width: 346,
+    width: "100%",
     height: 130,
     marginTop: 7,
     marginLeft: 13
   },
   rect3: {
-    width: 375,
+    width: "99%",
+    marginLeft: 1,
     height: 49,
     borderColor: "rgba(87,87,87,1)",
     borderWidth: 1,
@@ -223,7 +248,7 @@ const styles = StyleSheet.create({
     letterSpacing: -1
   },
   adressStack: {
-    width: 341,
+    width: "100%",
     height: 38,
     marginTop: 11,
     marginLeft: 14
@@ -236,7 +261,7 @@ const styles = StyleSheet.create({
     marginLeft: 37
   },
   materialIconTextButtonsFooter1: {
-    width: 375,
+    width: "100%",
     height: 102,
     marginTop: 20
   }

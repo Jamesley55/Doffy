@@ -7,17 +7,25 @@ import MaterialRadio from "../components/MaterialRadio";
 import MaterialFixedLabelTextbox from "../components/MaterialFixedLabelTextbox";
 import MaterialButtonPrimary from "../components/MaterialButtonPrimary";
 
-export function payout({ navigator }) {
+export function payout({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.icon1StackRow}>
         <View style={styles.icon1Stack}>
-          <EntypoIcon name="arrow-left" style={styles.icon1}></EntypoIcon>
-          <EntypoIcon name="arrow-left" style={styles.icon2}></EntypoIcon>
+          <EntypoIcon
+            name="arrow-left"
+            style={styles.icon1}
+            onPress={() => {
+              navigation.goBack();
+            }}
+          ></EntypoIcon>
         </View>
         <IoniconsIcon
           name="md-help-circle-outline"
           style={styles.icon3}
+          onPress={() => {
+            navigation.navigate("help");
+          }}
         ></IoniconsIcon>
       </View>
       <View style={styles.rect}>

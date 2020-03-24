@@ -35,6 +35,9 @@ export function sellerSteps({ navigation }) {
           <EntypoIcon
             name="chevron-thin-right"
             style={styles.icon2}
+            onPress={() => {
+              navigation.navigate("serviceProvider");
+            }}
           ></EntypoIcon>
         </View>
       </View>
@@ -44,6 +47,9 @@ export function sellerSteps({ navigation }) {
           <EntypoIcon
             name="chevron-thin-right"
             style={styles.icon3}
+            onPress={() => {
+              navigation.navigate("schedulePage");
+            }}
           ></EntypoIcon>
         </View>
         <Text style={styles.text}></Text>
@@ -54,15 +60,21 @@ export function sellerSteps({ navigation }) {
           <EntypoIcon
             name="chevron-thin-right"
             style={styles.icon4}
+            onPress={() => {
+              navigation.navigate("picDownload");
+            }}
           ></EntypoIcon>
         </View>
       </View>
       <View style={styles.rect3}>
         <View style={styles.billingInformationRow}>
-          <Text style={styles.billingInformation}>Billing information</Text>
+          <Text style={styles.billingInformation}>Payout information</Text>
           <EntypoIcon
             name="chevron-thin-right"
             style={styles.icon5}
+            onPress={() => {
+              navigation.navigate("payout");
+            }}
           ></EntypoIcon>
         </View>
       </View>

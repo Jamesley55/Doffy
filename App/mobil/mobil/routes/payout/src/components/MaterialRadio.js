@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   },
   radioIcon: {
     color: "#3F51B5",
-    fontFamily: "Roboto",
+    fontFamily: "roboto-regular",
     fontSize: 23,
     lineHeight: 24
   }

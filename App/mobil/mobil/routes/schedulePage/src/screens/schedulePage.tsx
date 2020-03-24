@@ -4,15 +4,26 @@ import EntypoIcon from "react-native-vector-icons/Entypo";
 import IoniconsIcon from "react-native-vector-icons/Ionicons";
 import MaterialSwitch2 from "../components/MaterialSwitch2";
 import MaterialChipWithCloseButton from "../components/MaterialChipWithCloseButton";
+import { Switch } from "react-native-gesture-handler";
+import { NavigationContainer } from "@react-navigation/native";
 
-export function schedulePage({ navigator }) {
+export function schedulePage({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.icon1Row}>
-        <EntypoIcon name="arrow-left" style={styles.icon1}></EntypoIcon>
+        <EntypoIcon
+          name="arrow-left"
+          style={styles.icon1}
+          onPress={() => {
+            navigation.goBack();
+          }}
+        ></EntypoIcon>
         <IoniconsIcon
           name="md-help-circle-outline"
           style={styles.icon2}
+          onPress={() => {
+            navigation.navigate("help");
+          }}
         ></IoniconsIcon>
       </View>
       <View style={styles.rect1}>
@@ -79,14 +90,7 @@ export function schedulePage({ navigator }) {
         <Text style={styles.loremIpsum}>
           Would you like your adresse to be accesible by your client?
         </Text>
-        <MaterialChipWithCloseButton
-          text1="Yes"
-          style={styles.materialChipWithCloseButton}
-        ></MaterialChipWithCloseButton>
-        <MaterialChipWithCloseButton
-          text1="No"
-          style={styles.materialChipWithCloseButton1}
-        ></MaterialChipWithCloseButton>
+        <MaterialSwitch2></MaterialSwitch2>
       </View>
     </View>
   );

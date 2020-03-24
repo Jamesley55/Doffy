@@ -9,11 +9,12 @@ import {
 } from "react-native";
 import EntypoIcon from "react-native-vector-icons/Entypo";
 import MaterialMessageTextbox from "../components/MaterialMessageTextbox";
-import * as Font from "expo-font";
 import MaterialMessagePassword from "../components/MaterialMessagePassword";
-import { AppLoading } from "expo";
+import { AuthContext } from "../../../Auth";
+import { useContext } from "react";
 
-export function login({ navigation }) {
+export function login() {
+  const { login } = useContext(AuthContext);
   return (
     <ScrollView style={styles.container}>
       <Image
@@ -42,7 +43,9 @@ export function login({ navigation }) {
       </View>
       <Text
         style={styles.lOgIn1}
-        onPress={() => navigation.navigate("location")}
+        onPress={() => {
+          login();
+        }}
       >
         lOG IN
       </Text>

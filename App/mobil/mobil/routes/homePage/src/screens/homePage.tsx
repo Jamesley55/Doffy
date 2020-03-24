@@ -2,10 +2,12 @@ import React, { Component, useState } from "react";
 import { StyleSheet, View, Text, Image } from "react-native";
 import MaterialButtonHamburger from "../components/MaterialButtonHamburger";
 import Icon from "react-native-vector-icons/Ionicons";
-import MaterialBasicFooter1 from "../components/MaterialBasicFooter1";
 import { ScrollView } from "react-native-gesture-handler";
+import { useContext } from "react";
+import { AuthContext } from "../../../Auth";
 
 export function HomePage({ navigation }) {
+  const { logout } = useContext(AuthContext);
   return (
     <View style={styles.container}>
       <View style={styles.rectStack}>
@@ -13,7 +15,14 @@ export function HomePage({ navigation }) {
           <View style={styles.rect2StackStack}>
             <View style={styles.rect2Stack}>
               <View style={styles.rect2}>
-                <Text style={styles.helloName}>Hello, $name$</Text>
+                <Text
+                  style={styles.helloName}
+                  onPress={() => {
+                    logout();
+                  }}
+                >
+                  Hello, $name$
+                </Text>
               </View>
 
               <MaterialButtonHamburger
@@ -33,11 +42,19 @@ export function HomePage({ navigation }) {
               style={styles.image}
             ></Image>
           </View>
-          <ScrollView>
+          <ScrollView style={{ flex: 1, width: "100%" }}>
             <Text style={styles.yourRecentServices}>your recent services</Text>
             <ScrollView horizontal={true}>
               <View style={styles.rect3Row}>
-                <View style={styles.rect3}></View>
+                <View style={styles.rect3}>
+                  <Text
+                    onPress={() => {
+                      navigation.navigate("requestPage");
+                    }}
+                  >
+                    press this
+                  </Text>
+                </View>
                 <View style={styles.rect6}></View>
               </View>
             </ScrollView>
@@ -64,17 +81,6 @@ export function HomePage({ navigation }) {
             </ScrollView>
           </ScrollView>
         </View>
-        <MaterialBasicFooter1
-          icon1Name="heart"
-          text1="Favourite"
-          icon2Name="near-me"
-          text2="Nearby"
-          icon3Name="bell-ring"
-          text3="notification"
-          icon4Name="message"
-          text4="message "
-          style={styles.materialBasicFooter1}
-        ></MaterialBasicFooter1>
       </View>
     </View>
   );
@@ -82,14 +88,19 @@ export function HomePage({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: "column",
     flex: 1,
+    flexWrap: "wrap",
+    alignItems: "center",
+    borderWidth: 1,
+    flexDirection: "column",
+    width: "100%",
+    justifyContent: "center",
     borderColor: "#000000"
   },
   rect: {
     top: 0,
     left: 1,
-    width: 375,
+    width: "100%",
     height: 812,
     backgroundColor: "rgba(230, 230, 230,1)",
     position: "absolute"
@@ -97,7 +108,7 @@ const styles = StyleSheet.create({
   rect2: {
     top: 43,
     left: 7,
-    width: 334,
+    width: "100%",
     height: 46,
     backgroundColor: "rgba(230, 230, 230,1)",
     position: "absolute"
@@ -122,8 +133,8 @@ const styles = StyleSheet.create({
     borderRadius: 100
   },
   icon: {
-    top: 17,
-    left: 291,
+    top: 0,
+    left: 330,
     position: "absolute",
     color: "rgba(128,128,128,1)",
     fontSize: 40,
@@ -133,7 +144,7 @@ const styles = StyleSheet.create({
   rect2Stack: {
     top: 47,
     left: 0,
-    width: 341,
+    width: "100%",
     height: 89,
     position: "absolute"
   },
@@ -145,7 +156,7 @@ const styles = StyleSheet.create({
     position: "absolute"
   },
   rect2StackStack: {
-    width: 341,
+    width: "100%",
     height: 136,
     marginTop: 30,
     marginLeft: 15
@@ -160,12 +171,12 @@ const styles = StyleSheet.create({
     marginLeft: 15
   },
   rect3: {
-    width: 158,
+    width: 188,
     height: 82,
     backgroundColor: "rgba(45,45,45,1)"
   },
   rect6: {
-    width: 158,
+    width: 188,
     height: 82,
     backgroundColor: "rgba(45,45,45,1)",
     marginLeft: 14
@@ -178,7 +189,7 @@ const styles = StyleSheet.create({
     marginRight: 28
   },
   popularNearYou: {
-    width: 193,
+    width: "100%",
     height: 25,
     color: "#121212",
     fontSize: 20,
@@ -187,12 +198,12 @@ const styles = StyleSheet.create({
     marginLeft: 15
   },
   rect7: {
-    width: 158,
+    width: 188,
     height: 82,
     backgroundColor: "rgba(45,45,45,1)"
   },
   rect8: {
-    width: 158,
+    width: 188,
     height: 82,
     backgroundColor: "rgba(45,45,45,1)",
     marginLeft: 14
@@ -214,13 +225,13 @@ const styles = StyleSheet.create({
     marginLeft: 15
   },
   rect9: {
-    width: 158,
+    width: 188,
     height: 82,
     backgroundColor: "rgba(45,45,45,1)",
     marginTop: 1
   },
   rect10: {
-    width: 158,
+    width: 188,
     height: 82,
     backgroundColor: "rgba(45,45,45,1)",
     marginLeft: 14
@@ -242,12 +253,12 @@ const styles = StyleSheet.create({
     marginLeft: 15
   },
   rect11: {
-    width: 158,
+    width: 188,
     height: 82,
     backgroundColor: "rgba(45,45,45,1)"
   },
   rect12: {
-    width: 158,
+    width: 188,
     height: 82,
     backgroundColor: "rgba(45,45,45,1)",
     marginLeft: 16
@@ -259,15 +270,9 @@ const styles = StyleSheet.create({
     marginLeft: 15,
     marginRight: 28
   },
-  materialBasicFooter1: {
-    top: 709,
-    left: 0,
-    width: 376,
-    height: 103,
-    position: "absolute"
-  },
   rectStack: {
-    width: 376,
+    flex: 1,
+    width: "100%",
     height: 812,
     marginLeft: -1
   }

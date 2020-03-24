@@ -1,3 +1,3 @@
-import App from "./src/index";
+import { Providers } from "./routes/providers";
 
-export default App;
+export default Providers;
