@@ -9,7 +9,7 @@ function MaterialButtonDark(props) {
       <Text
         style={styles.caption}
         onPress={() => {
-          navigation.navigate("register");
+          navigation.push("register");
         }}
       >
         {props.text1 || "BUTTON"}

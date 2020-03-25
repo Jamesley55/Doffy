@@ -1,9 +1,16 @@
-import React, { Component } from "react";
+import React, { Component, useContext } from "react";
 import { StyleSheet, TouchableOpacity, Text } from "react-native";
+import { AuthContext } from "../../../Auth";
 
 function MaterialButtonPrimary(props) {
+  const { login } = useContext(AuthContext);
   return (
-    <TouchableOpacity style={[styles.container, props.style]}>
+    <TouchableOpacity
+      style={[styles.container, props.style]}
+      onPress={() => {
+        login();
+      }}
+    >
       <Text style={styles.caption}>{props.text1 || "BUTTON"}</Text>
     </TouchableOpacity>
   );

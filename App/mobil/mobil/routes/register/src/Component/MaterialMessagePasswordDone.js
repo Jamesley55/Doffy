@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { StyleSheet, View, Text, TextInput } from "react-native";
 
-function MaterialMessagePassword(props) {
+function MaterialMessagePasswordDone(props) {
   return (
     <View style={[styles.container, props.style]}>
       <Text
@@ -20,6 +20,8 @@ function MaterialMessagePassword(props) {
         autoCorrect={false}
         secureTextEntry
         placeholder={props.textInput1}
+        keyboardAppearance="dark"
+        returnKeyType="done"
         style={[
           styles.inputStyle,
           {
@@ -96,4 +98,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default MaterialMessagePassword;
+export default MaterialMessagePasswordDone;

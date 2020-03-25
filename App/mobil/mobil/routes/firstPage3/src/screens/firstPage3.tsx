@@ -1,5 +1,5 @@
 import React, { Component, useState } from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import EntypoIcon from "react-native-vector-icons/Entypo";
 import FeatherIcon from "react-native-vector-icons/Feather";
 import IoniconsIcon from "react-native-vector-icons/Ionicons";
@@ -9,12 +9,18 @@ import MaterialButtonPrimary from "../components/MaterialButtonPrimary";
 export function firstPage3({ navigation }) {
   return (
     <View style={styles.container}>
-      <EntypoIcon name="chevron-thin-up" style={styles.icon1}></EntypoIcon>
-      <Text
-        style={styles.goBack1}
+      <EntypoIcon
+        name="chevron-thin-up"
+        style={styles.icon1}
         onPress={() => {
           navigation.goBack();
         }}
+      ></EntypoIcon>
+      <Text
+        onPress={() => {
+          navigation.goBack();
+        }}
+        style={styles.goBack1}
       >
         Go back
       </Text>
@@ -44,13 +50,6 @@ export function firstPage3({ navigation }) {
         text1="Continue "
         style={styles.materialButtonPrimary}
       ></MaterialButtonPrimary>
-      <Text
-        onPress={() => {
-          navigation.navigate("sellerSteps");
-        }}
-      >
-        temporary
-      </Text>
     </View>
   );
 }
@@ -64,7 +63,8 @@ const styles = StyleSheet.create({
     color: "rgba(128,128,128,1)",
     fontSize: 24,
     marginTop: 36,
-    alignSelf: "center"
+    alignSelf: "center",
+    textAlign: "center"
   },
   goBack1: {
     width: 118,
@@ -76,21 +76,23 @@ const styles = StyleSheet.create({
     alignSelf: "center"
   },
   text: {
-    width: 300,
+    width: "100%",
     height: 102,
     color: "rgba(57,2,2,1)",
     fontSize: 20,
     fontFamily: "calibri-bold",
     textAlign: "center",
     marginTop: 18,
-    marginLeft: 21
+    marginLeft: 21,
+    justifyContent: "center",
+    alignSelf: "center"
   },
   icon2: {
     color: "rgba(128,128,128,1)",
     fontSize: 30
   },
   createYourProfile: {
-    width: 224,
+    width: "100%",
     height: 30,
     color: "rgba(32,32,32,1)",
     fontSize: 20,
@@ -110,7 +112,7 @@ const styles = StyleSheet.create({
     fontSize: 30
   },
   doYourSchedule: {
-    width: 224,
+    width: "100%",
     height: 30,
     color: "rgba(32,32,32,1)",
     fontSize: 20,
@@ -130,7 +132,7 @@ const styles = StyleSheet.create({
     marginTop: 5
   },
   doYourSchedule1: {
-    width: 224,
+    width: "100%",
     height: 30,
     color: "rgba(32,32,32,1)",
     fontSize: 20,
@@ -169,6 +171,8 @@ const styles = StyleSheet.create({
     height: 66,
     borderRadius: 100,
     marginTop: 62,
-    marginLeft: 29
+    marginLeft: 29,
+    textAlign: "center",
+    alignSelf: "center"
   }
 });

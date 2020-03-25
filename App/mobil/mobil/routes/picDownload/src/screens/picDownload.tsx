@@ -59,7 +59,8 @@ export function picDownload({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    width: "100%"
   },
   icon1: {
     color: "rgba(128,128,128,1)",
@@ -71,11 +72,13 @@ const styles = StyleSheet.create({
     marginLeft: 248
   },
   icon1Row: {
+    justifyContent: "center",
+    alignSelf: "center",
     height: 40,
     flexDirection: "row",
     marginTop: 30,
     marginLeft: 14,
-    marginRight: 40
+    marginRight: 0
   },
   profilPicture: {
     top: 0,
@@ -92,7 +95,7 @@ const styles = StyleSheet.create({
   loremIpsum: {
     top: 24,
     left: 0,
-    width: 328,
+    width: "100%",
     height: 60,
     color: "rgba(59,33,33,1)",
     position: "absolute",
@@ -137,7 +140,7 @@ const styles = StyleSheet.create({
   loremIpsum1: {
     top: 34,
     left: 0,
-    width: 328,
+    width: "100%",
     height: 106,
     color: "rgba(59,33,33,1)",
     position: "absolute",
@@ -169,6 +172,7 @@ const styles = StyleSheet.create({
     marginLeft: 14
   },
   materialButtonPrimary1: {
+    justifyContent: "center",
     width: 294,
     height: 66,
     borderRadius: 100,

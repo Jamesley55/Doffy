@@ -1,12 +1,5 @@
 import React, { Component, useState } from "react";
-import {
-  StyleSheet,
-  View,
-  Image,
-  Text,
-  ScrollView,
-  Button
-} from "react-native";
+import { StyleSheet, View, Image, Text, ScrollView } from "react-native";
 import EntypoIcon from "react-native-vector-icons/Entypo";
 import MaterialMessageTextbox from "../components/MaterialMessageTextbox";
 import MaterialMessagePassword from "../components/MaterialMessagePassword";

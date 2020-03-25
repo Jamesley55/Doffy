@@ -9,10 +9,13 @@ import {
 } from "react-native";
 import EntypoIcon from "react-native-vector-icons/Entypo";
 import MaterialMessageTextbox from "../Component/MaterialMessageTextbox";
-import * as Font from "expo-font";
-import MaterialMessagePassword from "../Component/MaterialMessagePassword.js";
+import MaterialMessagePassword from "../Component/MaterialMessagePassword";
+import MaterialMessagePasswordDone from "../Component/MaterialMessagePasswordDone";
+import { useContext } from "react";
+import { AuthContext } from "../../../Auth";
 
 export function register({ navigation }) {
+  const { login } = useContext(AuthContext);
   return (
     <ScrollView style={styles.container}>
       <TouchableOpacity onPress={() => alert("image clicked")}>
@@ -40,17 +43,17 @@ export function register({ navigation }) {
             textInput1="Password"
             style={styles.materialMessageTextbox2}
           ></MaterialMessagePassword>
-          <MaterialMessagePassword
+          <MaterialMessagePasswordDone
             text1="Input "
             textInput1="Re-enter Password"
             style={styles.materialMessageTextbox3}
-          ></MaterialMessagePassword>
+          ></MaterialMessagePasswordDone>
         </View>
       </View>
       <Text
         style={styles.signIn}
         onPress={() => {
-          navigation.navigate("homepage");
+          login();
         }}
       >
         SIGN IN

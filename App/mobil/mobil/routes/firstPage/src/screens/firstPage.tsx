@@ -181,7 +181,7 @@ const styles = StyleSheet.create({
   },
   lOgIn1: {
     width: 161,
-    height: 21,
+    height: 25,
     color: "rgba(96,96,96,1)",
     fontSize: 18,
     fontFamily: "armata-regular",

@@ -3,9 +3,7 @@ import { StyleSheet, View, Text } from "react-native";
 import EntypoIcon from "react-native-vector-icons/Entypo";
 import IoniconsIcon from "react-native-vector-icons/Ionicons";
 import MaterialSwitch2 from "../components/MaterialSwitch2";
-import MaterialChipWithCloseButton from "../components/MaterialChipWithCloseButton";
-import { Switch } from "react-native-gesture-handler";
-import { NavigationContainer } from "@react-navigation/native";
+import MaterialButtonPrimary from "../components/MaterialButtonPrimary";
 
 export function schedulePage({ navigation }) {
   return (
@@ -91,6 +89,10 @@ export function schedulePage({ navigation }) {
           Would you like your adresse to be accesible by your client?
         </Text>
         <MaterialSwitch2></MaterialSwitch2>
+        <MaterialButtonPrimary
+          text1="Continue"
+          style={styles.materialButtonPrimary1}
+        ></MaterialButtonPrimary>
       </View>
     </View>
   );
@@ -476,5 +478,12 @@ const styles = StyleSheet.create({
     height: 32,
     marginTop: 8,
     marginLeft: 116
+  },
+  materialButtonPrimary1: {
+    width: 294,
+    height: 66,
+    borderRadius: 100,
+    marginTop: 22,
+    marginLeft: 41
   }
 });

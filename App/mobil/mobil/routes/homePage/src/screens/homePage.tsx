@@ -56,6 +56,14 @@ export function HomePage({ navigation }) {
                   </Text>
                 </View>
                 <View style={styles.rect6}></View>
+                <View style={styles.rect9}></View>
+                <View style={styles.rect10}></View>
+                <View style={styles.rect9}></View>
+                <View style={styles.rect10}></View>
+                <View style={styles.rect9}></View>
+                <View style={styles.rect10}></View>
+                <View style={styles.rect9}></View>
+                <View style={styles.rect10}></View>
               </View>
             </ScrollView>
             <Text style={styles.popularNearYou}>Popular near you</Text>
@@ -63,6 +71,12 @@ export function HomePage({ navigation }) {
               <View style={styles.rect7Row}>
                 <View style={styles.rect7}></View>
                 <View style={styles.rect8}></View>
+                <View style={styles.rect9}></View>
+                <View style={styles.rect10}></View>
+                <View style={styles.rect9}></View>
+                <View style={styles.rect10}></View>
+                <View style={styles.rect9}></View>
+                <View style={styles.rect10}></View>
               </View>
             </ScrollView>
             <Text style={styles.barbershop}>Barbershop</Text>
@@ -70,6 +84,46 @@ export function HomePage({ navigation }) {
               <View style={styles.rect9Row}>
                 <View style={styles.rect9}></View>
                 <View style={styles.rect10}></View>
+                <View style={styles.rect9}></View>
+                <View style={styles.rect10}></View>
+                <View style={styles.rect9}></View>
+                <View style={styles.rect10}></View>
+                <View style={styles.rect9}></View>
+                <View style={styles.rect10}></View>
+              </View>
+            </ScrollView>
+            <Text style={styles.nailSalon}>Nail Salon</Text>
+            <ScrollView horizontal={true}>
+              <View style={styles.rect11Row}>
+                <View style={styles.rect11}></View>
+                <View style={styles.rect12}></View>
+                <View style={styles.rect9}></View>
+                <View style={styles.rect10}></View>
+                <View style={styles.rect9}></View>
+                <View style={styles.rect10}></View>
+                <View style={styles.rect9}></View>
+                <View style={styles.rect10}></View>
+              </View>
+            </ScrollView>
+            <Text style={styles.nailSalon}>Nail Salon</Text>
+            <ScrollView horizontal={true}>
+              <View style={styles.rect11Row}>
+                <View style={styles.rect11}></View>
+                <View style={styles.rect12}></View>
+              </View>
+            </ScrollView>
+            <Text style={styles.nailSalon}>Nail Salon</Text>
+            <ScrollView horizontal={true}>
+              <View style={styles.rect11Row}>
+                <View style={styles.rect11}></View>
+                <View style={styles.rect12}></View>
+              </View>
+            </ScrollView>
+            <Text style={styles.nailSalon}>Nail Salon</Text>
+            <ScrollView horizontal={true}>
+              <View style={styles.rect11Row}>
+                <View style={styles.rect11}></View>
+                <View style={styles.rect12}></View>
               </View>
             </ScrollView>
             <Text style={styles.nailSalon}>Nail Salon</Text>
@@ -89,10 +143,8 @@ export function HomePage({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexWrap: "wrap",
     alignItems: "center",
     borderWidth: 1,
-    flexDirection: "column",
     width: "100%",
     justifyContent: "center",
     borderColor: "#000000"

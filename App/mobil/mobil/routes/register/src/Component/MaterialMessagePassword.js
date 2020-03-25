@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { StyleSheet, View, Text, TextInput } from "react-native";
 
-function MaterialMessageTextbox(props) {
+function MaterialMessagePassword(props) {
   return (
     <View style={[styles.container, props.style]}>
       <Text
@@ -17,6 +17,8 @@ function MaterialMessageTextbox(props) {
         ]}
       ></Text>
       <TextInput
+        autoCorrect={false}
+        secureTextEntry
         placeholder={props.textInput1}
         keyboardAppearance="dark"
         returnKeyType="next"
@@ -96,4 +98,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default MaterialMessageTextbox;
+export default MaterialMessagePassword;

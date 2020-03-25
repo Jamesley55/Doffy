@@ -1,11 +1,12 @@
 import React, { Component, useState } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import Icon from "react-native-vector-icons/Entypo";
-import * as Font from "expo-font";
-import AppLoading from "expo/build/launch/AppLoading";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { TouchableOpacity, ScrollView } from "react-native-gesture-handler";
+import { useContext } from "react";
+import { AuthContext } from "../../../Auth";
 
 export function firstPage2({ navigation }) {
+  const { login } = useContext(AuthContext);
   return (
     <View style={styles.container}>
       <Icon name="chevron-thin-up" style={styles.icon}></Icon>
@@ -20,24 +21,34 @@ export function firstPage2({ navigation }) {
       <Text style={styles.loremIpsum}>
         Choose the service that you need at the moment
       </Text>
-      <TouchableOpacity
-        onPress={() => {
-          navigation.navigate("homepage");
-        }}
-      >
-        <View style={styles.rectRow}>
-          <View style={styles.rect}></View>
-          <View style={styles.rect1}></View>
-        </View>
-        <View style={styles.rect2Row}>
-          <View style={styles.rect2}></View>
-          <View style={styles.rect3}></View>
-        </View>
-        <View style={styles.rect4Row}>
-          <View style={styles.rect4}></View>
-          <View style={styles.rect5}></View>
-        </View>
-      </TouchableOpacity>
+      <ScrollView>
+        <TouchableOpacity
+          onPress={() => {
+            login();
+          }}
+        >
+          <View style={styles.rectRow}>
+            <View style={styles.rect}></View>
+            <View style={styles.rect1}></View>
+          </View>
+          <View style={styles.rect2Row}>
+            <View style={styles.rect2}></View>
+            <View style={styles.rect3}></View>
+          </View>
+          <View style={styles.rect4Row}>
+            <View style={styles.rect4}></View>
+            <View style={styles.rect5}></View>
+          </View>
+          <View style={styles.rect4Row}>
+            <View style={styles.rect4}></View>
+            <View style={styles.rect5}></View>
+          </View>
+          <View style={styles.rect4Row}>
+            <View style={styles.rect4}></View>
+            <View style={styles.rect5}></View>
+          </View>
+        </TouchableOpacity>
+      </ScrollView>
     </View>
   );
 }
@@ -62,7 +73,7 @@ const styles = StyleSheet.create({
     alignSelf: "center"
   },
   loremIpsum: {
-    width: 327,
+    width: "100%",
     height: 66,
     color: "rgba(0,0,0,1)",
     fontSize: 20,
@@ -71,13 +82,13 @@ const styles = StyleSheet.create({
     marginLeft: 12
   },
   rect: {
-    width: 158,
+    width: 168,
     height: 120,
     backgroundColor: "rgba(230, 230, 230,1)",
     borderRadius: 30
   },
   rect1: {
-    width: 158,
+    width: 168,
     height: 120,
     backgroundColor: "rgba(230, 230, 230,1)",
     borderRadius: 30,
@@ -91,13 +102,13 @@ const styles = StyleSheet.create({
     marginRight: 16
   },
   rect2: {
-    width: 158,
+    width: 168,
     height: 120,
     backgroundColor: "rgba(230, 230, 230,1)",
     borderRadius: 30
   },
   rect3: {
-    width: 158,
+    width: 168,
     height: 120,
     backgroundColor: "rgba(230, 230, 230,1)",
     borderRadius: 30,
@@ -111,14 +122,14 @@ const styles = StyleSheet.create({
     marginRight: 19
   },
   rect4: {
-    width: 158,
+    width: 168,
     height: 120,
     backgroundColor: "rgba(230, 230, 230,1)",
     borderRadius: 30,
     marginTop: 1
   },
   rect5: {
-    width: 158,
+    width: 168,
     height: 120,
     backgroundColor: "rgba(230, 230, 230,1)",
     borderRadius: 30,

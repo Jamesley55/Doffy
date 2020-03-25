@@ -8,7 +8,7 @@ function MaterialButtonPrimary(props) {
     <TouchableOpacity
       style={[styles.container, props.style]}
       onPress={() => {
-        navigation.navigate("schedulePage");
+        navigation.navigate("picDownload");
       }}
     >
       <Text style={styles.caption}>{props.text1 || "BUTTON"}</Text>

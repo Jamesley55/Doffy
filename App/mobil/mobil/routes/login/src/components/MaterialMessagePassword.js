@@ -20,6 +20,9 @@ function MaterialMessagePassword(props) {
         autoCorrect={false}
         secureTextEntry
         placeholder={props.textInput1}
+        keyboardType="default"
+        returnKeyType="done"
+        keyboardAppearance="dark"
         style={[
           styles.inputStyle,
           {

@@ -12,7 +12,6 @@ import AppLoading from "expo/build/launch/AppLoading";
 export function connection({ navigation }) {
   return (
     <View style={styles.container}>
-      <StatusBar animated={false} hidden={false}></StatusBar>
       <View style={styles.materialButtonGreyStack}>
         <MaterialButtonGrey
           text1="Continue With Apple "
@@ -26,6 +25,14 @@ export function connection({ navigation }) {
           style={styles.materialButtonViolet1}
         ></MaterialButtonViolet1>
         <EvilIconsIcon name="sc-facebook" style={styles.icon2}></EvilIconsIcon>
+        <MaterialButtonGrey
+          text1="Continue With Google"
+          style={styles.materialButtonGrey1}
+        ></MaterialButtonGrey>
+        <EvilIconsIcon
+          name="sc-google-plus"
+          style={styles.icon4}
+        ></EvilIconsIcon>
       </View>
       <Text style={styles.welcome}>Welcome</Text>
       <MaterialButtonDark
@@ -37,17 +44,15 @@ export function connection({ navigation }) {
         resizeMode="contain"
         style={styles.image}
       ></Image>
-      <Text style={styles.lOgIn}>lOG IN</Text>
-      <View style={styles.materialButtonGrey1Stack}>
-        <MaterialButtonGrey
-          text1="Continue With Google"
-          style={styles.materialButtonGrey1}
-        ></MaterialButtonGrey>
-        <EvilIconsIcon
-          name="sc-google-plus"
-          style={styles.icon4}
-        ></EvilIconsIcon>
-      </View>
+      <Text
+        style={styles.lOgIn}
+        onPress={() => {
+          navigation.navigate("login");
+        }}
+      >
+        lOG IN
+      </Text>
+      <View style={styles.materialButtonGrey1Stack}></View>
     </View>
   );
 }
@@ -56,11 +61,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "rgba(13,0,0,1)",
-    justifyContent: "space-between"
+    justifyContent: "center"
   },
   materialButtonGrey: {
     top: 0,
-    left: 0,
+    left: 20,
     width: 217,
     height: 46,
     backgroundColor: "rgba(255,255,255,1)",
@@ -74,7 +79,7 @@ const styles = StyleSheet.create({
   },
   icon: {
     top: 8,
-    left: 23,
+    left: 43,
     position: "absolute",
     color: "rgba(128,128,128,1)",
     fontSize: 24,
@@ -89,7 +94,7 @@ const styles = StyleSheet.create({
   },
   materialButtonViolet1: {
     top: 0,
-    left: 0,
+    left: 20,
     width: 217,
     height: 46,
     position: "absolute",
@@ -102,7 +107,7 @@ const styles = StyleSheet.create({
   },
   icon2: {
     top: 10,
-    left: 9,
+    left: 29,
     position: "absolute",
     color: "rgba(255,255,255,1)",
     fontSize: 24,
@@ -116,6 +121,7 @@ const styles = StyleSheet.create({
     marginLeft: 80
   },
   welcome: {
+    left: 20,
     width: 200,
     height: 47,
     color: "rgba(255,255,255,1)",
@@ -126,6 +132,7 @@ const styles = StyleSheet.create({
     marginLeft: 88
   },
   materialButtonDark: {
+    left: 20,
     width: 217,
     height: 47,
     borderRadius: 100,
@@ -133,12 +140,15 @@ const styles = StyleSheet.create({
     marginLeft: 80
   },
   image: {
+    left: 20,
     width: 296,
     height: 108,
     marginTop: -519,
     marginLeft: 37
   },
   lOgIn: {
+    left: 20,
+    top: 120,
     width: 161,
     height: 21,
     color: "rgba(255,255,255,1)",
@@ -149,8 +159,8 @@ const styles = StyleSheet.create({
     marginLeft: 108
   },
   materialButtonGrey1: {
-    top: 0,
-    left: 0,
+    top: 80,
+    left: 20,
     width: 217,
     height: 46,
     backgroundColor: "rgba(255,255,255,1)",
@@ -163,16 +173,16 @@ const styles = StyleSheet.create({
     shadowColor: "rgba(224,224,224,1)"
   },
   icon4: {
-    top: 10,
-    left: 11,
+    top: 90,
+    left: 31,
     position: "absolute",
     color: "rgba(128,128,128,1)",
     fontSize: 24
   },
   materialButtonGrey1Stack: {
-    width: 217,
+    width: "100%",
     height: 46,
-    marginTop: -199,
+    marginTop: 199,
     marginLeft: 80
   }
 });

@@ -36,12 +36,10 @@ const profilStack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
 const HomeStackScreen = () => (
-  <HomeStack.Navigator screenOptions={{ header: () => null }}>
-    <HomeStack.Screen
-      options={{ header: () => null }}
-      name="homepage"
-      component={HomePage}
-    />
+  <HomeStack.Navigator
+    screenOptions={{ header: () => null, gestureEnabled: false }}
+  >
+    <HomeStack.Screen name="homepage" component={HomePage} />
     <HomeStack.Screen name="requestPage" component={requestPage} />
     <HomeStack.Screen name="option" component={option} />
     <HomeStack.Screen name="searchPage" component={searchPage} />
@@ -51,7 +49,7 @@ const HomeStackScreen = () => (
 );
 
 const SearchStackScreen = () => (
-  <profilStack.Navigator>
+  <profilStack.Navigator screenOptions={{ header: () => null }}>
     <profilStack.Screen name="search" component={searchPage} />
   </profilStack.Navigator>
 );
@@ -59,6 +57,8 @@ const tabs = () => (
   <Tabs.Navigator>
     <Tabs.Screen name="homepage" component={HomeStackScreen} />
     <Tabs.Screen name="searchPage" component={SearchStackScreen} />
+    <Tabs.Screen name="notification" component={option} />
+    <Tabs.Screen name="Message" component={login} />
   </Tabs.Navigator>
 );
 
@@ -85,7 +85,9 @@ export const Routes: React.FC<RouteProps> = ({}) => {
             <Drawer.Screen name="option" component={option} />
           </Drawer.Navigator>
         ) : (
-          <Stack.Navigator screenOptions={{ header: () => null }}>
+          <Stack.Navigator
+            screenOptions={{ header: () => null, gestureEnabled: false }}
+          >
             <Stack.Screen name="Page1" component={firstPage} />
             <Stack.Screen name="Page2" component={firstPage2} />
             <Stack.Screen name="Page3" component={firstPage3} />

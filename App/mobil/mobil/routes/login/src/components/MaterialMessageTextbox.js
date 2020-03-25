@@ -18,6 +18,9 @@ function MaterialMessageTextbox(props) {
       ></Text>
       <TextInput
         placeholder={props.textInput1}
+        returnKeyType="next"
+        keyboardType="email-address"
+        keyboardAppearance="dark"
         style={[
           styles.inputStyle,
           {
