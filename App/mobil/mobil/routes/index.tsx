@@ -28,6 +28,10 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { AuthContext } from "./Auth";
 import { useContext } from "react";
+import { Notification } from "./Notification/notification";
+import { Message } from "./Message/Message";
+import { Text } from "react-native";
+import { Header } from "react-native/Libraries/NewAppScreen";
 
 const Stack = createStackNavigator();
 const Tabs = createBottomTabNavigator();
@@ -37,12 +41,14 @@ const Drawer = createDrawerNavigator();
 
 const HomeStackScreen = () => (
   <HomeStack.Navigator
-    screenOptions={{ header: () => null, gestureEnabled: false }}
+    screenOptions={{
+      gestureEnabled: false
+    }}
+    headerMode="none"
   >
     <HomeStack.Screen name="homepage" component={HomePage} />
     <HomeStack.Screen name="requestPage" component={requestPage} />
     <HomeStack.Screen name="option" component={option} />
-    <HomeStack.Screen name="searchPage" component={searchPage} />
     <HomeStack.Screen name="payement" component={payement} />
     <HomeStack.Screen name="location" component={locationPage} />
   </HomeStack.Navigator>
@@ -54,11 +60,13 @@ const SearchStackScreen = () => (
   </profilStack.Navigator>
 );
 const tabs = () => (
-  <Tabs.Navigator>
+  <Tabs.Navigator
+    tabBarOptions={{ activeTintColor: "tomato", inactiveTintColor: "gray" }}
+  >
     <Tabs.Screen name="homepage" component={HomeStackScreen} />
     <Tabs.Screen name="searchPage" component={SearchStackScreen} />
-    <Tabs.Screen name="notification" component={option} />
-    <Tabs.Screen name="Message" component={login} />
+    <Tabs.Screen name="notification" component={Notification} />
+    <Tabs.Screen name="Message" component={Message} />
   </Tabs.Navigator>
 );
 
@@ -74,14 +82,24 @@ const getFont = () =>
 
 export const Routes: React.FC<RouteProps> = ({}) => {
   const [fontLoaded, setFontisLoaded] = useState(false);
-  const { userToken } = useContext(AuthContext);
+  const { userToken, logout } = useContext(AuthContext);
 
   if (fontLoaded) {
     return (
       <NavigationContainer>
         {userToken ? (
-          <Drawer.Navigator>
+          <Drawer.Navigator
+            drawerStyle={{
+              width: "65%"
+            }}
+            drawerContentOptions={{
+              activeTintColor: "#e91e63",
+              itemStyle: { marginVertical: 10 }
+            }}
+          >
             <Drawer.Screen name="home" component={tabs} />
+            <Drawer.Screen name="become a seller" component={sellerSteps} />
+            <Drawer.Screen name="payment Methode" component={payement} />
             <Drawer.Screen name="option" component={option} />
           </Drawer.Navigator>
         ) : (

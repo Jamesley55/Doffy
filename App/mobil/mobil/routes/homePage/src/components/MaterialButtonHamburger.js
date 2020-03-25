@@ -5,7 +5,6 @@ import { useNavigation } from "@react-navigation/native";
 
 function MaterialButtonHamburger(props) {
   const navigation = useNavigation();
-
   return (
     <TouchableOpacity
       style={[styles.container, props.style]}

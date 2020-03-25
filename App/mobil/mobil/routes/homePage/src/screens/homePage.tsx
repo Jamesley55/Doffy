@@ -5,6 +5,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 import { ScrollView } from "react-native-gesture-handler";
 import { useContext } from "react";
 import { AuthContext } from "../../../Auth";
+import List from "../components/List";
 
 export function HomePage({ navigation }) {
   const { logout } = useContext(AuthContext);
@@ -42,97 +43,23 @@ export function HomePage({ navigation }) {
               style={styles.image}
             ></Image>
           </View>
-          <ScrollView style={{ flex: 1, width: "100%" }}>
+          <ScrollView style={{ marginBottom: 10 }}>
             <Text style={styles.yourRecentServices}>your recent services</Text>
-            <ScrollView horizontal={true}>
-              <View style={styles.rect3Row}>
-                <View style={styles.rect3}>
-                  <Text
-                    onPress={() => {
-                      navigation.navigate("requestPage");
-                    }}
-                  >
-                    press this
-                  </Text>
-                </View>
-                <View style={styles.rect6}></View>
-                <View style={styles.rect9}></View>
-                <View style={styles.rect10}></View>
-                <View style={styles.rect9}></View>
-                <View style={styles.rect10}></View>
-                <View style={styles.rect9}></View>
-                <View style={styles.rect10}></View>
-                <View style={styles.rect9}></View>
-                <View style={styles.rect10}></View>
-              </View>
-            </ScrollView>
+            <List></List>
             <Text style={styles.popularNearYou}>Popular near you</Text>
-            <ScrollView horizontal={true}>
-              <View style={styles.rect7Row}>
-                <View style={styles.rect7}></View>
-                <View style={styles.rect8}></View>
-                <View style={styles.rect9}></View>
-                <View style={styles.rect10}></View>
-                <View style={styles.rect9}></View>
-                <View style={styles.rect10}></View>
-                <View style={styles.rect9}></View>
-                <View style={styles.rect10}></View>
-              </View>
-            </ScrollView>
+            <List></List>
             <Text style={styles.barbershop}>Barbershop</Text>
-            <ScrollView horizontal={true}>
-              <View style={styles.rect9Row}>
-                <View style={styles.rect9}></View>
-                <View style={styles.rect10}></View>
-                <View style={styles.rect9}></View>
-                <View style={styles.rect10}></View>
-                <View style={styles.rect9}></View>
-                <View style={styles.rect10}></View>
-                <View style={styles.rect9}></View>
-                <View style={styles.rect10}></View>
-              </View>
-            </ScrollView>
+            <List></List>
             <Text style={styles.nailSalon}>Nail Salon</Text>
-            <ScrollView horizontal={true}>
-              <View style={styles.rect11Row}>
-                <View style={styles.rect11}></View>
-                <View style={styles.rect12}></View>
-                <View style={styles.rect9}></View>
-                <View style={styles.rect10}></View>
-                <View style={styles.rect9}></View>
-                <View style={styles.rect10}></View>
-                <View style={styles.rect9}></View>
-                <View style={styles.rect10}></View>
-              </View>
-            </ScrollView>
+            <List></List>
             <Text style={styles.nailSalon}>Nail Salon</Text>
-            <ScrollView horizontal={true}>
-              <View style={styles.rect11Row}>
-                <View style={styles.rect11}></View>
-                <View style={styles.rect12}></View>
-              </View>
-            </ScrollView>
+            <List></List>
             <Text style={styles.nailSalon}>Nail Salon</Text>
-            <ScrollView horizontal={true}>
-              <View style={styles.rect11Row}>
-                <View style={styles.rect11}></View>
-                <View style={styles.rect12}></View>
-              </View>
-            </ScrollView>
+            <List></List>
             <Text style={styles.nailSalon}>Nail Salon</Text>
-            <ScrollView horizontal={true}>
-              <View style={styles.rect11Row}>
-                <View style={styles.rect11}></View>
-                <View style={styles.rect12}></View>
-              </View>
-            </ScrollView>
+            <List></List>
             <Text style={styles.nailSalon}>Nail Salon</Text>
-            <ScrollView horizontal={true}>
-              <View style={styles.rect11Row}>
-                <View style={styles.rect11}></View>
-                <View style={styles.rect12}></View>
-              </View>
-            </ScrollView>
+            <List></List>
           </ScrollView>
         </View>
       </View>

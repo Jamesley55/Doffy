@@ -5,7 +5,9 @@ function MaterialUnderlineTextbox(props) {
   return (
     <View style={[styles.container, props.style]}>
       <TextInput
-        placeholder="Placeholder"
+        keyboardAppearance="dark"
+        returnKeyType="search"
+        placeholder="What are you looking for?"
         style={styles.inputStyle}
       ></TextInput>
     </View>

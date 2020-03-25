@@ -7,21 +7,29 @@ import CupertinoRadio1 from "../components/CupertinoRadio1";
 import CupertinoRadio2 from "../components/CupertinoRadio2";
 import CupertinoRadio3 from "../components/CupertinoRadio3";
 import MaterialButtonPrimary from "../components/MaterialButtonPrimary";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 export function payement({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.icon1Row}>
-        <EntypoIcon name="arrow-left" style={styles.icon1}></EntypoIcon>
-        <Image
-          source={require("../assets/images/shappeal1.png")}
-          resizeMode="contain"
-          style={styles.image1}
-        ></Image>
-        <MaterialCommunityIconsIcon
-          name="account"
-          style={styles.icon2}
-        ></MaterialCommunityIconsIcon>
+        <EntypoIcon
+          name="arrow-left"
+          style={styles.icon1}
+          onPress={() => {
+            navigation.goBack();
+          }}
+        ></EntypoIcon>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.toggleDrawer();
+          }}
+        >
+          <MaterialCommunityIconsIcon
+            name="account"
+            style={styles.icon2}
+          ></MaterialCommunityIconsIcon>
+        </TouchableOpacity>
       </View>
       <View style={styles.rectStack}>
         <View style={styles.rect}>
@@ -87,7 +95,7 @@ const styles = StyleSheet.create({
   icon2: {
     color: "rgba(128,128,128,1)",
     fontSize: 40,
-    marginLeft: 49,
+    marginLeft: 280,
     marginTop: 25
   },
   icon1Row: {

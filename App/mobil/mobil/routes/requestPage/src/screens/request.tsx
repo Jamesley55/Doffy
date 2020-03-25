@@ -4,7 +4,6 @@ import EntypoIcon from "react-native-vector-icons/Entypo";
 import IoniconsIcon from "react-native-vector-icons/Ionicons";
 import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import MaterialButtonPrimary from "../components/MaterialButtonPrimary";
-import MaterialIconTextButtonsFooter from "../components/MaterialIconTextButtonsFooter";
 
 export function requestPage({ navigation }) {
   return (
@@ -33,7 +32,7 @@ export function requestPage({ navigation }) {
           name="account"
           style={styles.icon3}
           onPress={() => {
-            navigation.navigate("option");
+            navigation.toggleDrawer();
           }}
         ></MaterialCommunityIconsIcon>
       </View>
@@ -71,7 +70,7 @@ export function requestPage({ navigation }) {
               navigation.navigate("location");
             }}
           >
-            Disponibility
+            Check Disponibility
           </Text>
         </View>
       </View>
@@ -239,7 +238,7 @@ const styles = StyleSheet.create({
   },
   disponibility: {
     top: 0,
-    left: 224,
+    left: 204,
     color: "rgba(59,33,33,1)",
     position: "absolute",
     fontSize: 24,
@@ -256,6 +255,7 @@ const styles = StyleSheet.create({
   materialButtonPrimary1: {
     width: 294,
     height: 66,
+    top: 80,
     borderRadius: 100,
     marginTop: 13,
     marginLeft: 37
