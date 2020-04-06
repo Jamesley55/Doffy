@@ -5,7 +5,7 @@ import {
   Image,
   Text,
   ScrollView,
-  TouchableOpacity
+  TouchableOpacity,
 } from "react-native";
 import EntypoIcon from "react-native-vector-icons/Entypo";
 import MaterialMessageTextbox from "../Component/MaterialMessageTextbox";
@@ -13,9 +13,11 @@ import MaterialMessagePassword from "../Component/MaterialMessagePassword";
 import MaterialMessagePasswordDone from "../Component/MaterialMessagePasswordDone";
 import { useContext } from "react";
 import { AuthContext } from "../../../Auth";
+import { useState } from "react";
 
 export function register({ navigation }) {
   const { login } = useContext(AuthContext);
+
   return (
     <ScrollView style={styles.container}>
       <TouchableOpacity onPress={() => alert("image clicked")}>
@@ -65,14 +67,14 @@ export function register({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "rgba(155,145,145,30)"
+    backgroundColor: "rgba(155,145,145,30)",
   },
   image1: {
     alignContent: "center",
     width: 296,
     height: 70,
     marginTop: 109,
-    marginLeft: 37
+    marginLeft: 37,
   },
   loremIpsum1: {
     alignContent: "center",
@@ -85,44 +87,44 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     textAlign: "center",
     marginTop: 68,
-    alignSelf: "center"
+    alignSelf: "center",
   },
   icon1: {
     color: "rgba(255,255,255,1)",
-    fontSize: 24
+    fontSize: 24,
   },
   icon2: {
     color: "rgba(255,255,255,1)",
     fontSize: 24,
-    marginTop: 31
+    marginTop: 31,
   },
   icon1Column: {
     width: 24,
-    marginTop: 40
+    marginTop: 40,
   },
   materialMessageTextbox1: {
     alignContent: "center",
 
     width: 320,
     height: 57,
-    marginLeft: 3
+    marginLeft: 3,
   },
   materialMessageTextbox2: {
     width: 320,
     height: 67,
     marginTop: 3,
-    marginBottom: 10
+    marginBottom: 10,
   },
   materialMessageTextbox1Column: {
     width: 272,
-    marginBottom: 2
+    marginBottom: 2,
   },
   icon1ColumnRow: {
     height: 119,
     flexDirection: "row",
     marginTop: 28,
     marginLeft: 37,
-    marginRight: 42
+    marginRight: 42,
   },
   signIn: {
     alignContent: "center",
@@ -133,22 +135,22 @@ const styles = StyleSheet.create({
     fontFamily: "armata-regular",
     textAlign: "center",
     marginTop: 195,
-    marginLeft: 108
+    marginLeft: 108,
   },
   icon3: {
     color: "rgba(255,255,255,1)",
     fontSize: 24,
-    marginTop: 31
+    marginTop: 31,
   },
   materialMessageTextbox3: {
     width: 320,
-    height: 57
+    height: 57,
   },
   icon3Row: {
     height: 57,
     flexDirection: "row",
     marginTop: -115,
     marginLeft: 37,
-    marginRight: 45
-  }
+    marginRight: 45,
+  },
 });

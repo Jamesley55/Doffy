@@ -15,7 +15,7 @@ export function Notification() {
               borderWidth: 1,
               borderRadius: 3,
               width: "100%",
-              height: 80
+              height: 80,
             }}
           >
             <Button title={item} onPress={() => {}} />

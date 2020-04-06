@@ -2,8 +2,6 @@ import React, { Component, useState } from "react";
 import { StyleSheet, View, Image, Text } from "react-native";
 import EntypoIcon from "react-native-vector-icons/Entypo";
 import MaterialUnderlineTextbox from "../components/MaterialUnderlineTextbox";
-import * as Font from "expo-font";
-import AppLoading from "expo/build/launch/AppLoading";
 
 export function searchPage({ navigation }) {
   return (
@@ -34,37 +32,37 @@ export function searchPage({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
   },
   icon: {
     color: "rgba(128,128,128,1)",
     fontSize: 35,
-    marginTop: 24
+    marginTop: 24,
   },
   image1: {
     width: 191,
     height: 64,
-    marginLeft: 43
+    marginLeft: 43,
   },
   iconRow: {
     height: 64,
     flexDirection: "row",
     marginTop: 30,
     marginLeft: 17,
-    marginRight: 89
+    marginRight: 89,
   },
   icon2: {
     color: "rgba(128,128,128,1)",
     fontSize: 35,
     marginTop: 29,
-    marginLeft: 23
+    marginLeft: 23,
   },
   materialUnderlineTextbox: {
     width: 336,
     height: 55,
     backgroundColor: "rgba(245,245,245,1)",
     marginTop: 39,
-    marginLeft: 23
+    marginLeft: 23,
   },
   loremIpsum: {
     width: 297,
@@ -73,6 +71,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontFamily: "roboto-regular",
     marginTop: -83,
-    marginLeft: 23
-  }
+    marginLeft: 23,
+  },
 });

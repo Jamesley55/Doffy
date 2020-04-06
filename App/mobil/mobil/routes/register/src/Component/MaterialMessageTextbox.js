@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { StyleSheet, View, Text, TextInput } from "react-native";
 
 function MaterialMessageTextbox(props) {
+  const [Username, setUsername] = useState();
   return (
     <View style={[styles.container, props.style]}>
       <Text
@@ -12,8 +13,8 @@ function MaterialMessageTextbox(props) {
               ? "red"
               : props.success
               ? "green"
-              : "rgba(0,0,0,0.6)"
-          }
+              : "rgba(0,0,0,0.6)",
+          },
         ]}
       ></Text>
       <TextInput
@@ -27,8 +28,8 @@ function MaterialMessageTextbox(props) {
               ? "red"
               : props.success
               ? "green"
-              : "#D9D5DC"
-          }
+              : "#D9D5DC",
+          },
         ]}
       ></TextInput>
       {props.error ? (
@@ -36,8 +37,8 @@ function MaterialMessageTextbox(props) {
           style={[
             styles.helper1,
             {
-              color: props.error ? "red" : "transparent"
-            }
+              color: props.error ? "red" : "transparent",
+            },
           ]}
         >
           Error message
@@ -48,8 +49,8 @@ function MaterialMessageTextbox(props) {
           style={[
             styles.helper2,
             {
-              color: props.success ? "green" : "transparent"
-            }
+              color: props.success ? "green" : "transparent",
+            },
           ]}
         >
           Success message
@@ -61,13 +62,13 @@ function MaterialMessageTextbox(props) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "transparent"
+    backgroundColor: "transparent",
   },
   label: {
     paddingTop: 16,
     fontSize: 16,
     fontFamily: "roboto-regular",
-    textAlign: "left"
+    textAlign: "left",
   },
   inputStyle: {
     width: "100%",
@@ -80,20 +81,20 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     fontSize: 20,
     fontFamily: "roboto-regular",
-    lineHeight: 26
+    lineHeight: 26,
   },
   helper1: {
     paddingTop: 8,
     fontSize: 16,
     fontFamily: "roboto-regular",
-    textAlign: "left"
+    textAlign: "left",
   },
   helper2: {
     paddingTop: 8,
     fontSize: 16,
     fontFamily: "roboto-regular",
-    textAlign: "left"
-  }
+    textAlign: "left",
+  },
 });
 
 export default MaterialMessageTextbox;

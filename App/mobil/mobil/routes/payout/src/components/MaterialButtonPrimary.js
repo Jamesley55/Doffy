@@ -1,14 +1,16 @@
 import React, { Component, useContext } from "react";
 import { StyleSheet, TouchableOpacity, Text } from "react-native";
 import { AuthContext } from "../../../Auth";
+import { useNavigation } from "@react-navigation/native";
 
 function MaterialButtonPrimary(props) {
-  const { login } = useContext(AuthContext);
+  const { login, userToken } = useContext(AuthContext);
+  const navigation = useNavigation();
   return (
     <TouchableOpacity
       style={[styles.container, props.style]}
       onPress={() => {
-        login();
+        userToken ? navigation.navigate("home") : login();
       }}
     >
       <Text style={styles.caption}>{props.text1 || "BUTTON"}</Text>
@@ -29,17 +31,17 @@ const styles = StyleSheet.create({
     borderRadius: 2,
     shadowOffset: {
       height: 1,
-      width: 0
+      width: 0,
     },
     shadowColor: "#000",
     shadowOpacity: 0.35,
-    shadowRadius: 5
+    shadowRadius: 5,
   },
   caption: {
     color: "#fff",
     fontSize: 14,
-    fontFamily: "roboto-regular"
-  }
+    fontFamily: "roboto-regular",
+  },
 });
 
 export default MaterialButtonPrimary;

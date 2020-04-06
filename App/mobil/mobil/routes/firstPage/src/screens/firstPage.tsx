@@ -6,9 +6,8 @@ import {
   Image,
   ImageBackground,
   Text,
-  TouchableOpacity
+  TouchableOpacity,
 } from "react-native";
-import AppLoading from "expo/build/launch/AppLoading";
 
 export function firstPage({ navigation }) {
   return (
@@ -32,7 +31,7 @@ export function firstPage({ navigation }) {
           </View>
           <View style={styles.rect3Stack}>
             <View style={styles.rect3}></View>
-            <TouchableOpacity onPress={() => navigation.navigate("Page3")}>
+            <TouchableOpacity onPress={() => navigation.navigate("seller")}>
               <Image
                 source={require("../assets/images/barber.jpg")}
                 resizeMode="contain"
@@ -51,7 +50,7 @@ export function firstPage({ navigation }) {
             marginRight: 50,
             marginTop: 0,
             marginBottom: 160,
-            zIndex: 4
+            zIndex: 4,
           }}
         >
           <Text
@@ -59,7 +58,7 @@ export function firstPage({ navigation }) {
               height: 40,
               width: 160,
               marginTop: -30,
-              marginRight: 50
+              marginRight: 50,
             }}
             onPress={() => navigation.navigate("Page2")}
           >
@@ -71,9 +70,9 @@ export function firstPage({ navigation }) {
               width: 160,
               marginLeft: 175,
               marginTop: -50,
-              marginRight: 50
+              marginRight: 50,
             }}
-            onPress={() => navigation.navigate("Page3")}
+            onPress={() => navigation.navigate("seller")}
           >
             offrir a service
           </Text>
@@ -94,7 +93,7 @@ export function firstPage({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
   },
 
   image: {
@@ -105,25 +104,25 @@ const styles = StyleSheet.create({
     height: 740,
     position: "absolute",
     flexDirection: "row",
-    zIndex: -1
+    zIndex: -1,
   },
   image_imageStyle: {},
   rect2: {
     width: 162,
     height: 153,
     backgroundColor: "rgba(230, 230, 230,1)",
-    borderRadius: 30
+    borderRadius: 30,
   },
   image2: {
     width: 162,
     height: 114,
-    borderRadius: 30
+    borderRadius: 30,
   },
   textInput: {
     width: 162,
     height: 39,
     fontSize: 20,
-    marginTop: 133
+    marginTop: 133,
   },
   rect3: {
     top: 0,
@@ -134,7 +133,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     borderRadius: 30,
     borderColor: "#000000",
-    borderWidth: 0
+    borderWidth: 0,
   },
   image3: {
     top: 0,
@@ -142,12 +141,12 @@ const styles = StyleSheet.create({
     width: 164,
     height: 104,
     position: "absolute",
-    borderRadius: 30
+    borderRadius: 30,
   },
   rect3Stack: {
     width: 164,
     height: 153,
-    marginLeft: 11
+    marginLeft: 11,
   },
   rect2Row: {
     height: 153,
@@ -156,7 +155,7 @@ const styles = StyleSheet.create({
     marginRight: 12,
     marginLeft: 26,
     marginTop: 587,
-    zIndex: 2
+    zIndex: 2,
   },
   rect: {
     top: 618,
@@ -166,7 +165,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(230, 230, 230,1)",
     position: "absolute",
     borderRadius: 27,
-    zIndex: 0
+    zIndex: 0,
   },
   textInput1: {
     width: 162,
@@ -177,7 +176,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontFamily: "arial-regular",
     textAlign: "center",
-    marginLeft: 199
+    marginLeft: 199,
   },
   lOgIn1: {
     width: 161,
@@ -187,11 +186,11 @@ const styles = StyleSheet.create({
     fontFamily: "armata-regular",
     textAlign: "center",
     marginTop: -80,
-    marginLeft: 108
+    marginLeft: 108,
   },
   imageStack: {
     width: 375,
     height: 940,
-    marginTop: -100
-  }
+    marginTop: -100,
+  },
 });

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { AsyncStorage } from "react-native";
 
-type User = null | { username: string };
+type User = null | { username: string; password: string };
 export const AuthContext = React.createContext<{
   userToken: User;
   login: () => void;
@@ -17,14 +17,14 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       value={{
         userToken,
         login: () => {
-          const fakeUser = { username: "bob" };
+          const fakeUser = { username: "bob", password: "password" };
           setUserToken(fakeUser);
           AsyncStorage.setItem("userToken", JSON.stringify(fakeUser));
         },
         logout: () => {
           setUserToken(null);
           AsyncStorage.removeItem("userToken");
-        }
+        },
       }}
     >
       {children}
