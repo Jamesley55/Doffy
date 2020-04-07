@@ -1,72 +1,129 @@
 import React, { Component } from "react";
 import {
   StyleSheet,
-  View,
   Image,
   Text,
   ScrollView,
   TouchableOpacity,
 } from "react-native";
-import EntypoIcon from "react-native-vector-icons/Entypo";
-import MaterialMessageTextbox from "../Component/MaterialMessageTextbox";
-import MaterialMessagePassword from "../Component/MaterialMessagePassword";
-import MaterialMessagePasswordDone from "../Component/MaterialMessagePasswordDone";
-import { useContext } from "react";
 import { AuthContext } from "../../../Auth";
-import { useState } from "react";
+import { Input } from "react-native-elements";
+import { Item } from "native-base";
 
-export function register({ navigation }) {
-  const { login } = useContext(AuthContext);
+interface Props {
+  navigation: any;
+}
+interface state {
+  email: string;
+  emailError: boolean;
+  password: string;
+  passwordError: boolean;
+  confirmPassword: string;
+  confirmPasswordError: boolean;
+}
 
-  return (
-    <ScrollView style={styles.container}>
-      <TouchableOpacity onPress={() => alert("image clicked")}>
-        <Image
-          source={require("../assets/images/shappeal.png")}
-          resizeMode="contain"
-          style={styles.image1}
-        />
-      </TouchableOpacity>
-      <Text style={styles.loremIpsum1}>
-        Pease enter a username &amp; password
-      </Text>
-      <View style={styles.icon1ColumnRow}>
-        <View style={styles.icon1Column}>
-          <EntypoIcon name="mail" style={styles.icon1}></EntypoIcon>
-          <EntypoIcon name="lock" style={styles.icon2}></EntypoIcon>
-          <EntypoIcon name="lock" style={styles.icon3}></EntypoIcon>
-        </View>
-        <View style={styles.materialMessageTextbox1Column}>
-          <MaterialMessageTextbox
-            textInput1="Email"
+export class register extends React.PureComponent<Props, state> {
+  static contextType = AuthContext;
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: "",
+      emailError: false,
+      password: "",
+      passwordError: false,
+      confirmPassword: "",
+      confirmPasswordError: false,
+    };
+  }
+
+  handleInputChange = (field, value) => {
+    const newState = {
+      ...this.state,
+      [field]: value,
+    };
+    this.setState(newState);
+  };
+
+  render() {
+    const { register } = this.context;
+    const { emailError, passwordError, confirmPasswordError } = this.state;
+    return (
+      <ScrollView style={styles.container}>
+        <TouchableOpacity onPress={() => alert("image clicked")}>
+          <Image
+            source={require("../assets/images/shappeal.png")}
+            resizeMode="contain"
+            style={styles.image1}
+          />
+        </TouchableOpacity>
+        <Text style={styles.loremIpsum1}>
+          Pease enter a username &amp; password
+        </Text>
+        <Item error={emailError}>
+          <Input
+            leftIcon={{ type: "MaterialIcons", name: "email" }}
+            placeholder="Email"
             style={styles.materialMessageTextbox1}
-          ></MaterialMessageTextbox>
-          <MaterialMessagePassword
-            textInput1="Password"
+            onChangeText={(value) => this.handleInputChange("email", value)}
+            autoCorrect={false}
+            keyboardAppearance="dark"
+            returnKeyType="next"
+          />
+        </Item>
+        <Item error={passwordError}>
+          <Input
+            leftIcon={{ type: "Octicons", name: "lock" }}
+            placeholder="Password"
             style={styles.materialMessageTextbox2}
-          ></MaterialMessagePassword>
-          <MaterialMessagePasswordDone
-            text1="Input "
-            textInput1="Re-enter Password"
+            onChangeText={(value) => this.handleInputChange("password", value)}
+            autoCorrect={false}
+            secureTextEntry
+            keyboardAppearance="dark"
+            returnKeyType="next"
+          />
+        </Item>
+        <Item last error={confirmPasswordError}>
+          <Input
+            leftIcon={{ type: "Octicons", name: "lock" }}
+            placeholder="Re-enter Passwor"
             style={styles.materialMessageTextbox3}
-          ></MaterialMessagePasswordDone>
-        </View>
-      </View>
-      <Text
-        style={styles.signIn}
-        onPress={() => {
-          login();
-        }}
-      >
-        SIGN IN
-      </Text>
-    </ScrollView>
-  );
+            onChangeText={(value) =>
+              this.handleInputChange("confirmPassword", value)
+            }
+            autoCorrect={false}
+            secureTextEntry
+            keyboardAppearance="dark"
+            returnKeyType="done"
+          />
+        </Item>
+
+        <Text
+          style={styles.signIn}
+          onPress={() => {
+            register(
+              this.state.email,
+              this.state.password,
+              this.state.confirmPassword
+            );
+          }}
+        >
+          SIGN IN
+        </Text>
+        <Text
+          style={styles.logIn}
+          onPress={() => {
+            this.props.navigation.navigate("login");
+          }}
+        >
+          Login
+        </Text>
+      </ScrollView>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: "rgba(155,145,145,30)",
   },
   image1: {
@@ -89,43 +146,15 @@ const styles = StyleSheet.create({
     marginTop: 68,
     alignSelf: "center",
   },
-  icon1: {
-    color: "rgba(255,255,255,1)",
-    fontSize: 24,
-  },
-  icon2: {
-    color: "rgba(255,255,255,1)",
-    fontSize: 24,
-    marginTop: 31,
-  },
-  icon1Column: {
-    width: 24,
-    marginTop: 40,
-  },
+
   materialMessageTextbox1: {
     alignContent: "center",
-
-    width: 320,
-    height: 57,
-    marginLeft: 3,
+    width: "80%",
   },
   materialMessageTextbox2: {
-    width: 320,
-    height: 67,
-    marginTop: 3,
-    marginBottom: 10,
+    width: "20%",
   },
-  materialMessageTextbox1Column: {
-    width: 272,
-    marginBottom: 2,
-  },
-  icon1ColumnRow: {
-    height: 119,
-    flexDirection: "row",
-    marginTop: 28,
-    marginLeft: 37,
-    marginRight: 42,
-  },
+
   signIn: {
     alignContent: "center",
     width: 161,
@@ -137,20 +166,18 @@ const styles = StyleSheet.create({
     marginTop: 195,
     marginLeft: 108,
   },
-  icon3: {
+  logIn: {
+    alignContent: "center",
+    width: 161,
+    height: 24,
     color: "rgba(255,255,255,1)",
-    fontSize: 24,
-    marginTop: 31,
+    fontSize: 18,
+    fontFamily: "armata-regular",
+    textAlign: "center",
+    marginTop: 95,
+    marginLeft: 108,
   },
   materialMessageTextbox3: {
     width: 320,
-    height: 57,
-  },
-  icon3Row: {
-    height: 57,
-    flexDirection: "row",
-    marginTop: -115,
-    marginLeft: 37,
-    marginRight: 45,
   },
 });

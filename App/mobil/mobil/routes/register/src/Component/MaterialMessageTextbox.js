@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { StyleSheet, View, Text, TextInput } from "react-native";
 
 function MaterialMessageTextbox(props) {
-  const [Username, setUsername] = useState();
   return (
     <View style={[styles.container, props.style]}>
       <Text

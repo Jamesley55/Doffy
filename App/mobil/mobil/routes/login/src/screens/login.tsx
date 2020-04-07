@@ -49,13 +49,13 @@ export function login() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "rgba(155,145,145,30)"
+    backgroundColor: "rgba(155,145,145,30)",
   },
   image1: {
     width: 296,
     height: 70,
     marginTop: 109,
-    marginLeft: 37
+    marginLeft: 37,
   },
   loremIpsum: {
     width: 296,
@@ -67,42 +67,42 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginTop: 100,
     marginBottom: 60,
-    alignSelf: "center"
+    alignSelf: "center",
   },
   icon: {
     color: "rgba(255,255,255,1)",
     fontSize: 24,
-    marginBottom: 14
+    marginBottom: 14,
   },
   icon2: {
     color: "rgba(255,255,255,1)",
     fontSize: 24,
-    marginTop: 35
+    marginTop: 35,
   },
   iconColumn: {
     width: 24,
-    marginTop: 37
+    marginTop: 37,
   },
   materialMessageTextbox: {
     width: 320,
     height: 57,
     marginLeft: 3,
-    marginBottom: 20
+    marginBottom: 20,
   },
   materialMessageTextbox1: {
     width: 320,
     height: 57,
-    marginTop: 3
+    marginTop: 3,
   },
   materialMessageTextboxColumn: {
     width: 272,
-    marginBottom: 2
+    marginBottom: 2,
   },
   iconColumnRow: {
     height: 119,
     flexDirection: "row",
     marginLeft: 37,
-    marginRight: 42
+    marginRight: 42,
   },
   lOgIn1: {
     width: 161,
@@ -112,6 +112,6 @@ const styles = StyleSheet.create({
     fontFamily: "armata-regular",
     textAlign: "center",
     marginTop: 169,
-    marginLeft: 108
-  }
+    marginLeft: 108,
+  },
 });
