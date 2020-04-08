@@ -11,7 +11,7 @@ export const resolvers: IResolvers = {
         return null;
       }
       return User.findOne(req.session.userId);
-    }
+    },
   },
   Mutation: {
     register: async (_, { email, password, password2 }) => {
@@ -21,11 +21,12 @@ export const resolvers: IResolvers = {
       const hashedPassword = await bcrypt.hash(password, 10);
       await User.create({
         email,
-        password: hashedPassword
+        password: hashedPassword,
       }).save();
       return true;
     },
     login: async (_, { email, password }, { req }) => {
+      console.log("nouvelle Session");
       const user = await User.findOne({ where: { email } });
       if (!user) {
         return null;
@@ -37,6 +38,6 @@ export const resolvers: IResolvers = {
       req.session.userId = user.id;
 
       return user;
-    }
-  }
+    },
+  },
 };

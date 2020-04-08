@@ -10,7 +10,7 @@ const StartServer = async () => {
   const server = new ApolloServer({
     typeDefs,
     resolvers,
-    context: ({ req }: any) => ({ req })
+    context: ({ req }: any) => ({ req }),
   });
   await createConnection();
   const app = express();
@@ -19,10 +19,16 @@ const StartServer = async () => {
     session({
       secret: "hahdhdhd",
       resave: false,
-      saveUninitialized: false
+      saveUninitialized: false,
     })
   );
-  server.applyMiddleware({ app });
+  server.applyMiddleware({
+    app,
+    cors: {
+      credentials: true,
+      origin: "exp://192.168.2.20:19000",
+    },
+  });
 
   app.listen({ port: 4000 }, () =>
     console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`)
