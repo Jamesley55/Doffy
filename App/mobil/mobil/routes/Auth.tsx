@@ -1,14 +1,45 @@
 import React, { useState } from "react";
 import { AsyncStorage } from "react-native";
-import { userInfo } from "os";
 
+interface state {
+  email: string;
+  emailError: boolean;
+  password: string;
+  passwordError: boolean;
+  confirmPassword: string;
+  confirmPasswordError: boolean;
+}
 type User = null | { Email: string; Password: string };
 export const AuthContext = React.createContext<{
   userToken: User;
+  email: string;
+  setEmail;
+  emailError: boolean;
+  setEmailError;
+  password: string;
+  setPassword;
+  passwordError: boolean;
+  setPasswordError;
+  confirmPassword: string;
+  setConfirmPassword;
+  confirmPasswordError: boolean;
+  setConfirmPasswordError;
   login: () => void;
   logout: () => void;
-  register: (email, password, confirmPassword) => boolean;
+  register: () => void;
 }>({
+  email: "",
+  setEmail: "",
+  emailError: false,
+  setEmailError: false,
+  password: "",
+  setPassword: "",
+  passwordError: false,
+  setPasswordError: false,
+  confirmPassword: "",
+  setConfirmPassword: "",
+  confirmPasswordError: false,
+  setConfirmPasswordError: false,
   userToken: null,
   login: () => {},
   logout: () => {},
@@ -19,44 +50,79 @@ interface AuthProviderProps {}
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [userToken, setUserToken] = useState<User>(null);
+  const [email, setEmail] = useState<string>("");
+  const [emailError, setEmailError] = useState<boolean>(false);
+  const [password, setPassword] = useState<string>("");
+  const [passwordError, setPasswordError] = useState<boolean>(false);
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
+  const [confirmPasswordError, setConfirmPasswordError] = useState<boolean>(
+    false
+  );
+
   return (
     <AuthContext.Provider
       value={{
         userToken,
+        email,
+        setEmail,
+        emailError,
+        setEmailError,
+        password,
+        setPassword,
+        passwordError,
+        setPasswordError,
+        confirmPassword,
+        setConfirmPassword,
+        confirmPasswordError,
+        setConfirmPasswordError,
+
         login: () => {
-          const fakeUser = { Email: "bob", Password: "password" };
+          if (email.length === 0) {
+            return setEmailError(true);
+          }
+          setEmailError(false);
+
+          if (password.length === 0) {
+            return setPasswordError(true);
+          }
+          setPasswordError(false);
+
+          const fakeUser = { Email: email, Password: password };
           setUserToken(fakeUser);
+          console.log(fakeUser);
           AsyncStorage.setItem("userToken", JSON.stringify(fakeUser));
         },
         logout: () => {
           setUserToken(null);
           AsyncStorage.removeItem("userToken");
         },
-        register: (email, password, confirmPassword) => {
+        register: () => {
           if (email.length === 0) {
-            //return this.setState({ emailError: true });
+            return setEmailError(true);
           }
-          //  this.setState({ emailError: false });
+          setEmailError(false);
 
           if (password.length === 0) {
-            // return this.setState({ passwordError: true });
+            return setPasswordError(true);
           }
-          // this.setState({ passwordError: false });
+          setPasswordError(false);
 
           if (confirmPassword.length === 0) {
-            //  return this.setState({ confirmPasswordError: true });
+            return setConfirmPasswordError(true);
           }
-          // this.setState({ confirmPasswordError: false });
+          setConfirmPasswordError(false);
 
           if (password !== confirmPassword) {
-            //     return this.setState({
-            //     passwordError: true,
-            //   confirmPasswordError: true,
-            //});
+            return setConfirmPasswordError(true);
           }
-          //  this.setState({ passwordError: false, confirmPasswordError: false });
+
+          setPasswordError(false);
+          setConfirmPasswordError(false);
+
           const fakeUser = { Email: email, Password: password };
           setUserToken(fakeUser);
+          AsyncStorage.setItem("userToken", JSON.stringify(fakeUser));
+          console.log(fakeUser);
 
           return true;
         },

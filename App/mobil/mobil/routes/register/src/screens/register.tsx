@@ -6,9 +6,16 @@ import {
   ScrollView,
   TouchableOpacity,
 } from "react-native";
-import { AuthContext } from "../../../Auth";
+import { AuthContext, AuthProvider } from "../../../Auth";
 import { Input } from "react-native-elements";
 import { Item } from "native-base";
+import gql from "graphql-tag";
+import { RouteComponentProps } from "react-router";
+import { Mutation } from "react-apollo";
+import {
+  RegisterMutation,
+  RegisterMutationVariables,
+} from "../../../schemaTypes";
 
 interface Props {
   navigation: any;
@@ -22,102 +29,144 @@ interface state {
   confirmPasswordError: boolean;
 }
 
-export class register extends React.PureComponent<Props, state> {
-  static contextType = AuthContext;
+const registerMutation = gql`
+  mutation registerMutation(
+    $email: String!
+    $password: String!
+    $confirmPassword: string!
+  ) {
+    register(
+      email: $email
+      password: $password
+      confirmPassword: $confirmPassword
+    )
+  }
+`;
+
+export class register extends React.PureComponent<
+  Props,
+  state,
+  RouteComponentProps<{}>
+> {
+  textInput: {};
+
   constructor(props) {
     super(props);
-    this.state = {
-      email: "",
-      emailError: false,
-      password: "",
-      passwordError: false,
-      confirmPassword: "",
-      confirmPasswordError: false,
-    };
+    this.textInput = {};
   }
 
-  handleInputChange = (field, value) => {
-    const newState = {
-      ...this.state,
-      [field]: value,
-    };
-    this.setState(newState);
-  };
+  focusNextTextInput(id) {
+    this.textInput[id].focus();
+  }
 
+  static contextType = AuthContext;
   render() {
-    const { register } = this.context;
-    const { emailError, passwordError, confirmPasswordError } = this.state;
-    return (
-      <ScrollView style={styles.container}>
-        <TouchableOpacity onPress={() => alert("image clicked")}>
-          <Image
-            source={require("../assets/images/shappeal.png")}
-            resizeMode="contain"
-            style={styles.image1}
-          />
-        </TouchableOpacity>
-        <Text style={styles.loremIpsum1}>
-          Pease enter a username &amp; password
-        </Text>
-        <Item error={emailError}>
-          <Input
-            leftIcon={{ type: "MaterialIcons", name: "email" }}
-            placeholder="Email"
-            style={styles.materialMessageTextbox1}
-            onChangeText={(value) => this.handleInputChange("email", value)}
-            autoCorrect={false}
-            keyboardAppearance="dark"
-            returnKeyType="next"
-          />
-        </Item>
-        <Item error={passwordError}>
-          <Input
-            leftIcon={{ type: "Octicons", name: "lock" }}
-            placeholder="Password"
-            style={styles.materialMessageTextbox2}
-            onChangeText={(value) => this.handleInputChange("password", value)}
-            autoCorrect={false}
-            secureTextEntry
-            keyboardAppearance="dark"
-            returnKeyType="next"
-          />
-        </Item>
-        <Item last error={confirmPasswordError}>
-          <Input
-            leftIcon={{ type: "Octicons", name: "lock" }}
-            placeholder="Re-enter Passwor"
-            style={styles.materialMessageTextbox3}
-            onChangeText={(value) =>
-              this.handleInputChange("confirmPassword", value)
-            }
-            autoCorrect={false}
-            secureTextEntry
-            keyboardAppearance="dark"
-            returnKeyType="done"
-          />
-        </Item>
+    const {
+      email,
+      password,
+      setEmail,
+      setPassword,
+      setConfirmPassword,
+      confirmPassword,
+      emailError,
+      passwordError,
+      confirmPasswordError,
+      register,
+    } = this.context;
 
-        <Text
-          style={styles.signIn}
-          onPress={() => {
-            register(
-              this.state.email,
-              this.state.password,
-              this.state.confirmPassword
-            );
-          }}
-        >
-          SIGN IN
-        </Text>
-        <Text
-          style={styles.logIn}
-          onPress={() => {
-            this.props.navigation.navigate("login");
-          }}
-        >
-          Login
-        </Text>
-      </ScrollView>
+    return (
+      <Mutation<RegisterMutation, RegisterMutationVariables>
+        mutation={registerMutation}
+      >
+        {(mutate) => (
+          <ScrollView style={styles.container}>
+            <TouchableOpacity onPress={() => alert("image clicked")}>
+              <Image
+                source={require("../assets/images/shappeal.png")}
+                resizeMode="contain"
+                style={styles.image1}
+              />
+            </TouchableOpacity>
+            <Text style={styles.loremIpsum1}>
+              Pease enter a username &amp; password
+            </Text>
+            <Item error={emailError}>
+              <Input
+                ref={(input) => {
+                  this.textInput["one"] = input;
+                }}
+                leftIcon={{ type: "MaterialIcons", name: "email" }}
+                placeholder="Email"
+                style={styles.materialMessageTextbox1}
+                onChangeText={(value) => setEmail(value)}
+                autoCorrect={false}
+                keyboardAppearance="dark"
+                returnKeyType="next"
+                onSubmitEditing={() => {
+                  this.focusNextTextInput("two");
+                }}
+              />
+            </Item>
+            <Item error={passwordError}>
+              <Input
+                ref={(input) => {
+                  this.textInput["two"] = input;
+                }}
+                leftIcon={{ type: "Octicons", name: "lock" }}
+                placeholder="Password"
+                style={styles.materialMessageTextbox2}
+                onChangeText={(value) => setPassword(value)}
+                autoCorrect={false}
+                secureTextEntry
+                keyboardAppearance="dark"
+                returnKeyType="next"
+                onSubmitEditing={() => {
+                  this.focusNextTextInput("three");
+                }}
+              />
+            </Item>
+            <Item last error={confirmPasswordError}>
+              <Input
+                ref={(input) => {
+                  this.textInput["three"] = input;
+                }}
+                leftIcon={{ type: "Octicons", name: "lock" }}
+                placeholder="Re-enter Password"
+                style={styles.materialMessageTextbox3}
+                onChangeText={(value) => setConfirmPassword(value)}
+                autoCorrect={false}
+                secureTextEntry
+                keyboardAppearance="dark"
+                returnKeyType="done"
+                onSubmitEditing={() => register()}
+              />
+            </Item>
+
+            <Text
+              style={styles.signIn}
+              onPress={() => {
+                register();
+                async () => {
+                  const response = await mutate({
+                    variables: { email, password, confirmPassword },
+                  });
+                  console.log(response);
+                };
+              }}
+            >
+              SIGN IN
+            </Text>
+            <Text
+              style={styles.logIn}
+              onPress={() => {
+                this.props.navigation.navigate("login");
+              }}
+            >
+              Login
+            </Text>
+          </ScrollView>
+        )}
+      </Mutation>
     );
   }
 }

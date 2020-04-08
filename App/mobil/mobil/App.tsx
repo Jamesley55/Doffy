@@ -1,3 +1,3 @@
-import { Providers } from "./routes/providers";
+import Index from "./src/index";
 
-export default Providers;
+export default Index;

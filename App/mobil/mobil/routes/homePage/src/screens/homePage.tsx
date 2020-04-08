@@ -3,60 +3,83 @@ import { StyleSheet, View, Text, Image } from "react-native";
 import MaterialButtonHamburger from "../components/MaterialButtonHamburger";
 import Icon from "react-native-vector-icons/Ionicons";
 import { ScrollView } from "react-native-gesture-handler";
-import { useContext } from "react";
 import { AuthContext } from "../../../Auth";
 import List from "../components/List";
+import { MeQuery } from "../../../schemaTypes";
+import { Query } from "react-apollo";
+import gql from "graphql-tag";
 
-export function HomePage({ navigation }) {
-  return (
-    <View style={styles.container}>
-      <View style={styles.rectStack}>
-        <View style={styles.rect}>
-          <View style={styles.rect2StackStack}>
-            <View style={styles.rect2Stack}>
-              <View style={styles.rect2}>
-                <Text style={styles.helloName}>Hello, $name$</Text>
+interface Props {
+  navigation: any;
+}
+const meQuery = gql`
+  query meQuery {
+    me {
+      id
+      email
+    }
+  }
+`;
+
+export class HomePage extends React.PureComponent<Props> {
+  static contextType = AuthContext;
+  render() {
+    return (
+      <Query<MeQuery> query={meQuery}>
+        {({ data }) => (
+          <View style={styles.container}>
+            <View style={styles.rectStack}>
+              <View style={styles.rect}>
+                <View style={styles.rect2StackStack}>
+                  <View style={styles.rect2Stack}>
+                    <View style={styles.rect2}>
+                      <Text style={styles.helloName}>Hello,</Text>
+                    </View>
+
+                    <MaterialButtonHamburger
+                      style={styles.materialButtonHamburger}
+                    ></MaterialButtonHamburger>
+                    <Icon
+                      name="md-search"
+                      style={styles.icon}
+                      onPress={() => {
+                        this.props.navigation.navigate("searchPage");
+                      }}
+                    ></Icon>
+                  </View>
+                  <Image
+                    source={require("../assets/images/shappeal1.png")}
+                    resizeMode="contain"
+                    style={styles.image}
+                  ></Image>
+                </View>
+                <ScrollView style={{ marginBottom: 10 }}>
+                  <Text style={styles.yourRecentServices}>
+                    your recent services
+                  </Text>
+                  <List></List>
+                  <Text style={styles.popularNearYou}>Popular near you</Text>
+                  <List></List>
+                  <Text style={styles.barbershop}>Barbershop</Text>
+                  <List></List>
+                  <Text style={styles.nailSalon}>Nail Salon</Text>
+                  <List></List>
+                  <Text style={styles.nailSalon}>Nail Salon</Text>
+                  <List></List>
+                  <Text style={styles.nailSalon}>Nail Salon</Text>
+                  <List></List>
+                  <Text style={styles.nailSalon}>Nail Salon</Text>
+                  <List></List>
+                  <Text style={styles.nailSalon}>Nail Salon</Text>
+                  <List></List>
+                </ScrollView>
               </View>
-
-              <MaterialButtonHamburger
-                style={styles.materialButtonHamburger}
-              ></MaterialButtonHamburger>
-              <Icon
-                name="md-search"
-                style={styles.icon}
-                onPress={() => {
-                  navigation.navigate("searchPage");
-                }}
-              ></Icon>
             </View>
-            <Image
-              source={require("../assets/images/shappeal1.png")}
-              resizeMode="contain"
-              style={styles.image}
-            ></Image>
           </View>
-          <ScrollView style={{ marginBottom: 10 }}>
-            <Text style={styles.yourRecentServices}>your recent services</Text>
-            <List></List>
-            <Text style={styles.popularNearYou}>Popular near you</Text>
-            <List></List>
-            <Text style={styles.barbershop}>Barbershop</Text>
-            <List></List>
-            <Text style={styles.nailSalon}>Nail Salon</Text>
-            <List></List>
-            <Text style={styles.nailSalon}>Nail Salon</Text>
-            <List></List>
-            <Text style={styles.nailSalon}>Nail Salon</Text>
-            <List></List>
-            <Text style={styles.nailSalon}>Nail Salon</Text>
-            <List></List>
-            <Text style={styles.nailSalon}>Nail Salon</Text>
-            <List></List>
-          </ScrollView>
-        </View>
-      </View>
-    </View>
-  );
+        )}
+      </Query>
+    );
+  }
 }
 
 const styles = StyleSheet.create({

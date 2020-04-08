@@ -1,7 +1,7 @@
 import React from "react";
 import { FlatList } from "react-native-gesture-handler";
 import faker from "faker";
-import { Button, Text, TouchableOpacity } from "react-native";
+import { Button, TouchableOpacity } from "react-native";
 
 export function Notification() {
   return (
@@ -26,8 +26,4 @@ export function Notification() {
       data={Array.from(Array(50), () => faker.commerce.product())}
     />
   );
-}
-
-function Product() {
-  return <Text style={{ flex: 1 }}>Product</Text>;
 }
