@@ -9,16 +9,22 @@ import {
 import { AuthContext, AuthProvider } from "../../../Auth";
 import { Input } from "react-native-elements";
 import { Item } from "native-base";
-import gql from "graphql-tag";
 import { RouteComponentProps } from "react-router";
-import { Mutation } from "react-apollo";
 import {
-  RegisterMutation,
-  RegisterMutationVariables,
-} from "../../../schemaTypes";
-
+  FieldProps,
+  Field,
+  FormikErrors,
+  FormikProps,
+  withFormik,
+} from "formik";
+import { InputField } from "../Component/InputField";
+import { validationSchema } from "@abb/common";
+interface FormValues {
+  email: string;
+  password: string;
+}
 interface Props {
-  navigation: any;
+  submit: (values: FormValues) => Promise<FormikErrors<FormValues> | null>;
 }
 interface state {
   email: string;
@@ -29,22 +35,8 @@ interface state {
   confirmPasswordError: boolean;
 }
 
-const registerMutation = gql`
-  mutation registerMutation(
-    $email: String!
-    $password: String!
-    $confirmPassword: string!
-  ) {
-    register(
-      email: $email
-      password: $password
-      confirmPassword: $confirmPassword
-    )
-  }
-`;
-
 export class register extends React.PureComponent<
-  Props,
+  FormikProps<FormValues> & Props,
   state,
   RouteComponentProps<{}>
 > {
@@ -62,111 +54,82 @@ export class register extends React.PureComponent<
   static contextType = AuthContext;
   render() {
     const {
-      email,
-      password,
-      setEmail,
-      setPassword,
-      setConfirmPassword,
-      confirmPassword,
-      emailError,
-      passwordError,
-      confirmPasswordError,
-      register,
-    } = this.context;
-
+      handleBlur,
+      handleChange,
+      handleSubmit,
+      touched,
+      errors,
+    } = this.props;
     return (
-      <Mutation<RegisterMutation, RegisterMutationVariables>
-        mutation={registerMutation}
-      >
-        {(mutate) => (
-          <ScrollView style={styles.container}>
-            <TouchableOpacity onPress={() => alert("image clicked")}>
-              <Image
-                source={require("../assets/images/shappeal.png")}
-                resizeMode="contain"
-                style={styles.image1}
-              />
-            </TouchableOpacity>
-            <Text style={styles.loremIpsum1}>
-              Pease enter a username &amp; password
-            </Text>
-            <Item error={emailError}>
-              <Input
-                ref={(input) => {
-                  this.textInput["one"] = input;
-                }}
-                leftIcon={{ type: "MaterialIcons", name: "email" }}
-                placeholder="Email"
-                style={styles.materialMessageTextbox1}
-                onChangeText={(value) => setEmail(value)}
-                autoCorrect={false}
-                keyboardAppearance="dark"
-                returnKeyType="next"
-                onSubmitEditing={() => {
-                  this.focusNextTextInput("two");
-                }}
-              />
-            </Item>
-            <Item error={passwordError}>
-              <Input
-                ref={(input) => {
-                  this.textInput["two"] = input;
-                }}
-                leftIcon={{ type: "Octicons", name: "lock" }}
-                placeholder="Password"
-                style={styles.materialMessageTextbox2}
-                onChangeText={(value) => setPassword(value)}
-                autoCorrect={false}
-                secureTextEntry
-                keyboardAppearance="dark"
-                returnKeyType="next"
-                onSubmitEditing={() => {
-                  this.focusNextTextInput("three");
-                }}
-              />
-            </Item>
-            <Item last error={confirmPasswordError}>
-              <Input
-                ref={(input) => {
-                  this.textInput["three"] = input;
-                }}
-                leftIcon={{ type: "Octicons", name: "lock" }}
-                placeholder="Re-enter Password"
-                style={styles.materialMessageTextbox3}
-                onChangeText={(value) => setConfirmPassword(value)}
-                autoCorrect={false}
-                secureTextEntry
-                keyboardAppearance="dark"
-                returnKeyType="done"
-                onSubmitEditing={() => register()}
-              />
-            </Item>
+      <ScrollView style={styles.container}>
+        <TouchableOpacity onPress={() => alert("image clicked")}>
+          <Image
+            source={require("../assets/images/shappeal.png")}
+            resizeMode="contain"
+            style={styles.image1}
+          />
+        </TouchableOpacity>
+        <Text style={styles.loremIpsum1}>
+          Pease enter a username &amp; password
+        </Text>
+        <Item>
+          <Field name="email" placeholder="Email" component={InputField} />
+        </Item>
+        <Item>
+          <Input
+            ref={(input) => {
+              this.textInput["two"] = input;
+            }}
+            leftIcon={{ type: "Octicons", name: "lock" }}
+            placeholder="Password"
+            style={styles.materialMessageTextbox2}
+            // onChangeText={(value) => setPassword(value)}
+            autoCorrect={false}
+            secureTextEntry
+            keyboardAppearance="dark"
+            returnKeyType="next"
+            onSubmitEditing={() => {
+              this.focusNextTextInput("three");
+            }}
+          />
+        </Item>
+        <Item>
+          <Input
+            ref={(input) => {
+              this.textInput["three"] = input;
+            }}
+            leftIcon={{ type: "Octicons", name: "lock" }}
+            placeholder="Re-enter Password"
+            style={styles.materialMessageTextbox3}
+            //  onChangeText={(value) => setConfirmPassword(value)}
+            autoCorrect={false}
+            secureTextEntry
+            keyboardAppearance="dark"
+            returnKeyType="done"
+            //         onSubmitEditing={() => register()}
+          />
+        </Item>
 
-            <Text
-              style={styles.signIn}
-              onPress={() => {
-                register();
-                async () => {
-                  const response = await mutate({
-                    variables: { email, password, confirmPassword },
-                  });
-                  console.log(response);
-                };
-              }}
-            >
-              SIGN IN
-            </Text>
-            <Text
-              style={styles.logIn}
-              onPress={() => {
-                this.props.navigation.navigate("login");
-              }}
-            >
-              Login
-            </Text>
-          </ScrollView>
-        )}
-      </Mutation>
+        <Text
+          style={styles.signIn}
+          onPress={() => {
+            //     register();
+            async () => {
+              console.log();
+            };
+          }}
+        >
+          SIGN IN
+        </Text>
+        <Text
+          style={styles.logIn}
+          onPress={() => {
+            //      this.props.navigation.navigate("login");
+          }}
+        >
+          Login
+        </Text>
+      </ScrollView>
     );
   }
 }
@@ -230,3 +193,14 @@ const styles = StyleSheet.create({
     width: 320,
   },
 });
+
+export const RegisterView = withFormik<Props, FormValues>({
+  validationSchema,
+  mapPropsToValues: () => ({ email: "", password: "" }),
+  handleSubmit: async (values, { props, setErrors }) => {
+    const errors = await props.submit(values);
+    if (errors) {
+      setErrors(errors);
+    }
+  },
+})(register);

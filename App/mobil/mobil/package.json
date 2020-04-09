@@ -8,6 +8,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@abb/common": "file:../../common",
     "@expo/vector-icons": "^10.0.6",
     "@react-native-community/masked-view": "0.1.5",
     "@react-navigation/bottom-tabs": "^5.2.3",
@@ -42,14 +43,17 @@
     "react-native-web": "~0.11.7",
     "react-navigation": "^4.0.10",
     "react-navigation-drawer": "^2.4.7",
-    "react-router-native": "^5.1.2"
+    "react-router-native": "^5.1.2",
+    "yup": "^0.28.3"
   },
   "devDependencies": {
-    "@babel/core": "^7.0.0",
+    "@babel/core": "^7.9.0",
+    "@babel/runtime": "^7.9.2",
     "@types/faker": "^4.1.10",
     "@types/react": "~16.9.0",
     "@types/react-native": "~0.60.23",
     "@types/react-router-native": "^5.1.0",
+    "@types/yup": "^0.26.35",
     "babel-preset-expo": "~8.0.0",
     "typescript": "~3.6.3"
   },
