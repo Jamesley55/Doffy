@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { AuthContext, AuthProvider } from "../../../Auth";
-import { Input } from "react-native-elements";
 import { Item } from "native-base";
 import { RouteComponentProps } from "react-router";
 import {
@@ -17,8 +16,8 @@ import {
   FormikProps,
   withFormik,
 } from "formik";
-import { InputField } from "../Component/InputField";
 import { validationSchema } from "@abb/common";
+import { InputField } from "../../../Conponent/InputField";
 interface FormValues {
   email: string;
   password: string;
@@ -73,52 +72,35 @@ export class register extends React.PureComponent<
           Pease enter a username &amp; password
         </Text>
         <Item>
-          <Field name="email" placeholder="Email" component={InputField} />
-        </Item>
-        <Item>
-          <Input
-            ref={(input) => {
-              this.textInput["two"] = input;
-            }}
-            leftIcon={{ type: "Octicons", name: "lock" }}
-            placeholder="Password"
-            style={styles.materialMessageTextbox2}
-            // onChangeText={(value) => setPassword(value)}
-            autoCorrect={false}
-            secureTextEntry
-            keyboardAppearance="dark"
-            returnKeyType="next"
-            onSubmitEditing={() => {
-              this.focusNextTextInput("three");
-            }}
+          <Field
+            leftIcon={{ type: "Octicons", name: "email" }}
+            name="email"
+            placeholder="Email"
+            component={InputField}
+            autoCapitalize="none"
           />
         </Item>
         <Item>
-          <Input
-            ref={(input) => {
-              this.textInput["three"] = input;
-            }}
+          <Field
             leftIcon={{ type: "Octicons", name: "lock" }}
+            name="password"
+            secureTextEntry={true}
+            placeholder="password"
+            component={InputField}
+          />
+        </Item>
+        <Item>
+          <Field
+            leftIcon={{ type: "Octicons", name: "lock" }}
+            secureTextEntry={true}
+            name="password2"
             placeholder="Re-enter Password"
-            style={styles.materialMessageTextbox3}
-            //  onChangeText={(value) => setConfirmPassword(value)}
-            autoCorrect={false}
-            secureTextEntry
-            keyboardAppearance="dark"
-            returnKeyType="done"
-            //         onSubmitEditing={() => register()}
+            component={InputField}
+            containerStyle={{ width: "100%" }}
           />
         </Item>
 
-        <Text
-          style={styles.signIn}
-          onPress={() => {
-            //     register();
-            async () => {
-              console.log();
-            };
-          }}
-        >
+        <Text style={styles.signIn} onPress={handleSubmit as any}>
           SIGN IN
         </Text>
         <Text

@@ -30,6 +30,7 @@ import { AuthContext } from "./Auth";
 import { useContext } from "react";
 import { Notification } from "./Notification/notification";
 import { Message } from "./Message/Message";
+import { RegisterConnector } from "./register/src/registerConnector";
 import {
   Ionicons,
   AntDesign,
@@ -145,7 +146,7 @@ const creationPage = () => (
   >
     <Stack.Screen name="Page1" component={firstPage} />
     <Stack.Screen name="connection" component={connection} />
-    <Stack.Screen name="register" component={register} />
+    <Stack.Screen name="register" component={RegisterConnector} />
     <Stack.Screen name="login" component={login} />
     <Stack.Screen name="Page2" component={firstPage2} />
     <Stack.Screen name="seller" component={sellerPage} />

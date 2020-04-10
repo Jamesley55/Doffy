@@ -12,7 +12,7 @@ export class InputField extends React.Component<FieldProps<any>> {
       form: { setFieldValue },
       field: { name },
     } = this.props;
-    this.props.form.setFieldValue(name, text);
+    setFieldValue(name, text);
   };
   render() {
     const {
@@ -25,6 +25,7 @@ export class InputField extends React.Component<FieldProps<any>> {
       <Input
         {...props}
         errorStyle={errStyle}
+        errorMessage={errorMsg}
         onChangeText={this.onchangeText}
         value={field.value}
         onBlur={field.onBlur}
