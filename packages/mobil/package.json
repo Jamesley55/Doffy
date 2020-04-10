@@ -10,6 +10,7 @@
     "test": "echo testing mobil with version :$npm_package_version"
   },
   "dependencies": {
+    "@abb/controller": "file:../controller",
     "@abb/common": "file:../common",
     "@expo/vector-icons": "^10.0.6",
     "@react-native-community/masked-view": "0.1.5",
@@ -60,6 +61,7 @@
     "typescript": "~3.6.3"
   },
   "links": {
+    "@abb/controller": "link: ../controller",
     "@abb/common": "link:../common"
   },
   "private": true
