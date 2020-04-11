@@ -5,6 +5,9 @@
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "dependencies": {
+    "@apollo/react-components": "^3.1.4",
+    "@apollo/react-hooks": "^3.1.4",
+    "@babel/runtime": "^7.9.2",
     "apollo-client": "^2.6.8",
     "graphql": "^15.0.0",
     "graphql-tag": "^2.10.3",

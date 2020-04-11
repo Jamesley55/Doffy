@@ -41,16 +41,16 @@ export class register extends React.PureComponent<
 > {
   textInput: {};
 
-  constructor(props) {
-    super(props);
-    this.textInput = {};
-  }
+  //constructor(props) {
+  //  super(props);
+  //  this.textInput = {};
+  //}
+  //
+  //focusNextTextInput(id) {
+  //  this.textInput[id].focus();
+  //}
 
-  focusNextTextInput(id) {
-    this.textInput[id].focus();
-  }
-
-  static contextType = AuthContext;
+  //static contextType = AuthContext;
   render() {
     const {
       handleBlur,
