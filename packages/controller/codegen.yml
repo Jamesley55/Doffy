@@ -1,0 +1,19 @@
+overwrite: true
+schema: "http://localhost:4000/graphql"
+documents: "src/graphql/*.graphql"
+generates:
+  src/generated/graphql-hooks.ts:
+    hooks:
+    plugins:
+      - "typescript"
+      - typescript-operations
+      - "typescript-react-apollo"
+      - typescript-resolvers
+      - typescript-document-nodes
+    scalars:
+      DateTime: Date
+      JSON: { [key: string]: any }
+    config:
+      withHOC: false
+      withComponent: false
+      withHooks: true
