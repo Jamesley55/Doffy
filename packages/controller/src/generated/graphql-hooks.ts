@@ -1,13 +1,7 @@
-import {
-  GraphQLResolveInfo,
-  GraphQLScalarType,
-  GraphQLScalarTypeConfig,
-} from "graphql";
+import gql from 'graphql-tag';
+import * as ApolloReactCommon from '@apollo/react-common';
+import * as ApolloReactHooks from '@apollo/react-hooks';
 export type Maybe<T> = T | null;
-export type RequireFields<T, K extends keyof T> = {
-  [X in Exclude<keyof T, K>]?: T[X];
-} &
-  { [P in K]-?: NonNullable<T[P]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -20,236 +14,131 @@ export type Scalars = {
 };
 
 export type Query = {
-  __typename?: "Query";
+   __typename?: 'Query';
   me?: Maybe<User>;
 };
 
 export type User = {
-  __typename?: "User";
-  id: Scalars["ID"];
-  email: Scalars["String"];
+   __typename?: 'User';
+  id: Scalars['ID'];
+  email: Scalars['String'];
 };
 
 export type Mutation = {
-  __typename?: "Mutation";
-  register: Scalars["Boolean"];
+   __typename?: 'Mutation';
+  register: Scalars['Boolean'];
   login?: Maybe<User>;
 };
 
+
 export type MutationRegisterArgs = {
-  email: Scalars["String"];
-  password: Scalars["String"];
-  password2: Scalars["String"];
+  email: Scalars['String'];
+  password: Scalars['String'];
+  password2: Scalars['String'];
 };
 
+
 export type MutationLoginArgs = {
-  email: Scalars["String"];
-  password: Scalars["String"];
+  email: Scalars['String'];
+  password: Scalars['String'];
 };
 
 export enum CacheControlScope {
-  Public = "PUBLIC",
-  Private = "PRIVATE",
+  Public = 'PUBLIC',
+  Private = 'PRIVATE'
 }
 
-export type Unnamed_1_MutationVariables = {
-  email: Scalars["String"];
-  password: Scalars["String"];
+
+export type LoginMutationVariables = {
+  email: Scalars['String'];
+  password: Scalars['String'];
 };
 
-export type Unnamed_1_Mutation = { __typename?: "Mutation" } & {
-  login?: Maybe<{ __typename?: "User" } & Pick<User, "id" | "email">>;
+
+export type LoginMutation = (
+  { __typename?: 'Mutation' }
+  & { login?: Maybe<(
+    { __typename?: 'User' }
+    & Pick<User, 'id' | 'email'>
+  )> }
+);
+
+export type RegisterMutationVariables = {
+  email: Scalars['String'];
+  password: Scalars['String'];
+  password2: Scalars['String'];
 };
 
-export type Unnamed_2_MutationVariables = {
-  email: Scalars["String"];
-  password: Scalars["String"];
-  password2: Scalars["String"];
-};
 
-export type Unnamed_2_Mutation = { __typename?: "Mutation" } & Pick<
-  Mutation,
-  "register"
->;
+export type RegisterMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'register'>
+);
 
-export type ResolverTypeWrapper<T> = Promise<T> | T;
 
-export type StitchingResolver<TResult, TParent, TContext, TArgs> = {
-  fragment: string;
-  resolve: ResolverFn<TResult, TParent, TContext, TArgs>;
-};
-
-export type Resolver<TResult, TParent = {}, TContext = {}, TArgs = {}> =
-  | ResolverFn<TResult, TParent, TContext, TArgs>
-  | StitchingResolver<TResult, TParent, TContext, TArgs>;
-
-export type ResolverFn<TResult, TParent, TContext, TArgs> = (
-  parent: TParent,
-  args: TArgs,
-  context: TContext,
-  info: GraphQLResolveInfo
-) => Promise<TResult> | TResult;
-
-export type SubscriptionSubscribeFn<TResult, TParent, TContext, TArgs> = (
-  parent: TParent,
-  args: TArgs,
-  context: TContext,
-  info: GraphQLResolveInfo
-) => AsyncIterator<TResult> | Promise<AsyncIterator<TResult>>;
-
-export type SubscriptionResolveFn<TResult, TParent, TContext, TArgs> = (
-  parent: TParent,
-  args: TArgs,
-  context: TContext,
-  info: GraphQLResolveInfo
-) => TResult | Promise<TResult>;
-
-export interface SubscriptionSubscriberObject<
-  TResult,
-  TKey extends string,
-  TParent,
-  TContext,
-  TArgs
-> {
-  subscribe: SubscriptionSubscribeFn<
-    { [key in TKey]: TResult },
-    TParent,
-    TContext,
-    TArgs
-  >;
-  resolve?: SubscriptionResolveFn<
-    TResult,
-    { [key in TKey]: TResult },
-    TContext,
-    TArgs
-  >;
+export const LoginDocument = gql`
+    mutation Login($email: String!, $password: String!) {
+  login(email: $email, password: $password) {
+    id
+    email
+  }
 }
-
-export interface SubscriptionResolverObject<TResult, TParent, TContext, TArgs> {
-  subscribe: SubscriptionSubscribeFn<any, TParent, TContext, TArgs>;
-  resolve: SubscriptionResolveFn<TResult, any, TContext, TArgs>;
-}
-
-export type SubscriptionObject<
-  TResult,
-  TKey extends string,
-  TParent,
-  TContext,
-  TArgs
-> =
-  | SubscriptionSubscriberObject<TResult, TKey, TParent, TContext, TArgs>
-  | SubscriptionResolverObject<TResult, TParent, TContext, TArgs>;
-
-export type SubscriptionResolver<
-  TResult,
-  TKey extends string,
-  TParent = {},
-  TContext = {},
-  TArgs = {}
-> =
-  | ((
-      ...args: any[]
-    ) => SubscriptionObject<TResult, TKey, TParent, TContext, TArgs>)
-  | SubscriptionObject<TResult, TKey, TParent, TContext, TArgs>;
-
-export type TypeResolveFn<TTypes, TParent = {}, TContext = {}> = (
-  parent: TParent,
-  context: TContext,
-  info: GraphQLResolveInfo
-) => Maybe<TTypes> | Promise<Maybe<TTypes>>;
-
-export type isTypeOfResolverFn<T = {}> = (
-  obj: T,
-  info: GraphQLResolveInfo
-) => boolean | Promise<boolean>;
-
-export type NextResolverFn<T> = () => Promise<T>;
-
-export type DirectiveResolverFn<
-  TResult = {},
-  TParent = {},
-  TContext = {},
-  TArgs = {}
-> = (
-  next: NextResolverFn<TResult>,
-  parent: TParent,
-  args: TArgs,
-  context: TContext,
-  info: GraphQLResolveInfo
-) => TResult | Promise<TResult>;
-
-/** Mapping between all available schema types and the resolvers types */
-export type ResolversTypes = {
-  String: ResolverTypeWrapper<Scalars["String"]>;
-  Boolean: ResolverTypeWrapper<Scalars["Boolean"]>;
-  Query: ResolverTypeWrapper<{}>;
-  User: ResolverTypeWrapper<User>;
-  ID: ResolverTypeWrapper<Scalars["ID"]>;
-  Mutation: ResolverTypeWrapper<{}>;
-  CacheControlScope: CacheControlScope;
-  Upload: ResolverTypeWrapper<Scalars["Upload"]>;
-};
-
-/** Mapping between all available schema types and the resolvers parents */
-export type ResolversParentTypes = {
-  String: Scalars["String"];
-  Boolean: Scalars["Boolean"];
-  Query: {};
-  User: User;
-  ID: Scalars["ID"];
-  Mutation: {};
-  CacheControlScope: CacheControlScope;
-  Upload: Scalars["Upload"];
-};
-
-export type QueryResolvers<
-  ContextType = any,
-  ParentType extends ResolversParentTypes["Query"] = ResolversParentTypes["Query"]
-> = {
-  me?: Resolver<Maybe<ResolversTypes["User"]>, ParentType, ContextType>;
-};
-
-export type UserResolvers<
-  ContextType = any,
-  ParentType extends ResolversParentTypes["User"] = ResolversParentTypes["User"]
-> = {
-  id?: Resolver<ResolversTypes["ID"], ParentType, ContextType>;
-  email?: Resolver<ResolversTypes["String"], ParentType, ContextType>;
-  __isTypeOf?: isTypeOfResolverFn<ParentType>;
-};
-
-export type MutationResolvers<
-  ContextType = any,
-  ParentType extends ResolversParentTypes["Mutation"] = ResolversParentTypes["Mutation"]
-> = {
-  register?: Resolver<
-    ResolversTypes["Boolean"],
-    ParentType,
-    ContextType,
-    RequireFields<MutationRegisterArgs, "email" | "password" | "password2">
-  >;
-  login?: Resolver<
-    Maybe<ResolversTypes["User"]>,
-    ParentType,
-    ContextType,
-    RequireFields<MutationLoginArgs, "email" | "password">
-  >;
-};
-
-export interface UploadScalarConfig
-  extends GraphQLScalarTypeConfig<ResolversTypes["Upload"], any> {
-  name: "Upload";
-}
-
-export type Resolvers<ContextType = any> = {
-  Query?: QueryResolvers<ContextType>;
-  User?: UserResolvers<ContextType>;
-  Mutation?: MutationResolvers<ContextType>;
-  Upload?: GraphQLScalarType;
-};
+    `;
+export type LoginMutationFn = ApolloReactCommon.MutationFunction<LoginMutation, LoginMutationVariables>;
 
 /**
- * @deprecated
- * Use "Resolvers" root object instead. If you wish to get "IResolvers", add "typesPrefix: I" to your config.
+ * __useLoginMutation__
+ *
+ * To run a mutation, you first call `useLoginMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useLoginMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [loginMutation, { data, loading, error }] = useLoginMutation({
+ *   variables: {
+ *      email: // value for 'email'
+ *      password: // value for 'password'
+ *   },
+ * });
  */
-export type IResolvers<ContextType = any> = Resolvers<ContextType>;
+export function useLoginMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<LoginMutation, LoginMutationVariables>) {
+        return ApolloReactHooks.useMutation<LoginMutation, LoginMutationVariables>(LoginDocument, baseOptions);
+      }
+export type LoginMutationHookResult = ReturnType<typeof useLoginMutation>;
+export type LoginMutationResult = ApolloReactCommon.MutationResult<LoginMutation>;
+export type LoginMutationOptions = ApolloReactCommon.BaseMutationOptions<LoginMutation, LoginMutationVariables>;
+export const RegisterDocument = gql`
+    mutation Register($email: String!, $password: String!, $password2: String!) {
+  register(email: $email, password: $password, password2: $password)
+}
+    `;
+export type RegisterMutationFn = ApolloReactCommon.MutationFunction<RegisterMutation, RegisterMutationVariables>;
+
+/**
+ * __useRegisterMutation__
+ *
+ * To run a mutation, you first call `useRegisterMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useRegisterMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [registerMutation, { data, loading, error }] = useRegisterMutation({
+ *   variables: {
+ *      email: // value for 'email'
+ *      password: // value for 'password'
+ *      password2: // value for 'password2'
+ *   },
+ * });
+ */
+export function useRegisterMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<RegisterMutation, RegisterMutationVariables>) {
+        return ApolloReactHooks.useMutation<RegisterMutation, RegisterMutationVariables>(RegisterDocument, baseOptions);
+      }
+export type RegisterMutationHookResult = ReturnType<typeof useRegisterMutation>;
+export type RegisterMutationResult = ApolloReactCommon.MutationResult<RegisterMutation>;
+export type RegisterMutationOptions = ApolloReactCommon.BaseMutationOptions<RegisterMutation, RegisterMutationVariables>;

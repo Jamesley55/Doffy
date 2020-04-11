@@ -8,11 +8,6 @@ generates:
       - "typescript"
       - typescript-operations
       - "typescript-react-apollo"
-      - typescript-resolvers
-      - typescript-document-nodes
-    scalars:
-      DateTime: Date
-      JSON: { [key: string]: any }
     config:
       withHOC: false
       withComponent: false

@@ -1,13 +1,15 @@
 import * as React from "react";
 import { RegisterView } from "./screens/register";
-import { RegisterController } from "@abb/controller";
+import { useRegisterMutation } from "@abb/controller";
+interface Props {}
 
-export class RegisterConnector extends React.PureComponent {
-  render() {
-    return (
-      <RegisterController>
-        {({ submit }) => <RegisterView submit={submit} />}
-      </RegisterController>
-    );
-  }
-}
+export const RegisterConnector: React.FC<Props> = () => {
+  const dummySubmit = async (values: any) => {
+    const [Register] = useRegisterMutation();
+    Register({ variables: values });
+    console.log(values);
+    return null;
+  };
+
+  return <RegisterView submit={dummySubmit} />;
+};

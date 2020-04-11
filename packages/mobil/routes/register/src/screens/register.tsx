@@ -6,7 +6,6 @@ import {
   ScrollView,
   TouchableOpacity,
 } from "react-native";
-import { AuthContext, AuthProvider } from "../../../Auth";
 import { Item } from "native-base";
 import { RouteComponentProps } from "react-router";
 import {
@@ -18,9 +17,11 @@ import {
 } from "formik";
 import { validationSchema } from "@abb/common";
 import { InputField } from "../../../Conponent/InputField";
+import { useRegisterMutation, RegisterMutation } from "@abb/controller";
 interface FormValues {
   email: string;
   password: string;
+  password2: string;
 }
 interface Props {
   submit: (values: FormValues) => Promise<FormikErrors<FormValues> | null>;
@@ -40,7 +41,6 @@ export class register extends React.PureComponent<
   RouteComponentProps<{}>
 > {
   textInput: {};
-
   //constructor(props) {
   //  super(props);
   //  this.textInput = {};
@@ -52,13 +52,8 @@ export class register extends React.PureComponent<
 
   //static contextType = AuthContext;
   render() {
-    const {
-      handleBlur,
-      handleChange,
-      handleSubmit,
-      touched,
-      errors,
-    } = this.props;
+    const { handleChange, handleSubmit, touched, errors } = this.props;
+
     return (
       <ScrollView style={styles.container}>
         <TouchableOpacity onPress={() => alert("image clicked")}>
@@ -178,7 +173,7 @@ const styles = StyleSheet.create({
 
 export const RegisterView = withFormik<Props, FormValues>({
   validationSchema,
-  mapPropsToValues: () => ({ email: "", password: "" }),
+  mapPropsToValues: () => ({ email: "", password: "", password2: "" }),
   handleSubmit: async (values, { props, setErrors }) => {
     const errors = await props.submit(values);
     if (errors) {
