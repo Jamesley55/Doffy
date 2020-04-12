@@ -1,6 +1,6 @@
 {
   "name": "@abb/server",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Awesome project developed with TypeORM.",
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",

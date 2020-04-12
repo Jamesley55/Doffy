@@ -9,23 +9,155 @@
 0 silly argv }
 1 notice cli v3.20.2
 2 verbose rootPath /home/jlee/NewApp
-3 info current version 1.0.1
+3 info current version 1.0.6
 4 silly isAnythingCommitted
 5 verbose isAnythingCommitted 1
 6 silly currentBranch
 7 verbose currentBranch master
 8 silly remoteBranchExists
 9 silly isBehindUpstream
-10 error Error: Command failed: git remote update
-10 error remote: Invalid username or password.
-10 error fatal: Authentication failed for 'https://github.com/Jamesley55/NewApp.git/'
-10 error error: Could not fetch origin
-10 error
-10 error Fetching origin
-10 error
-10 error     at makeError (/home/jlee/NewApp/node_modules/execa/index.js:174:9)
-10 error     at Function.module.exports.sync (/home/jlee/NewApp/node_modules/execa/index.js:338:15)
-10 error     at Object.execSync (/home/jlee/NewApp/node_modules/@lerna/child-process/index.js:26:16)
-10 error     at updateRemote (/home/jlee/NewApp/node_modules/@lerna/version/lib/is-behind-upstream.js:26:16)
-10 error     at isBehindUpstream (/home/jlee/NewApp/node_modules/@lerna/version/lib/is-behind-upstream.js:11:3)
-10 error     at VersionCommand.initialize (/home/jlee/NewApp/node_modules/@lerna/version/index.js:150:9)
+10 silly isBehindUpstream master is behind origin/master by 0 commit(s) and ahead by 1
+11 silly hasTags
+12 verbose hasTags true
+13 silly git-describe.sync "v1.0.6-1-g48bfef5" => {"lastTagName":"v1.0.6","lastVersion":"v1.0.6","refCount":"1","sha":"48bfef5","isDirty":false}
+14 info Looking for changed packages since v1.0.6
+15 silly checking diff packages/common
+16 silly found diff in packages/common/dist/yupSchemas/user.js
+16 silly found diff in packages/common/dist/yupSchemas/user.js.map
+16 silly found diff in packages/common/src/yupSchemas/user.ts
+17 verbose filtered diff [
+17 verbose filtered diff   'packages/common/dist/yupSchemas/user.js',
+17 verbose filtered diff   'packages/common/dist/yupSchemas/user.js.map',
+17 verbose filtered diff   'packages/common/src/yupSchemas/user.ts'
+17 verbose filtered diff ]
+18 silly checking diff packages/controller
+19 silly found diff in packages/controller/dist/generated/graphql-hooks.d.ts
+19 silly found diff in packages/controller/dist/generated/graphql-hooks.js
+19 silly found diff in packages/controller/dist/generated/graphql-hooks.js.map
+19 silly found diff in packages/controller/graphqlconfig.yml
+19 silly found diff in packages/controller/package-lock.json
+19 silly found diff in packages/controller/package.json
+19 silly found diff in packages/controller/src/generated/graphql-hooks.ts
+19 silly found diff in packages/controller/src/graphql/register.graphql
+19 silly found diff in packages/controller/tsconfig.json
+20 verbose filtered diff [
+20 verbose filtered diff   'packages/controller/dist/generated/graphql-hooks.d.ts',
+20 verbose filtered diff   'packages/controller/dist/generated/graphql-hooks.js',
+20 verbose filtered diff   'packages/controller/dist/generated/graphql-hooks.js.map',
+20 verbose filtered diff   'packages/controller/graphqlconfig.yml',
+20 verbose filtered diff   'packages/controller/package-lock.json',
+20 verbose filtered diff   'packages/controller/package.json',
+20 verbose filtered diff   'packages/controller/src/generated/graphql-hooks.ts',
+20 verbose filtered diff   'packages/controller/src/graphql/register.graphql',
+20 verbose filtered diff   'packages/controller/tsconfig.json'
+20 verbose filtered diff ]
+21 silly checking diff packages/mobil
+22 silly found diff in packages/mobil/package-lock.json
+22 silly found diff in packages/mobil/routes/Auth.tsx
+22 silly found diff in packages/mobil/routes/Conponent/InputField.tsx
+22 silly found diff in packages/mobil/routes/firstPage/src/screens/firstPage.tsx
+22 silly found diff in packages/mobil/routes/index.tsx
+22 silly found diff in packages/mobil/routes/register/src/registerConnector.tsx
+22 silly found diff in packages/mobil/routes/register/src/screens/register.tsx
+22 silly found diff in packages/mobil/src/apollo.ts
+22 silly found diff in packages/mobil/src/index.tsx
+22 silly found diff in packages/mobil/tsconfig.json
+23 verbose filtered diff [
+23 verbose filtered diff   'packages/mobil/package-lock.json',
+23 verbose filtered diff   'packages/mobil/routes/Auth.tsx',
+23 verbose filtered diff   'packages/mobil/routes/Conponent/InputField.tsx',
+23 verbose filtered diff   'packages/mobil/routes/firstPage/src/screens/firstPage.tsx',
+23 verbose filtered diff   'packages/mobil/routes/index.tsx',
+23 verbose filtered diff   'packages/mobil/routes/register/src/registerConnector.tsx',
+23 verbose filtered diff   'packages/mobil/routes/register/src/screens/register.tsx',
+23 verbose filtered diff   'packages/mobil/src/apollo.ts',
+23 verbose filtered diff   'packages/mobil/src/index.tsx',
+23 verbose filtered diff   'packages/mobil/tsconfig.json'
+23 verbose filtered diff ]
+24 silly checking diff packages/server
+25 silly found diff in packages/server/src/index.ts
+26 verbose filtered diff [ 'packages/server/src/index.ts' ]
+27 verbose updated @abb/common
+28 verbose updated @abb/controller
+29 verbose updated @abb/mobil
+30 verbose updated @abb/server
+31 info version Skipping unversioned private package "@abb/mobil"
+32 verbose git-describe undefined => "v1.0.6-1-g48bfef5"
+33 silly git-describe parsed => {"lastTagName":"v1.0.6","lastVersion":"v1.0.6","refCount":"1","sha":"48bfef5","isDirty":false}
+34 verbose version Overriding version of @abb/common from 1.0.2 to 1.0.6
+35 verbose version Overriding version of @abb/server from 1.0.1 to 1.0.6
+36 silly fixed for @abb/common at /home/jlee/NewApp/packages/common
+37 verbose getChangelogConfig using preset "conventional-changelog-angular"
+38 silly npa Result {
+38 silly npa   type: 'tag',
+38 silly npa   registry: true,
+38 silly npa   where: undefined,
+38 silly npa   raw: 'conventional-changelog-angular',
+38 silly npa   name: 'conventional-changelog-angular',
+38 silly npa   escapedName: 'conventional-changelog-angular',
+38 silly npa   scope: undefined,
+38 silly npa   rawSpec: '',
+38 silly npa   saveSpec: null,
+38 silly npa   fetchSpec: 'latest',
+38 silly npa   gitRange: undefined,
+38 silly npa   gitCommittish: undefined,
+38 silly npa   hosted: undefined
+38 silly npa }
+39 verbose getChangelogConfig Attempting to resolve preset "conventional-changelog-angular"
+40 info getChangelogConfig Successfully resolved preset "conventional-changelog-angular"
+41 verbose fixed increment 1.0.6 by patch
+42 silly fixed for @abb/controller at /home/jlee/NewApp/packages/controller
+43 verbose fixed increment 1.0.6 by patch
+44 silly fixed for @abb/server at /home/jlee/NewApp/packages/server
+45 verbose fixed increment 1.0.6 by patch
+46 info auto-confirmed
+47 info execute Skipping releases
+48 silly lifecycle No script for "preversion" in "newapp", continuing
+49 silly lifecycle No script for "preversion" in "@abb/common", continuing
+50 silly lifecycle No script for "preversion" in "@abb/controller", continuing
+51 silly lifecycle No script for "preversion" in "@abb/server", continuing
+52 silly lifecycle No script for "version" in "@abb/controller", continuing
+53 silly fixed for @abb/controller at /home/jlee/NewApp/packages/controller
+54 silly fixed writing new entry: "## [1.0.7](https://github.com/Jamesley55/NewApp/compare/v1.0.6...v1.0.7) (2020-04-12)\n\n**Note:** Version bump only for package @abb/controller\n\n\n\n"
+55 silly lifecycle No script for "version" in "@abb/common", continuing
+56 silly fixed for @abb/common at /home/jlee/NewApp/packages/common
+57 verbose fixed wrote /home/jlee/NewApp/packages/controller/CHANGELOG.md
+58 silly lifecycle No script for "version" in "@abb/server", continuing
+59 silly fixed for @abb/server at /home/jlee/NewApp/packages/server
+60 silly fixed writing new entry: "## [1.0.7](https://github.com/Jamesley55/NewApp/compare/v1.0.6...v1.0.7) (2020-04-12)\n\n**Note:** Version bump only for package @abb/common\n\n\n\n"
+61 silly fixed writing new entry: "## [1.0.7](https://github.com/Jamesley55/NewApp/compare/v1.0.6...v1.0.7) (2020-04-12)\n\n**Note:** Version bump only for package @abb/server\n\n\n\n"
+62 verbose fixed wrote /home/jlee/NewApp/packages/common/CHANGELOG.md
+63 verbose fixed wrote /home/jlee/NewApp/packages/server/CHANGELOG.md
+64 silly root for newapp at /home/jlee/NewApp
+65 silly root writing new entry: "## [1.0.7](https://github.com/Jamesley55/NewApp/compare/v1.0.6...v1.0.7) (2020-04-12)\n\n**Note:** Version bump only for package newapp\n\n\n\n"
+66 verbose root wrote /home/jlee/NewApp/CHANGELOG.md
+67 silly lifecycle No script for "version" in "newapp", continuing
+68 silly gitAdd [
+68 silly gitAdd   '/home/jlee/NewApp/packages/controller/package.json',
+68 silly gitAdd   '/home/jlee/NewApp/packages/controller/package-lock.json',
+68 silly gitAdd   '/home/jlee/NewApp/packages/common/package.json',
+68 silly gitAdd   '/home/jlee/NewApp/packages/common/package-lock.json',
+68 silly gitAdd   '/home/jlee/NewApp/packages/controller/CHANGELOG.md',
+68 silly gitAdd   '/home/jlee/NewApp/packages/server/package.json',
+68 silly gitAdd   '/home/jlee/NewApp/packages/server/package-lock.json',
+68 silly gitAdd   '/home/jlee/NewApp/packages/common/CHANGELOG.md',
+68 silly gitAdd   '/home/jlee/NewApp/packages/server/CHANGELOG.md',
+68 silly gitAdd   '/home/jlee/NewApp/CHANGELOG.md',
+68 silly gitAdd   '/home/jlee/NewApp/lerna.json'
+68 silly gitAdd ]
+69 silly gitCommit v1.0.7
+70 verbose git [ 'commit', '-m', 'v1.0.7' ]
+71 silly gitTag v1.0.7
+72 verbose git [ 'tag', 'v1.0.7', '-m', 'v1.0.7' ]
+73 silly lifecycle No script for "postversion" in "@abb/common", continuing
+74 silly lifecycle No script for "postversion" in "@abb/controller", continuing
+75 silly lifecycle No script for "postversion" in "@abb/server", continuing
+76 silly lifecycle No script for "postversion" in "newapp", continuing
+77 info git Pushing tags...
+78 silly gitPush origin master
+79 error Error: Command failed: git push --follow-tags --no-verify --atomic origin master
+79 error remote: Invalid username or password.
+79 error fatal: Authentication failed for 'https://github.com/Jamesley55/NewApp.git/'
+79 error
+79 error     at makeError (/home/jlee/NewApp/node_modules/execa/index.js:174:9)
+79 error     at /home/jlee/NewApp/node_modules/execa/index.js:278:16
