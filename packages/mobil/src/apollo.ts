@@ -6,8 +6,8 @@ import { Platform } from "react-native";
 // android
 const host =
   Platform.OS === "ios"
-    ? "http://localhost:4000/graphql"
-    : "10.0.2.2:4000/graphql";
+    ? " https://e055baa7.ngrok.io/graphql "
+    : "10.0.2.2:4000";
 
 //ios localhost
 
@@ -15,5 +15,16 @@ export const client = new ApolloClient({
   link: new HttpLink({
     uri: host,
   }),
+  defaultOptions: {
+    watchQuery: {
+      errorPolicy: "none",
+    },
+    query: {
+      errorPolicy: "none",
+    },
+    mutate: {
+      errorPolicy: "none",
+    },
+  },
   cache: new InMemoryCache(),
 });

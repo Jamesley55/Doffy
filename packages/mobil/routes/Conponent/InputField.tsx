@@ -28,7 +28,6 @@ export class InputField extends React.Component<FieldProps<any>> {
         errorMessage={errorMsg}
         onChangeText={this.onchangeText}
         value={field.value}
-        onBlur={field.onBlur}
       />
     );
   }

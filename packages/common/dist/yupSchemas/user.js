@@ -17,5 +17,6 @@ exports.validationSchema = yup.object().shape({
         .email(exports.invalidEmail)
         .required(),
     password: exports.registerPasswordValidation,
+    password2: exports.registerPasswordValidation,
 });
 //# sourceMappingURL=user.js.map

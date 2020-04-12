@@ -31,7 +31,7 @@ export var LoginDocument = gql(templateObject_1 || (templateObject_1 = __makeTem
 export function useLoginMutation(baseOptions) {
     return ApolloReactHooks.useMutation(LoginDocument, baseOptions);
 }
-export var RegisterDocument = gql(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n    mutation Register($email: String!, $password: String!, $password2: String!) {\n  register(email: $email, password: $password, password2: $password)\n}\n    "], ["\n    mutation Register($email: String!, $password: String!, $password2: String!) {\n  register(email: $email, password: $password, password2: $password)\n}\n    "])));
+export var RegisterDocument = gql(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n    mutation Register($email: String!, $password: String!, $password2: String!) {\n  register(email: $email, password: $password, password2: $password2)\n}\n    "], ["\n    mutation Register($email: String!, $password: String!, $password2: String!) {\n  register(email: $email, password: $password, password2: $password2)\n}\n    "])));
 /**
  * __useRegisterMutation__
  *

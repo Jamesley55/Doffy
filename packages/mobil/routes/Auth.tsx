@@ -77,17 +77,17 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         setConfirmPasswordError,
 
         login: () => {
-          if (email.length === 0) {
-            return setEmailError(true);
-          }
-          setEmailError(false);
+          //if (email.length === 0) {
+          //  return setEmailError(true);
+          //}
+          //setEmailError(false);
+          //
+          //if (password.length === 0) {
+          //  return setPasswordError(true);
+          //}
+          //setPasswordError(false);
 
-          if (password.length === 0) {
-            return setPasswordError(true);
-          }
-          setPasswordError(false);
-
-          const fakeUser = { Email: email, Password: password };
+          const fakeUser = { Email: "email", Password: "password" };
           setUserToken(fakeUser);
           console.log(fakeUser);
           AsyncStorage.setItem("userToken", JSON.stringify(fakeUser));

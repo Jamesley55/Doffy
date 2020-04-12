@@ -4,7 +4,6 @@ import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import { firstPage } from "./firstPage/src/screens/firstPage";
 import { connection } from "./connectionPage/src/screens/connect";
 import { login } from "./login/src/screens/login";
-import { register } from "./register/src/screens/register";
 import { RouteProps } from "react-router-native";
 import * as Font from "expo-font";
 import { useState } from "react";
@@ -166,6 +165,7 @@ const getFont = () =>
 export const Routes: React.FC<RouteProps> = ({}) => {
   const [fontLoaded, setFontisLoaded] = useState(false);
   const { userToken, login, logout } = useContext(AuthContext);
+  //const [Register] = useRegisterMutation();
   if (fontLoaded) {
     return (
       <NavigationContainer>

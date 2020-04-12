@@ -17,7 +17,9 @@ import {
 } from "formik";
 import { validationSchema } from "@abb/common";
 import { InputField } from "../../../Conponent/InputField";
-import { useRegisterMutation, RegisterMutation } from "@abb/controller";
+import { RegisterMutation, RegisterDocument } from "@abb/controller";
+import { useMutation } from "@apollo/react-hooks";
+import { AuthContext } from "../../../Auth";
 interface FormValues {
   email: string;
   password: string;
@@ -50,10 +52,8 @@ export class register extends React.PureComponent<
   //  this.textInput[id].focus();
   //}
 
-  //static contextType = AuthContext;
   render() {
     const { handleChange, handleSubmit, touched, errors } = this.props;
-
     return (
       <ScrollView style={styles.container}>
         <TouchableOpacity onPress={() => alert("image clicked")}>
@@ -95,7 +95,7 @@ export class register extends React.PureComponent<
           />
         </Item>
 
-        <Text style={styles.signIn} onPress={handleSubmit as any}>
+        <Text style={styles.signIn} onPress={handleSubmit}>
           SIGN IN
         </Text>
         <Text

@@ -1,5 +1,6 @@
 import React, { Component, useState } from "react";
-
+import { RegisterDocument } from "@abb/controller";
+import { useMutation } from "react-apollo";
 import {
   StyleSheet,
   View,
@@ -8,8 +9,10 @@ import {
   Text,
   TouchableOpacity,
 } from "react-native";
+interface Props {}
 
 export function firstPage({ navigation }) {
+  const [Register] = useMutation(RegisterDocument);
   return (
     <View style={styles.container}>
       <View style={styles.imageStack}>
@@ -60,7 +63,16 @@ export function firstPage({ navigation }) {
               marginTop: -30,
               marginRight: 50,
             }}
-            onPress={() => navigation.navigate("Page2")}
+            onPress={() => {
+              Register({
+                variables: {
+                  email: "yoyo",
+                  password: "kaka",
+                  password2: "kaka",
+                },
+              });
+              console.log("fait");
+            }}
           >
             chercher un service
           </Text>

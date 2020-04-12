@@ -24,11 +24,9 @@ const StartServer = async () => {
   );
   server.applyMiddleware({
     app,
-    cors: {
-      credentials: true,
-      origin: "exp://192.168.2.20:19000",
-    },
   });
+  const cors = require("cors");
+  app.use(cors());
 
   app.listen({ port: 4000 }, () =>
     console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`)
