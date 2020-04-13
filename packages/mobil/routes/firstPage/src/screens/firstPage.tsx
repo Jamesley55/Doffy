@@ -12,7 +12,7 @@ import {
 interface Props {}
 
 export function firstPage({ navigation }) {
-  const [Register] = useMutation(RegisterDocument);
+  //const [Register] = useMutation(RegisterDocument);
   return (
     <View style={styles.container}>
       <View style={styles.imageStack}>
@@ -64,13 +64,13 @@ export function firstPage({ navigation }) {
               marginRight: 50,
             }}
             onPress={() => {
-              Register({
-                variables: {
-                  email: "yoyo",
-                  password: "kaka",
-                  password2: "kaka",
-                },
-              });
+              // Register({
+              //   variables: {
+              //     email: "yoyo",
+              //     password: "kaka",
+              //     password2: "kaka",
+              //   },
+              // });
               console.log("fait");
             }}
           >

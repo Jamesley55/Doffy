@@ -28,5 +28,6 @@
   },
   "author": "Jamesley Joseph",
   "license": "MIT",
-  "private": true
+  "private": true,
+  "main": "index.js"
 }
