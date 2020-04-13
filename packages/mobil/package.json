@@ -11,8 +11,8 @@
     "postinstall": "expo-yarn-workspaces postinstall"
   },
   "dependencies": {
-    "@abb/common": "^1.0.10",
-    "@abb/controller": "^1.0.10",
+    "@abb/common": "^1.0.11",
+    "@abb/controller": "^1.0.11",
     "@apollo/react-hooks": "^3.1.4",
     "@expo/vector-icons": "^10.0.6",
     "@react-native-community/masked-view": "0.1.5",
@@ -69,7 +69,7 @@
     "typescript": "~3.6.3"
   },
   "private": true,
-  "version": "1.0.10",
+  "version": "1.0.11",
   "author": "Jamesley Joseph",
   "license": "MIT"
 }
