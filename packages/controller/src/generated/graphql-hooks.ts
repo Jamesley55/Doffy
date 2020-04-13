@@ -1,6 +1,6 @@
-import gql from 'graphql-tag';
-import * as ApolloReactCommon from '@apollo/react-common';
-import * as ApolloReactHooks from '@apollo/react-hooks';
+import gql from "graphql-tag";
+import * as ApolloReactCommon from "@apollo/react-common";
+import * as ApolloReactHooks from "@apollo/react-hooks";
 export type Maybe<T> = T | null;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
@@ -13,77 +13,70 @@ export type Scalars = {
 };
 
 export type Query = {
-   __typename?: 'Query';
+  __typename?: "Query";
   me?: Maybe<User>;
 };
 
 export type User = {
-   __typename?: 'User';
-  id: Scalars['ID'];
-  email: Scalars['String'];
+  __typename?: "User";
+  id: Scalars["ID"];
+  email: Scalars["String"];
 };
 
 export type Mutation = {
-   __typename?: 'Mutation';
-  register: Scalars['Boolean'];
+  __typename?: "Mutation";
+  register: Scalars["Boolean"];
   login?: Maybe<User>;
 };
 
-
 export type MutationRegisterArgs = {
-  email: Scalars['String'];
-  password: Scalars['String'];
-  password2: Scalars['String'];
+  email: Scalars["String"];
+  password: Scalars["String"];
+  password2: Scalars["String"];
 };
 
-
 export type MutationLoginArgs = {
-  email: Scalars['String'];
-  password: Scalars['String'];
+  email: Scalars["String"];
+  password: Scalars["String"];
 };
 
 export enum CacheControlScope {
-  Public = 'PUBLIC',
-  Private = 'PRIVATE'
+  Public = "PUBLIC",
+  Private = "PRIVATE",
 }
-
 
 export type LoginMutationVariables = {
-  email: Scalars['String'];
-  password: Scalars['String'];
+  email: Scalars["String"];
+  password: Scalars["String"];
 };
 
-
-export type LoginMutation = (
-  { __typename?: 'Mutation' }
-  & { login?: Maybe<(
-    { __typename?: 'User' }
-    & Pick<User, 'id' | 'email'>
-  )> }
-);
+export type LoginMutation = { __typename?: "Mutation" } & {
+  login?: Maybe<{ __typename?: "User" } & Pick<User, "id" | "email">>;
+};
 
 export type RegisterMutationVariables = {
-  email: Scalars['String'];
-  password: Scalars['String'];
-  password2: Scalars['String'];
+  email: Scalars["String"];
+  password: Scalars["String"];
+  password2: Scalars["String"];
 };
 
-
-export type RegisterMutation = (
-  { __typename?: 'Mutation' }
-  & Pick<Mutation, 'register'>
-);
-
+export type RegisterMutation = { __typename?: "Mutation" } & Pick<
+  Mutation,
+  "register"
+>;
 
 export const LoginDocument = gql`
-    mutation Login($email: String!, $password: String!) {
-  login(email: $email, password: $password) {
-    id
-    email
+  mutation Login($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
+      id
+      email
+    }
   }
-}
-    `;
-export type LoginMutationFn = ApolloReactCommon.MutationFunction<LoginMutation, LoginMutationVariables>;
+`;
+export type LoginMutationFn = ApolloReactCommon.MutationFunction<
+  LoginMutation,
+  LoginMutationVariables
+>;
 
 /**
  * __useLoginMutation__
@@ -103,18 +96,34 @@ export type LoginMutationFn = ApolloReactCommon.MutationFunction<LoginMutation, 
  *   },
  * });
  */
-export function useLoginMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<LoginMutation, LoginMutationVariables>) {
-        return ApolloReactHooks.useMutation<LoginMutation, LoginMutationVariables>(LoginDocument, baseOptions);
-      }
-export type LoginMutationHookResult = ReturnType<typeof useLoginMutation>;
-export type LoginMutationResult = ApolloReactCommon.MutationResult<LoginMutation>;
-export type LoginMutationOptions = ApolloReactCommon.BaseMutationOptions<LoginMutation, LoginMutationVariables>;
-export const RegisterDocument = gql`
-    mutation Register($email: String!, $password: String!, $password2: String!) {
-  register(email: $email, password: $password, password2: $password2)
+export function useLoginMutation(
+  baseOptions?: ApolloReactHooks.MutationHookOptions<
+    LoginMutation,
+    LoginMutationVariables
+  >
+) {
+  return ApolloReactHooks.useMutation<LoginMutation, LoginMutationVariables>(
+    LoginDocument,
+    baseOptions
+  );
 }
-    `;
-export type RegisterMutationFn = ApolloReactCommon.MutationFunction<RegisterMutation, RegisterMutationVariables>;
+export type LoginMutationHookResult = ReturnType<typeof useLoginMutation>;
+export type LoginMutationResult = ApolloReactCommon.MutationResult<
+  LoginMutation
+>;
+export type LoginMutationOptions = ApolloReactCommon.BaseMutationOptions<
+  LoginMutation,
+  LoginMutationVariables
+>;
+export const RegisterDocument = gql`
+  mutation Register($email: String!, $password: String!, $password2: String!) {
+    register(email: $email, password: $password, password2: $password2)
+  }
+`;
+export type RegisterMutationFn = ApolloReactCommon.MutationFunction<
+  RegisterMutation,
+  RegisterMutationVariables
+>;
 
 /**
  * __useRegisterMutation__
@@ -135,9 +144,22 @@ export type RegisterMutationFn = ApolloReactCommon.MutationFunction<RegisterMuta
  *   },
  * });
  */
-export function useRegisterMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<RegisterMutation, RegisterMutationVariables>) {
-        return ApolloReactHooks.useMutation<RegisterMutation, RegisterMutationVariables>(RegisterDocument, baseOptions);
-      }
+export function useRegisterMutation(
+  baseOptions?: ApolloReactHooks.MutationHookOptions<
+    RegisterMutation,
+    RegisterMutationVariables
+  >
+) {
+  return ApolloReactHooks.useMutation<
+    RegisterMutation,
+    RegisterMutationVariables
+  >(RegisterDocument, baseOptions);
+}
 export type RegisterMutationHookResult = ReturnType<typeof useRegisterMutation>;
-export type RegisterMutationResult = ApolloReactCommon.MutationResult<RegisterMutation>;
-export type RegisterMutationOptions = ApolloReactCommon.BaseMutationOptions<RegisterMutation, RegisterMutationVariables>;
+export type RegisterMutationResult = ApolloReactCommon.MutationResult<
+  RegisterMutation
+>;
+export type RegisterMutationOptions = ApolloReactCommon.BaseMutationOptions<
+  RegisterMutation,
+  RegisterMutationVariables
+>;

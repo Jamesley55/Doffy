@@ -8,25 +8,25 @@ interface Props {}
 
 export function RegisterConnector() {
   const { login } = useContext(AuthContext);
-  const [registerMutation, { data, loading, error }] = useRegisterMutation({
-    variables: {
-      email: "",
-      password: "",
-      password2: "",
-    },
-  });
-  if (error) {
-    console.log(error);
-  }
+  // const [registerMutation, { data, loading, error }] = useRegisterMutation({
+  //   variables: {
+  //     email: "",
+  //     password: "",
+  //     password2: "",
+  //   },
+  // });
+  // if (error) {
+  //   console.log(error);
+  // }
 
   const submit = async (values: any) => {
     // const url = "https://api.randomuser.me/";
     // const response = await fetch(url);
     // const data = await response.json();
     // console.log(data);
-    const response2 = await registerMutation({ variables: values }).then(
-      (data) => data.data
-    );
+    // const response2 = await registerMutation({ variables: values }).then(
+    //   (data) => data.data
+    // );
     // const data2 = response2.data;
     // console.log(data2);
     fetch("https://e055baa7.ngrok.io/graphql", {
@@ -45,6 +45,7 @@ export function RegisterConnector() {
       .then((data) => {
         console.log(data.data);
       });
+    login();
     return null;
   };
 

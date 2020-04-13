@@ -2,7 +2,7 @@ import { IResolvers } from "apollo-server-express";
 import { User } from "./entity/User";
 import * as bcrypt from "bcryptjs";
 
-//Iresolver is there to ad type to the
+// Iresolver is there to ad type to the
 // ts project
 export const resolvers: IResolvers = {
   Query: {

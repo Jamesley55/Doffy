@@ -1,17 +1,18 @@
 {
   "name": "@abb/mobil",
-  "main": "node_modules/expo/AppEntry.js",
+  "main": "__generated__/AppEntry.js",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "test": "echo testing mobil with version :$npm_package_version"
+    "test": "echo testing mobil with version :$npm_package_version",
+    "postinstall": "expo-yarn-workspaces postinstall"
   },
   "dependencies": {
-    "@abb/common": "file:../common",
-    "@abb/controller": "file:../controller",
+    "@abb/common": "1.0.8",
+    "@abb/controller": "1.0.8",
     "@apollo/react-hooks": "^3.1.4",
     "@expo/vector-icons": "^10.0.6",
     "@react-native-community/masked-view": "0.1.5",
@@ -24,6 +25,7 @@
     "apollo-cache-inmemory": "^1.6.5",
     "apollo-client": "^2.6.8",
     "apollo-link-http": "^1.5.17",
+    "apollo-server-express": "^2.12.0",
     "expo": "^36.0.2",
     "expo-font": "~8.0.0",
     "faker": "^4.1.0",
@@ -32,7 +34,7 @@
     "graphql": "^14.6.0",
     "graphql-tag": "^2.10.3",
     "native-base": "2.13.8",
-    "react": "~16.9.0",
+    "react": "^16.13.1",
     "react-apollo": "^3.1.4",
     "react-dom": "~16.9.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-36.0.0.tar.gz",
@@ -48,6 +50,7 @@
     "react-navigation": "^4.0.10",
     "react-navigation-drawer": "^2.4.7",
     "react-router-native": "^5.1.2",
+    "tslint-config-prettier": "^1.18.0",
     "yup": "^0.28.3"
   },
   "devDependencies": {
@@ -61,11 +64,16 @@
     "@types/react-router-native": "^5.1.0",
     "@types/yup": "^0.26.35",
     "babel-preset-expo": "~8.0.0",
+    "expo-yarn-workspaces": "^1.2.1",
+    "tslint-config-prettier": "^1.18.0",
     "typescript": "~3.6.3"
   },
   "links": {
     "@abb/controller": "link: ../controller",
     "@abb/common": "link:../common"
   },
-  "private": true
+  "private": true,
+  "version": "1.0.0",
+  "author": "Jamesley Joseph",
+  "license": "MIT"
 }

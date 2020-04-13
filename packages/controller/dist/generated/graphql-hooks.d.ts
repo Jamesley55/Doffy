@@ -1,5 +1,5 @@
-import * as ApolloReactCommon from '@apollo/react-common';
-import * as ApolloReactHooks from '@apollo/react-hooks';
+import * as ApolloReactCommon from "@apollo/react-common";
+import * as ApolloReactHooks from "@apollo/react-hooks";
 export declare type Maybe<T> = T | null;
 /** All built-in and custom scalars, mapped to their actual values */
 export declare type Scalars = {
@@ -11,51 +11,51 @@ export declare type Scalars = {
     Upload: any;
 };
 export declare type Query = {
-    __typename?: 'Query';
+    __typename?: "Query";
     me?: Maybe<User>;
 };
 export declare type User = {
-    __typename?: 'User';
-    id: Scalars['ID'];
-    email: Scalars['String'];
+    __typename?: "User";
+    id: Scalars["ID"];
+    email: Scalars["String"];
 };
 export declare type Mutation = {
-    __typename?: 'Mutation';
-    register: Scalars['Boolean'];
+    __typename?: "Mutation";
+    register: Scalars["Boolean"];
     login?: Maybe<User>;
 };
 export declare type MutationRegisterArgs = {
-    email: Scalars['String'];
-    password: Scalars['String'];
-    password2: Scalars['String'];
+    email: Scalars["String"];
+    password: Scalars["String"];
+    password2: Scalars["String"];
 };
 export declare type MutationLoginArgs = {
-    email: Scalars['String'];
-    password: Scalars['String'];
+    email: Scalars["String"];
+    password: Scalars["String"];
 };
 export declare enum CacheControlScope {
     Public = "PUBLIC",
     Private = "PRIVATE"
 }
 export declare type LoginMutationVariables = {
-    email: Scalars['String'];
-    password: Scalars['String'];
+    email: Scalars["String"];
+    password: Scalars["String"];
 };
-export declare type LoginMutation = ({
-    __typename?: 'Mutation';
+export declare type LoginMutation = {
+    __typename?: "Mutation";
 } & {
-    login?: Maybe<({
-        __typename?: 'User';
-    } & Pick<User, 'id' | 'email'>)>;
-});
-export declare type RegisterMutationVariables = {
-    email: Scalars['String'];
-    password: Scalars['String'];
-    password2: Scalars['String'];
+    login?: Maybe<{
+        __typename?: "User";
+    } & Pick<User, "id" | "email">>;
 };
-export declare type RegisterMutation = ({
-    __typename?: 'Mutation';
-} & Pick<Mutation, 'register'>);
+export declare type RegisterMutationVariables = {
+    email: Scalars["String"];
+    password: Scalars["String"];
+    password2: Scalars["String"];
+};
+export declare type RegisterMutation = {
+    __typename?: "Mutation";
+} & Pick<Mutation, "register">;
 export declare const LoginDocument: import("graphql").DocumentNode;
 export declare type LoginMutationFn = ApolloReactCommon.MutationFunction<LoginMutation, LoginMutationVariables>;
 /**
@@ -76,7 +76,7 @@ export declare type LoginMutationFn = ApolloReactCommon.MutationFunction<LoginMu
  *   },
  * });
  */
-export declare function useLoginMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<LoginMutation, LoginMutationVariables>): ApolloReactHooks.MutationTuple<LoginMutation, LoginMutationVariables>;
+export declare function useLoginMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<LoginMutation, LoginMutationVariables>): [(options?: ApolloReactCommon.MutationFunctionOptions<LoginMutation, LoginMutationVariables> | undefined) => Promise<ApolloReactCommon.ExecutionResult<LoginMutation>>, ApolloReactCommon.MutationResult<LoginMutation>];
 export declare type LoginMutationHookResult = ReturnType<typeof useLoginMutation>;
 export declare type LoginMutationResult = ApolloReactCommon.MutationResult<LoginMutation>;
 export declare type LoginMutationOptions = ApolloReactCommon.BaseMutationOptions<LoginMutation, LoginMutationVariables>;
@@ -101,7 +101,7 @@ export declare type RegisterMutationFn = ApolloReactCommon.MutationFunction<Regi
  *   },
  * });
  */
-export declare function useRegisterMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<RegisterMutation, RegisterMutationVariables>): ApolloReactHooks.MutationTuple<RegisterMutation, RegisterMutationVariables>;
+export declare function useRegisterMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<RegisterMutation, RegisterMutationVariables>): [(options?: ApolloReactCommon.MutationFunctionOptions<RegisterMutation, RegisterMutationVariables> | undefined) => Promise<ApolloReactCommon.ExecutionResult<RegisterMutation>>, ApolloReactCommon.MutationResult<RegisterMutation>];
 export declare type RegisterMutationHookResult = ReturnType<typeof useRegisterMutation>;
 export declare type RegisterMutationResult = ApolloReactCommon.MutationResult<RegisterMutation>;
 export declare type RegisterMutationOptions = ApolloReactCommon.BaseMutationOptions<RegisterMutation, RegisterMutationVariables>;

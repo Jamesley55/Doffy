@@ -2,14 +2,14 @@ var __makeTemplateObject = (this && this.__makeTemplateObject) || function (cook
     if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
     return cooked;
 };
-import gql from 'graphql-tag';
-import * as ApolloReactHooks from '@apollo/react-hooks';
+import gql from "graphql-tag";
+import * as ApolloReactHooks from "@apollo/react-hooks";
 export var CacheControlScope;
 (function (CacheControlScope) {
     CacheControlScope["Public"] = "PUBLIC";
     CacheControlScope["Private"] = "PRIVATE";
 })(CacheControlScope || (CacheControlScope = {}));
-export var LoginDocument = gql(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n    mutation Login($email: String!, $password: String!) {\n  login(email: $email, password: $password) {\n    id\n    email\n  }\n}\n    "], ["\n    mutation Login($email: String!, $password: String!) {\n  login(email: $email, password: $password) {\n    id\n    email\n  }\n}\n    "])));
+export var LoginDocument = gql(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  mutation Login($email: String!, $password: String!) {\n    login(email: $email, password: $password) {\n      id\n      email\n    }\n  }\n"], ["\n  mutation Login($email: String!, $password: String!) {\n    login(email: $email, password: $password) {\n      id\n      email\n    }\n  }\n"])));
 /**
  * __useLoginMutation__
  *
@@ -31,7 +31,7 @@ export var LoginDocument = gql(templateObject_1 || (templateObject_1 = __makeTem
 export function useLoginMutation(baseOptions) {
     return ApolloReactHooks.useMutation(LoginDocument, baseOptions);
 }
-export var RegisterDocument = gql(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n    mutation Register($email: String!, $password: String!, $password2: String!) {\n  register(email: $email, password: $password, password2: $password2)\n}\n    "], ["\n    mutation Register($email: String!, $password: String!, $password2: String!) {\n  register(email: $email, password: $password, password2: $password2)\n}\n    "])));
+export var RegisterDocument = gql(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n  mutation Register($email: String!, $password: String!, $password2: String!) {\n    register(email: $email, password: $password, password2: $password2)\n  }\n"], ["\n  mutation Register($email: String!, $password: String!, $password2: String!) {\n    register(email: $email, password: $password, password2: $password2)\n  }\n"])));
 /**
  * __useRegisterMutation__
  *

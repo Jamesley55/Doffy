@@ -5,10 +5,24 @@
     "packages/*"
   ],
   "scripts": {
-    "test": "lerna run test --scope={@abb/common,@abb/server}",
-    "new-version": "lerna version --conventional-commits --yes"
+    "react": "lerna run react --parallel --stream",
+    "new-version": "lerna version --conventional-commits --yes --force-publish"
   },
   "devDependencies": {
     "lerna": "^3.20.2"
-  }
+  },
+  "nohoist": [
+    "**/rimraf",
+    "**/rimraf/**",
+    "**/react-native-elements",
+    "**/react-native-elements/**",
+    "**/react-native",
+    "**/react-native/**",
+    "**/expo",
+    "**/expo/**",
+    "**/react-native-typescript-transformer",
+    "**/react-native-typescript-transformer/**",
+    "**/metro-bundler-config-yarn-workspaces",
+    "**/metro-bundler-config-yarn-workspaces/**"
+  ]
 }
