@@ -1,5 +1,5 @@
 import { createConnection } from "typeorm";
-//import "reflect-metadata";
+// import "reflect-metadata";
 import * as session from "express-session";
 import { ApolloServer } from "apollo-server-express";
 import { typeDefs } from "./typeDefs";
@@ -25,6 +25,8 @@ const StartServer = async () => {
   server.applyMiddleware({
     app,
   });
+  const cors = require("cors");
+  app.use(cors());
 
   app.listen({ port: 4000 }, () =>
     console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`)

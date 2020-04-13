@@ -1,23 +1,16 @@
 import * as React from "react";
-import { ApolloProvider } from "@apollo/react-hooks";
+import { ApolloProvider } from "react-apollo";
 import { client } from "./apollo";
-import { View, Text } from "react-native";
-import { Suspense } from "react";
 import { Providers } from "../routes/providers";
+import { ApolloProvider as ApolloHooksProvider } from "@apollo/react-hooks";
 
 export default class Index extends React.PureComponent {
   render() {
     return (
       <ApolloProvider client={client}>
-        <Suspense
-          fallback={
-            <View>
-              <Text>loading...</Text>
-            </View>
-          }
-        >
+        <ApolloHooksProvider client={client}>
           <Providers />
-        </Suspense>
+        </ApolloHooksProvider>
       </ApolloProvider>
     );
   }

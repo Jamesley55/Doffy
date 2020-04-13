@@ -68,10 +68,6 @@
     "tslint-config-prettier": "^1.18.0",
     "typescript": "~3.6.3"
   },
-  "links": {
-    "@abb/controller": "link: ../controller",
-    "@abb/common": "link:../common"
-  },
   "private": true,
   "version": "1.0.9",
   "author": "Jamesley Joseph",
