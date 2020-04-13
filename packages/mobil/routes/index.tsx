@@ -6,7 +6,6 @@ import { connection } from "./connectionPage/src/screens/connect";
 import { login } from "./login/src/screens/login";
 import { RouteProps } from "react-router-native";
 import * as Font from "expo-font";
-import { useState } from "react";
 import AppLoading from "expo/build/launch/AppLoading";
 import { firstPage2 } from "./firstPage2/src/screens/firstPage2";
 import { firstPage3 } from "./firstPage3/src/screens/firstPage3";
@@ -163,7 +162,7 @@ const getFont = () =>
   });
 
 export const Routes: React.FC<RouteProps> = ({}) => {
-  const [fontLoaded, setFontisLoaded] = useState(false);
+  const [fontLoaded, setFontisLoaded] = React.useState(false);
   const { userToken, login, logout } = useContext(AuthContext);
   //const [Register] = useRegisterMutation();
   if (fontLoaded) {
