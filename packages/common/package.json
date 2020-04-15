@@ -10,9 +10,12 @@
   },
   "devDependencies": {
     "@types/yup": "^0.24.9",
+    "rimraf": "^3.0.2",
     "typescript": "^3.8.3"
   },
   "dependencies": {
+    "@babel/runtime": "^7.9.2",
+    "babel": "^6.23.0",
     "typescript": "^3.8.3",
     "yup": "^0.28.3"
   },

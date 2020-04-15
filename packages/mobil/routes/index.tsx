@@ -29,6 +29,7 @@ import { useContext } from "react";
 import { Notification } from "./Notification/notification";
 import { Message } from "./Message/Message";
 import { RegisterConnector } from "./register/src/registerConnector";
+import { useState } from "react";
 import {
   Ionicons,
   AntDesign,
@@ -162,9 +163,9 @@ const getFont = () =>
   });
 
 export const Routes: React.FC<RouteProps> = ({}) => {
-  const [fontLoaded, setFontisLoaded] = React.useState(false);
+  const [fontLoaded, setFontisLoaded] = useState(false);
   const { userToken, login, logout } = useContext(AuthContext);
-  //const [Register] = useRegisterMutation();
+
   if (fontLoaded) {
     return (
       <NavigationContainer>
