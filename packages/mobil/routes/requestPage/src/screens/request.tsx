@@ -17,7 +17,7 @@ export function requestPage({ navigation }) {
           }}
         ></EntypoIcon>
         <Image
-          source={require("../assets/images/shappeal1.png")}
+          source={require("../../../../logo/LogoJamesleyApp.png")}
           resizeMode="contain"
           style={styles.image1}
         ></Image>
@@ -84,42 +84,42 @@ export function requestPage({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
   },
   icon1: {
     color: "rgba(128,128,128,1)",
     fontSize: 40,
-    marginTop: 25
+    marginTop: 25,
   },
   image1: {
     width: 191,
     height: 64,
-    marginLeft: 27
+    marginLeft: 27,
   },
   icon2: {
     color: "rgba(128,128,128,1)",
     fontSize: 40,
     marginLeft: 8,
-    marginTop: 25
+    marginTop: 25,
   },
   icon3: {
     color: "rgba(128,128,128,1)",
     fontSize: 40,
     marginLeft: 11,
-    marginTop: 25
+    marginTop: 25,
   },
   icon1Row: {
     height: 65,
     flexDirection: "row",
     marginTop: 37,
     marginLeft: 14,
-    marginRight: 14
+    marginRight: 14,
   },
   rect: {
     width: "100%",
     height: 170,
     backgroundColor: "rgba(230, 230, 230,1)",
-    marginTop: 30
+    marginTop: 30,
   },
   icon4: {
     color: "rgba(128,128,128,1)",
@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
     height: 30,
     width: 30,
     marginTop: 9,
-    marginLeft: 329
+    marginLeft: 329,
   },
   nameOfTheShop: {
     top: 0,
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontFamily: "roboto-700",
     lineHeight: 23,
-    letterSpacing: -1
+    letterSpacing: -1,
   },
   rating: {
     top: 32,
@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: "roboto-regular",
     lineHeight: 23,
-    letterSpacing: -1
+    letterSpacing: -1,
   },
   loremIpsum: {
     top: 51,
@@ -163,14 +163,14 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: "roboto-regular",
     lineHeight: 23,
-    letterSpacing: -1
+    letterSpacing: -1,
   },
   nameOfTheShopStack: {
     top: 0,
     left: 0,
     width: 246,
     height: 80,
-    position: "absolute"
+    position: "absolute",
   },
   price: {
     top: 54,
@@ -182,13 +182,13 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: "roboto-regular",
     lineHeight: 23,
-    letterSpacing: -1
+    letterSpacing: -1,
   },
   nameOfTheShopStackStack: {
     width: 246,
     height: 80,
     marginTop: 30,
-    marginLeft: 10
+    marginLeft: 10,
   },
   rect2: {
     top: 26,
@@ -196,7 +196,7 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 104,
     backgroundColor: "rgba(230, 230, 230,1)",
-    position: "absolute"
+    position: "absolute",
   },
   preview2: {
     top: 0,
@@ -208,13 +208,13 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontFamily: "roboto-700",
     lineHeight: 23,
-    letterSpacing: -1
+    letterSpacing: -1,
   },
   rect2Stack: {
     width: "100%",
     height: 130,
     marginTop: 7,
-    marginLeft: 13
+    marginLeft: 13,
   },
   rect3: {
     width: "99%",
@@ -222,7 +222,7 @@ const styles = StyleSheet.create({
     height: 49,
     borderColor: "rgba(87,87,87,1)",
     borderWidth: 1,
-    marginTop: 13
+    marginTop: 13,
   },
   adress: {
     top: 0,
@@ -234,7 +234,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontFamily: "roboto-regular",
     lineHeight: 23,
-    letterSpacing: -1
+    letterSpacing: -1,
   },
   disponibility: {
     top: 0,
@@ -244,13 +244,13 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontFamily: "roboto-regular",
     lineHeight: 23,
-    letterSpacing: -1
+    letterSpacing: -1,
   },
   adressStack: {
     width: "100%",
     height: 38,
     marginTop: 11,
-    marginLeft: 14
+    marginLeft: 14,
   },
   materialButtonPrimary1: {
     width: 294,
@@ -258,11 +258,11 @@ const styles = StyleSheet.create({
     top: 80,
     borderRadius: 100,
     marginTop: 13,
-    marginLeft: 37
+    marginLeft: 37,
   },
   materialIconTextButtonsFooter1: {
     width: "100%",
     height: 102,
-    marginTop: 20
-  }
+    marginTop: 20,
+  },
 });

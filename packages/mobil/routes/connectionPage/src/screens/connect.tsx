@@ -40,7 +40,7 @@ export function connection({ navigation }) {
         style={styles.materialButtonDark}
       ></MaterialButtonDark>
       <Image
-        source={require("../assets/images/shappeal.png")}
+        source={require("../../../../logo/LogoJamesleyApp.png")}
         resizeMode="contain"
         style={styles.image}
       ></Image>
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "rgba(13,0,0,1)",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   materialButtonGrey: {
     top: 0,
@@ -73,9 +73,9 @@ const styles = StyleSheet.create({
     borderRadius: 99,
     shadowOffset: {
       height: 5,
-      width: 5
+      width: 5,
     },
-    shadowColor: "rgba(224,224,224,1)"
+    shadowColor: "rgba(224,224,224,1)",
   },
   icon: {
     top: 8,
@@ -84,13 +84,13 @@ const styles = StyleSheet.create({
     color: "rgba(128,128,128,1)",
     fontSize: 24,
     width: 25,
-    height: 24
+    height: 24,
   },
   materialButtonGreyStack: {
     width: 217,
     height: 46,
     marginTop: 322,
-    marginLeft: 80
+    marginLeft: 80,
   },
   materialButtonViolet1: {
     top: 0,
@@ -101,9 +101,9 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     shadowOffset: {
       height: 5,
-      width: 5
+      width: 5,
     },
-    shadowColor: "rgba(82,155,251,1)"
+    shadowColor: "rgba(82,155,251,1)",
   },
   icon2: {
     top: 10,
@@ -112,13 +112,13 @@ const styles = StyleSheet.create({
     color: "rgba(255,255,255,1)",
     fontSize: 24,
     height: 24,
-    width: 24
+    width: 24,
   },
   materialButtonViolet1Stack: {
     width: 217,
     height: 46,
     marginTop: 32,
-    marginLeft: 80
+    marginLeft: 80,
   },
   welcome: {
     left: 20,
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
     fontFamily: "armata-regular",
     textAlign: "center",
     marginTop: -197,
-    marginLeft: 88
+    marginLeft: 88,
   },
   materialButtonDark: {
     left: 20,
@@ -137,14 +137,14 @@ const styles = StyleSheet.create({
     height: 47,
     borderRadius: 100,
     marginTop: 285,
-    marginLeft: 80
+    marginLeft: 80,
   },
   image: {
     left: 20,
     width: 296,
     height: 108,
     marginTop: -519,
-    marginLeft: 37
+    marginLeft: 37,
   },
   lOgIn: {
     left: 20,
@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
     fontFamily: "armata-regular",
     textAlign: "center",
     marginTop: 432,
-    marginLeft: 108
+    marginLeft: 108,
   },
   materialButtonGrey1: {
     top: 80,
@@ -168,21 +168,21 @@ const styles = StyleSheet.create({
     borderRadius: 99,
     shadowOffset: {
       height: 5,
-      width: 5
+      width: 5,
     },
-    shadowColor: "rgba(224,224,224,1)"
+    shadowColor: "rgba(224,224,224,1)",
   },
   icon4: {
     top: 90,
     left: 31,
     position: "absolute",
     color: "rgba(128,128,128,1)",
-    fontSize: 24
+    fontSize: 24,
   },
   materialButtonGrey1Stack: {
     width: "100%",
     height: 46,
     marginTop: 199,
-    marginLeft: 80
-  }
+    marginLeft: 80,
+  },
 });

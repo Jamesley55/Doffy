@@ -58,7 +58,7 @@ export class register extends React.PureComponent<
       <ScrollView style={styles.container}>
         <TouchableOpacity onPress={() => alert("image clicked")}>
           <Image
-            source={require("../assets/images/shappeal.png")}
+            source={require("../../../../logo/LogoJamesleyApp.png")}
             resizeMode="contain"
             style={styles.image1}
           />

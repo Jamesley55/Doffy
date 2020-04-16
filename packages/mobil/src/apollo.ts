@@ -1,12 +1,16 @@
-import ApolloClient from "apollo-boost";
+import { ApolloClient } from "apollo-client";
+import { InMemoryCache } from "apollo-cache-inmemory";
+import { createUploadLink } from "apollo-upload-client";
 import { Platform } from "react-native";
 
-// android
 const host =
-  Platform.OS === "ios" ? "https://a4e9d8c2.ngrok.io/graphql" : "10.0.2.2:4000";
-
-// ios localhost
+  Platform.OS === "ios"
+    ? "https://22f6e609.ngrok.io/graphql"
+    : "http://10.0.2.2:4000";
 
 export const client = new ApolloClient({
-  uri: host,
+  link: createUploadLink({
+    uri: host,
+  }),
+  cache: new InMemoryCache(),
 });

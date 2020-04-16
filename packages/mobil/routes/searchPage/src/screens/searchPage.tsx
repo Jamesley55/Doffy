@@ -15,7 +15,7 @@ export function searchPage({ navigation }) {
           }}
         ></EntypoIcon>
         <Image
-          source={require("../assets/images/shappeal1.png")}
+          source={require("../../../../logo/LogoJamesleyApp.png")}
           resizeMode="contain"
           style={styles.image1}
         ></Image>

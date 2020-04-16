@@ -34,7 +34,7 @@ export class login extends React.PureComponent {
     return (
       <ScrollView style={styles.container}>
         <Image
-          source={require("../assets/images/shappeal.png")}
+          source={require("../../../../logo/LogoJamesleyApp.png")}
           resizeMode="contain"
           style={styles.image1}
         ></Image>

@@ -3,6 +3,7 @@ import { RegisterView } from "./screens/register";
 import { useContext } from "react";
 import { AuthContext } from "../../Auth";
 import { useRegisterMutation } from "@abb/controller";
+
 interface Props {}
 
 export function RegisterConnector() {
@@ -14,6 +15,9 @@ export function RegisterConnector() {
   }
   const submit = async (values: any) => {
     const register2 = await registerMutation({ variables: values });
+    if (register2.data.register === true) {
+      login();
+    }
     return null;
   };
 

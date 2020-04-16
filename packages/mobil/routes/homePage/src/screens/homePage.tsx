@@ -48,7 +48,7 @@ export class HomePage extends React.PureComponent<Props> {
                     ></Icon>
                   </View>
                   <Image
-                    source={require("../assets/images/shappeal1.png")}
+                    source={require("../../../../logo/LogoJamesleyApp.png")}
                     resizeMode="contain"
                     style={styles.image}
                   ></Image>

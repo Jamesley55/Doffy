@@ -8,7 +8,7 @@ export function sellerSteps({ navigation }) {
     <View style={styles.container}>
       <View style={styles.image1Row}>
         <Image
-          source={require("../assets/images/shappeal1.png")}
+          source={require("../../../../logo/LogoJamesleyApp.png")}
           resizeMode="contain"
           style={styles.image1}
         ></Image>
@@ -85,24 +85,24 @@ export function sellerSteps({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignSelf: "center"
+    alignSelf: "center",
   },
   image1: {
     width: 191,
-    height: 64
+    height: 64,
   },
   icon: {
     color: "rgba(128,128,128,1)",
     fontSize: 40,
     marginLeft: 139,
-    marginTop: 13
+    marginTop: 13,
   },
   image1Row: {
     height: 64,
     flexDirection: "row",
     marginTop: 37,
     marginLeft: -28,
-    marginRight: 40
+    marginRight: 40,
   },
   welcomeName: {
     width: 228,
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontFamily: "roboto-700",
     marginTop: 19,
-    marginLeft: 19
+    marginLeft: 19,
   },
   requiredSteps: {
     top: 0,
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     color: "rgba(0,0,0,1)",
     position: "absolute",
     fontSize: 20,
-    fontFamily: "roboto-regular"
+    fontFamily: "roboto-regular",
   },
   requiredSteps3: {
     top: 29,
@@ -131,13 +131,13 @@ const styles = StyleSheet.create({
     color: "rgba(0,0,0,1)",
     position: "absolute",
     fontSize: 15,
-    fontFamily: "roboto-regular"
+    fontFamily: "roboto-regular",
   },
   requiredStepsStack: {
     width: 340,
     height: 71,
     marginTop: 15,
-    marginLeft: 17
+    marginLeft: 17,
   },
   rect: {
     width: 340,
@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(230, 230, 230,1)",
     flexDirection: "row",
     marginTop: 14,
-    marginLeft: 17
+    marginLeft: 17,
   },
   loremIpsum: {
     width: 281,
@@ -153,13 +153,13 @@ const styles = StyleSheet.create({
     color: "rgba(0,0,0,1)",
     fontSize: 15,
     fontFamily: "roboto-regular",
-    marginTop: 11
+    marginTop: 11,
   },
   icon2: {
     color: "rgba(128,128,128,1)",
     fontSize: 40,
     height: 40,
-    width: 40
+    width: 40,
   },
   loremIpsumRow: {
     height: 40,
@@ -167,14 +167,14 @@ const styles = StyleSheet.create({
     flex: 1,
     marginRight: 5,
     marginLeft: 14,
-    marginTop: 22
+    marginTop: 22,
   },
   rect1: {
     width: 340,
     height: 90,
     backgroundColor: "rgba(230, 230, 230,1)",
     marginTop: 20,
-    marginLeft: 17
+    marginLeft: 17,
   },
   loremIpsum1: {
     width: 281,
@@ -182,26 +182,26 @@ const styles = StyleSheet.create({
     color: "rgba(0,0,0,1)",
     fontSize: 15,
     fontFamily: "roboto-regular",
-    marginTop: 10
+    marginTop: 10,
   },
   icon3: {
     color: "rgba(128,128,128,1)",
     fontSize: 40,
     height: 40,
-    width: 40
+    width: 40,
   },
   loremIpsum1Row: {
     height: 40,
     flexDirection: "row",
     marginTop: 18,
     marginLeft: 14,
-    marginRight: 5
+    marginRight: 5,
   },
   text: {
     color: "#121212",
     fontFamily: "roboto-regular",
     marginTop: 5,
-    marginLeft: 107
+    marginLeft: 107,
   },
   rect2: {
     width: 340,
@@ -209,7 +209,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(230, 230, 230,1)",
     flexDirection: "row",
     marginTop: 20,
-    marginLeft: 17
+    marginLeft: 17,
   },
   showYourTalents: {
     width: 281,
@@ -217,13 +217,13 @@ const styles = StyleSheet.create({
     color: "rgba(0,0,0,1)",
     fontSize: 15,
     fontFamily: "roboto-regular",
-    marginTop: 8
+    marginTop: 8,
   },
   icon4: {
     color: "rgba(128,128,128,1)",
     fontSize: 40,
     height: 40,
-    width: 40
+    width: 40,
   },
   showYourTalentsRow: {
     height: 40,
@@ -231,7 +231,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginRight: 5,
     marginLeft: 14,
-    marginTop: 22
+    marginTop: 22,
   },
   rect3: {
     width: 340,
@@ -239,7 +239,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(230, 230, 230,1)",
     flexDirection: "row",
     marginTop: 28,
-    marginLeft: 17
+    marginLeft: 17,
   },
   billingInformation: {
     width: 281,
@@ -247,13 +247,13 @@ const styles = StyleSheet.create({
     color: "rgba(0,0,0,1)",
     fontSize: 15,
     fontFamily: "roboto-regular",
-    marginTop: 9
+    marginTop: 9,
   },
   icon5: {
     color: "rgba(128,128,128,1)",
     fontSize: 40,
     height: 40,
-    width: 40
+    width: 40,
   },
   billingInformationRow: {
     height: 40,
@@ -261,6 +261,6 @@ const styles = StyleSheet.create({
     flex: 1,
     marginRight: 5,
     marginLeft: 14,
-    marginTop: 22
-  }
+    marginTop: 22,
+  },
 });
