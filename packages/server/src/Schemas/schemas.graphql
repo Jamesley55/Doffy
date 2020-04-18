@@ -1,0 +1,22 @@
+type User {
+  id: ID!
+  username: String!
+  email: String!
+}
+
+type Query {
+  me: User
+}
+type Error {
+  path: String!
+  message: String!
+}
+type Mutation {
+  register(
+    username: String!
+    email: String!
+    password: String!
+    confirmPassword: String!
+  ): [Error!]
+  login(email: String!, password: String!): User
+}
