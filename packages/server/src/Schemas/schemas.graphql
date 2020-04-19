@@ -19,4 +19,7 @@ type Mutation {
     confirmPassword: String!
   ): [Error!]
   login(email: String!, password: String!): User
+  confirmUser(token: String!): Boolean
+  forgotPassword(email: String!): Boolean
+  changePassword(token: String!, password: String!): User
 }

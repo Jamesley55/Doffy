@@ -3,9 +3,12 @@ import * as session from "express-session";
 import { ApolloServer } from "apollo-server-express";
 import * as express from "express";
 import { createTypeormConn } from "./Utils/dbConnection/createTypeOrmConnection";
-import { port } from "./Utils/host/host";
+import { port, host } from "./Utils/host/host";
 import { typeDefs } from "./Utils/typeDefs/typeDefs";
 import { resolvers } from "./Utils/resolverPath/resolver";
+import { redis } from "./redis";
+import * as connectRedis from "connect-redis";
+import * as cors from "cors";
 
 export const StartServer = async () => {
   const server = new ApolloServer({
@@ -16,18 +19,33 @@ export const StartServer = async () => {
   await createTypeormConn();
   const app = express();
 
+  const RedisStore = connectRedis(session);
+
   app.use(
     session({
-      secret: "hahdhdhd",
+      store: new RedisStore({
+        client: redis as any,
+      }),
+      name: "abb",
+      secret: "kasfkjadfuhew",
       resave: false,
       saveUninitialized: false,
+      cookie: {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        maxAge: 1000 * 60 * 60 * 24 * 12 * 365, // 7 years
+      },
     })
   );
   server.applyMiddleware({
     app,
   });
-  const cors = require("cors");
-  app.use(cors());
+  app.use(
+    cors({
+      credentials: true,
+      origin: host,
+    })
+  );
 
   // tslint:disable-next-line: object-literal-shorthand
   app.listen({ port: port }, () =>

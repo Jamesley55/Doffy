@@ -7,6 +7,5 @@ export const formatYupError = (err: ValidationError) => {
       message: e.message,
     });
   });
-  console.log(errors);
   return errors;
 };

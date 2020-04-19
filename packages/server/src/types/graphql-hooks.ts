@@ -31,6 +31,9 @@ export type Mutation = {
    __typename?: 'Mutation';
   register?: Maybe<Array<Error>>;
   login?: Maybe<User>;
+  confirmUser?: Maybe<Scalars['Boolean']>;
+  forgotPassword?: Maybe<Scalars['Boolean']>;
+  changePassword?: Maybe<User>;
 };
 
 
@@ -44,6 +47,22 @@ export type MutationRegisterArgs = {
 
 export type MutationLoginArgs = {
   email: Scalars['String'];
+  password: Scalars['String'];
+};
+
+
+export type MutationConfirmUserArgs = {
+  token: Scalars['String'];
+};
+
+
+export type MutationForgotPasswordArgs = {
+  email: Scalars['String'];
+};
+
+
+export type MutationChangePasswordArgs = {
+  token: Scalars['String'];
   password: Scalars['String'];
 };
 

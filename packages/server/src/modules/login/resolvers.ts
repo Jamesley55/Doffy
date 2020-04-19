@@ -17,7 +17,10 @@ export const loginResolver: IResolvers = {
         return null;
       }
       req.session.userId = user.id;
-
+      // if (!user.confirm) {
+      //   // redis doesnt behave properly right now so i need to modify this function
+      //   return null;
+      // }
       return user;
     },
   },
