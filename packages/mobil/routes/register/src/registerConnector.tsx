@@ -1,6 +1,5 @@
-import * as React from "react";
+import React, { useContext } from "react";
 import { RegisterView } from "./screens/register";
-import { useContext } from "react";
 import { AuthContext } from "../../Auth";
 import { useRegisterMutation } from "@abb/controller";
 
@@ -14,8 +13,11 @@ export function RegisterConnector() {
     console.log(error);
   }
   const submit = async (values: any) => {
-    const register2 = await registerMutation({ variables: values });
-    if (register2.data.register === true) {
+    const register2 = await registerMutation({
+      variables: values,
+    });
+
+    if (register2.data.register[0].message === null) {
       login();
     }
     return null;

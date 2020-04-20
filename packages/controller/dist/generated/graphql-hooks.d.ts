@@ -16,26 +16,69 @@ export declare type Query = {
 export declare type User = {
     __typename?: 'User';
     id: Scalars['ID'];
+    username: Scalars['String'];
     email: Scalars['String'];
 };
 export declare type Mutation = {
     __typename?: 'Mutation';
-    register: Scalars['Boolean'];
+    register?: Maybe<Array<Error>>;
     login?: Maybe<User>;
+    confirmUser?: Maybe<Scalars['Boolean']>;
+    forgotPassword?: Maybe<Scalars['Boolean']>;
+    changePassword?: Maybe<User>;
 };
 export declare type MutationRegisterArgs = {
+    username: Scalars['String'];
     email: Scalars['String'];
     password: Scalars['String'];
-    password2: Scalars['String'];
+    confirmPassword: Scalars['String'];
 };
 export declare type MutationLoginArgs = {
     email: Scalars['String'];
     password: Scalars['String'];
 };
+export declare type MutationConfirmUserArgs = {
+    token: Scalars['String'];
+};
+export declare type MutationForgotPasswordArgs = {
+    email: Scalars['String'];
+};
+export declare type MutationChangePasswordArgs = {
+    token: Scalars['String'];
+    password: Scalars['String'];
+};
+export declare type Error = {
+    __typename?: 'Error';
+    path: Scalars['String'];
+    message: Scalars['String'];
+};
 export declare enum CacheControlScope {
     Public = "PUBLIC",
     Private = "PRIVATE"
 }
+export declare type ChangePasswordMutationVariables = {
+    token: Scalars['String'];
+    password: Scalars['String'];
+};
+export declare type ChangePasswordMutation = ({
+    __typename?: 'Mutation';
+} & {
+    changePassword?: Maybe<({
+        __typename?: 'User';
+    } & Pick<User, 'id' | 'email' | 'username'>)>;
+});
+export declare type ConfirmUserMutationVariables = {
+    token: Scalars['String'];
+};
+export declare type ConfirmUserMutation = ({
+    __typename?: 'Mutation';
+} & Pick<Mutation, 'confirmUser'>);
+export declare type ForgotPasswordMutationVariables = {
+    email: Scalars['String'];
+};
+export declare type ForgotPasswordMutation = ({
+    __typename?: 'Mutation';
+} & Pick<Mutation, 'forgotPassword'>);
 export declare type LoginMutationVariables = {
     email: Scalars['String'];
     password: Scalars['String'];
@@ -45,7 +88,7 @@ export declare type LoginMutation = ({
 } & {
     login?: Maybe<({
         __typename?: 'User';
-    } & Pick<User, 'id' | 'email'>)>;
+    } & Pick<User, 'id' | 'email' | 'username'>)>;
 });
 export declare type QueryQueryVariables = {};
 export declare type QueryQuery = ({
@@ -56,13 +99,36 @@ export declare type QueryQuery = ({
     } & Pick<User, 'id'>)>;
 });
 export declare type RegisterMutationVariables = {
+    username: Scalars['String'];
     email: Scalars['String'];
     password: Scalars['String'];
-    password2: Scalars['String'];
+    confirmPassword: Scalars['String'];
 };
 export declare type RegisterMutation = ({
     __typename?: 'Mutation';
-} & Pick<Mutation, 'register'>);
+} & {
+    register?: Maybe<Array<({
+        __typename?: 'Error';
+    } & Pick<Error, 'path' | 'message'>)>>;
+});
+export declare const ChangePasswordDocument: import("graphql").DocumentNode;
+export declare type ChangePasswordMutationFn = ApolloReactCommon.MutationFunction<ChangePasswordMutation, ChangePasswordMutationVariables>;
+export declare function useChangePasswordMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<ChangePasswordMutation, ChangePasswordMutationVariables>): ApolloReactHooks.MutationTuple<ChangePasswordMutation, ChangePasswordMutationVariables>;
+export declare type ChangePasswordMutationHookResult = ReturnType<typeof useChangePasswordMutation>;
+export declare type ChangePasswordMutationResult = ApolloReactCommon.MutationResult<ChangePasswordMutation>;
+export declare type ChangePasswordMutationOptions = ApolloReactCommon.BaseMutationOptions<ChangePasswordMutation, ChangePasswordMutationVariables>;
+export declare const ConfirmUserDocument: import("graphql").DocumentNode;
+export declare type ConfirmUserMutationFn = ApolloReactCommon.MutationFunction<ConfirmUserMutation, ConfirmUserMutationVariables>;
+export declare function useConfirmUserMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<ConfirmUserMutation, ConfirmUserMutationVariables>): ApolloReactHooks.MutationTuple<ConfirmUserMutation, ConfirmUserMutationVariables>;
+export declare type ConfirmUserMutationHookResult = ReturnType<typeof useConfirmUserMutation>;
+export declare type ConfirmUserMutationResult = ApolloReactCommon.MutationResult<ConfirmUserMutation>;
+export declare type ConfirmUserMutationOptions = ApolloReactCommon.BaseMutationOptions<ConfirmUserMutation, ConfirmUserMutationVariables>;
+export declare const ForgotPasswordDocument: import("graphql").DocumentNode;
+export declare type ForgotPasswordMutationFn = ApolloReactCommon.MutationFunction<ForgotPasswordMutation, ForgotPasswordMutationVariables>;
+export declare function useForgotPasswordMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<ForgotPasswordMutation, ForgotPasswordMutationVariables>): ApolloReactHooks.MutationTuple<ForgotPasswordMutation, ForgotPasswordMutationVariables>;
+export declare type ForgotPasswordMutationHookResult = ReturnType<typeof useForgotPasswordMutation>;
+export declare type ForgotPasswordMutationResult = ApolloReactCommon.MutationResult<ForgotPasswordMutation>;
+export declare type ForgotPasswordMutationOptions = ApolloReactCommon.BaseMutationOptions<ForgotPasswordMutation, ForgotPasswordMutationVariables>;
 export declare const LoginDocument: import("graphql").DocumentNode;
 export declare type LoginMutationFn = ApolloReactCommon.MutationFunction<LoginMutation, LoginMutationVariables>;
 export declare function useLoginMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<LoginMutation, LoginMutationVariables>): ApolloReactHooks.MutationTuple<LoginMutation, LoginMutationVariables>;

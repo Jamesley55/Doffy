@@ -8,14 +8,14 @@ import { forgotPassword } from "../forgotPassword/resolvers";
 
 // Iresolver is there to add types to the
 // ts project
-export const chagePassword: IResolvers = {
+export const changePassword: IResolvers = {
   Mutation: {
     changePassword: async (
       _,
       { token, password }: MutationChangePasswordArgs
     ) => {
       const userId = await redis.get(forgetPasswordPrefix + token);
-      console.log(userId);
+
       if (!userId) {
         return null;
       }
@@ -26,7 +26,8 @@ export const chagePassword: IResolvers = {
       user.password = await bcrypt.hash(password, 10);
       await redis.del(forgotPassword + token);
       user.save();
-      return User;
+
+      return user;
     },
   },
 };

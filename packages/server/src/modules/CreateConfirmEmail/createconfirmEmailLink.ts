@@ -11,14 +11,6 @@ export const createConfirmEmailLink = async (
 ) => {
   const token = v4();
   console.log("v4 token", token);
-  const setter = await redis.set(
-    confirmationPrefix + token,
-    userId,
-    "ex",
-    60 * 60 * 24
-  ); // 1 day expiration
-  console.log("setter", setter);
-  const token1 = await redis.get(token);
-  console.log("redis token", token1);
+  await redis.set(confirmationPrefix + token, userId, "ex", 60 * 60 * 24); // 1 day expiration
   return `${url}/confirm/${token}`;
 };

@@ -1,5 +1,13 @@
-import { Entity, Column, BaseEntity, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Entity,
+  Column,
+  BaseEntity,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+  CreateDateColumn,
+} from "typeorm";
 
+// import { UserInfo } from "./UserInfo";
 @Entity("users")
 // BaseEntitie enable the find or create function like
 // user.find() or user.create()
@@ -18,4 +26,40 @@ export class User extends BaseEntity {
 
   @Column("boolean", { default: false })
   confirm: boolean;
+
+  @Column("varchar", { default: "serviceSeeker" })
+  userType: string;
+
+  @Column("varchar", { nullable: true })
+  firstname: string;
+
+  @Column("varchar", { nullable: true })
+  lastname: string;
+
+  @Column("date", { nullable: true })
+  dateOfBirth: Date;
+
+  @Column("varchar", { default: "email" })
+  loginWith: string;
+
+  @Column("varchar", { nullable: true })
+  facebookId: string;
+
+  @Column("varchar", { nullable: true })
+  intagramId: string;
+
+  @Column("varchar", { nullable: true })
+  twitterId: string;
+
+  @Column("uuid", { nullable: true })
+  recieveCoupon: string;
+
+  @CreateDateColumn()
+  created: Date;
+
+  @UpdateDateColumn()
+  lastSeen: Date;
+
+  @Column("date", { nullable: true })
+  modify: Date;
 }

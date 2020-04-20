@@ -7,7 +7,6 @@ import { MutationLoginArgs } from "../../types/graphql-hooks";
 export const loginResolver: IResolvers = {
   Mutation: {
     login: async (_, { email, password }: MutationLoginArgs, { req }) => {
-      console.log("nouvelle Session");
       const user = await User.findOne({ where: { email } });
       if (!user) {
         return null;
@@ -17,10 +16,9 @@ export const loginResolver: IResolvers = {
         return null;
       }
       req.session.userId = user.id;
-      // if (!user.confirm) {
-      //   // redis doesnt behave properly right now so i need to modify this function
-      //   return null;
-      // }
+      if (!user.confirm) {
+        return null;
+      }
       return user;
     },
   },

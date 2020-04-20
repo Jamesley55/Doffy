@@ -9,7 +9,6 @@ export const confirmUser: IResolvers = {
   Mutation: {
     confirmUser: async (_, { token }: MutationConfirmUserArgs) => {
       const userId = await redis.get(confirmationPrefix + token);
-      console.log("userId", userId);
 
       if (!userId) {
         return false;

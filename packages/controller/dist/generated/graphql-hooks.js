@@ -7,11 +7,43 @@ var CacheControlScope;
     CacheControlScope["Public"] = "PUBLIC";
     CacheControlScope["Private"] = "PRIVATE";
 })(CacheControlScope = exports.CacheControlScope || (exports.CacheControlScope = {}));
+exports.ChangePasswordDocument = graphql_tag_1.default `
+    mutation changePassword($token: String!, $password: String!) {
+  changePassword(token: $token, password: $password) {
+    id
+    email
+    username
+  }
+}
+    `;
+function useChangePasswordMutation(baseOptions) {
+    return ApolloReactHooks.useMutation(exports.ChangePasswordDocument, baseOptions);
+}
+exports.useChangePasswordMutation = useChangePasswordMutation;
+exports.ConfirmUserDocument = graphql_tag_1.default `
+    mutation confirmUser($token: String!) {
+  confirmUser(token: $token)
+}
+    `;
+function useConfirmUserMutation(baseOptions) {
+    return ApolloReactHooks.useMutation(exports.ConfirmUserDocument, baseOptions);
+}
+exports.useConfirmUserMutation = useConfirmUserMutation;
+exports.ForgotPasswordDocument = graphql_tag_1.default `
+    mutation forgotPassword($email: String!) {
+  forgotPassword(email: $email)
+}
+    `;
+function useForgotPasswordMutation(baseOptions) {
+    return ApolloReactHooks.useMutation(exports.ForgotPasswordDocument, baseOptions);
+}
+exports.useForgotPasswordMutation = useForgotPasswordMutation;
 exports.LoginDocument = graphql_tag_1.default `
     mutation Login($email: String!, $password: String!) {
   login(email: $email, password: $password) {
     id
     email
+    username
   }
 }
     `;
@@ -35,8 +67,11 @@ function useQueryLazyQuery(baseOptions) {
 }
 exports.useQueryLazyQuery = useQueryLazyQuery;
 exports.RegisterDocument = graphql_tag_1.default `
-    mutation Register($email: String!, $password: String!, $password2: String!) {
-  register(email: $email, password: $password, password2: $password2)
+    mutation Register($username: String!, $email: String!, $password: String!, $confirmPassword: String!) {
+  register(username: $username, email: $email, password: $password, confirmPassword: $confirmPassword) {
+    path
+    message
+  }
 }
     `;
 function useRegisterMutation(baseOptions) {

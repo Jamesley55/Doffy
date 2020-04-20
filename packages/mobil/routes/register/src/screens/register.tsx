@@ -17,13 +17,11 @@ import {
 } from "formik";
 import { validationSchema } from "@abb/common";
 import { InputField } from "../../../Conponent/InputField";
-import { RegisterMutation, RegisterDocument } from "@abb/controller";
-import { useMutation } from "@apollo/react-hooks";
-import { AuthContext } from "../../../Auth";
 interface FormValues {
+  username: string;
   email: string;
   password: string;
-  password2: string;
+  confirmPassword: string;
 }
 interface Props {
   submit: (values: FormValues) => Promise<FormikErrors<FormValues> | null>;
@@ -37,20 +35,20 @@ interface state {
   confirmPasswordError: boolean;
 }
 
-export class register extends React.PureComponent<
+export class R extends React.PureComponent<
   FormikProps<FormValues> & Props,
   state,
   RouteComponentProps<{}>
 > {
   textInput: {};
-  //constructor(props) {
+  // constructor(props) {
   //  super(props);
   //  this.textInput = {};
-  //}
+  // }
   //
-  //focusNextTextInput(id) {
+  // focusNextTextInput(id) {
   //  this.textInput[id].focus();
-  //}
+  // }
 
   render() {
     const { handleChange, handleSubmit, touched, errors } = this.props;
@@ -66,6 +64,15 @@ export class register extends React.PureComponent<
         <Text style={styles.loremIpsum1}>
           Pease enter a username &amp; password
         </Text>
+        <Item>
+          <Field
+            leftIcon={{ type: "Octicons", name: "email" }}
+            name="username"
+            placeholder="Username"
+            component={InputField}
+            autoCapitalize="none"
+          />
+        </Item>
         <Item>
           <Field
             leftIcon={{ type: "Octicons", name: "email" }}
@@ -88,7 +95,7 @@ export class register extends React.PureComponent<
           <Field
             leftIcon={{ type: "Octicons", name: "lock" }}
             secureTextEntry={true}
-            name="password2"
+            name="confirmPassword"
             placeholder="Re-enter Password"
             component={InputField}
             containerStyle={{ width: "100%" }}
@@ -173,11 +180,16 @@ const styles = StyleSheet.create({
 
 export const RegisterView = withFormik<Props, FormValues>({
   validationSchema,
-  mapPropsToValues: () => ({ email: "", password: "", password2: "" }),
+  mapPropsToValues: () => ({
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  }),
   handleSubmit: async (values, { props, setErrors }) => {
     const errors = await props.submit(values);
     if (errors) {
       setErrors(errors);
     }
   },
-})(register);
+})(R);

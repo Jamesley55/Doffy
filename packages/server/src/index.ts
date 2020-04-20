@@ -1,4 +1,5 @@
-// import "reflect-metadata";
+import "reflect-metadata";
+import "dotenv/config";
 import * as session from "express-session";
 import { ApolloServer } from "apollo-server-express";
 import * as express from "express";

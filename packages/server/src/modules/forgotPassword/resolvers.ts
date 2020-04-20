@@ -22,9 +22,7 @@ export const forgotPassword: IResolvers = {
         "ex",
         60 * 60 * 24
       );
-      const htt = `http://localhost:1000/user/change-password/${
-        forgetPasswordPrefix + token
-      }`;
+      const htt = `http://localhost:1000/user/change-password/${token}`;
       await sendEmail(email, htt);
       return true;
     },
