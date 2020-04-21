@@ -120,7 +120,7 @@ const sellerPage = () => (
   </Stack.Navigator>
 );
 
-const drawer = (login, logout) => (
+const drawer = (logout) => (
   <Drawer.Navigator
     drawerContent={(props) => CustomDrawerContent(props, logout)}
     drawerStyle={{
@@ -164,12 +164,12 @@ const getFont = () =>
 
 export const Routes: React.FC<RouteProps> = ({}) => {
   const [fontLoaded, setFontisLoaded] = useState(false);
-  const { userToken, login, logout } = useContext(AuthContext);
+  const { userToken, logout } = useContext(AuthContext);
 
   if (fontLoaded) {
     return (
       <NavigationContainer>
-        {userToken ? drawer(login, logout) : creationPage()}
+        {userToken ? drawer(logout) : creationPage()}
       </NavigationContainer>
     );
   } else {

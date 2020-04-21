@@ -5,9 +5,6 @@ import IoniconsIcon from "react-native-vector-icons/Ionicons";
 import MaterialButtonViolet1 from "../components/MaterialButtonViolet1";
 import EvilIconsIcon from "react-native-vector-icons/EvilIcons";
 import MaterialButtonDark from "../components/MaterialButtonDark";
-import * as Font from "expo-font";
-import { useState } from "react";
-import AppLoading from "expo/build/launch/AppLoading";
 
 export function connection({ navigation }) {
   return (
