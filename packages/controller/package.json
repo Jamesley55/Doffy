@@ -1,5 +1,5 @@
 {
-  "name": "@abb/controller",
+  "name": "@doffy/controller",
   "version": "1.0.12",
   "description": "connector between server and mobil/web",
   "main": "dist/index.js",

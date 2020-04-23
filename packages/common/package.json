@@ -1,5 +1,5 @@
 {
-  "name": "@abb/common",
+  "name": "@doffy/common",
   "version": "1.0.12",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",

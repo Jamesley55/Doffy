@@ -1,4 +1,4 @@
-import { validationSchema } from "@abb/common";
+import { validationSchema } from "@doffy/common";
 import { User } from "./../../entity/User";
 import { IResolvers } from "apollo-server-express";
 import * as bcrypt from "bcryptjs";
@@ -26,21 +26,25 @@ export const registerResolver: IResolvers = {
         select: ["id"],
       });
       if (userAlreadyExist) {
-        return [
-          {
-            path: "email",
-            message: duplicateEmail,
-          },
-        ];
+        return {
+          errors: [
+            {
+              path: "email",
+              message: duplicateEmail,
+            },
+          ],
+        };
       }
 
       if (password !== confirmPassword) {
-        return [
-          {
-            path: "password",
-            message: "your password doesnt correspond",
-          },
-        ];
+        return {
+          errors: [
+            {
+              path: "password",
+              message: "your password doesnt correspond",
+            },
+          ],
+        };
       }
       const hashedPassword = await bcrypt.hash(password, 10);
       const user = await User.create({
@@ -53,7 +57,7 @@ export const registerResolver: IResolvers = {
         email,
         await createConfirmEmailLink(host, user.id, redis)
       );
-      return null;
+      return user;
     },
   },
 };

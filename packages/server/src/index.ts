@@ -15,7 +15,7 @@ export const StartServer = async () => {
   const server = new ApolloServer({
     typeDefs,
     resolvers,
-    context: ({ req }: any) => ({ req }),
+    context: ({ req }: any) => ({ redis, session: req.session, req }),
   });
   await createTypeormConn();
   const app = express();
