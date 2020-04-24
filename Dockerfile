@@ -2,14 +2,15 @@ FROM node
 
 WORKDIR /doffy
 
-COPY ./package.json .
+COPY  package.json  ./
 COPY ./packages/server/package.json ./packages/server/
 COPY ./packages/common/package.json ./packages/common/
 
-RUN yarn install --production 
+RUN yarn install --frozen-lockfile --no-cache --production
 
-COPY ./packages/server/dist ./packages/server/dist
-COPY ./packages/common/dist ./packages/common/dist
+
+COPY ./packages/server/dist ./packages/server/dist/
+COPY ./packages/common/dist ./packages/common/dist/
 COPY ./packages/server/.env  ./packages/server/.env
 COPY ./ormconfig.json   .
 
