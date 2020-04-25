@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "newApp",
+    "name": "Doffy",
     "slug": "mobil",
     "privacy": "public",
     "sdkVersion": "36.0.0",
@@ -17,11 +17,15 @@
       "fallbackToCacheTimeout": 0
     },
     "assetBundlePatterns": ["**/*"],
-    "ios": {
-      "supportsTablet": true
-    },
     "packagerOpts": {
       "config": "metro.config.js"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.JemLee.Doffy"
+    },
+    "android": {
+      "package": "com.Jem.Doffy"
     }
   }
 }
