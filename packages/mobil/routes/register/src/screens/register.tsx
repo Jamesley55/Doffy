@@ -15,7 +15,7 @@ import {
   FormikProps,
   withFormik,
 } from "formik";
-import { validationSchema } from "@abb/common";
+import { validationSchema } from "@doffy/common";
 import { InputField } from "../../../Conponent/InputField";
 interface FormValues {
   username: string;

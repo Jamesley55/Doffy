@@ -34,22 +34,14 @@ exports.registerResolver = {
             });
             if (userAlreadyExist) {
                 return {
-                    errors: [
-                        {
-                            path: "email",
-                            message: ErrorMessage_1.duplicateEmail,
-                        },
-                    ],
+                    path: "email",
+                    message: ErrorMessage_1.duplicateEmail,
                 };
             }
             if (password !== confirmPassword) {
                 return {
-                    errors: [
-                        {
-                            path: "password",
-                            message: "your password doesnt correspond",
-                        },
-                    ],
+                    path: "password",
+                    message: "your password doesnt correspond",
                 };
             }
             const hashedPassword = yield bcrypt.hash(password, 10);
@@ -60,7 +52,7 @@ exports.registerResolver = {
             }).save();
             console.log("use id", user.id);
             yield sendMail_1.sendEmail(email, yield createconfirmEmailLink_1.createConfirmEmailLink(host_1.host, user.id, redis_1.redis));
-            return user;
+            return null;
         }),
     },
 };

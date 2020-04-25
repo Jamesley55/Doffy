@@ -16,38 +16,17 @@ exports.loginResolver = {
         login: (_, { email, password }, { req }) => __awaiter(void 0, void 0, void 0, function* () {
             const user = yield User_1.User.findOne({ where: { email } });
             if (!user) {
-                return {
-                    errors: [
-                        {
-                            path: "email",
-                            message: "user not found",
-                        },
-                    ],
-                };
+                return null;
             }
             const valid = yield bcrypt.compare(password, user.password);
             if (!valid) {
-                return {
-                    errors: [
-                        {
-                            path: "email",
-                            message: "is not valid",
-                        },
-                    ],
-                };
+                return null;
             }
             req.session.userId = user.id;
             if (!user.confirm) {
-                return {
-                    errors: [
-                        {
-                            path: "email",
-                            message: "is not confirm",
-                        },
-                    ],
-                };
+                return null;
             }
-            return { user };
+            return user;
         }),
     },
 };

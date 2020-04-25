@@ -13,11 +13,6 @@ export type Scalars = {
   Upload: any;
 };
 
-export type Query = {
-   __typename?: 'Query';
-  me?: Maybe<User>;
-};
-
 export type User = {
    __typename?: 'User';
   id: Scalars['ID'];
@@ -25,10 +20,32 @@ export type User = {
   email: Scalars['String'];
 };
 
+export type Query = {
+   __typename?: 'Query';
+  me?: Maybe<User>;
+};
+
+export type Error = {
+   __typename?: 'Error';
+  path: Scalars['String'];
+  message: Scalars['String'];
+};
+
+export type LoginResponse = {
+   __typename?: 'LoginResponse';
+  errors?: Maybe<Array<Error>>;
+  user?: Maybe<User>;
+};
+
+export type RegisterResponse = {
+   __typename?: 'RegisterResponse';
+  errors?: Maybe<Array<Error>>;
+  user?: Maybe<User>;
+};
+
 export type Mutation = {
    __typename?: 'Mutation';
-  // tslint:disable-next-line: array-type
-  register?: Maybe<Array<Error>>;
+  register?: Maybe<Array<Maybe<Error>>>;
   login?: Maybe<User>;
   confirmUser?: Maybe<Scalars['Boolean']>;
   forgotPassword?: Maybe<Scalars['Boolean']>;
@@ -63,12 +80,6 @@ export type MutationForgotPasswordArgs = {
 export type MutationChangePasswordArgs = {
   token: Scalars['String'];
   password: Scalars['String'];
-};
-
-export type Error = {
-   __typename?: 'Error';
-  path: Scalars['String'];
-  message: Scalars['String'];
 };
 
 export enum CacheControlScope {
@@ -146,11 +157,10 @@ export type RegisterMutationVariables = {
 
 export type RegisterMutation = (
   { __typename?: 'Mutation' }
-  // tslint:disable-next-line: array-type
-  & { register?: Maybe<Array<(
+  & { register?: Maybe<Array<Maybe<(
     { __typename?: 'Error' }
     & Pick<Error, 'path' | 'message'>
-  )>> }
+  )>>> }
 );
 
 

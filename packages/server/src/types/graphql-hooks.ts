@@ -1,3 +1,4 @@
+import gql from 'graphql-tag';
 export type Maybe<T> = T | null;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
@@ -9,54 +10,72 @@ export type Scalars = {
 };
 
 export type User = {
-  __typename?: "User";
-  id: Scalars["ID"];
-  username: Scalars["String"];
-  email: Scalars["String"];
+   __typename?: 'User';
+  id: Scalars['ID'];
+  username: Scalars['String'];
+  email: Scalars['String'];
 };
 
 export type Query = {
-  __typename?: "Query";
+   __typename?: 'Query';
   me?: Maybe<User>;
 };
 
 export type Error = {
-  __typename?: "Error";
-  path: Scalars["String"];
-  message: Scalars["String"];
+   __typename?: 'Error';
+  path: Scalars['String'];
+  message: Scalars['String'];
+};
+
+export type LoginResponse = {
+   __typename?: 'LoginResponse';
+  errors?: Maybe<Array<Error>>;
+  user?: Maybe<User>;
+};
+
+export type RegisterResponse = {
+   __typename?: 'RegisterResponse';
+  errors?: Maybe<Array<Error>>;
+  user?: Maybe<User>;
 };
 
 export type Mutation = {
-  __typename?: "Mutation";
-  // tslint:disable-next-line: array-type
-  register?: Maybe<Array<Error>>;
+   __typename?: 'Mutation';
+  register?: Maybe<Array<Maybe<Error>>>;
   login?: Maybe<User>;
-  confirmUser?: Maybe<Scalars["Boolean"]>;
-  forgotPassword?: Maybe<Scalars["Boolean"]>;
+  confirmUser?: Maybe<Scalars['Boolean']>;
+  forgotPassword?: Maybe<Scalars['Boolean']>;
   changePassword?: Maybe<User>;
 };
 
+
 export type MutationRegisterArgs = {
-  username: Scalars["String"];
-  email: Scalars["String"];
-  password: Scalars["String"];
-  confirmPassword: Scalars["String"];
+  username: Scalars['String'];
+  email: Scalars['String'];
+  password: Scalars['String'];
+  confirmPassword: Scalars['String'];
 };
+
 
 export type MutationLoginArgs = {
-  email: Scalars["String"];
-  password: Scalars["String"];
+  email: Scalars['String'];
+  password: Scalars['String'];
 };
+
 
 export type MutationConfirmUserArgs = {
-  token: Scalars["String"];
+  token: Scalars['String'];
 };
+
 
 export type MutationForgotPasswordArgs = {
-  email: Scalars["String"];
+  email: Scalars['String'];
 };
 
+
 export type MutationChangePasswordArgs = {
-  token: Scalars["String"];
-  password: Scalars["String"];
+  token: Scalars['String'];
+  password: Scalars['String'];
 };
+
+

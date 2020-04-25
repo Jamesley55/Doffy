@@ -26,8 +26,8 @@ type Mutation {
     email: String!
     password: String!
     confirmPassword: String!
-  ): RegisterResponse!
-  login(email: String!, password: String!): LoginResponse!
+  ): [Error]
+  login(email: String!, password: String!): User
   confirmUser(token: String!): Boolean
   forgotPassword(email: String!): Boolean
   changePassword(token: String!, password: String!): User
