@@ -27,23 +27,15 @@ export const registerResolver: IResolvers = {
       });
       if (userAlreadyExist) {
         return {
-          errors: [
-            {
-              path: "email",
-              message: duplicateEmail,
-            },
-          ],
+          path: "email",
+          message: duplicateEmail,
         };
       }
 
       if (password !== confirmPassword) {
         return {
-          errors: [
-            {
-              path: "password",
-              message: "your password doesnt correspond",
-            },
-          ],
+          path: "password",
+          message: "your password doesnt correspond",
         };
       }
       const hashedPassword = await bcrypt.hash(password, 10);
@@ -57,7 +49,7 @@ export const registerResolver: IResolvers = {
         email,
         await createConfirmEmailLink(host, user.id, redis)
       );
-      return user;
+      return null;
     },
   },
 };

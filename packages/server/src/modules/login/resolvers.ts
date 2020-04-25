@@ -9,39 +9,18 @@ export const loginResolver: IResolvers = {
     login: async (_, { email, password }: MutationLoginArgs, { req }) => {
       const user = await User.findOne({ where: { email } });
       if (!user) {
-        return {
-          errors: [
-            {
-              path: "email",
-              message: "user not found",
-            },
-          ],
-        };
+        return null;
       }
       const valid = await bcrypt.compare(password, user.password);
       if (!valid) {
-        return {
-          errors: [
-            {
-              path: "email",
-              message: "is not valid",
-            },
-          ],
-        };
+        return null;
       }
       req.session.userId = user.id;
       if (!user.confirm) {
-        return {
-          errors: [
-            {
-              path: "email",
-              message: "is not confirm",
-            },
-          ],
-        };
+        return null;
       }
 
-      return { user };
+      return user;
     },
   },
 };
