@@ -33,7 +33,7 @@ export class HomePage extends React.PureComponent<Props> {
                 <View style={styles.rect2StackStack}>
                   <View style={styles.rect2Stack}>
                     <View style={styles.rect2}>
-                      <Text style={styles.helloName}>Hello,</Text>
+                      <Text style={styles.helloName}>Hello</Text>
                     </View>
 
                     <MaterialButtonHamburger
