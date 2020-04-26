@@ -1,5 +1,24 @@
 [
   {
+    "name": "production",
+    "type": "postgres",
+    "host": "localhost",
+    "port": 5432,
+    "username": "postgres",
+    "password": "Database",
+    "database": "productionDb",
+    "synchronize": true,
+    "logging": true,
+    "entities": ["dist/entity/**/*.js"],
+    "migrations": ["dist/migration/**/*.js"],
+    "subscribers": ["dist/subscriber/**/*.js"],
+    "cli": {
+      "entitiesDir": "dist/entity",
+      "migrationsDir": "dist/migration",
+      "subscribersDir": "dist/subscriber"
+    }
+  },
+  {
     "name": "developement",
     "type": "postgres",
     "host": "localhost",

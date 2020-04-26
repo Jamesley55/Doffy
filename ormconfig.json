@@ -19,6 +19,25 @@
     }
   },
   {
+    "name": "dev",
+    "type": "postgres",
+    "host": "localhost",
+    "port": 5432,
+    "username": "postgres",
+    "password": "Database",
+    "database": "mainDB",
+    "synchronize": true,
+    "logging": true,
+    "entities": ["src/entity/**/*.js"],
+    "migrations": ["src/migration/**/*.js"],
+    "subscribers": ["src/subscriber/**/*.js"],
+    "cli": {
+      "entitiesDir": "dist/entity",
+      "migrationsDir": "dist/migration",
+      "subscribersDir": "dist/subscriber"
+    }
+  },
+  {
     "name": "developement",
     "type": "postgres",
     "host": "localhost",

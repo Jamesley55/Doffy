@@ -64,7 +64,9 @@
     "test-server": "NODE_ENV=test ts-node src/index.ts",
     "test": "NODE_ENV=test jest --forceExit",
     "gen": "graphql-codegen --config codegen.yml",
-    "build": "rimraf ./dist && tsc && copyfiles -u 1 src/Schemas/*.graphql dist/Utils/src"
+    "build": "rimraf ./dist && tsc && copyfiles -u 1  copyfiles -u 1 src/**/*.graphql dist",
+    "dev": " NODE_ENV=dev node dist/index.js",
+    "production": " NODE_ENV=production node dist/index.js"
   },
   "author": "Jamesley Joseph",
   "license": "MIT",
