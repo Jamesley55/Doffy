@@ -15,7 +15,7 @@ COPY ./packages/server/.env  ./packages/server/.env
 COPY ./ormconfig.json   .
 
 WORKDIR ./packages/server
-RUN ls
+RUN yarn copy
 
 ENV NODE_ENV production
 

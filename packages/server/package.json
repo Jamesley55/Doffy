@@ -36,6 +36,7 @@
     "express": "^4.17.1",
     "express-rate-limit": "^5.1.1",
     "express-session": "^1.17.1",
+    "global": "^4.4.0",
     "graphql": "^15.0.0",
     "graphql-import": "^1.0.2",
     "graphql-import-files": "^1.0.4",
@@ -64,7 +65,8 @@
     "test-server": "NODE_ENV=test ts-node src/index.ts",
     "test": "NODE_ENV=test jest --forceExit",
     "gen": "graphql-codegen --config codegen.yml",
-    "build": "rimraf ./dist && tsc && copyfiles -u 1  copyfiles -u 1 src/**/*.graphql dist",
+    "build": "rimraf ./dist && tsc && copyfiles -u 1 src/**/*.graphql dist",
+    "copy": "copyfiles -u 1 dist/**/*.graphql src",
     "dev": " NODE_ENV=dev node dist/index.js",
     "production": " NODE_ENV=production node dist/index.js"
   },

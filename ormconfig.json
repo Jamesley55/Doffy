@@ -6,7 +6,7 @@
     "port": 5432,
     "username": "postgres",
     "password": "Database",
-    "database": "mainDB",
+    "database": "productionDb",
     "synchronize": true,
     "logging": true,
     "entities": ["dist/entity/**/*.js"],
