@@ -12,8 +12,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
 exports.createTypeormConn = () => __awaiter(void 0, void 0, void 0, function* () {
     const connectionOptions = yield typeorm_1.getConnectionOptions(process.env.NODE_ENV);
-    return process.env.NODE_ENV === "production"
-        ? typeorm_1.createConnection(Object.assign(Object.assign({}, connectionOptions), { url: "doffyprimarydb.cib1nvnz2x7y.us-east-2.rds.amazonaws.com", username: "postgres", name: "default" }))
-        : typeorm_1.createConnection(Object.assign(Object.assign({}, connectionOptions), { name: "default" }));
+    return typeorm_1.createConnection(Object.assign(Object.assign({}, connectionOptions), { name: "default" }));
 });
 //# sourceMappingURL=createTypeOrmConnection.js.map

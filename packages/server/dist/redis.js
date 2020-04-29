@@ -1,10 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const Redis = require("ioredis");
-exports.redis = process.env.NODE_EN === "production"
+exports.redis = process.env.NODE_ENV === "production"
     ? new Redis({
         port: 6379,
-        host: "redis",
+        host: process.env.Redis_URL,
+        tls: {},
     })
     : new Redis({
         port: 6379,

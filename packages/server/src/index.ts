@@ -7,8 +7,8 @@ import { createTypeormConn } from "./Utils/dbConnection/createTypeOrmConnection"
 import { port } from "./Utils/host/host";
 import { typeDefs } from "./Utils/typeDefs/typeDefs";
 import { resolvers } from "./Utils/resolverPath/resolver";
-import { redis } from "./redis";
-import * as connectRedis from "connect-redis";
+// import { redis } from "./redis";
+// import * as connectRedis from "connect-redis";
 
 export const StartServer = async () => {
   const server = new ApolloServer({
@@ -31,13 +31,8 @@ export const StartServer = async () => {
   }
   const app = express();
 
-  const RedisStore = connectRedis(session);
-
   app.use(
     session({
-      store: new RedisStore({
-        client: redis as any,
-      }),
       name: "abb",
       secret: "kasfkjadfuhew",
       resave: false,

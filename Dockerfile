@@ -9,9 +9,6 @@ COPY ./packages/common/package.json ./packages/common/
 RUN yarn install 
 RUN apt-get update
 
-RUN apt-get -y install redis-server
-RUN redis-server --daemonize yes
-
 
 COPY ./packages/server/dist ./packages/server/dist/
 COPY ./packages/common/dist ./packages/common/dist/

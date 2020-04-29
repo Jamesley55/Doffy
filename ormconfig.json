@@ -1,7 +1,31 @@
 [
   {
     "name": "production",
+    "host": "doffyprimarydb.cib1nvnz2x7y.us-east-2.rds.amazonaws.com",
+    "port": 5432,
+    "username": "postgres",
+    "password": "Database",
+    "database": "productionDb",
     "type": "postgres",
+    "synchronize": true,
+    "logging": true,
+    "entities": ["dist/entity/**/*.js"],
+    "migrations": ["dist/migration/**/*.js"],
+    "subscribers": ["dist/subscriber/**/*.js"],
+    "cli": {
+      "entitiesDir": "dist/entity",
+      "migrationsDir": "dist/migration",
+      "subscribersDir": "dist/subscriber"
+    }
+  },
+  {
+    "name": "dev",
+    "type": "postgres",
+    "host": "localhost",
+    "port": 5432,
+    "username": "postgres",
+    "password": "Database",
+    "database": "mainDB",
     "synchronize": true,
     "logging": true,
     "entities": ["dist/entity/**/*.js"],

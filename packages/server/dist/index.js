@@ -18,8 +18,6 @@ const createTypeOrmConnection_1 = require("./Utils/dbConnection/createTypeOrmCon
 const host_1 = require("./Utils/host/host");
 const typeDefs_1 = require("./Utils/typeDefs/typeDefs");
 const resolver_1 = require("./Utils/resolverPath/resolver");
-const redis_1 = require("./redis");
-const connectRedis = require("connect-redis");
 exports.StartServer = () => __awaiter(void 0, void 0, void 0, function* () {
     const server = new apollo_server_express_1.ApolloServer({
         typeDefs: typeDefs_1.typeDefs,
@@ -40,11 +38,7 @@ exports.StartServer = () => __awaiter(void 0, void 0, void 0, function* () {
         }
     }
     const app = express();
-    const RedisStore = connectRedis(session);
     app.use(session({
-        store: new RedisStore({
-            client: redis_1.redis,
-        }),
         name: "abb",
         secret: "kasfkjadfuhew",
         resave: false,

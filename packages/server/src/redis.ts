@@ -1,11 +1,11 @@
 import * as Redis from "ioredis";
 
 export const redis =
-  process.env.NODE_EN === "production"
+  process.env.NODE_ENV === "production"
     ? new Redis({
         port: 6379,
-        host: "redis",
-        // process.env.Redis_URL,
+        host: process.env.Redis_URL,
+        tls: {},
       })
     : new Redis({
         port: 6379,
