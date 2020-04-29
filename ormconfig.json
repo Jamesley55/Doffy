@@ -2,35 +2,11 @@
   {
     "name": "production",
     "type": "postgres",
-    "host": "localhost",
-    "port": 5432,
-    "username": "postgres",
-    "password": "Database",
-    "database": "productionDb",
     "synchronize": true,
     "logging": true,
     "entities": ["dist/entity/**/*.js"],
     "migrations": ["dist/migration/**/*.js"],
     "subscribers": ["dist/subscriber/**/*.js"],
-    "cli": {
-      "entitiesDir": "dist/entity",
-      "migrationsDir": "dist/migration",
-      "subscribersDir": "dist/subscriber"
-    }
-  },
-  {
-    "name": "dev",
-    "type": "postgres",
-    "host": "localhost",
-    "port": 5432,
-    "username": "postgres",
-    "password": "Database",
-    "database": "mainDB",
-    "synchronize": true,
-    "logging": true,
-    "entities": ["src/entity/**/*.js"],
-    "migrations": ["src/migration/**/*.js"],
-    "subscribers": ["src/subscriber/**/*.js"],
     "cli": {
       "entitiesDir": "dist/entity",
       "migrationsDir": "dist/migration",

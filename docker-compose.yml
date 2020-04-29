@@ -1,10 +1,12 @@
-version: "3.4"
-
+version: "3.7"
 services:
-  newapp:
-    image: lee/doffy
-    build:
-      context: .
-      dockerfile: Dockerfile
+  server:
+    image: lee/doffy:1.0.0
     ports:
-      - 4000
+      - 4000:4000
+    environment:
+      DB_USER: postgres
+      DB_NAME: productionDb
+      DB_PASSWORD: Database
+      DB_HOST: doffyprimarydb.cib1nvnz2x7y.us-east-2.rds.amazonaws.com
+      NODE_ENV: production
