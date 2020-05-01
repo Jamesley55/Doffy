@@ -18,27 +18,26 @@ const createTypeOrmConnection_1 = require("./Utils/dbConnection/createTypeOrmCon
 const host_1 = require("./Utils/host/host");
 const typeDefs_1 = require("./Utils/typeDefs/typeDefs");
 const resolver_1 = require("./Utils/resolverPath/resolver");
+const redis_1 = require("./redis");
+const connectRedis = require("connect-redis");
 exports.StartServer = () => __awaiter(void 0, void 0, void 0, function* () {
+    console.log("server is starting");
     const server = new apollo_server_express_1.ApolloServer({
         typeDefs: typeDefs_1.typeDefs,
         resolvers: resolver_1.resolvers,
         context: ({ req }) => ({ session: req.session, req }),
     });
-    let retry = 5;
-    while (retry) {
-        try {
-            yield createTypeOrmConnection_1.createTypeormConn();
-            break;
-        }
-        catch (err) {
-            console.log(err);
-            retry -= 1;
-            console.log(`retry left ${retry}`);
-            yield new Promise((res) => setTimeout(res, 5000));
-        }
-    }
+    console.log("passer ApoloServer");
+    yield createTypeOrmConnection_1.createTypeormConn();
+    console.log("passer CreateTypeormConn");
     const app = express();
+    console.log("passer express");
+    const RedisStore = connectRedis(session);
+    console.log("passer RedisStore");
     app.use(session({
+        store: new RedisStore({
+            client: redis_1.redis,
+        }),
         name: "abb",
         secret: "kasfkjadfuhew",
         resave: false,
@@ -49,9 +48,11 @@ exports.StartServer = () => __awaiter(void 0, void 0, void 0, function* () {
             maxAge: 1000 * 60 * 60 * 24 * 12 * 365,
         },
     }));
+    console.log("passer App.use");
     server.applyMiddleware({
         app,
     });
+    console.log("passer on attend App.listend");
     app.listen({ port: host_1.port }, () => console.log(`🚀 Server ready at http://localhost:${host_1.port}${server.graphqlPath}`));
 });
 exports.StartServer();

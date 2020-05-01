@@ -7,32 +7,31 @@ import { createTypeormConn } from "./Utils/dbConnection/createTypeOrmConnection"
 import { port } from "./Utils/host/host";
 import { typeDefs } from "./Utils/typeDefs/typeDefs";
 import { resolvers } from "./Utils/resolverPath/resolver";
-// import { redis } from "./redis";
-// import * as connectRedis from "connect-redis";
+import { redis } from "./redis";
+import * as connectRedis from "connect-redis";
 
 export const StartServer = async () => {
+  console.log("server is starting");
   const server = new ApolloServer({
     typeDefs,
     resolvers,
     context: ({ req }: any) => ({ session: req.session, req }),
   });
-  let retry = 5;
-  while (retry) {
-    try {
-      await createTypeormConn();
-      break;
-    } catch (err) {
-      console.log(err);
-      retry -= 1;
-      console.log(`retry left ${retry}`);
-      // wait 5 seconde
-      await new Promise((res) => setTimeout(res, 5000));
-    }
-  }
+  console.log("passer ApoloServer");
+  await createTypeormConn();
+  console.log("passer CreateTypeormConn");
+
   const app = express();
+  console.log("passer express");
+
+  const RedisStore = connectRedis(session);
+  console.log("passer RedisStore");
 
   app.use(
     session({
+      store: new RedisStore({
+        client: redis,
+      }),
       name: "abb",
       secret: "kasfkjadfuhew",
       resave: false,
@@ -44,9 +43,13 @@ export const StartServer = async () => {
       },
     })
   );
+  console.log("passer App.use");
+
   server.applyMiddleware({
     app,
   });
+
+  console.log("passer on attend App.listend");
 
   // tslint:disable-next-line: object-literal-shorthand
   app.listen({ port: port }, () =>

@@ -1,8 +1,14 @@
-version: "3.7"
+version: "3"
 services:
+  app:
+    image: lee/doffy:1.0.0
+    depends_on:
+      - redis
+    networks:
+      - app_network
   redis:
     image: redis
-  server:
-    build: .
-    links:
-      - redis
+    networks:
+      - app_network
+networks:
+  app_network: {}
