@@ -1,4 +1,8 @@
-FROM node:10
+#the version of node used in the container need to be the same as the version of node we are sing 
+# in this application 
+# in our case the version of node we're using is the 12 version 
+# wich is not the latest node version 
+FROM node:12
 
 WORKDIR /doffy
 
