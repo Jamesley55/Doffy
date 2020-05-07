@@ -1,3 +1,4 @@
+import { invalidLogin, confirmEmailError } from "./errorMessages";
 import { IResolvers } from "apollo-server-express";
 import * as bcrypt from "bcryptjs";
 import { User } from "../../entity/User";
@@ -13,14 +14,28 @@ export const loginResolver: IResolvers = {
       }
       const valid = await bcrypt.compare(password, user.password);
       if (!valid) {
-        return null;
+        return {
+          errors: [
+            {
+              path: "email",
+              message: invalidLogin,
+            },
+          ],
+        };
       }
       req.session.userId = user.id;
       if (!user.confirm) {
-        return null;
+        return {
+          errors: [
+            {
+              path: "email",
+              message: confirmEmailError,
+            },
+          ],
+        };
       }
 
-      return user;
+      return { req: req.session };
     },
   },
 };

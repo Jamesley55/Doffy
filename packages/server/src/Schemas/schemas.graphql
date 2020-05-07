@@ -14,11 +14,34 @@ type Error {
 }
 type LoginResponse {
   errors: [Error!]
-  user: User
+  sessionID: String
 }
 type RegisterResponse {
   errors: [Error!]
   user: User
+}
+input CreateServices {
+  name: String!
+  category: String!
+  description: String!
+  coutryId: String
+  stateId: String
+  cityId: String
+  Taxes: Boolean!
+  Adress: String
+  price: Float!
+  payoutSchedule: String!
+  customerBillingStatement: String!
+  latitude: Float
+  longitude: Float
+}
+type service {
+  Id: ID
+}
+
+type S3Payload {
+  signedRequest: String!
+  url: String!
 }
 type Mutation {
   register(
@@ -27,8 +50,10 @@ type Mutation {
     password: String!
     confirmPassword: String!
   ): [Error]
-  login(email: String!, password: String!): User
+  login(email: String!, password: String!): LoginResponse!
   confirmUser(token: String!): Boolean
   forgotPassword(email: String!): Boolean
   changePassword(token: String!, password: String!): User
+  createService(input: CreateServices): Boolean!
+  signS3(filename: String!, filetype: String!): S3Payload!
 }

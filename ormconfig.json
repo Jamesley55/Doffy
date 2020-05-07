@@ -1,11 +1,11 @@
 [
   {
     "name": "production",
-    "host": "doffyprimarydb.cib1nvnz2x7y.us-east-2.rds.amazonaws.com",
+    "host": "doffyincdb.cib1nvnz2x7y.us-east-2.rds.amazonaws.com",
     "port": 5432,
     "username": "postgres",
     "password": "Database",
-    "database": "productionDb",
+    "database": "productionDB",
     "type": "postgres",
     "synchronize": true,
     "logging": true,

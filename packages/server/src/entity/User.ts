@@ -5,9 +5,11 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
   CreateDateColumn,
+  OneToMany,
 } from "typeorm";
 
 // import { UserInfo } from "./UserInfo";
+import { ServiceInstance } from "./service";
 @Entity("users")
 // BaseEntitie enable the find or create function like
 // user.find() or user.create()
@@ -62,4 +64,7 @@ export class User extends BaseEntity {
 
   @Column("date", { nullable: true })
   modify: Date;
+
+  @OneToMany(() => ServiceInstance, (serviceInstance) => serviceInstance.user)
+  services: ServiceInstance;
 }

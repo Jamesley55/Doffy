@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, Image } from "react-native";
 import EntypoIcon from "react-native-vector-icons/Entypo";
 import IoniconsIcon from "react-native-vector-icons/Ionicons";
 import MaterialCheckbox5 from "../components/MaterialCheckbox5";
@@ -90,51 +90,51 @@ export function payout({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
   },
   icon1: {
     top: 0,
     left: 0,
     position: "absolute",
     color: "rgba(128,128,128,1)",
-    fontSize: 40
+    fontSize: 40,
   },
   icon2: {
     top: 0,
     left: 0,
     position: "absolute",
     color: "rgba(128,128,128,1)",
-    fontSize: 40
+    fontSize: 40,
   },
   icon1Stack: {
     width: 40,
-    height: 40
+    height: 40,
   },
   icon3: {
     color: "rgba(128,128,128,1)",
     fontSize: 40,
-    marginLeft: 248
+    marginLeft: 248,
   },
   icon1StackRow: {
     height: 40,
     flexDirection: "row",
     marginTop: 30,
     marginLeft: 14,
-    marginRight: 40
+    marginRight: 40,
   },
   rect: {
     width: 349,
     height: 94,
     backgroundColor: "rgba(230, 230, 230,1)",
     marginTop: 46,
-    marginLeft: 14
+    marginLeft: 14,
   },
   materialCheckbox5: {
     top: 0,
     left: 0,
     width: 40,
     height: 40,
-    position: "absolute"
+    position: "absolute",
   },
   chargeTaxes: {
     top: 10,
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
     fontSize: 21,
     fontFamily: "roboto-regular",
     lineHeight: 23,
-    letterSpacing: -1
+    letterSpacing: -1,
   },
   loremIpsum: {
     top: 33,
@@ -158,13 +158,13 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: "roboto-regular",
     lineHeight: 23,
-    letterSpacing: -1
+    letterSpacing: -1,
   },
   materialCheckbox5Stack: {
     width: 314,
     height: 58,
     marginTop: 8,
-    marginLeft: 7
+    marginLeft: 7,
   },
   payoutDetails: {
     top: 0,
@@ -176,7 +176,7 @@ const styles = StyleSheet.create({
     fontSize: 21,
     fontFamily: "roboto-regular",
     lineHeight: 23,
-    letterSpacing: -1
+    letterSpacing: -1,
   },
   loremIpsum3: {
     top: 23,
@@ -188,20 +188,20 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: "roboto-regular",
     lineHeight: 23,
-    letterSpacing: -1
+    letterSpacing: -1,
   },
   payoutDetailsStack: {
     width: 349,
     height: 57,
     marginTop: 26,
-    marginLeft: 14
+    marginLeft: 14,
   },
   rect2: {
     width: 349,
     height: 178,
     backgroundColor: "rgba(230, 230, 230,1)",
     marginTop: 19,
-    marginLeft: 14
+    marginLeft: 14,
   },
   payoutSchedule: {
     top: 0,
@@ -213,21 +213,21 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: "roboto-regular",
     lineHeight: 23,
-    letterSpacing: -1
+    letterSpacing: -1,
   },
   materialRadio: {
     top: 21,
     left: 0,
     width: 40,
     height: 40,
-    position: "absolute"
+    position: "absolute",
   },
   materialRadio1: {
     top: 60,
     left: 0,
     width: 40,
     height: 40,
-    position: "absolute"
+    position: "absolute",
   },
   everyBusinessDay: {
     top: 29,
@@ -239,7 +239,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: "roboto-regular",
     lineHeight: 23,
-    letterSpacing: -1
+    letterSpacing: -1,
   },
   everyWeek: {
     top: 66,
@@ -251,7 +251,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: "roboto-regular",
     lineHeight: 23,
-    letterSpacing: -1
+    letterSpacing: -1,
   },
   rect3: {
     top: 66,
@@ -259,14 +259,14 @@ const styles = StyleSheet.create({
     width: 123,
     height: 23,
     backgroundColor: "rgba(0,0,0,1)",
-    position: "absolute"
+    position: "absolute",
   },
   payoutScheduleStack: {
     top: 0,
     left: 0,
     width: 234,
     height: 100,
-    position: "absolute"
+    position: "absolute",
   },
   loremIpsum4: {
     top: 37,
@@ -276,20 +276,20 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: "roboto-regular",
     lineHeight: 23,
-    letterSpacing: -1
+    letterSpacing: -1,
   },
   payoutScheduleStackStack: {
     width: 234,
     height: 100,
     marginTop: 8,
-    marginLeft: 3
+    marginLeft: 3,
   },
   materialRadio2: {
     top: 0,
     left: 0,
     width: 40,
     height: 40,
-    position: "absolute"
+    position: "absolute",
   },
   everyMonth: {
     top: 5,
@@ -301,7 +301,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: "roboto-regular",
     lineHeight: 23,
-    letterSpacing: -1
+    letterSpacing: -1,
   },
   rect4: {
     top: 3,
@@ -309,13 +309,13 @@ const styles = StyleSheet.create({
     width: 123,
     height: 23,
     backgroundColor: "rgba(0,0,0,1)",
-    position: "absolute"
+    position: "absolute",
   },
   materialRadio2Stack: {
     width: 234,
     height: 40,
     marginTop: 8,
-    marginLeft: 3
+    marginLeft: 3,
   },
   loremIpsum5: {
     top: 0,
@@ -327,7 +327,7 @@ const styles = StyleSheet.create({
     fontSize: 21,
     fontFamily: "roboto-regular",
     lineHeight: 23,
-    letterSpacing: -1
+    letterSpacing: -1,
   },
   loremIpsum6: {
     top: 22,
@@ -339,20 +339,20 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: "roboto-regular",
     lineHeight: 23,
-    letterSpacing: -1
+    letterSpacing: -1,
   },
   loremIpsum5Stack: {
     width: 349,
     height: 56,
     marginTop: 21,
-    marginLeft: 14
+    marginLeft: 14,
   },
   rect5: {
     width: 349,
     height: 66,
     backgroundColor: "rgba(230, 230, 230,1)",
     marginTop: 14,
-    marginLeft: 13
+    marginLeft: 13,
   },
   loremIpsum7: {
     top: 0,
@@ -364,26 +364,26 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: "roboto-regular",
     lineHeight: 23,
-    letterSpacing: -1
+    letterSpacing: -1,
   },
   materialFixedLabelTextbox: {
     top: 14,
     left: 0,
     width: 306,
     height: 34,
-    position: "absolute"
+    position: "absolute",
   },
   loremIpsum7Stack: {
     width: 306,
     height: 48,
     marginTop: 8,
-    marginLeft: 11
+    marginLeft: 11,
   },
   materialButtonPrimary1: {
     width: 294,
     height: 66,
     borderRadius: 100,
     marginTop: 30,
-    marginLeft: 37
-  }
+    marginLeft: 37,
+  },
 });

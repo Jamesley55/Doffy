@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, Image } from "react-native";
 import MaterialSwitch from "../components/MaterialSwitch";
 import MaterialButtonPrimary from "../components/MaterialButtonPrimary";
 
@@ -64,7 +64,7 @@ export function pricePage({ navigator }) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
   },
   rect: {
     top: 26,
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     height: 271,
     backgroundColor: "rgba(230, 230, 230,1)",
     position: "absolute",
-    borderRadius: 34
+    borderRadius: 34,
   },
   price: {
     width: 140,
@@ -83,18 +83,18 @@ const styles = StyleSheet.create({
     fontFamily: "roboto-regular",
     lineHeight: 9,
     marginTop: 25,
-    marginLeft: 20
+    marginLeft: 20,
   },
   rect2: {
     width: 70,
     height: 32,
-    backgroundColor: "rgba(0,0,0,1)"
+    backgroundColor: "rgba(0,0,0,1)",
   },
   materialSwitch: {
     width: 45,
     height: 23,
     marginLeft: 31,
-    marginTop: 6
+    marginTop: 6,
   },
   beardIncluded: {
     width: 152,
@@ -104,14 +104,14 @@ const styles = StyleSheet.create({
     fontFamily: "roboto-regular",
     lineHeight: 9,
     marginLeft: 8,
-    marginTop: 12
+    marginTop: 12,
   },
   rect2Row: {
     height: 32,
     flexDirection: "row",
     marginTop: 12,
     marginLeft: 14,
-    marginRight: 12
+    marginRight: 12,
   },
   beardPrice: {
     width: 140,
@@ -121,18 +121,18 @@ const styles = StyleSheet.create({
     fontFamily: "roboto-regular",
     lineHeight: 9,
     marginTop: 13,
-    marginLeft: 14
+    marginLeft: 14,
   },
   rect3: {
     width: 70,
     height: 32,
     backgroundColor: "rgba(0,0,0,1)",
     marginTop: 2,
-    marginLeft: 14
+    marginLeft: 14,
   },
   materialSwitch1: {
     width: 45,
-    height: 23
+    height: 23,
   },
   beardIncluded2: {
     width: 202,
@@ -142,19 +142,19 @@ const styles = StyleSheet.create({
     fontFamily: "roboto-regular",
     lineHeight: 9,
     marginLeft: 17,
-    marginTop: 2
+    marginTop: 2,
   },
   materialSwitch1Row: {
     height: 23,
     flexDirection: "row",
     marginTop: 17,
     marginLeft: 15,
-    marginRight: 53
+    marginRight: 53,
   },
   rect4: {
     width: 70,
     height: 32,
-    backgroundColor: "rgba(0,0,0,1)"
+    backgroundColor: "rgba(0,0,0,1)",
   },
   beardIncluded3: {
     width: 216,
@@ -165,14 +165,14 @@ const styles = StyleSheet.create({
     lineHeight: 16,
     letterSpacing: -1,
     marginLeft: 5,
-    marginTop: 7
+    marginTop: 7,
   },
   rect4Row: {
     height: 32,
     flexDirection: "row",
     marginTop: 15,
     marginLeft: 14,
-    marginRight: 27
+    marginRight: 27,
   },
   advanceOption1: {
     width: 90,
@@ -184,7 +184,7 @@ const styles = StyleSheet.create({
     letterSpacing: -1,
     textAlign: "center",
     marginTop: 4,
-    marginLeft: 122
+    marginLeft: 122,
   },
   cuttingHair: {
     top: 0,
@@ -194,13 +194,13 @@ const styles = StyleSheet.create({
     color: "#121212",
     position: "absolute",
     fontSize: 26,
-    fontFamily: "roboto-regular"
+    fontFamily: "roboto-regular",
   },
   rectStack: {
     width: 332,
     height: 297,
     marginTop: 54,
-    marginLeft: 28
+    marginLeft: 28,
   },
   rect5: {
     top: 27,
@@ -209,7 +209,7 @@ const styles = StyleSheet.create({
     height: 210,
     backgroundColor: "rgba(230, 230, 230,1)",
     position: "absolute",
-    borderRadius: 34
+    borderRadius: 34,
   },
   price1: {
     width: 140,
@@ -219,19 +219,19 @@ const styles = StyleSheet.create({
     fontFamily: "roboto-regular",
     lineHeight: 9,
     marginTop: 20,
-    marginLeft: 19
+    marginLeft: 19,
   },
   rect6: {
     width: 70,
     height: 32,
     backgroundColor: "rgba(0,0,0,1)",
     marginTop: 8,
-    marginLeft: 17
+    marginLeft: 17,
   },
   materialSwitch2: {
     width: 45,
     height: 23,
-    marginTop: 1
+    marginTop: 1,
   },
   beardIncluded4: {
     width: 202,
@@ -240,19 +240,19 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: "roboto-regular",
     lineHeight: 9,
-    marginLeft: 17
+    marginLeft: 17,
   },
   materialSwitch2Row: {
     height: 24,
     flexDirection: "row",
     marginTop: 14,
     marginLeft: 18,
-    marginRight: 50
+    marginRight: 50,
   },
   rect7: {
     width: 70,
     height: 32,
-    backgroundColor: "rgba(0,0,0,1)"
+    backgroundColor: "rgba(0,0,0,1)",
   },
   beardIncluded5: {
     width: 216,
@@ -263,14 +263,14 @@ const styles = StyleSheet.create({
     lineHeight: 16,
     letterSpacing: -1,
     marginLeft: 5,
-    marginTop: 8
+    marginTop: 8,
   },
   rect7Row: {
     height: 32,
     flexDirection: "row",
     marginTop: 17,
     marginLeft: 17,
-    marginRight: 24
+    marginRight: 24,
   },
   advanceOption: {
     width: 90,
@@ -282,7 +282,7 @@ const styles = StyleSheet.create({
     letterSpacing: -1,
     textAlign: "center",
     marginTop: 7,
-    marginLeft: 125
+    marginLeft: 125,
   },
   nailSalon: {
     top: 0,
@@ -292,19 +292,19 @@ const styles = StyleSheet.create({
     color: "#121212",
     position: "absolute",
     fontSize: 26,
-    fontFamily: "roboto-regular"
+    fontFamily: "roboto-regular",
   },
   rect5Stack: {
     width: 332,
     height: 237,
     marginTop: 19,
-    marginLeft: 25
+    marginLeft: 25,
   },
   materialButtonPrimary1: {
     width: 294,
     height: 66,
     borderRadius: 100,
     marginTop: 22,
-    marginLeft: 41
-  }
+    marginLeft: 41,
+  },
 });

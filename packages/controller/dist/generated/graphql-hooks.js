@@ -41,9 +41,11 @@ exports.useForgotPasswordMutation = useForgotPasswordMutation;
 exports.LoginDocument = graphql_tag_1.default `
     mutation Login($email: String!, $password: String!) {
   login(email: $email, password: $password) {
-    id
-    email
-    username
+    errors {
+      path
+      message
+    }
+    sessionID
   }
 }
     `;
@@ -78,4 +80,16 @@ function useRegisterMutation(baseOptions) {
     return ApolloReactHooks.useMutation(exports.RegisterDocument, baseOptions);
 }
 exports.useRegisterMutation = useRegisterMutation;
+exports.UploadS3Document = graphql_tag_1.default `
+    mutation uploadS3($filename: String!, $filetype: String!) {
+  signS3(filename: $filename, filetype: $filetype) {
+    url
+    signedRequest
+  }
+}
+    `;
+function useUploadS3Mutation(baseOptions) {
+    return ApolloReactHooks.useMutation(exports.UploadS3Document, baseOptions);
+}
+exports.useUploadS3Mutation = useUploadS3Mutation;
 //# sourceMappingURL=graphql-hooks.js.map

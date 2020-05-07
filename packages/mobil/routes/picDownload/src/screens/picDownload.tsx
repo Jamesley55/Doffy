@@ -1,11 +1,55 @@
-import React, { Component } from "react";
+import * as React from "react";
 import { StyleSheet, View, Text } from "react-native";
 import EntypoIcon from "react-native-vector-icons/Entypo";
 import IoniconsIcon from "react-native-vector-icons/Ionicons";
 import MaterialIconsIcon from "react-native-vector-icons/MaterialIcons";
 import MaterialButtonPrimary from "../components/MaterialButtonPrimary";
+import * as ImagePicker from "expo-image-picker";
+import Constants from "expo-constants";
+import * as Permissions from "expo-permissions";
+import { formatFilename } from "../../../../shareFuction/formatFileName";
+import { useUploadS3Mutation } from "../../../../../controller/src/generated/graphql-hooks";
+import { uploadToS3 } from "../../../../shareFuction/uploadS3";
 
-export function picDownload({ navigation }) {
+export function picDownload({ navigation }: any) {
+  const [uploadS3] = useUploadS3Mutation();
+  const getPermissionAsync = async () => {
+    if (Constants.platform?.ios) {
+      const { status } = await Permissions.askAsync(
+        Permissions.CAMERA_ROLL,
+        Permissions.CAMERA
+      );
+      if (status !== "granted") {
+        alert("Sorry, we need camera roll permissions to make this work!");
+        return false;
+      }
+    }
+    return true;
+  };
+
+  const download = async () => {
+    const permisionAcces = await getPermissionAsync();
+    if (permisionAcces === true) {
+      const files = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.All,
+        allowsMultipleSelection: true,
+      });
+      if (!files.cancelled) {
+        console.log(files);
+        const response = await uploadS3({
+          variables: {
+            filename: formatFilename(files.uri),
+            filetype: files.type !== undefined ? files.type : "image",
+          },
+        });
+        if (response.data?.signS3 !== undefined) {
+          const { signedRequest, url } = response.data.signS3;
+          await uploadToS3(files, signedRequest);
+          console.log(url);
+        }
+      }
+    }
+  };
   return (
     <View style={styles.container}>
       <View style={styles.icon1Row}>
@@ -34,6 +78,7 @@ export function picDownload({ navigation }) {
         <MaterialIconsIcon
           name="add-to-photos"
           style={styles.icon3}
+          onPress={download}
         ></MaterialIconsIcon>
       </View>
       <View style={styles.pictureOfYourWorkStack}>
@@ -42,10 +87,12 @@ export function picDownload({ navigation }) {
           Customers will judge your work by looking at those pictures. This is
           an important step for your business growth
         </Text>
+
         <View style={styles.rect1}>
           <MaterialIconsIcon
             name="add-to-photos"
             style={styles.icon4}
+            onPress={download}
           ></MaterialIconsIcon>
         </View>
       </View>
@@ -60,16 +107,16 @@ export function picDownload({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: "100%"
+    width: "100%",
   },
   icon1: {
     color: "rgba(128,128,128,1)",
-    fontSize: 40
+    fontSize: 40,
   },
   icon2: {
     color: "rgba(128,128,128,1)",
     fontSize: 40,
-    marginLeft: 248
+    marginLeft: 248,
   },
   icon1Row: {
     justifyContent: "center",
@@ -78,7 +125,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     marginTop: 30,
     marginLeft: 14,
-    marginRight: 0
+    marginRight: 0,
   },
   profilPicture: {
     top: 0,
@@ -90,7 +137,7 @@ const styles = StyleSheet.create({
     fontSize: 21,
     fontFamily: "roboto-700",
     lineHeight: 23,
-    letterSpacing: -1
+    letterSpacing: -1,
   },
   loremIpsum: {
     top: 24,
@@ -102,20 +149,20 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: "roboto-regular",
     lineHeight: 23,
-    letterSpacing: -1
+    letterSpacing: -1,
   },
   profilPictureStack: {
     width: 328,
     height: 84,
     marginTop: 40,
-    marginLeft: 14
+    marginLeft: 14,
   },
   rect: {
     width: 170,
     height: 128,
     backgroundColor: "rgba(230, 230, 230,1)",
     marginTop: 18,
-    marginLeft: 103
+    marginLeft: 103,
   },
   icon3: {
     color: "rgba(128,128,128,1)",
@@ -123,7 +170,7 @@ const styles = StyleSheet.create({
     height: 100,
     width: 100,
     marginTop: 14,
-    marginLeft: 35
+    marginLeft: 35,
   },
   pictureOfYourWork: {
     top: 0,
@@ -135,7 +182,7 @@ const styles = StyleSheet.create({
     fontSize: 21,
     fontFamily: "roboto-700",
     lineHeight: 23,
-    letterSpacing: -1
+    letterSpacing: -1,
   },
   loremIpsum1: {
     top: 34,
@@ -147,7 +194,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: "roboto-regular",
     lineHeight: 23,
-    letterSpacing: -1
+    letterSpacing: -1,
   },
   rect1: {
     top: 112,
@@ -155,7 +202,7 @@ const styles = StyleSheet.create({
     width: 170,
     height: 128,
     backgroundColor: "rgba(230, 230, 230,1)",
-    position: "absolute"
+    position: "absolute",
   },
   icon4: {
     color: "rgba(128,128,128,1)",
@@ -163,13 +210,13 @@ const styles = StyleSheet.create({
     height: 100,
     width: 100,
     marginTop: 14,
-    marginLeft: 35
+    marginLeft: 35,
   },
   pictureOfYourWorkStack: {
     width: 328,
     height: 240,
     marginTop: 60,
-    marginLeft: 14
+    marginLeft: 14,
   },
   materialButtonPrimary1: {
     justifyContent: "center",
@@ -177,6 +224,6 @@ const styles = StyleSheet.create({
     height: 66,
     borderRadius: 100,
     marginTop: 37,
-    marginLeft: 37
-  }
+    marginLeft: 37,
+  },
 });

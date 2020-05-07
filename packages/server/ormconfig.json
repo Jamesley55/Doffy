@@ -4,6 +4,7 @@
     "type": "postgres",
     "username": "postgres",
     "password": "Database",
+    "database": "productiondb",
     "synchronize": true,
     "logging": true,
     "entities": ["dist/entity/**/*.js"],

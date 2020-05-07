@@ -4,6 +4,8 @@ import { registerResolver } from "../../modules/register/resolvers";
 import { confirmUser } from "../../modules/confirmUser/resolvers";
 import { forgotPassword } from "../../modules/forgotPassword/resolvers";
 import { changePassword } from "../../modules/changePassword/resolvers";
+import { fileUpload } from "../../modules/uploadS3/resolvers";
+import { createService } from "../../modules/createService/resolvers";
 
 export const resolvers = [
   queryResolver,
@@ -12,4 +14,6 @@ export const resolvers = [
   confirmUser,
   forgotPassword,
   changePassword,
+  fileUpload,
+  createService,
 ];

@@ -13,11 +13,6 @@ export type Scalars = {
   Upload: any;
 };
 
-export type Query = {
-   __typename?: 'Query';
-  me?: Maybe<User>;
-};
-
 export type User = {
    __typename?: 'User';
   id: Scalars['ID'];
@@ -25,14 +20,65 @@ export type User = {
   email: Scalars['String'];
 };
 
+export type Query = {
+   __typename?: 'Query';
+  me?: Maybe<User>;
+};
+
+export type Error = {
+   __typename?: 'Error';
+  path: Scalars['String'];
+  message: Scalars['String'];
+};
+
+export type LoginResponse = {
+   __typename?: 'LoginResponse';
+  errors?: Maybe<Array<Error>>;
+  sessionID?: Maybe<Scalars['String']>;
+};
+
+export type RegisterResponse = {
+   __typename?: 'RegisterResponse';
+  errors?: Maybe<Array<Error>>;
+  user?: Maybe<User>;
+};
+
+export type CreateServices = {
+  name: Scalars['String'];
+  category: Scalars['String'];
+  description: Scalars['String'];
+  coutryId?: Maybe<Scalars['String']>;
+  stateId?: Maybe<Scalars['String']>;
+  cityId?: Maybe<Scalars['String']>;
+  Taxes: Scalars['Boolean'];
+  Adress?: Maybe<Scalars['String']>;
+  price: Scalars['Float'];
+  payoutSchedule: Scalars['String'];
+  customerBillingStatement: Scalars['String'];
+  latitude?: Maybe<Scalars['Float']>;
+  longitude?: Maybe<Scalars['Float']>;
+};
+
+export type Service = {
+   __typename?: 'service';
+  Id?: Maybe<Scalars['ID']>;
+};
+
+export type S3Payload = {
+   __typename?: 'S3Payload';
+  signedRequest: Scalars['String'];
+  url: Scalars['String'];
+};
+
 export type Mutation = {
    __typename?: 'Mutation';
-  // tslint:disable-next-line: array-type
-  register?: Maybe<Array<Error>>;
-  login?: Maybe<User>;
+  register?: Maybe<Array<Maybe<Error>>>;
+  login: LoginResponse;
   confirmUser?: Maybe<Scalars['Boolean']>;
   forgotPassword?: Maybe<Scalars['Boolean']>;
   changePassword?: Maybe<User>;
+  createService: Scalars['Boolean'];
+  signS3: S3Payload;
 };
 
 
@@ -65,10 +111,15 @@ export type MutationChangePasswordArgs = {
   password: Scalars['String'];
 };
 
-export type Error = {
-   __typename?: 'Error';
-  path: Scalars['String'];
-  message: Scalars['String'];
+
+export type MutationCreateServiceArgs = {
+  input?: Maybe<CreateServices>;
+};
+
+
+export type MutationSignS3Args = {
+  filename: Scalars['String'];
+  filetype: Scalars['String'];
 };
 
 export enum CacheControlScope {
@@ -119,10 +170,14 @@ export type LoginMutationVariables = {
 
 export type LoginMutation = (
   { __typename?: 'Mutation' }
-  & { login?: Maybe<(
-    { __typename?: 'User' }
-    & Pick<User, 'id' | 'email' | 'username'>
-  )> }
+  & { login: (
+    { __typename?: 'LoginResponse' }
+    & Pick<LoginResponse, 'sessionID'>
+    & { errors?: Maybe<Array<(
+      { __typename?: 'Error' }
+      & Pick<Error, 'path' | 'message'>
+    )>> }
+  ) }
 );
 
 export type QueryQueryVariables = {};
@@ -146,11 +201,24 @@ export type RegisterMutationVariables = {
 
 export type RegisterMutation = (
   { __typename?: 'Mutation' }
-  // tslint:disable-next-line: array-type
-  & { register?: Maybe<Array<(
+  & { register?: Maybe<Array<Maybe<(
     { __typename?: 'Error' }
     & Pick<Error, 'path' | 'message'>
-  )>> }
+  )>>> }
+);
+
+export type UploadS3MutationVariables = {
+  filename: Scalars['String'];
+  filetype: Scalars['String'];
+};
+
+
+export type UploadS3Mutation = (
+  { __typename?: 'Mutation' }
+  & { signS3: (
+    { __typename?: 'S3Payload' }
+    & Pick<S3Payload, 'url' | 'signedRequest'>
+  ) }
 );
 
 
@@ -252,9 +320,11 @@ export type ForgotPasswordMutationOptions = ApolloReactCommon.BaseMutationOption
 export const LoginDocument = gql`
     mutation Login($email: String!, $password: String!) {
   login(email: $email, password: $password) {
-    id
-    email
-    username
+    errors {
+      path
+      message
+    }
+    sessionID
   }
 }
     `;
@@ -352,3 +422,37 @@ export function useRegisterMutation(baseOptions?: ApolloReactHooks.MutationHookO
 export type RegisterMutationHookResult = ReturnType<typeof useRegisterMutation>;
 export type RegisterMutationResult = ApolloReactCommon.MutationResult<RegisterMutation>;
 export type RegisterMutationOptions = ApolloReactCommon.BaseMutationOptions<RegisterMutation, RegisterMutationVariables>;
+export const UploadS3Document = gql`
+    mutation uploadS3($filename: String!, $filetype: String!) {
+  signS3(filename: $filename, filetype: $filetype) {
+    url
+    signedRequest
+  }
+}
+    `;
+export type UploadS3MutationFn = ApolloReactCommon.MutationFunction<UploadS3Mutation, UploadS3MutationVariables>;
+
+/**
+ * __useUploadS3Mutation__
+ *
+ * To run a mutation, you first call `useUploadS3Mutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUploadS3Mutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [uploadS3Mutation, { data, loading, error }] = useUploadS3Mutation({
+ *   variables: {
+ *      filename: // value for 'filename'
+ *      filetype: // value for 'filetype'
+ *   },
+ * });
+ */
+export function useUploadS3Mutation(baseOptions?: ApolloReactHooks.MutationHookOptions<UploadS3Mutation, UploadS3MutationVariables>) {
+        return ApolloReactHooks.useMutation<UploadS3Mutation, UploadS3MutationVariables>(UploadS3Document, baseOptions);
+      }
+export type UploadS3MutationHookResult = ReturnType<typeof useUploadS3Mutation>;
+export type UploadS3MutationResult = ApolloReactCommon.MutationResult<UploadS3Mutation>;
+export type UploadS3MutationOptions = ApolloReactCommon.BaseMutationOptions<UploadS3Mutation, UploadS3MutationVariables>;

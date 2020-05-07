@@ -4,6 +4,7 @@ import {
   BaseEntity,
   PrimaryGeneratedColumn,
   ManyToOne,
+  JoinColumn,
 } from "typeorm";
 import { User } from "./User";
 
@@ -20,7 +21,7 @@ export class ServiceInstance extends BaseEntity {
   category: string;
 
   @Column("text", { nullable: true })
-  pictureUrl: string;
+  pictureUrl: string[];
 
   @Column("varchar", { length: 255 })
   description: string;
@@ -40,19 +41,19 @@ export class ServiceInstance extends BaseEntity {
   @Column("text")
   Adress: string;
 
-  @Column("int") price: number;
+  @Column("double precision") price: number;
 
-  @Column("int") beds: number;
+  @Column("text") payoutSchedule: string;
 
-  @Column("int") guests: number;
+  @Column("text") customerBillingStatement: string;
 
   @Column("double precision") latitude: number;
 
   @Column("double precision") longitude: number;
 
-  @Column("text", { array: true })
-  amenities: string[];
+  @Column("uuid") ownerId: string;
 
-  @ManyToOne(() => User)
+  @ManyToOne(() => User, (user) => user.services)
+  @JoinColumn({ name: "ownerId" })
   user: User;
 }

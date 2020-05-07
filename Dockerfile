@@ -26,6 +26,6 @@ RUN yarn copy
 ENV NODE_ENV production
 
 
-EXPOSE 4
+EXPOSE 443
 
 CMD [ "node", "dist/index.js" ]
