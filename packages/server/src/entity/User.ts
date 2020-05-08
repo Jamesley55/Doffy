@@ -66,5 +66,5 @@ export class User extends BaseEntity {
   modify: Date;
 
   @OneToMany(() => ServiceInstance, (serviceInstance) => serviceInstance.user)
-  services: ServiceInstance;
+  services: ServiceInstance[];
 }

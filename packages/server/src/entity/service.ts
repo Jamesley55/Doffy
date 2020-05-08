@@ -8,11 +8,9 @@ import {
 } from "typeorm";
 import { User } from "./User";
 
-@Entity("ServiceInstance")
+@Entity("service")
 export class ServiceInstance extends BaseEntity {
   @PrimaryGeneratedColumn("uuid") id: string;
-
-  @Column("uuid") userId: string;
 
   @Column("varchar", { length: 100 })
   name: string;

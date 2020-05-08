@@ -6,6 +6,7 @@ import { forgotPassword } from "../../modules/forgotPassword/resolvers";
 import { changePassword } from "../../modules/changePassword/resolvers";
 import { fileUpload } from "../../modules/uploadS3/resolvers";
 import { createService } from "../../modules/createService/resolvers";
+import { createMessage } from "../../modules/messages/resolver";
 
 export const resolvers = [
   queryResolver,
@@ -16,4 +17,5 @@ export const resolvers = [
   changePassword,
   fileUpload,
   createService,
+  createMessage,
 ];

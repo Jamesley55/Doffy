@@ -3,7 +3,10 @@ import {
   CreateDateColumn,
   Entity,
   PrimaryGeneratedColumn,
+  ManyToOne,
+  BaseEntity,
 } from "typeorm";
+import { ServiceInstance } from "./service";
 
 export enum MessageType {
   TEXT,
@@ -12,11 +15,11 @@ export enum MessageType {
 }
 
 @Entity("message")
-export class Message {
+export class Message extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column("text")
   content: string;
 
   @CreateDateColumn()
@@ -24,4 +27,9 @@ export class Message {
 
   @Column({ nullable: true })
   type: MessageType;
+
+  @Column("uuid") serviceId: string;
+
+  @ManyToOne(() => ServiceInstance)
+  service: ServiceInstance;
 }
