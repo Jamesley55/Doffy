@@ -44,7 +44,7 @@ export function picDownload({ navigation }: any) {
         });
         if (response.data?.signS3 !== undefined) {
           const { signedRequest, url } = response.data.signS3;
-          await uploadToS3(files, signedRequest);
+          uploadToS3(files, signedRequest);
           console.log(url);
         }
       }

@@ -24,7 +24,7 @@ export const fileUpload: IResolvers = {
       };
 
       const signedRequest = await s3.getSignedUrl("putObject", s3Params);
-      const url = `https://${CLOUDFRONT_URL}.com/${filename}`;
+      const url = `https://${CLOUDFRONT_URL}/${filename}`;
 
       return {
         signedRequest,
