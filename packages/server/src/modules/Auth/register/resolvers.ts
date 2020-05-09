@@ -1,14 +1,14 @@
 import { validationSchema } from "@doffy/common";
-import { User } from "./../../entity/User";
+import { User } from "../../../entity/User";
 import { IResolvers } from "apollo-server-express";
 import * as bcrypt from "bcryptjs";
-import { MutationRegisterArgs } from "../../types/graphql-hooks";
-import { formatYupError } from "../../Utils/FormatYupError/formatYupError";
+import { MutationRegisterArgs } from "../../../types/graphql-hooks";
+import { formatYupError } from "../../../Utils/FormatYupError/formatYupError";
 import { createConfirmEmailLink } from "../CreateConfirmEmail/createconfirmEmailLink";
-import { duplicateEmail } from "../../Utils/FormatYupError/ErrorMessage";
+import { duplicateEmail } from "../../../Utils/FormatYupError/ErrorMessage";
 import { sendEmail } from "../CreateConfirmEmail/sendMail";
-import { host } from "../../Utils/host/host";
-import { redis } from "../../redis";
+import { host } from "../../../Utils/host/host";
+import { redis } from "../../../redis";
 
 // Iresolver is there to add types to the
 // ts project

@@ -2,6 +2,7 @@ import "reflect-metadata";
 import "dotenv/config";
 import * as session from "express-session";
 import { ApolloServer } from "apollo-server-express";
+import { RedisPubSub } from "graphql-redis-subscriptions";
 import * as express from "express";
 import { createTypeormConn } from "./Utils/dbConnection/createTypeOrmConnection";
 import { port } from "./Utils/host/host";
@@ -9,18 +10,19 @@ import { typeDefs } from "./Utils/typeDefs/typeDefs";
 import { resolvers } from "./Utils/resolverPath/resolver";
 import { redis } from "./redis";
 import * as connectRedis from "connect-redis";
+import http = require("http");
 
 export const StartServer = async () => {
   console.log("server is starting");
+  const pubsub = new RedisPubSub();
   const server = new ApolloServer({
     typeDefs,
     resolvers,
-    context: ({ req }: any) => ({ session: req.session, req }),
+    context: ({ req }: any) => ({ req, pubsub }),
   });
   console.log("passer ApoloServer");
   await createTypeormConn();
   console.log("passer CreateTypeormConn");
-
   const app = express();
   console.log("passer express");
 
@@ -49,10 +51,12 @@ export const StartServer = async () => {
     app,
   });
 
+  // for pubsub (subscription)
   console.log("passer on attend App.listend");
-
+  const httpServer = http.createServer(app);
+  server.installSubscriptionHandlers(httpServer);
   // tslint:disable-next-line: object-literal-shorthand
-  app.listen({ port: port }, () =>
+  httpServer.listen({ port: port }, () =>
     console.log(
       `🚀 Server ready at http://localhost:${port}${server.graphqlPath}`
     )

@@ -5,11 +5,15 @@ import {
   PrimaryGeneratedColumn,
   ManyToOne,
   JoinColumn,
+  OneToOne,
+  OneToMany,
 } from "typeorm";
 import { User } from "./User";
+import { Calendar } from "./calendar";
+import { Booking } from "./booking";
 
 @Entity("service")
-export class ServiceInstance extends BaseEntity {
+export class Service extends BaseEntity {
   @PrimaryGeneratedColumn("uuid") id: string;
 
   @Column("varchar", { length: 100 })
@@ -33,6 +37,10 @@ export class ServiceInstance extends BaseEntity {
   @Column("varchar", { length: 100 })
   cityId: string;
 
+  @OneToOne(() => Calendar, { cascade: true })
+  @JoinColumn()
+  calendar: Calendar;
+
   @Column("boolean")
   Taxes: boolean;
 
@@ -54,4 +62,7 @@ export class ServiceInstance extends BaseEntity {
   @ManyToOne(() => User, (user) => user.services)
   @JoinColumn({ name: "ownerId" })
   user: User;
+
+  @OneToMany(() => Booking, (booking) => booking.service)
+  booking: Booking[];
 }

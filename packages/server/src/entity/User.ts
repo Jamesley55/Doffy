@@ -1,3 +1,4 @@
+import { Notification } from "./notification";
 import {
   Entity,
   Column,
@@ -9,7 +10,8 @@ import {
 } from "typeorm";
 
 // import { UserInfo } from "./UserInfo";
-import { ServiceInstance } from "./service";
+import { Service } from "./service";
+import { Message } from "./message";
 @Entity("users")
 // BaseEntitie enable the find or create function like
 // user.find() or user.create()
@@ -65,6 +67,12 @@ export class User extends BaseEntity {
   @Column("date", { nullable: true })
   modify: Date;
 
-  @OneToMany(() => ServiceInstance, (serviceInstance) => serviceInstance.user)
-  services: ServiceInstance[];
+  @OneToMany(() => Service, (serviceInstance) => serviceInstance.user)
+  services: Service[];
+
+  @OneToMany(() => Message, (message) => message.user)
+  message: Message[];
+
+  @OneToMany(() => Notification, (notifications) => notifications.user)
+  notifications: Notification[];
 }

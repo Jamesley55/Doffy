@@ -1,5 +1,5 @@
 import { v4 } from "uuid";
-import { confirmationPrefix } from "../../Utils/constant/redisPrefix";
+import { confirmationPrefix } from "../../../Utils/constant/redisPrefix";
 import { Redis } from "ioredis";
 // http://localhost:4000
 // https://my-site.com

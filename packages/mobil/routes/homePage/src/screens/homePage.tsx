@@ -8,6 +8,10 @@ import List from "../components/List";
 import { MeQuery } from "../../../schemaTypes";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
+import {
+  useQueryQuery,
+  useRegisterMutation,
+} from "../../../../../controller/src/generated/graphql-hooks";
 
 interface Props {
   navigation: any;

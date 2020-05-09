@@ -1,20 +1,15 @@
 type User {
   id: ID!
-  username: String!
+  username: String
   email: String!
 }
 type Message {
-  text: String!
-  userId: String!
-  bookingId: String!
+  content: String!
+  serviceId: String!
 }
 
 type Query {
-  messages(bookingId: String!): [Message!]!
-}
-
-type Query {
-  me: User
+  messages(serviceId: String!): [Message!]!
 }
 
 type Error {
@@ -44,7 +39,7 @@ input CreateServices {
   latitude: Float
   longitude: Float
 }
-type service {
+type Service {
   Id: ID
 }
 
@@ -56,6 +51,10 @@ input MessageInput {
   content: String!
   serviceId: String!
 }
+type Subscription {
+  newMessage(serviceId: String!): Message!
+}
+
 type Mutation {
   register(
     username: String!
@@ -70,4 +69,21 @@ type Mutation {
   createService(input: CreateServices): Boolean!
   signS3(filename: String!, filetype: String!): S3Payload!
   createMessage(message: MessageInput): Boolean!
+}
+
+type ServiceUser {
+  user: User
+  service: Service
+}
+input SearchServiceInput {
+  uuidService: String
+  uuidUser: String
+}
+type Query {
+  me: User
+  searchServicesUser(
+    inputs: SearchServiceInput
+    offset: Int
+    Limit: Int!
+  ): ServiceUser!
 }

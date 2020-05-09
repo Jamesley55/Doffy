@@ -1,8 +1,8 @@
 import { invalidLogin, confirmEmailError } from "./errorMessages";
 import { IResolvers } from "apollo-server-express";
 import * as bcrypt from "bcryptjs";
-import { User } from "../../entity/User";
-import { MutationLoginArgs } from "../../types/graphql-hooks";
+import { User } from "../../../entity/User";
+import { MutationLoginArgs } from "../../../types/graphql-hooks";
 // Iresolver is there to add types to the
 // ts project
 export const loginResolver: IResolvers = {
@@ -34,7 +34,6 @@ export const loginResolver: IResolvers = {
           ],
         };
       }
-
       return { req: req.session };
     },
   },

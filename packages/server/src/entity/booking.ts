@@ -5,10 +5,15 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
   CreateDateColumn,
+  OneToOne,
+  JoinColumn,
+  ManyToOne,
   // OneToOne,
 } from "typeorm";
 
 // import { UserInfo } from "./UserInfo";
+import { Transaction } from "./transaction";
+import { Service } from "./service";
 @Entity("booking")
 // BaseEntitie enable the find or create function like
 // user.find() or user.create()
@@ -57,4 +62,12 @@ export class Booking extends BaseEntity {
 
   @Column("boolean", { default: true })
   status: boolean;
+
+  @OneToOne(() => Transaction)
+  @JoinColumn()
+  transaction: Transaction;
+
+  @ManyToOne(() => Service, (user) => user.booking)
+  @JoinColumn()
+  service: Service;
 }

@@ -6,7 +6,7 @@ import {
   ManyToOne,
   BaseEntity,
 } from "typeorm";
-import { ServiceInstance } from "./service";
+import { User } from "./User";
 
 export enum MessageType {
   TEXT,
@@ -28,8 +28,9 @@ export class Message extends BaseEntity {
   @Column({ nullable: true })
   type: MessageType;
 
-  @Column("uuid") serviceId: string;
+  @Column("uuid")
+  serviceId: string;
 
-  @ManyToOne(() => ServiceInstance)
-  service: ServiceInstance;
+  @ManyToOne(() => User, (user) => user.message)
+  user: User;
 }

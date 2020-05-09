@@ -1,5 +1,5 @@
 import { IResolvers } from "apollo-server-express";
-import { sendEmail } from "../CreateConfirmEmail/sendMail";
+import { sendEmail } from "../Auth/CreateConfirmEmail/sendMail";
 import { User } from "../../entity/User";
 import { v4 } from "uuid";
 import { redis } from "../../redis";
