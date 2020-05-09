@@ -11,6 +11,7 @@ import {
 import { User } from "./User";
 import { Calendar } from "./calendar";
 import { Booking } from "./booking";
+import { Scores } from "./rating";
 
 @Entity("service")
 export class Service extends BaseEntity {
@@ -46,6 +47,12 @@ export class Service extends BaseEntity {
 
   @Column("text")
   Adress: string;
+
+  @Column(() => Scores)
+  score: Scores[];
+
+  @Column("double precision", { default: null })
+  rating: number;
 
   @Column("double precision") price: number;
 

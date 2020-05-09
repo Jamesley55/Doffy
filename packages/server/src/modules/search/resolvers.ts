@@ -1,6 +1,7 @@
 import { IResolvers } from "apollo-server-express";
 import { Service } from "../../entity/service";
 import { getConnection } from "typeorm";
+
 export const searchServicesUser: IResolvers = {
   Query: {
     searchServicesUser: async (

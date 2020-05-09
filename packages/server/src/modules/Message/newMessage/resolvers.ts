@@ -1,5 +1,5 @@
 import { IResolvers, withFilter } from "apollo-server-express";
-import { PUBSUB_NEW_MESSAGE } from "../pubSub/shared/constant";
+import { PUBSUB_NEW_MESSAGE } from "../pubSub/constant";
 
 export const newMessage: IResolvers = {
   Subscription: {

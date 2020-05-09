@@ -1,4 +1,4 @@
-import { Message } from "./../../../entity/message";
+import { Message } from "../../../entity/message";
 import { IResolvers } from "apollo-server-express";
 
 export const findMessage: IResolvers = {
