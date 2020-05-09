@@ -1,0 +1,18 @@
+type Message {
+  content: String!
+  serviceId: String!
+}
+
+type Subscription {
+  newMessage(serviceId: String!): Message!
+}
+
+type User {
+  id: ID!
+  username: String
+  email: String!
+}
+
+type Query {
+  me: User
+}

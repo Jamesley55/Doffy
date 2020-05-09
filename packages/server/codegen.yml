@@ -1,5 +1,5 @@
 overwrite: true
-schema: "./src/Schemas/schemas.graphql"
+schema: "./src/Schemas/**/*.graphql"
 generates:
   src/types/graphql-hooks.ts:
     hooks:

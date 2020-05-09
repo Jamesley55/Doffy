@@ -1,0 +1,43 @@
+# import user from "user.graphql"
+
+input CreateServices {
+  name: String!
+  category: String!
+  description: String!
+  coutryId: String
+  stateId: String
+  cityId: String
+  Taxes: Boolean!
+  Adress: String
+  price: Float!
+  payoutSchedule: String!
+  customerBillingStatement: String!
+  latitude: Float
+  longitude: Float
+}
+
+type Mutation {
+  createService(input: CreateServices): Boolean!
+}
+
+input SearchServiceInput {
+  uuidService: String
+  uuidUser: String
+}
+
+type Service {
+  Id: ID
+}
+
+type ServiceUser {
+  user: User
+  service: Service
+}
+
+type Query {
+  searchServicesUser(
+    inputs: SearchServiceInput
+    offset: Int
+    Limit: Int!
+  ): ServiceUser!
+}

@@ -1,0 +1,21 @@
+# import Error from "errors.graphql"
+
+type RegisterResponse {
+  errors: [Error!]
+  sessionId: String
+}
+
+type Mutation {
+  register(
+    username: String!
+    email: String!
+    password: String!
+    confirmPassword: String!
+  ): [RegisterResponse!]
+}
+
+# import User from "user.graphql"
+
+type Query {
+  me: User
+}

@@ -8,13 +8,17 @@ import { createConfirmEmailLink } from "../CreateConfirmEmail/createconfirmEmail
 import { duplicateEmail } from "../../../Utils/FormatYupError/ErrorMessage";
 import { sendEmail } from "../CreateConfirmEmail/sendMail";
 import { host } from "../../../Utils/host/host";
-import { redis } from "../../../redis";
+import { userSessionIdPrefix } from "../../shared/constant";
 
 // Iresolver is there to add types to the
 // ts project
 export const registerResolver: IResolvers = {
   Mutation: {
-    register: async (_, args: MutationRegisterArgs) => {
+    register: async (
+      _,
+      args: MutationRegisterArgs,
+      { req, redis, session }
+    ) => {
       try {
         await validationSchema.validate(args, { abortEarly: false });
       } catch (err) {
@@ -26,17 +30,21 @@ export const registerResolver: IResolvers = {
         select: ["id"],
       });
       if (userAlreadyExist) {
-        return {
-          path: "email",
-          message: duplicateEmail,
-        };
+        return [
+          {
+            path: "email",
+            message: duplicateEmail,
+          },
+        ];
       }
 
       if (password !== confirmPassword) {
-        return {
-          path: "password",
-          message: "your password doesnt correspond",
-        };
+        return [
+          {
+            path: "password",
+            message: "your password doesnt correspond",
+          },
+        ];
       }
       const hashedPassword = await bcrypt.hash(password, 10);
       const user = await User.create({
@@ -44,12 +52,20 @@ export const registerResolver: IResolvers = {
         email,
         password: hashedPassword,
       }).save();
-      console.log("use id", user.id);
+
       await sendEmail(
         email,
         await createConfirmEmailLink(host, user.id, redis)
       );
-      return null;
+
+      session.userId = user.id;
+      console.log("session Userid", session.userId);
+
+      if (req.sessionID) {
+        await redis.lpush(`${userSessionIdPrefix}${user.id}`, req.sessionID);
+      }
+      console.log("sessionId", req.sessionID);
+      return [{ sessionId: req.sessionID }];
     },
   },
 };

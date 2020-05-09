@@ -9,6 +9,7 @@ import { newMessage } from "../../modules/Message/newMessage/resolvers";
 import { searchServicesUser } from "../../modules/search/resolvers";
 import { findMessage } from "../../modules/Message/QueryMessage/resolvers";
 import { confirmUser } from "../../modules/Auth/confirmUser/resolvers";
+import { Me } from "../../modules/Auth/me/resolvers";
 
 export const resolvers = [
   loginResolver,
@@ -22,4 +23,5 @@ export const resolvers = [
   findMessage,
   newMessage,
   searchServicesUser,
+  Me,
 ];
