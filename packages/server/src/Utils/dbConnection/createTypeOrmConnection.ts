@@ -1,5 +1,5 @@
-import { Message } from "./../../entity/message";
-import { User } from "./../../entity/User";
+import { Message } from "../../entity/message";
+import { User } from "../../entity/User";
 import { getConnectionOptions, createConnection } from "typeorm";
 import { Booking } from "../../entity/booking";
 

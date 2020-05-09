@@ -1,5 +1,5 @@
 import { IResolvers } from "apollo-server-express";
-import { Message } from "../../entity/message";
+import { Message } from "../../../entity/message";
 import { PUBSUB_NEW_MESSAGE } from "./shared/constant";
 
 export const createMessage: IResolvers = {

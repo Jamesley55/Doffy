@@ -1,8 +1,8 @@
 import { IResolvers } from "apollo-server-express";
-import { User } from "../../entity/User";
-import { redis } from "../../redis";
-import { MutationConfirmUserArgs } from "../../types/graphql-hooks";
-import { confirmationPrefix } from "../../Utils/constant/redisPrefix";
+import { User } from "../../../entity/User";
+import { redis } from "../../../redis";
+import { MutationConfirmUserArgs } from "../../../types/graphql-hooks";
+import { confirmationPrefix } from "../../../Utils/constant/redisPrefix";
 // Iresolver is there to add types to the
 // ts project
 export const confirmUser: IResolvers = {

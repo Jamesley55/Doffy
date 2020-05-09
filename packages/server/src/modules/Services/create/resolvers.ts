@@ -1,7 +1,7 @@
 import { IResolvers } from "apollo-server-express";
-import { Service } from "../../entity/service";
-import { Calendar } from "../../entity/calendar";
-import { ScheduleTime } from "../../entity/times";
+import { Service } from "../../../entity/service";
+import { Calendar } from "../../../entity/calendar";
+import { ScheduleTime } from "../../../entity/times";
 
 export const createService: IResolvers = {
   Mutation: {

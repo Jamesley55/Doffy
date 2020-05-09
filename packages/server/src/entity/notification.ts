@@ -26,6 +26,12 @@ export class Notification extends BaseEntity {
   @JoinColumn()
   message: NotificationMessage;
 
+  @Column("boolean", { default: false })
+  bookRequest: boolean;
+
+  @Column("boolean", { default: false })
+  RequestAccepted: boolean;
+
   @CreateDateColumn()
   createdDate: Date;
 

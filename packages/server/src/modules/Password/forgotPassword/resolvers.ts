@@ -1,10 +1,10 @@
 import { IResolvers } from "apollo-server-express";
-import { sendEmail } from "../Auth/CreateConfirmEmail/sendMail";
-import { User } from "../../entity/User";
+import { sendEmail } from "../../Auth/CreateConfirmEmail/sendMail";
+import { User } from "../../../entity/User";
 import { v4 } from "uuid";
-import { redis } from "../../redis";
-import { forgetPasswordPrefix } from "../../Utils/constant/redisPrefix";
-import { MutationForgotPasswordArgs } from "../../types/graphql-hooks";
+import { redis } from "../../../redis";
+import { forgetPasswordPrefix } from "../../../Utils/constant/redisPrefix";
+import { MutationForgotPasswordArgs } from "../../../types/graphql-hooks";
 
 // Iresolver is there to add types to the
 // ts project

@@ -14,7 +14,7 @@ import {
 // user.find() or user.create()
 export class Transaction extends BaseEntity {
   @PrimaryGeneratedColumn("uuid")
-  id: string;
+  transactinId: string;
 
   @Column("uuid")
   serviceId: string;
