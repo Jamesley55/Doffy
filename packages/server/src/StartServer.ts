@@ -10,6 +10,7 @@ import { typeDefs } from "./Utils/typeDefs/typeDefs";
 import { resolvers } from "./Utils/resolverPath/resolver";
 import { redis } from "./redis";
 import * as connectRedis from "connect-redis";
+import { ConfirmEmail } from "./modules/Auth/CreateConfirmEmail/confirm";
 import http = require("http");
 
 export const app = express();
@@ -48,6 +49,8 @@ export const StartServer = async () => {
       },
     })
   );
+
+  ConfirmEmail();
 
   server.applyMiddleware({
     app,

@@ -1,11 +1,4 @@
-import { User } from "./../../../entity/User";
-export function Email(id: string, username: string, url: string) {
-  async function confirm() {
-    const user1 = await User.findOne({ where: { id } });
-    if (user1) user1.confirm = true;
-    user1?.save();
-    console.log("function confirm called");
-  }
+export function Email(username: string, url: string) {
   const email = `<!DOCTYPE html>
   <html>
 	<head>
@@ -253,7 +246,6 @@ export function Email(id: string, username: string, url: string) {
 								  text-decoration: none;
 								  border-radius: 6px;
 								"
-								onclick="${confirm()}"
 								>Confirm Email</a
 							  >
 							</td>

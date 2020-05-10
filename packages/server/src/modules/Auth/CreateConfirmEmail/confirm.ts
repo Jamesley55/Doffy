@@ -1,12 +1,8 @@
-app.get("/confirmation/:token", async (req, res) => {
-  try {
-    const {
-      user: { id },
-    } = jwt.verify(req.params.token, EMAIL_SECRET);
-    await User.update({ confirmed: true }, { where: { id } });
-  } catch (e) {
-    res.send("error");
-  }
+import { app } from "../../../StartServer";
 
-  return res.redirect("http://localhost:3001/login");
-});
+export const ConfirmEmail = async () => {
+  app.get("/graphql/confirm/:token", async (req, res) => {
+    console.log("req Token", req.params);
+    return res.redirect("http://localhost:4000/graphql");
+  });
+};

@@ -17,12 +17,11 @@ export async function sendEmail(email: string, url: string) {
   const userMessage = await User.findOne({ where: { email } });
   // send mail with defined transport object
   const recipient = userMessage?.username ? userMessage.username : "user";
-  const userid = userMessage?.id ? userMessage.id : "";
-  await transporter.sendMail({
+  transporter.sendMail({
     from: "leebusiness21@gmail.com", // sender address
     to: email, // list of receivers
-    subject: "Hello ✔", // Subject line
-    text: "Hello world?", // plain text body
-    html: Email(userid, recipient, url), // html body
+    subject: "Please Confirm your Email", // Subject line
+    text: "Email confirmation", // plain text body
+    html: Email(recipient, url), // html body
   });
 }
