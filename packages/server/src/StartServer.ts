@@ -12,6 +12,8 @@ import { redis } from "./redis";
 import * as connectRedis from "connect-redis";
 import http = require("http");
 
+export const app = express();
+
 export const StartServer = async () => {
   const pubsub = new RedisPubSub();
 
@@ -27,7 +29,6 @@ export const StartServer = async () => {
     }),
   });
   await createTypeormConn();
-  const app = express();
 
   const RedisStore = connectRedis(session);
 

@@ -43,6 +43,7 @@ export const loginResolver: IResolvers = {
       if (req.sessionID) {
         await redis.lpush(`${userSessionIdPrefix}${user.id}`, req.sessionID);
       }
+
       console.log("sessionId", req.sessionID);
       return [{ sessionId: req.sessionID }];
     },

@@ -10,6 +10,7 @@ import { searchServicesUser } from "../../modules/search/resolvers";
 import { findMessage } from "../../modules/Message/QueryMessage/resolvers";
 import { confirmUser } from "../../modules/Auth/confirmUser/resolvers";
 import { Me } from "../../modules/Auth/me/resolvers";
+import { Logout } from "../../modules/Auth/logout/resolvers";
 
 export const resolvers = [
   loginResolver,
@@ -24,4 +25,5 @@ export const resolvers = [
   newMessage,
   searchServicesUser,
   Me,
+  Logout,
 ];

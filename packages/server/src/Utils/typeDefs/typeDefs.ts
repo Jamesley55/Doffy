@@ -10,6 +10,7 @@ const ServicePath = "./src/Schemas/Service";
 export const typeDefs = importSchema([
   `${AuthPath}/confirmUser.graphql`,
   `${AuthPath}/login.graphql`,
+  `${AuthPath}/logout.graphql`,
   `${AuthPath}/register.graphql`,
   `${SchemaPath}/pathProblem.graphql`,
   `${MessagePath}/message.graphql`,
