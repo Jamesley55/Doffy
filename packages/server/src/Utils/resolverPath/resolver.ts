@@ -8,14 +8,12 @@ import { createMessage } from "../../modules/Message/create/resolver";
 import { newMessage } from "../../modules/Message/newMessage/resolvers";
 import { searchServicesUser } from "../../modules/search/resolvers";
 import { findMessage } from "../../modules/Message/QueryMessage/resolvers";
-import { confirmUser } from "../../modules/Auth/confirmUser/resolvers";
 import { Me } from "../../modules/Auth/me/resolvers";
 import { Logout } from "../../modules/Auth/logout/resolvers";
 
 export const resolvers = [
   loginResolver,
   registerResolver,
-  confirmUser,
   forgotPassword,
   changePassword,
   fileUpload,
