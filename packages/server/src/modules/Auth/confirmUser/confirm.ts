@@ -9,7 +9,6 @@ export const ConfirmEmail = () => {
     const token = req.params.token;
     // look for the token inside of redis
     const userId = await redis.get(confirmationPrefix + token);
-
     // if we don't find user we return false
     if (!userId) {
       return false;

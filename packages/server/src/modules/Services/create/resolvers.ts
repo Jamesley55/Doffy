@@ -2,10 +2,11 @@ import { IResolvers } from "apollo-server-express";
 import { Service } from "../../../entity/service";
 import { Calendar } from "../../../entity/calendar";
 import { ScheduleTime } from "../../../entity/times";
+import { scheduleTime } from "./scheduleTime";
 
 export const createService: IResolvers = {
   Mutation: {
-    createService: async (_, { input }, { req }) => {
+    createService: async (_, { input }, { session }) => {
       const {
         name,
         category,
@@ -22,14 +23,11 @@ export const createService: IResolvers = {
         longitude,
       } = input;
 
-      const monday = await ScheduleTime.create({
-        startingTime: 1200,
-        EndTime: 16000,
-      }).save();
+      const ownerId = session.userId;
+      const monday = scheduleTime(1200, 1600);
 
       const friday = await ScheduleTime.create({
         startingTime: 1000,
-
         EndTime: 18000,
       }).save();
 
@@ -57,7 +55,7 @@ export const createService: IResolvers = {
         customerBillingStatement,
         latitude,
         longitude,
-        ownerId: req.session.userId,
+        ownerId,
         calendar,
       }).save();
       return true;

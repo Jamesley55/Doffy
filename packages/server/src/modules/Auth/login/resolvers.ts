@@ -4,8 +4,10 @@ import * as bcrypt from "bcryptjs";
 import { User } from "../../../entity/User";
 import { MutationLoginArgs } from "../../../types/graphql-hooks";
 import { userSessionIdPrefix } from "../../shared/constant";
+
 // Iresolver is there to add types to the
 // ts project
+
 export const loginResolver: IResolvers = {
   Mutation: {
     login: async (
@@ -19,31 +21,27 @@ export const loginResolver: IResolvers = {
       }
       const valid = await bcrypt.compare(password, user.password);
       if (!valid) {
-        return {
-          errors: [
-            {
-              path: "email",
-              message: invalidLogin,
-            },
-          ],
-        };
+        return [
+          {
+            path: "email",
+            message: invalidLogin,
+          },
+        ];
       }
       if (!user.confirm) {
-        return {
-          errors: [
-            {
-              path: "email",
-              message: confirmEmailError,
-            },
-          ],
-        };
+        return [
+          {
+            path: "email",
+            message: confirmEmailError,
+          },
+        ];
       }
       session.userId = user.id;
       console.log("session Userid", session.userId);
+
       if (req.sessionID) {
         await redis.lpush(`${userSessionIdPrefix}${user.id}`, req.sessionID);
       }
-
       console.log("sessionId", req.sessionID);
       return [{ sessionId: req.sessionID }];
     },

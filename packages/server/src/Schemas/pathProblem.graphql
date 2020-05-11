@@ -7,10 +7,39 @@ type Subscription {
   newMessage(serviceId: String!): Message!
 }
 
+type NotificationMessage {
+  title: String
+  body: String
+}
+
+type Notification {
+  message: NotificationMessage
+  serviceId: String
+  userId: String
+}
+
+type Service {
+  name: String!
+  category: String!
+  description: String!
+  coutryId: String
+  stateId: String
+  cityId: String
+  Taxes: Boolean!
+  Adress: String
+  price: Float!
+  payoutSchedule: String!
+  customerBillingStatement: String!
+  latitude: Float
+  longitude: Float
+}
+
 type User {
-  id: ID!
   username: String
-  email: String!
+  email: String
+  service: Service
+  notification: Notification
+  messages: Message
 }
 
 type Query {
