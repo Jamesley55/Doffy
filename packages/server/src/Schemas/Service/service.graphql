@@ -16,8 +16,34 @@ input CreateServices {
   longitude: Float
 }
 
+input Schedulebool {
+  monday: Boolean
+  tuesday: Boolean
+  wednesday: Boolean
+  thusday: Boolean
+  friday: Boolean
+  saturday: Boolean
+  sunday: Boolean
+}
+input StartEnd {
+  StartTime: Int
+  EndTime: Int
+}
+input ScheduleTime {
+  mondaySchedule: StartEnd
+  tuesdaySchedule: StartEnd
+  wednesdaySchedule: StartEnd
+  thusdaySchedule: StartEnd
+  fridaySchedule: StartEnd
+  saturdaySchedule: StartEnd
+  sundaySchedule: StartEnd
+}
 type Mutation {
-  createService(input: CreateServices): Boolean!
+  createService(
+    inputService: CreateServices
+    ScheduleBool: Schedulebool
+    ScheduleTime: ScheduleTime
+  ): Boolean!
 }
 
 input SearchServiceInput {

@@ -1,12 +1,14 @@
 import { IResolvers } from "apollo-server-express";
 import { Service } from "../../../entity/service";
-import { Calendar } from "../../../entity/calendar";
-import { ScheduleTime } from "../../../entity/times";
-import { scheduleTime } from "./scheduleTime";
+import { createTime } from "./createTime";
 
 export const createService: IResolvers = {
   Mutation: {
-    createService: async (_, { input }, { session }) => {
+    createService: async (
+      _,
+      { inputService, ScheduleBool, ScheduleTime },
+      { session }
+    ) => {
       const {
         name,
         category,
@@ -21,25 +23,11 @@ export const createService: IResolvers = {
         customerBillingStatement,
         latitude,
         longitude,
-      } = input;
+      } = inputService;
 
       const ownerId = session.userId;
-      const monday = scheduleTime(1200, 1600);
 
-      const friday = await ScheduleTime.create({
-        startingTime: 1000,
-        EndTime: 18000,
-      }).save();
-
-      const calendar = await Calendar.create({
-        mondaySchedule: monday,
-        tuesdaySchedule: monday,
-        wednesdaySchedule: monday,
-        thusdaySchedule: monday,
-        fridaySchedule: friday,
-        saturdaySchedule: friday,
-        sundaySchedule: friday,
-      }).save();
+      const calendar = await createTime(ScheduleBool, ScheduleTime);
 
       await Service.create({
         name,
@@ -58,6 +46,7 @@ export const createService: IResolvers = {
         ownerId,
         calendar,
       }).save();
+      console.log("calendar", calendar.mondaySchedule);
       return true;
     },
   },
