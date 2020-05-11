@@ -38,8 +38,10 @@ export class Service extends BaseEntity {
   @Column("varchar", { length: 100 })
   cityId: string;
 
-  @OneToOne(() => Calendar, { cascade: true })
-  @JoinColumn()
+  @Column("uuid") calendarId: string;
+
+  @OneToOne(() => Calendar, (calendar) => calendar.services)
+  @JoinColumn({ name: "calendarId" })
   calendar: Calendar;
 
   @Column("boolean")

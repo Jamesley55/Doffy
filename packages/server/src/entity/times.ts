@@ -1,4 +1,12 @@
-import { Entity, Column, BaseEntity, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Entity,
+  Column,
+  BaseEntity,
+  PrimaryGeneratedColumn,
+  JoinColumn,
+  ManyToOne,
+} from "typeorm";
+import { Calendar } from "./calendar";
 
 @Entity("scheduletime")
 // BaseEntitie enable the find or create function like
@@ -12,4 +20,10 @@ export class ScheduleTime extends BaseEntity {
 
   @Column("int", { nullable: true })
   EndTime: number;
+
+  @Column("uuid") CalendarId: string;
+
+  @ManyToOne(() => Calendar)
+  @JoinColumn({ name: "CalendarId" })
+  calendar: Calendar;
 }

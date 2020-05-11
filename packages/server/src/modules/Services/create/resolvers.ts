@@ -46,7 +46,7 @@ export const createService: IResolvers = {
         ownerId,
         calendar,
       }).save();
-      console.log("calendar", calendar.mondaySchedule);
+      console.log("calendar", calendar.wednesdaySchedule);
       return true;
     },
   },

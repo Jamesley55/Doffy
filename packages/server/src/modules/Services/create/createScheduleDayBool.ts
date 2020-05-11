@@ -2,28 +2,27 @@ import { Calendar } from "../../../entity/calendar";
 
 export const createScheduleDayBool = async (ScheduleBool: any) => {
   const calendar = Calendar.create();
-  console.log("schedueBool monday ", ScheduleBool.monday);
+
   if (ScheduleBool.monday) {
     calendar.monday = true;
   }
-  console.log("schedueBool tuesday ", ScheduleBool.tuesday);
   if (ScheduleBool.tuesday) {
-    calendar.monday = true;
+    calendar.tuesday = true;
   }
   if (ScheduleBool.wednesday) {
-    calendar.monday = true;
+    calendar.wednesday = true;
   }
   if (ScheduleBool.thusday) {
-    calendar.monday = true;
+    calendar.thursday = true;
   }
   if (ScheduleBool.friday) {
-    calendar.monday = true;
+    calendar.friday = true;
   }
   if (ScheduleBool.saturday) {
-    calendar.monday = true;
+    calendar.saturday = true;
   }
   if (ScheduleBool.sunday) {
-    calendar.monday = true;
+    calendar.sunday = true;
   }
   await calendar.save();
   return calendar;

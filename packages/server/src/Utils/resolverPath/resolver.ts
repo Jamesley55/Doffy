@@ -10,6 +10,8 @@ import { searchServicesUser } from "../../modules/search/resolvers";
 import { findMessage } from "../../modules/Message/QueryMessage/resolvers";
 import { Me } from "../../modules/Auth/me/resolvers";
 import { Logout } from "../../modules/Auth/logout/resolvers";
+import { ServiceByCategory } from "../../modules/Services/QueryServices/resolver";
+import { DeleteService } from "../../modules/Services/delete/resolvers";
 
 export const resolvers = [
   loginResolver,
@@ -24,4 +26,6 @@ export const resolvers = [
   searchServicesUser,
   Me,
   Logout,
+  ServiceByCategory,
+  DeleteService,
 ];

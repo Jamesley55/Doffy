@@ -44,6 +44,7 @@ type Mutation {
     ScheduleBool: Schedulebool
     ScheduleTime: ScheduleTime
   ): Boolean!
+  DeleteService(ServiceId: String!): Boolean
 }
 
 input SearchServiceInput {
@@ -52,7 +53,19 @@ input SearchServiceInput {
 }
 
 type Service {
-  Id: ID
+  id: String
+  name: String
+  pictureUrl: String
+  description: String
+  coutryId: String
+  stateId: String
+  cityId: String
+  calendar: String
+  Taxes: Boolean
+  Adress: String
+  rating: Int
+  price: Float
+  ownerId: String
 }
 
 type ServiceUser {
@@ -66,4 +79,6 @@ type Query {
     offset: Int
     Limit: Int!
   ): ServiceUser!
+  ServiceUser(ServiceId: String!): User
+  ServiceByCategory(category: String!): [Service]
 }
