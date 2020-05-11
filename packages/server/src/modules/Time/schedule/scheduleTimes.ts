@@ -1,5 +1,5 @@
-import { scheduleTime } from "./scheduleTime";
-import { createScheduleDayBool } from "./createScheduleDayBool";
+import { scheduleTime } from "../create/createTime";
+import { createScheduleDayBool } from "../../Calendar/create/createScheduleDayBool";
 
 export const createTime = async (ScheduleBool: any, ScheduleTime: any) => {
   const calendar = await createScheduleDayBool(ScheduleBool);
