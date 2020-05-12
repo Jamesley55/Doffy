@@ -3,7 +3,6 @@ import {
   Column,
   BaseEntity,
   PrimaryGeneratedColumn,
-  JoinColumn,
   ManyToOne,
 } from "typeorm";
 import { Calendar } from "./calendar";
@@ -21,9 +20,6 @@ export class ScheduleTime extends BaseEntity {
   @Column("int", { nullable: true })
   EndTime: number;
 
-  @Column("uuid") CalendarId: string;
-
-  @ManyToOne(() => Calendar)
-  @JoinColumn({ name: "CalendarId" })
+  @ManyToOne(() => Calendar, { onDelete: "CASCADE" })
   calendar: Calendar;
 }

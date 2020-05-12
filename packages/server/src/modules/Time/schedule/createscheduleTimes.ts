@@ -3,12 +3,10 @@ import { createScheduleDayBool } from "../../Calendar/create/createScheduleDayBo
 
 export const createTime = async (ScheduleBool: any, ScheduleTime: any) => {
   const calendar = await createScheduleDayBool(ScheduleBool);
-  const id = calendar.CalendarId;
   if (calendar.monday) {
     const mondaySchedule = await scheduleTime(
       ScheduleTime.mondaySchedule.StartTime,
-      ScheduleTime.mondaySchedule.EndTime,
-      id
+      ScheduleTime.mondaySchedule.EndTime
     );
     calendar.mondaySchedule = mondaySchedule;
     calendar.mondayScheduleUuid = mondaySchedule.scheduleTimeId;
@@ -16,8 +14,7 @@ export const createTime = async (ScheduleBool: any, ScheduleTime: any) => {
   if (calendar.tuesday) {
     const tuesdaySchedule = await scheduleTime(
       ScheduleTime.tuesdaySchedule.StartTime,
-      ScheduleTime.tuesdaySchedule.Endtime,
-      id
+      ScheduleTime.tuesdaySchedule.Endtime
     );
     calendar.tuesdaySchedule = tuesdaySchedule;
     calendar.tuesdayScheduleUuid = tuesdaySchedule.scheduleTimeId;
@@ -25,17 +22,15 @@ export const createTime = async (ScheduleBool: any, ScheduleTime: any) => {
   if (calendar.wednesday) {
     const wednesdaySchedule = await scheduleTime(
       ScheduleTime.wednesdaySchedule.StartTime,
-      ScheduleTime.wednesdaySchedule.EndTime,
-      id
+      ScheduleTime.wednesdaySchedule.EndTime
     );
     calendar.wednesdaySchedule = wednesdaySchedule;
     calendar.wednesdayScheduleUuid = wednesdaySchedule.scheduleTimeId;
   }
   if (calendar.thursday) {
     const thursdaySchedule = await scheduleTime(
-      ScheduleTime.thusdaySchedule.StartTime,
-      ScheduleTime.thusdaySchedule.EndTime,
-      id
+      ScheduleTime.thursdaySchedule.StartTime,
+      ScheduleTime.thursdaySchedule.EndTime
     );
     calendar.thursdaySchedule = thursdaySchedule;
     calendar.thurdayScheduleUuid = thursdaySchedule.scheduleTimeId;
@@ -43,8 +38,7 @@ export const createTime = async (ScheduleBool: any, ScheduleTime: any) => {
   if (calendar.friday) {
     const fridaySchedule = await scheduleTime(
       ScheduleTime.fridaySchedule.StartTime,
-      ScheduleTime.fridaySchedule.EndTime,
-      id
+      ScheduleTime.fridaySchedule.EndTime
     );
     calendar.fridaySchedule = fridaySchedule;
     calendar.fridayScheduleUuid = fridaySchedule.scheduleTimeId;
@@ -52,8 +46,7 @@ export const createTime = async (ScheduleBool: any, ScheduleTime: any) => {
   if (calendar.saturday) {
     const saturdaySchedule = await scheduleTime(
       ScheduleTime.saturdaySchedule.StartTime,
-      ScheduleTime.saturdaySchedule.EndTime,
-      id
+      ScheduleTime.saturdaySchedule.EndTime
     );
     calendar.saturdaySchedule = saturdaySchedule;
     calendar.saturdayScheduleUuid = saturdaySchedule.scheduleTimeId;
@@ -61,8 +54,7 @@ export const createTime = async (ScheduleBool: any, ScheduleTime: any) => {
   if (calendar.sunday) {
     const sundaySchedule = await scheduleTime(
       ScheduleTime.sundaySchedule.StartTime,
-      ScheduleTime.sundaySchedule.EndTime,
-      id
+      ScheduleTime.sundaySchedule.EndTime
     );
     calendar.sundaySchedule = sundaySchedule;
     calendar.sundayScheduleUuid = sundaySchedule.scheduleTimeId;

@@ -18,8 +18,9 @@ export const updateScheduleDayBool = async (
       calendar.friday = ScheduleBool.friday;
     if (ScheduleBool.saturday !== undefined)
       calendar.saturday = ScheduleBool.saturday;
-    if (ScheduleBool.sunday !== undefined)
+    if (ScheduleBool.sunday !== undefined) {
       calendar.sunday = ScheduleBool.sunday;
+    }
     await calendar.save();
   }
   return calendar;

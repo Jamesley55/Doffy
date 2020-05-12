@@ -22,7 +22,10 @@ export class Calendar extends BaseEntity {
   @Column("uuid", { nullable: true })
   mondayScheduleUuid: string;
 
-  @OneToOne(() => ScheduleTime, (time) => time.calendar)
+  @OneToOne(() => ScheduleTime, (time) => time.calendar, {
+    cascade: true,
+    onDelete: "CASCADE",
+  })
   @JoinColumn({ name: "mondayScheduleUuid" })
   mondaySchedule: ScheduleTime;
 
@@ -32,7 +35,10 @@ export class Calendar extends BaseEntity {
   @Column("uuid", { nullable: true })
   tuesdayScheduleUuid: string;
 
-  @OneToOne(() => ScheduleTime, (time) => time.calendar)
+  @OneToOne(() => ScheduleTime, (time) => time.calendar, {
+    cascade: true,
+    onDelete: "CASCADE",
+  })
   @JoinColumn({ name: "tuesdayScheduleUuid" })
   tuesdaySchedule: ScheduleTime;
 
@@ -42,7 +48,10 @@ export class Calendar extends BaseEntity {
   @Column("uuid", { nullable: true })
   wednesdayScheduleUuid: string;
 
-  @OneToOne(() => ScheduleTime, (time) => time.calendar)
+  @OneToOne(() => ScheduleTime, (time) => time.calendar, {
+    cascade: true,
+    onDelete: "CASCADE",
+  })
   @JoinColumn({ name: "wednesdayScheduleUuid" })
   wednesdaySchedule: ScheduleTime;
 
@@ -52,7 +61,10 @@ export class Calendar extends BaseEntity {
   @Column("uuid", { nullable: true })
   thurdayScheduleUuid: string;
 
-  @OneToOne(() => ScheduleTime, (time) => time.calendar)
+  @OneToOne(() => ScheduleTime, (time) => time.calendar, {
+    cascade: true,
+    onDelete: "CASCADE",
+  })
   @JoinColumn({ name: "thurdayScheduleUuid" })
   thursdaySchedule: ScheduleTime;
 
@@ -62,7 +74,10 @@ export class Calendar extends BaseEntity {
   @Column("uuid", { nullable: true })
   fridayScheduleUuid: string;
 
-  @OneToOne(() => ScheduleTime, (time) => time.calendar)
+  @OneToOne(() => ScheduleTime, (time) => time.calendar, {
+    cascade: true,
+    onDelete: "CASCADE",
+  })
   @JoinColumn({ name: "fridayScheduleUuid" })
   fridaySchedule: ScheduleTime;
 
@@ -72,7 +87,10 @@ export class Calendar extends BaseEntity {
   @Column("uuid", { nullable: true })
   saturdayScheduleUuid: string;
 
-  @OneToOne(() => ScheduleTime, (time) => time.calendar)
+  @OneToOne(() => ScheduleTime, (time) => time.calendar, {
+    cascade: true,
+    onDelete: "CASCADE",
+  })
   @JoinColumn({ name: "saturdayScheduleUuid" })
   saturdaySchedule: ScheduleTime;
 
@@ -82,7 +100,10 @@ export class Calendar extends BaseEntity {
   @Column("uuid", { nullable: true })
   sundayScheduleUuid: string;
 
-  @OneToOne(() => ScheduleTime, (time) => time.calendar)
+  @OneToOne(() => ScheduleTime, (time) => time.calendar, {
+    cascade: true,
+    onDelete: "CASCADE",
+  })
   @JoinColumn({ name: "sundayScheduleUuid" })
   sundaySchedule: ScheduleTime;
 
