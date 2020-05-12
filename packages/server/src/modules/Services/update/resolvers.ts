@@ -25,9 +25,11 @@ export const UpdateService: IResolvers = {
       } = inputService;
 
       const ownerId = session.userId;
+      console.log("ownerId", ownerId);
       if (ownerId) {
         const service = await Service.findOne({ where: { id: serviceId } });
         const calendarId = service?.calendarId;
+
         await updateTime(calendarId, ScheduleBool, ScheduleTime);
         if (service) {
           if (name) service.name = name;

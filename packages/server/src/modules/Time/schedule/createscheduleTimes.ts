@@ -5,53 +5,67 @@ export const createTime = async (ScheduleBool: any, ScheduleTime: any) => {
   const calendar = await createScheduleDayBool(ScheduleBool);
   const id = calendar.CalendarId;
   if (calendar.monday) {
-    calendar.mondaySchedule = await scheduleTime(
+    const mondaySchedule = await scheduleTime(
       ScheduleTime.mondaySchedule.StartTime,
       ScheduleTime.mondaySchedule.EndTime,
       id
     );
+    calendar.mondaySchedule = mondaySchedule;
+    calendar.mondayScheduleUuid = mondaySchedule.scheduleTimeId;
   }
   if (calendar.tuesday) {
-    calendar.tuesdaySchedule = await scheduleTime(
+    const tuesdaySchedule = await scheduleTime(
       ScheduleTime.tuesdaySchedule.StartTime,
       ScheduleTime.tuesdaySchedule.Endtime,
       id
     );
+    calendar.tuesdaySchedule = tuesdaySchedule;
+    calendar.tuesdayScheduleUuid = tuesdaySchedule.scheduleTimeId;
   }
   if (calendar.wednesday) {
-    calendar.wednesdaySchedule = await scheduleTime(
+    const wednesdaySchedule = await scheduleTime(
       ScheduleTime.wednesdaySchedule.StartTime,
       ScheduleTime.wednesdaySchedule.EndTime,
       id
     );
+    calendar.wednesdaySchedule = wednesdaySchedule;
+    calendar.wednesdayScheduleUuid = wednesdaySchedule.scheduleTimeId;
   }
   if (calendar.thursday) {
-    calendar.thusdaySchedule = await scheduleTime(
+    const thursdaySchedule = await scheduleTime(
       ScheduleTime.thusdaySchedule.StartTime,
       ScheduleTime.thusdaySchedule.EndTime,
       id
     );
+    calendar.thursdaySchedule = thursdaySchedule;
+    calendar.thurdayScheduleUuid = thursdaySchedule.scheduleTimeId;
   }
   if (calendar.friday) {
-    calendar.fridaySchedule = await scheduleTime(
+    const fridaySchedule = await scheduleTime(
       ScheduleTime.fridaySchedule.StartTime,
       ScheduleTime.fridaySchedule.EndTime,
       id
     );
+    calendar.fridaySchedule = fridaySchedule;
+    calendar.fridayScheduleUuid = fridaySchedule.scheduleTimeId;
   }
   if (calendar.saturday) {
-    calendar.saturdaySchedule = await scheduleTime(
+    const saturdaySchedule = await scheduleTime(
       ScheduleTime.saturdaySchedule.StartTime,
       ScheduleTime.saturdaySchedule.EndTime,
       id
     );
+    calendar.saturdaySchedule = saturdaySchedule;
+    calendar.saturdayScheduleUuid = saturdaySchedule.scheduleTimeId;
   }
   if (calendar.sunday) {
-    calendar.sundaySchedule = await scheduleTime(
+    const sundaySchedule = await scheduleTime(
       ScheduleTime.sundaySchedule.StartTime,
       ScheduleTime.sundaySchedule.EndTime,
       id
     );
+    calendar.sundaySchedule = sundaySchedule;
+    calendar.sundayScheduleUuid = sundaySchedule.scheduleTimeId;
   }
   await calendar.save();
   return calendar;

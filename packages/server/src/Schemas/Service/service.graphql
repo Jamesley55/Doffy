@@ -44,11 +44,15 @@ input StartEnd {
   StartTime: Int
   EndTime: Int
 }
+type Time {
+  StartTime: Int
+  EndTime: Int
+}
 input ScheduleTime {
   mondaySchedule: StartEnd
   tuesdaySchedule: StartEnd
   wednesdaySchedule: StartEnd
-  thusdaySchedule: StartEnd
+  thursdaySchedule: StartEnd
   fridaySchedule: StartEnd
   saturdaySchedule: StartEnd
   sundaySchedule: StartEnd
@@ -73,6 +77,23 @@ input SearchServiceInput {
   uuidService: String
   uuidUser: String
 }
+type Calendar {
+  CalendarId: String
+  monday: Boolean
+  mondaySchedule: Time
+  tuesday: Boolean
+  tuesdaySchedule: Time
+  wednesday: Boolean
+  wednesdaySchedule: Time
+  thursday: Boolean
+  thursdaySchedule: Time
+  friday: Boolean
+  fridaySchedule: Time
+  saturday: Boolean
+  saturdaySchedule: Time
+  sunday: Boolean
+  sundaySchedule: Time
+}
 
 type Service {
   id: String
@@ -82,7 +103,6 @@ type Service {
   coutryId: String
   stateId: String
   cityId: String
-  calendar: String
   Taxes: Boolean
   Adress: String
   rating: Int
@@ -103,4 +123,5 @@ type Query {
   ): ServiceUser!
   ServiceUser(ServiceId: String!): User
   ServiceByCategory(category: String!): [Service]
+  findServiceCalendar(ServiceId: String!): Calendar
 }
