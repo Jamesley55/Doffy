@@ -16,6 +16,21 @@ input CreateServices {
   longitude: Float
 }
 
+input UpdateServices {
+  name: String!
+  description: String!
+  coutryId: String
+  stateId: String
+  cityId: String
+  Taxes: Boolean!
+  Adress: String
+  price: Float!
+  payoutSchedule: String!
+  customerBillingStatement: String!
+  latitude: Float
+  longitude: Float
+}
+
 input Schedulebool {
   monday: Boolean
   tuesday: Boolean
@@ -45,6 +60,13 @@ type Mutation {
     ScheduleTime: ScheduleTime
   ): Boolean!
   DeleteService(ServiceId: String!): Boolean
+
+  updateService(
+    serviceId: String!
+    inputService: UpdateServices
+    ScheduleBool: Schedulebool
+    ScheduleTime: ScheduleTime
+  ): Boolean!
 }
 
 input SearchServiceInput {

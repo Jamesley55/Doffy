@@ -1,6 +1,6 @@
 import { IResolvers } from "apollo-server-express";
 import { Service } from "../../../entity/service";
-import { createTime } from "../../Time/schedule/scheduleTimes";
+import { createTime } from "../../Time/schedule/createscheduleTimes";
 
 export const createService: IResolvers = {
   Mutation: {
