@@ -42,6 +42,26 @@ type User {
   messages: Message
 }
 
+type service {
+  id: String
+  name: String
+  pictureUrl: String
+  description: String
+  coutryId: String
+  stateId: String
+  cityId: String
+  Taxes: Boolean
+  Adress: String
+  rating: Int
+  price: Float
+  ownerId: String
+}
+
+type Me {
+  user: User
+  service: [service]
+}
+
 type Query {
-  me: User
+  me: Me
 }
