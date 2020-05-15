@@ -26,10 +26,6 @@ export const DeleteService: IResolvers = {
 
       schedules.forEach(async (element) => {
         await ScheduleTime.delete({ scheduleTimeId: element });
-        const nullv = ScheduleTime.findOne({
-          where: { scheduleTimeId: element },
-        });
-        console.log("nullv", nullv);
       });
 
       return true;
