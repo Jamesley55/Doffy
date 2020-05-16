@@ -7,8 +7,11 @@ export const Me: IResolvers = {
     me: async (_, __, { session }) => {
       const user = await User.findOne({ where: { id: session.userId } });
       const userId = user?.id;
-      const service = await Service.find({ where: { ownerId: userId } });
-
+      let service;
+      service =
+        user?.userType === "serviceProvider"
+          ? await Service.find({ where: { ownerId: userId } })
+          : null;
       const userService = {
         user,
         service,

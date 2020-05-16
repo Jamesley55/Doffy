@@ -73,10 +73,6 @@ type Mutation {
   ): Boolean!
 }
 
-input SearchServiceInput {
-  uuidService: String
-  uuidUser: String
-}
 type Calendar {
   CalendarId: String
   monday: Boolean
@@ -111,16 +107,12 @@ type Service {
 }
 
 type ServiceUser {
-  user: User
-  service: Service
+  user: [User!]!
+  service: [Service!]!
 }
 
 type Query {
-  searchServicesUser(
-    inputs: SearchServiceInput
-    offset: Int
-    Limit: Int!
-  ): ServiceUser!
+  searchServicesUser(search: String!, offset: Int, limit: Int!): ServiceUser
   ServiceUser(ServiceId: String!): User
   ServiceByCategory(category: String!): [Service]
   findServiceCalendar(ServiceId: String!): Calendar

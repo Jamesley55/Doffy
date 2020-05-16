@@ -1,6 +1,7 @@
 import { IResolvers } from "apollo-server-express";
 import { Service } from "../../../entity/service";
 import { createTime } from "../../Time/schedule/createscheduleTimes";
+import { User } from "../../../entity/User";
 
 export const createService: IResolvers = {
   Mutation: {
@@ -46,6 +47,8 @@ export const createService: IResolvers = {
         ownerId,
         calendar,
       }).save();
+      const userType = "serviceProvider";
+      await User.update({ id: ownerId }, { userType });
       console.log("calendar", calendar.wednesdaySchedule);
       return true;
     },
