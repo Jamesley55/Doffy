@@ -14,6 +14,9 @@ import { ServiceByCategory } from "../../modules/Services/QueryServices/resolver
 import { DeleteService } from "../../modules/Services/delete/resolvers";
 import { UpdateService } from "../../modules/Services/update/resolvers";
 import { findServiceCalendar } from "../../modules/Calendar/QueryCalendar/resolvers";
+import { createNotification } from "../../modules/Notification/create/resolver";
+import { newNotification } from "../../modules/Notification/newNotification/resolvers";
+import { findNotification } from "../../modules/Notification/Querynotification/resolvers";
 
 export const resolvers = [
   loginResolver,
@@ -32,4 +35,7 @@ export const resolvers = [
   DeleteService,
   UpdateService,
   findServiceCalendar,
+  createNotification,
+  newNotification,
+  findNotification,
 ];

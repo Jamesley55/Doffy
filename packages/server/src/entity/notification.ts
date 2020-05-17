@@ -6,7 +6,6 @@ import {
   ManyToOne,
   BaseEntity,
   JoinColumn,
-  OneToOne,
 } from "typeorm";
 import { User } from "./User";
 import { NotificationMessage } from "./notificationMessage";
@@ -16,25 +15,25 @@ export class Notification extends BaseEntity {
   @PrimaryGeneratedColumn("uuid")
   id: number;
 
-  @Column("text")
-  userId: string;
+  @Column("uuid")
+  senderId: string;
 
-  @Column("text")
-  serviceId: string;
+  @Column("uuid")
+  recipientId: string;
 
-  @OneToOne(() => NotificationMessage)
-  @JoinColumn()
+  @Column(() => NotificationMessage)
   message: NotificationMessage;
 
   @Column("boolean", { default: false })
   bookRequest: boolean;
 
-  @Column("boolean", { default: false })
+  @Column("boolean", { default: false, nullable: true })
   RequestAccepted: boolean;
 
   @CreateDateColumn()
   createdDate: Date;
 
   @ManyToOne(() => User, (user) => user.notifications)
+  @JoinColumn({ name: "senderId" })
   user: User;
 }

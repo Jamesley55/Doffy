@@ -65,3 +65,14 @@ type Me {
 type Query {
   me: Me
 }
+
+type Notification {
+  message: NotificationMessage
+  senderId: String!
+  recipientId: String!
+  createdAt: Float!
+}
+
+type Subscription {
+  newNotification(recipientId: String!): Notification!
+}
