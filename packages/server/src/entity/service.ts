@@ -23,7 +23,7 @@ export class Service extends BaseEntity {
   @Column("varchar", { length: 100 })
   category: string;
 
-  @Column("text", { nullable: true })
+  @Column("simple-array", { nullable: true, array: true })
   pictureUrl: string[];
 
   @Column("varchar", { length: 255 })

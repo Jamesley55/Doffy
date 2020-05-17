@@ -4,5 +4,6 @@ type S3Payload {
 }
 
 type Mutation {
-  signS3(filename: String!, filetype: String!): S3Payload!
+  signS3(filename: String!, filetype: String!, id: String): S3Payload!
+  findUrl(serviceId: String!): [String!]
 }

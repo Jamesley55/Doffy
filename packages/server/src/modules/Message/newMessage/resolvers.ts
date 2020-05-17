@@ -7,7 +7,7 @@ export const newMessage: IResolvers = {
       subscribe: withFilter(
         (_, __, { pubsub }) => pubsub.asyncIterator(PUBSUB_NEW_MESSAGE),
         (payload, variables) => {
-          return payload.newMessage.serviceId === variables.serviceId;
+          return payload.newMessage.recipientId === variables.recipientId;
         }
       ),
     },

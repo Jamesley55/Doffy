@@ -1,19 +1,21 @@
 type Message {
   content: String!
-  serviceId: String!
+  senderId: String!
+  recipientId: String!
+  createdAt: Float!
 }
 
 type Subscription {
-  newMessage(serviceId: String!): Message!
+  newMessage(recipientId: String!): Message!
 }
 
 type Query {
-  messages(serviceId: String!): [Message!]!
+  messages: [Message!]!
 }
 
 input MessageInput {
   content: String!
-  serviceId: String!
+  recipientId: String!
 }
 type Mutation {
   createMessage(message: MessageInput): Boolean!

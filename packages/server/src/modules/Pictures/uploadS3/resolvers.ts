@@ -1,5 +1,6 @@
 import * as aws from "aws-sdk";
 import { IResolvers } from "apollo-server-express";
+import { Service } from "../../../entity/service";
 
 const BUCKET_NAME = process.env.BUCKET_NAME;
 const IAM_USER_KEY = process.env.IAM_USER_KEY;
@@ -7,7 +8,7 @@ const IAM_USER_SECRET = process.env.IAM_USER_SECRET;
 const CLOUDFRONT_URL = process.env.CLOUDFRONT_URL;
 export const fileUpload: IResolvers = {
   Mutation: {
-    signS3: async (_, { filename, filetype }) => {
+    signS3: async (_, { filename, filetype, id }) => {
       const s3 = new aws.S3({
         accessKeyId: IAM_USER_KEY,
         secretAccessKey: IAM_USER_SECRET,
@@ -23,9 +24,17 @@ export const fileUpload: IResolvers = {
         ACL: "public-read",
       };
 
-      const signedRequest = await s3.getSignedUrl("putObject", s3Params);
+      const signedRequest = s3.getSignedUrl("putObject", s3Params);
       const url = `https://${CLOUDFRONT_URL}/${filename}`;
-
+      if (id) {
+        const service = await Service.findOne({ where: { id } });
+        if (service) {
+          const list: string[] = service.pictureUrl;
+          list.push(url);
+          service.pictureUrl = list;
+          service?.save();
+        }
+      }
       return {
         signedRequest,
         url,
