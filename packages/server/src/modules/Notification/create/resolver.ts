@@ -17,8 +17,10 @@ export const createNotification: IResolvers = {
         senderId: session.userId,
       }).save();
 
+      console.log(databaseNotification.createdDate);
+
       pubsub.publish(PUBSUB_NEW_NOTIFICATION, {
-        newNotifcation: databaseNotification,
+        newNotification: databaseNotification,
       });
       return true;
     },

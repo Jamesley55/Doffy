@@ -1,7 +1,4 @@
-import { Message } from "../../entity/message";
-import { User } from "../../entity/User";
 import { getConnectionOptions, createConnection } from "typeorm";
-import { Booking } from "../../entity/booking";
 
 export const createTypeormConn = async () => {
   console.log("je me suis plante ici");
@@ -11,7 +8,6 @@ export const createTypeormConn = async () => {
     const connection = createConnection({
       ...connectionOptions,
       url: process.env.DATABASE_URL,
-      entities: [User, Booking, Message],
       name: "default",
     } as any);
     console.log("connection", (await connection).close);

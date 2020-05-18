@@ -1,21 +1,12 @@
 type Message {
   content: String!
-  serviceId: String!
+  senderId: String!
+  recipientId: String!
+  createdAt: String!
 }
 
 type Subscription {
   newMessage(serviceId: String!): Message!
-}
-
-type NotificationMessage {
-  title: String
-  body: String
-}
-
-type Notification {
-  message: NotificationMessage
-  serviceId: String
-  userId: String
 }
 
 type Service {
@@ -66,11 +57,16 @@ type Query {
   me: Me
 }
 
+type NotificationMessage {
+  title: String
+  body: String
+}
+
 type Notification {
   message: NotificationMessage
   senderId: String!
-  recipientId: String!
-  createdAt: Float!
+  recipientId: String
+  createdDate: String!
 }
 
 type Subscription {

@@ -2,7 +2,7 @@ type Message {
   content: String!
   senderId: String!
   recipientId: String!
-  createdAt: Float!
+  createdAt: String!
 }
 
 type Subscription {

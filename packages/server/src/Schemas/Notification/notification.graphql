@@ -6,7 +6,7 @@ type Notification {
   message: NotificationMessage
   senderId: String!
   recipientId: String!
-  createdAt: Float!
+  createdDate: String!
 }
 
 type Subscription {

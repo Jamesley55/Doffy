@@ -7,8 +7,7 @@ export const newNotification: IResolvers = {
       subscribe: withFilter(
         (_, __, { pubsub }) => pubsub.asyncIterator(PUBSUB_NEW_NOTIFICATION),
         (payload, variables) => {
-          console.log("variabkes", variables.recipientId);
-          console.log(payload.newNotification.recipientId);
+          console.log("recipient", variables.recipientId);
           return payload.newNotification.recipientId === variables.recipientId;
         }
       ),

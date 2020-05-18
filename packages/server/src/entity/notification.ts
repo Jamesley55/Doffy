@@ -31,7 +31,7 @@ export class Notification extends BaseEntity {
   RequestAccepted: boolean;
 
   @CreateDateColumn()
-  createdDate: Date;
+  createdDate: number;
 
   @ManyToOne(() => User, (user) => user.notifications)
   @JoinColumn({ name: "senderId" })
