@@ -1,0 +1,19 @@
+type Booking {
+  startService: Float
+  endService: Float
+  price: Float
+  taxes: Float
+  depositAmount: Float
+  isRefund: Boolean
+  transactionFee: Float
+  Total: Float!
+}
+
+type Mutation {
+  createBooking(
+    serviceId: String!
+    date: String!
+    startService: Int
+    endService: Int
+  ): Booking | null
+}

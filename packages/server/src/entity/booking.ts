@@ -3,7 +3,6 @@ import {
   Column,
   BaseEntity,
   PrimaryGeneratedColumn,
-  UpdateDateColumn,
   CreateDateColumn,
   OneToOne,
   JoinColumn,
@@ -24,14 +23,14 @@ export class Booking extends BaseEntity {
   @Column("uuid")
   serviceId: string;
 
-  @Column("uuid")
-  userId: string;
+  @Column("text")
+  date: string;
 
-  @Column("date")
-  startService: Date;
+  @Column("int")
+  startService: number;
 
-  @Column("date")
-  endService: Date;
+  @Column("int")
+  endService: number;
 
   @Column("decimal")
   price: number;
@@ -42,11 +41,11 @@ export class Booking extends BaseEntity {
   @Column("decimal")
   amoutPaid: number;
 
-  @Column("decimal")
-  isRefund: boolean;
-
   @Column("decimal", { default: "0" })
-  transactionId: number;
+  depositAmount: number;
+
+  @Column("boolean", { default: true })
+  isRefund: boolean;
 
   @Column("boolean", { default: false })
   confirm: boolean;
@@ -57,10 +56,7 @@ export class Booking extends BaseEntity {
   @CreateDateColumn()
   created: Date;
 
-  @UpdateDateColumn()
-  modify: Date;
-
-  @Column("boolean", { default: true })
+  @Column("boolean", { default: false })
   status: boolean;
 
   @OneToOne(() => Transaction)
@@ -68,6 +64,6 @@ export class Booking extends BaseEntity {
   transaction: Transaction;
 
   @ManyToOne(() => Service, (user) => user.booking)
-  @JoinColumn()
+  @JoinColumn({ name: "serviceId" })
   service: Service;
 }

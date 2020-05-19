@@ -44,6 +44,9 @@ export class Service extends BaseEntity {
   @JoinColumn({ name: "calendarId" })
   calendar: Calendar;
 
+  @Column("int", { default: 45 })
+  averageTime: number;
+
   @Column("boolean")
   Taxes: boolean;
 
@@ -67,6 +70,12 @@ export class Service extends BaseEntity {
   @Column("double precision") longitude: number;
 
   @Column("uuid") ownerId: string;
+
+  @Column("decimal", { default: "0" })
+  depositAmount: number;
+
+  @Column("boolean", { default: true })
+  isRefund: boolean;
 
   @ManyToOne(() => User, (user) => user.services)
   @JoinColumn({ name: "ownerId" })
