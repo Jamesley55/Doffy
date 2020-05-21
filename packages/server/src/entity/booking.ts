@@ -32,13 +32,16 @@ export class Booking extends BaseEntity {
   @Column("int")
   endService: number;
 
+  @Column("simple-array", { nullable: true })
+  interval: number[];
+
   @Column("decimal")
   price: number;
 
   @Column("decimal", { default: "0" })
   taxes: number;
 
-  @Column("decimal")
+  @Column("decimal", { default: 0 })
   amoutPaid: number;
 
   @Column("decimal", { default: "0" })

@@ -17,16 +17,16 @@ input CreateServices {
 }
 
 input UpdateServices {
-  name: String!
-  description: String!
+  name: String
+  description: String
   coutryId: String
   stateId: String
   cityId: String
-  Taxes: Boolean!
+  Taxes: Boolean
   Adress: String
-  price: Float!
-  payoutSchedule: String!
-  customerBillingStatement: String!
+  price: Float
+  payoutSchedule: String
+  customerBillingStatement: String
   latitude: Float
   longitude: Float
 }

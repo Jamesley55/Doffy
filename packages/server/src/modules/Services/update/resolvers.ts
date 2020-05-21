@@ -22,7 +22,7 @@ export const UpdateService: IResolvers = {
         customerBillingStatement,
         latitude,
         longitude,
-      } = inputService;
+      } = inputService || {};
 
       const ownerId = session.userId;
       console.log("ownerId", ownerId);

@@ -17,6 +17,8 @@ import { findServiceCalendar } from "../../modules/Calendar/QueryCalendar/resolv
 import { createNotification } from "../../modules/Notification/create/resolver";
 import { newNotification } from "../../modules/Notification/newNotification/resolvers";
 import { findNotification } from "../../modules/Notification/Querynotification/resolvers";
+import { createBooking } from "../../modules/Booking/Create/resolvers";
+import { UpdateBooking } from "../../modules/Booking/update/resolvers";
 
 export const resolvers = [
   loginResolver,
@@ -38,4 +40,6 @@ export const resolvers = [
   createNotification,
   newNotification,
   findNotification,
+  createBooking,
+  UpdateBooking,
 ];

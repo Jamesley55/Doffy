@@ -58,8 +58,8 @@ type Query {
 }
 
 type NotificationMessage {
-  title: String
-  body: String
+  Title: String
+  Body: String
 }
 
 type Notification {

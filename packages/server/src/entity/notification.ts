@@ -21,6 +21,9 @@ export class Notification extends BaseEntity {
   @Column("uuid")
   recipientId: string;
 
+  @Column("uuid", { nullable: true })
+  bookingId: string;
+
   @Column(() => NotificationMessage)
   message: NotificationMessage;
 

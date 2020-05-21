@@ -14,10 +14,12 @@ export class ScheduleTime extends BaseEntity {
   @PrimaryGeneratedColumn("uuid")
   scheduleTimeId: string;
 
-  @Column("int", { nullable: true })
+  // in milisecond
+  @Column("float", { nullable: true })
   startingTime: number;
 
-  @Column("int", { nullable: true })
+  // in milisecond
+  @Column("float", { nullable: true })
   EndTime: number;
 
   @ManyToOne(() => Calendar, { onDelete: "CASCADE" })

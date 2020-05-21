@@ -44,7 +44,9 @@ export class Service extends BaseEntity {
   @JoinColumn({ name: "calendarId" })
   calendar: Calendar;
 
-  @Column("int", { default: 45 })
+  // in milisecond
+  // 45 minute is equal to 2700000 milisecond
+  @Column("int", { default: 2700000 })
   averageTime: number;
 
   @Column("boolean")

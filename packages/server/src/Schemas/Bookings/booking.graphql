@@ -6,14 +6,10 @@ type Booking {
   depositAmount: Float
   isRefund: Boolean
   transactionFee: Float
-  Total: Float!
+  Total: Float
 }
 
 type Mutation {
-  createBooking(
-    serviceId: String!
-    date: String!
-    startService: Int
-    endService: Int
-  ): Booking | null
+  createBooking(serviceId: String!, date: String!, startService: Float): Booking
+  updateBooking(NotificationId: String!, response: Boolean): Boolean
 }
