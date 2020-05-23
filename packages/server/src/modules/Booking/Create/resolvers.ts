@@ -6,6 +6,7 @@ import { week } from "./day";
 import { Notification } from "../../../entity/notification";
 import { PUBSUB_NEW_NOTIFICATION } from "../../Notification/PubSub/constant";
 import { User } from "../../../entity/User";
+import { Between } from "typeorm";
 
 export const createBooking: IResolvers = {
   Mutation: {
@@ -13,15 +14,25 @@ export const createBooking: IResolvers = {
     createBooking: async (
       _,
       { serviceId, date, startService },
-      { pubsub, session, redis }
+      { pubsub, session }
     ) => {
       const service = await Service.findOne({ where: { id: serviceId } });
       const averageTime = service?.averageTime;
       const start = startService;
       const endservice = averageTime + start;
       // TODO #1 algorithm to optimize booking time
-      const interval = await redis.get(date + service?.id);
-      console.log(interval);
+      const intervalStart = await Booking.find({
+        where: { serviceId, date, startService: Between(start, endservice) },
+      });
+      if (intervalStart) {
+        console.log("intervalStart", intervalStart);
+      }
+
+      const intervalEnd = await Booking.find({
+        where: { serviceId, date, endService: Between(start, endservice) },
+      });
+      if (intervalEnd) console.log("trouve interval end", intervalEnd);
+
       const isbetween = await week(date, start, service);
       let total;
       let taxes;

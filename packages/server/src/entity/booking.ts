@@ -69,4 +69,7 @@ export class Booking extends BaseEntity {
   @ManyToOne(() => Service, (user) => user.booking)
   @JoinColumn({ name: "serviceId" })
   service: Service;
+
+  @Column("int8range", { nullable: true })
+  range: number[];
 }

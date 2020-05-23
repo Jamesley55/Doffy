@@ -3,8 +3,6 @@ import { Notification } from "../../../entity/notification";
 import { Booking } from "../../../entity/booking";
 import { User } from "../../../entity/User";
 import { PUBSUB_NEW_NOTIFICATION } from "../../Notification/PubSub/constant";
-import IntervalTree from "node-interval-tree";
-import { redis, jsonCache } from "../../../redis";
 
 export const UpdateBooking: IResolvers = {
   Mutation: {
@@ -13,7 +11,6 @@ export const UpdateBooking: IResolvers = {
       { NotificationId, response },
       { session, pubsub }
     ) => {
-      const intervalTree: any = new IntervalTree();
       const notif = await Notification.findOne({
         where: { id: NotificationId },
       });
@@ -21,22 +18,8 @@ export const UpdateBooking: IResolvers = {
       const bookingId = notif?.bookingId;
       const booking = await Booking.findOne({ where: { id: bookingId } });
       if (booking && response) {
-        intervalTree.insert(
-          booking.startService,
-          booking.endService,
-          booking.date
-        );
-        const date = booking?.date;
-        const serviceId = booking.serviceId;
-        await jsonCache.set(
-          date + serviceId,
-          intervalTree.toString(),
-          "ex",
-          60 * 60 * 24 * 365
-        ); // 1 day expiration
-        console.log("previer interval", intervalTree);
-        const interval = await redis.get(date + serviceId);
-        if (interval) console.log("second Interval", JSON.parse(interval));
+        booking.range.push(booking.startService, booking.endService);
+        console.log(booking.range);
         booking.confirm = true;
         const userId = session.userId;
         const user = await User.findOne({ where: { id: userId } });
