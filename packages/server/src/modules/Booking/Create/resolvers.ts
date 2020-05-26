@@ -6,7 +6,7 @@ import { week } from "./day";
 import { Notification } from "../../../entity/notification";
 import { PUBSUB_NEW_NOTIFICATION } from "../../Notification/PubSub/constant";
 import { User } from "../../../entity/User";
-import { Between } from "typeorm";
+import { overLappingAppointements } from "./overLappingAppointement";
 
 export const createBooking: IResolvers = {
   Mutation: {
@@ -21,19 +21,25 @@ export const createBooking: IResolvers = {
       const start = startService;
       const endservice = averageTime + start;
       // TODO #1 algorithm to optimize booking time
-      const intervalStart = await Booking.find({
-        where: { serviceId, date, startService: Between(start, endservice) },
-      });
-      if (intervalStart) {
-        console.log("intervalStart", intervalStart);
+      const response = await overLappingAppointements(
+        start,
+        endservice,
+        averageTime,
+        serviceId,
+        date
+      );
+      console.log("response", response);
+      if (response === null) {
+        return {
+          errors: {
+            path: "overLappingAppointements",
+            message:
+              "theres no appointment available around the time you selected ",
+          },
+        };
       }
 
-      const intervalEnd = await Booking.find({
-        where: { serviceId, date, endService: Between(start, endservice) },
-      });
-      if (intervalEnd) console.log("trouve interval end", intervalEnd);
-
-      const isbetween = await week(date, start, service);
+      const isbetween = await week(date, response.start, service);
       let total;
       let taxes;
       // tslint:disable-next-line: prefer-conditional-expression
@@ -49,8 +55,8 @@ export const createBooking: IResolvers = {
         createbooking = await Booking.create({
           serviceId,
           date,
-          startService: start,
-          endService: endservice,
+          startService: response.start,
+          endService: response.end,
           price: service?.price,
           taxes,
           depositAmount: service?.depositAmount,
@@ -73,10 +79,28 @@ export const createBooking: IResolvers = {
         pubsub.publish(PUBSUB_NEW_NOTIFICATION, {
           newNotification: databaseNotification,
         });
+
         console.log("notifiID", databaseNotification.id);
-        return createbooking;
+        return {
+          booking: {
+            startService: createbooking.startService,
+            endService: createbooking.endService,
+            price: createbooking.price,
+            taxes: createbooking.taxes,
+            depositAmount: createbooking.depositAmount,
+            isRefund: createbooking.isRefund,
+            transactionFee: createbooking.transaction,
+            Total: createbooking.price + createbooking.taxes,
+          },
+        };
       } else {
-        return null;
+        return {
+          errors: {
+            path: "no availability",
+            message:
+              "theres no appointment available around the time you selected ",
+          },
+        };
       }
     },
   },

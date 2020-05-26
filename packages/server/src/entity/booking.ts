@@ -32,9 +32,6 @@ export class Booking extends BaseEntity {
   @Column("int")
   endService: number;
 
-  @Column("simple-array", { nullable: true })
-  interval: number[];
-
   @Column("decimal")
   price: number;
 
@@ -69,7 +66,4 @@ export class Booking extends BaseEntity {
   @ManyToOne(() => Service, (user) => user.booking)
   @JoinColumn({ name: "serviceId" })
   service: Service;
-
-  @Column("int8range", { nullable: true })
-  range: number[];
 }

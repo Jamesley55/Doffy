@@ -19,6 +19,7 @@ import { newNotification } from "../../modules/Notification/newNotification/reso
 import { findNotification } from "../../modules/Notification/Querynotification/resolvers";
 import { createBooking } from "../../modules/Booking/Create/resolvers";
 import { UpdateBooking } from "../../modules/Booking/update/resolvers";
+import { QueryBooking } from "../../modules/Booking/QueryBooking/resolvers";
 
 export const resolvers = [
   loginResolver,
@@ -42,4 +43,5 @@ export const resolvers = [
   findNotification,
   createBooking,
   UpdateBooking,
+  QueryBooking,
 ];
