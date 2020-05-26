@@ -1,6 +1,6 @@
 {
   "name": "@doffy/controller",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "connector between server and mobil/web",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
