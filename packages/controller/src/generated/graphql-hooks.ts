@@ -13,16 +13,108 @@ export type Scalars = {
   Upload: any;
 };
 
-export type User = {
-   __typename?: 'User';
-  id: Scalars['ID'];
+export type LoginResponse = {
+   __typename?: 'LoginResponse';
+  errors?: Maybe<Array<Error>>;
+  sessionId?: Maybe<Scalars['String']>;
+};
+
+export type Mutation = {
+   __typename?: 'Mutation';
+  login: LoginResponse;
+  logout?: Maybe<Scalars['Boolean']>;
+  register: RegisterResponse;
+  createMessage: Scalars['Boolean'];
+  forgotPassword?: Maybe<Scalars['Boolean']>;
+  changePassword?: Maybe<User>;
+  signS3: S3Payload;
+  findUrl?: Maybe<Array<Scalars['String']>>;
+  createService: Scalars['Boolean'];
+  DeleteService?: Maybe<Scalars['Boolean']>;
+  updateService: Scalars['Boolean'];
+  createNotification: Scalars['Boolean'];
+  createBooking?: Maybe<BookingResponse>;
+  updateBooking?: Maybe<Scalars['Boolean']>;
+};
+
+
+export type MutationLoginArgs = {
+  email: Scalars['String'];
+  password: Scalars['String'];
+};
+
+
+export type MutationRegisterArgs = {
   username: Scalars['String'];
+  email: Scalars['String'];
+  password: Scalars['String'];
+  confirmPassword: Scalars['String'];
+};
+
+
+export type MutationCreateMessageArgs = {
+  message?: Maybe<MessageInput>;
+};
+
+
+export type MutationForgotPasswordArgs = {
   email: Scalars['String'];
 };
 
-export type Query = {
-   __typename?: 'Query';
-  me?: Maybe<User>;
+
+export type MutationChangePasswordArgs = {
+  token: Scalars['Int'];
+  password: Scalars['String'];
+};
+
+
+export type MutationSignS3Args = {
+  filename: Scalars['String'];
+  filetype: Scalars['String'];
+  id?: Maybe<Scalars['String']>;
+};
+
+
+export type MutationFindUrlArgs = {
+  serviceId: Scalars['String'];
+};
+
+
+export type MutationCreateServiceArgs = {
+  inputService?: Maybe<CreateServices>;
+  ScheduleBool?: Maybe<Schedulebool>;
+  ScheduleTime?: Maybe<ScheduleTime>;
+};
+
+
+export type MutationDeleteServiceArgs = {
+  ServiceId: Scalars['String'];
+};
+
+
+export type MutationUpdateServiceArgs = {
+  serviceId: Scalars['String'];
+  inputService?: Maybe<UpdateServices>;
+  ScheduleBool?: Maybe<Schedulebool>;
+  ScheduleTime?: Maybe<ScheduleTime>;
+};
+
+
+export type MutationCreateNotificationArgs = {
+  input?: Maybe<Input>;
+};
+
+
+export type MutationCreateBookingArgs = {
+  serviceId: Scalars['String'];
+  date: Scalars['String'];
+  startService?: Maybe<Scalars['Float']>;
+};
+
+
+export type MutationUpdateBookingArgs = {
+  NotificationId: Scalars['String'];
+  response?: Maybe<Scalars['Boolean']>;
 };
 
 export type Error = {
@@ -31,16 +123,154 @@ export type Error = {
   message: Scalars['String'];
 };
 
-export type LoginResponse = {
-   __typename?: 'LoginResponse';
-  errors?: Maybe<Array<Error>>;
-  sessionID?: Maybe<Scalars['String']>;
+export type User = {
+   __typename?: 'User';
+  id: Scalars['ID'];
+  username?: Maybe<Scalars['String']>;
+  email: Scalars['String'];
+  service?: Maybe<Service>;
+  notification?: Maybe<Array<Notification>>;
+  messages?: Maybe<Array<Message>>;
+  sessionId: Scalars['String'];
 };
 
 export type RegisterResponse = {
    __typename?: 'RegisterResponse';
   errors?: Maybe<Array<Error>>;
+  sessionId?: Maybe<Scalars['String']>;
+};
+
+export type Service = {
+   __typename?: 'service';
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  pictureUrl?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  coutryId?: Maybe<Scalars['String']>;
+  stateId?: Maybe<Scalars['String']>;
+  cityId?: Maybe<Scalars['String']>;
+  Taxes?: Maybe<Scalars['Boolean']>;
+  Adress?: Maybe<Scalars['String']>;
+  rating?: Maybe<Scalars['Int']>;
+  price?: Maybe<Scalars['Float']>;
+  ownerId?: Maybe<Scalars['String']>;
+};
+
+export type Me = {
+   __typename?: 'Me';
   user?: Maybe<User>;
+  sessionId?: Maybe<Scalars['String']>;
+  service?: Maybe<Array<Maybe<Service>>>;
+};
+
+export type Query = {
+   __typename?: 'Query';
+  me?: Maybe<Me>;
+  messages: Array<Message>;
+  searchServicesUser?: Maybe<ServiceUser>;
+  ServiceUser?: Maybe<User>;
+  ServiceByCategory?: Maybe<Array<Maybe<Service>>>;
+  findServiceCalendar?: Maybe<Calendar>;
+  notification: Array<Notification>;
+  QueryBooking?: Maybe<Array<Booking>>;
+};
+
+
+export type QuerySearchServicesUserArgs = {
+  search: Scalars['String'];
+  offset?: Maybe<Scalars['Int']>;
+  limit: Scalars['Int'];
+};
+
+
+export type QueryServiceUserArgs = {
+  ServiceId: Scalars['String'];
+};
+
+
+export type QueryServiceByCategoryArgs = {
+  category: Scalars['String'];
+};
+
+
+export type QueryFindServiceCalendarArgs = {
+  ServiceId: Scalars['String'];
+};
+
+
+export type QueryQueryBookingArgs = {
+  serviceId: Scalars['String'];
+  date: Scalars['String'];
+};
+
+export type Service = {
+   __typename?: 'Service';
+  name?: Maybe<Scalars['String']>;
+  category?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  coutryId?: Maybe<Scalars['String']>;
+  stateId?: Maybe<Scalars['String']>;
+  cityId?: Maybe<Scalars['String']>;
+  Taxes?: Maybe<Scalars['Boolean']>;
+  Adress?: Maybe<Scalars['String']>;
+  price?: Maybe<Scalars['Float']>;
+  payoutSchedule?: Maybe<Scalars['String']>;
+  customerBillingStatement?: Maybe<Scalars['String']>;
+  latitude?: Maybe<Scalars['Float']>;
+  longitude?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['String']>;
+  pictureUrl?: Maybe<Scalars['String']>;
+  rating?: Maybe<Scalars['Int']>;
+  ownerId?: Maybe<Scalars['String']>;
+};
+
+export type Notification = {
+   __typename?: 'Notification';
+  message?: Maybe<NotificationMessage>;
+  senderId: Scalars['String'];
+  recipientId: Scalars['String'];
+  createdDate: Scalars['String'];
+};
+
+export type Message = {
+   __typename?: 'Message';
+  content: Scalars['String'];
+  senderId: Scalars['String'];
+  recipientId: Scalars['String'];
+  createdAt: Scalars['String'];
+};
+
+export type NotificationMessage = {
+   __typename?: 'NotificationMessage';
+  Title?: Maybe<Scalars['String']>;
+  Body?: Maybe<Scalars['String']>;
+};
+
+export type Subscription = {
+   __typename?: 'Subscription';
+  newMessage: Message;
+  newNotification: Notification;
+};
+
+
+export type SubscriptionNewMessageArgs = {
+  recipientId: Scalars['String'];
+};
+
+
+export type SubscriptionNewNotificationArgs = {
+  recipientId: Scalars['String'];
+};
+
+export type MessageInput = {
+  content: Scalars['String'];
+  recipientId: Scalars['String'];
+};
+
+export type S3Payload = {
+   __typename?: 'S3Payload';
+  signedRequest: Scalars['String'];
+  url: Scalars['String'];
 };
 
 export type CreateServices = {
@@ -59,67 +289,104 @@ export type CreateServices = {
   longitude?: Maybe<Scalars['Float']>;
 };
 
-export type Service = {
-   __typename?: 'service';
-  Id?: Maybe<Scalars['ID']>;
+export type Schedulebool = {
+  monday?: Maybe<Scalars['Boolean']>;
+  tuesday?: Maybe<Scalars['Boolean']>;
+  wednesday?: Maybe<Scalars['Boolean']>;
+  thusday?: Maybe<Scalars['Boolean']>;
+  friday?: Maybe<Scalars['Boolean']>;
+  saturday?: Maybe<Scalars['Boolean']>;
+  sunday?: Maybe<Scalars['Boolean']>;
 };
 
-export type S3Payload = {
-   __typename?: 'S3Payload';
-  signedRequest: Scalars['String'];
-  url: Scalars['String'];
+export type ScheduleTime = {
+  mondaySchedule?: Maybe<StartEnd>;
+  tuesdaySchedule?: Maybe<StartEnd>;
+  wednesdaySchedule?: Maybe<StartEnd>;
+  thursdaySchedule?: Maybe<StartEnd>;
+  fridaySchedule?: Maybe<StartEnd>;
+  saturdaySchedule?: Maybe<StartEnd>;
+  sundaySchedule?: Maybe<StartEnd>;
 };
 
-export type Mutation = {
-   __typename?: 'Mutation';
-  register?: Maybe<Array<Maybe<Error>>>;
-  login: LoginResponse;
-  confirmUser?: Maybe<Scalars['Boolean']>;
-  forgotPassword?: Maybe<Scalars['Boolean']>;
-  changePassword?: Maybe<User>;
-  createService: Scalars['Boolean'];
-  signS3: S3Payload;
+export type UpdateServices = {
+  name?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  coutryId?: Maybe<Scalars['String']>;
+  stateId?: Maybe<Scalars['String']>;
+  cityId?: Maybe<Scalars['String']>;
+  Taxes?: Maybe<Scalars['Boolean']>;
+  Adress?: Maybe<Scalars['String']>;
+  price?: Maybe<Scalars['Float']>;
+  payoutSchedule?: Maybe<Scalars['String']>;
+  customerBillingStatement?: Maybe<Scalars['String']>;
+  latitude?: Maybe<Scalars['Float']>;
+  longitude?: Maybe<Scalars['Float']>;
 };
 
-
-export type MutationRegisterArgs = {
-  username: Scalars['String'];
-  email: Scalars['String'];
-  password: Scalars['String'];
-  confirmPassword: Scalars['String'];
+export type ServiceUser = {
+   __typename?: 'ServiceUser';
+  user: Array<User>;
+  service: Array<Service>;
 };
 
-
-export type MutationLoginArgs = {
-  email: Scalars['String'];
-  password: Scalars['String'];
+export type Calendar = {
+   __typename?: 'Calendar';
+  CalendarId?: Maybe<Scalars['String']>;
+  monday?: Maybe<Scalars['Boolean']>;
+  mondaySchedule?: Maybe<Time>;
+  tuesday?: Maybe<Scalars['Boolean']>;
+  tuesdaySchedule?: Maybe<Time>;
+  wednesday?: Maybe<Scalars['Boolean']>;
+  wednesdaySchedule?: Maybe<Time>;
+  thursday?: Maybe<Scalars['Boolean']>;
+  thursdaySchedule?: Maybe<Time>;
+  friday?: Maybe<Scalars['Boolean']>;
+  fridaySchedule?: Maybe<Time>;
+  saturday?: Maybe<Scalars['Boolean']>;
+  saturdaySchedule?: Maybe<Time>;
+  sunday?: Maybe<Scalars['Boolean']>;
+  sundaySchedule?: Maybe<Time>;
 };
 
-
-export type MutationConfirmUserArgs = {
-  token: Scalars['String'];
+export type StartEnd = {
+  StartTime?: Maybe<Scalars['Int']>;
+  EndTime?: Maybe<Scalars['Int']>;
 };
 
-
-export type MutationForgotPasswordArgs = {
-  email: Scalars['String'];
+export type Time = {
+   __typename?: 'Time';
+  StartTime?: Maybe<Scalars['Int']>;
+  EndTime?: Maybe<Scalars['Int']>;
 };
 
-
-export type MutationChangePasswordArgs = {
-  token: Scalars['String'];
-  password: Scalars['String'];
+export type Input = {
+  BookingRequest: Scalars['Boolean'];
+  recipientId: Scalars['String'];
+  message?: Maybe<MessageNotif>;
 };
 
-
-export type MutationCreateServiceArgs = {
-  input?: Maybe<CreateServices>;
+export type MessageNotif = {
+  Title?: Maybe<Scalars['String']>;
+  Body?: Maybe<Scalars['String']>;
 };
 
+export type BookingResponse = {
+   __typename?: 'BookingResponse';
+  errors?: Maybe<Error>;
+  booking?: Maybe<Booking>;
+};
 
-export type MutationSignS3Args = {
-  filename: Scalars['String'];
-  filetype: Scalars['String'];
+export type Booking = {
+   __typename?: 'Booking';
+  startService?: Maybe<Scalars['Float']>;
+  endService?: Maybe<Scalars['Float']>;
+  price?: Maybe<Scalars['Float']>;
+  taxes?: Maybe<Scalars['Float']>;
+  depositAmount?: Maybe<Scalars['Float']>;
+  isRefund?: Maybe<Scalars['Boolean']>;
+  transactionFee?: Maybe<Scalars['Float']>;
+  Total?: Maybe<Scalars['Float']>;
 };
 
 export enum CacheControlScope {
@@ -129,7 +396,7 @@ export enum CacheControlScope {
 
 
 export type ChangePasswordMutationVariables = {
-  token: Scalars['String'];
+  token: Scalars['Int'];
   password: Scalars['String'];
 };
 
@@ -138,18 +405,64 @@ export type ChangePasswordMutation = (
   { __typename?: 'Mutation' }
   & { changePassword?: Maybe<(
     { __typename?: 'User' }
-    & Pick<User, 'id' | 'email' | 'username'>
+    & Pick<User, 'id' | 'email' | 'username' | 'sessionId'>
   )> }
 );
 
-export type ConfirmUserMutationVariables = {
-  token: Scalars['String'];
+export type CreateMessageMutationVariables = {
+  content: Scalars['String'];
+  recipientId: Scalars['String'];
 };
 
 
-export type ConfirmUserMutation = (
+export type CreateMessageMutation = (
   { __typename?: 'Mutation' }
-  & Pick<Mutation, 'confirmUser'>
+  & Pick<Mutation, 'createMessage'>
+);
+
+export type FindServiceCalendarQueryVariables = {
+  ServiceId: Scalars['String'];
+};
+
+
+export type FindServiceCalendarQuery = (
+  { __typename?: 'Query' }
+  & { findServiceCalendar?: Maybe<(
+    { __typename?: 'Calendar' }
+    & Pick<Calendar, 'CalendarId' | 'monday' | 'tuesday' | 'wednesday' | 'thursday' | 'friday' | 'saturday' | 'sunday'>
+    & { mondaySchedule?: Maybe<(
+      { __typename?: 'Time' }
+      & Pick<Time, 'StartTime' | 'EndTime'>
+    )>, tuesdaySchedule?: Maybe<(
+      { __typename?: 'Time' }
+      & Pick<Time, 'StartTime' | 'EndTime'>
+    )>, wednesdaySchedule?: Maybe<(
+      { __typename?: 'Time' }
+      & Pick<Time, 'StartTime' | 'EndTime'>
+    )>, thursdaySchedule?: Maybe<(
+      { __typename?: 'Time' }
+      & Pick<Time, 'StartTime' | 'EndTime'>
+    )>, fridaySchedule?: Maybe<(
+      { __typename?: 'Time' }
+      & Pick<Time, 'StartTime' | 'EndTime'>
+    )>, saturdaySchedule?: Maybe<(
+      { __typename?: 'Time' }
+      & Pick<Time, 'StartTime' | 'EndTime'>
+    )>, sundaySchedule?: Maybe<(
+      { __typename?: 'Time' }
+      & Pick<Time, 'StartTime' | 'EndTime'>
+    )> }
+  )> }
+);
+
+export type FindUrlMutationVariables = {
+  serviceId: Scalars['String'];
+};
+
+
+export type FindUrlMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'findUrl'>
 );
 
 export type ForgotPasswordMutationVariables = {
@@ -172,7 +485,7 @@ export type LoginMutation = (
   { __typename?: 'Mutation' }
   & { login: (
     { __typename?: 'LoginResponse' }
-    & Pick<LoginResponse, 'sessionID'>
+    & Pick<LoginResponse, 'sessionId'>
     & { errors?: Maybe<Array<(
       { __typename?: 'Error' }
       & Pick<Error, 'path' | 'message'>
@@ -180,15 +493,84 @@ export type LoginMutation = (
   ) }
 );
 
-export type QueryQueryVariables = {};
+export type LogoutMutationVariables = {};
 
 
-export type QueryQuery = (
+export type LogoutMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'logout'>
+);
+
+export type MeQueryVariables = {};
+
+
+export type MeQuery = (
   { __typename?: 'Query' }
   & { me?: Maybe<(
-    { __typename?: 'User' }
-    & Pick<User, 'id'>
+    { __typename?: 'Me' }
+    & Pick<Me, 'sessionId'>
+    & { user?: Maybe<(
+      { __typename?: 'User' }
+      & Pick<User, 'id' | 'email' | 'username'>
+      & { service?: Maybe<(
+        { __typename?: 'Service' }
+        & Pick<Service, 'id' | 'name' | 'pictureUrl' | 'description' | 'coutryId' | 'stateId' | 'cityId' | 'Taxes' | 'Adress' | 'rating' | 'price' | 'ownerId'>
+      )>, notification?: Maybe<Array<(
+        { __typename?: 'Notification' }
+        & Pick<Notification, 'senderId' | 'recipientId'>
+        & { message?: Maybe<(
+          { __typename?: 'NotificationMessage' }
+          & Pick<NotificationMessage, 'Title' | 'Body'>
+        )> }
+      )>>, messages?: Maybe<Array<(
+        { __typename?: 'Message' }
+        & Pick<Message, 'content' | 'senderId' | 'recipientId' | 'createdAt'>
+      )>> }
+    )>, service?: Maybe<Array<Maybe<(
+      { __typename?: 'service' }
+      & Pick<Service, 'id' | 'name' | 'pictureUrl' | 'description' | 'coutryId' | 'stateId' | 'cityId' | 'Taxes' | 'Adress' | 'rating' | 'price' | 'ownerId'>
+    )>>> }
   )> }
+);
+
+export type MessageQueryVariables = {};
+
+
+export type MessageQuery = (
+  { __typename?: 'Query' }
+  & { messages: Array<(
+    { __typename?: 'Message' }
+    & Pick<Message, 'content' | 'senderId' | 'recipientId' | 'createdAt'>
+  )> }
+);
+
+export type NotificationQueryVariables = {};
+
+
+export type NotificationQuery = (
+  { __typename?: 'Query' }
+  & { notification: Array<(
+    { __typename?: 'Notification' }
+    & Pick<Notification, 'senderId' | 'recipientId' | 'createdDate'>
+    & { message?: Maybe<(
+      { __typename?: 'NotificationMessage' }
+      & Pick<NotificationMessage, 'Title' | 'Body'>
+    )> }
+  )> }
+);
+
+export type QueryBookingQueryVariables = {
+  serviceId: Scalars['String'];
+  date: Scalars['String'];
+};
+
+
+export type QueryBookingQuery = (
+  { __typename?: 'Query' }
+  & { QueryBooking?: Maybe<Array<(
+    { __typename?: 'Booking' }
+    & Pick<Booking, 'startService' | 'endService' | 'price' | 'taxes' | 'depositAmount' | 'isRefund' | 'transactionFee' | 'Total'>
+  )>> }
 );
 
 export type RegisterMutationVariables = {
@@ -201,19 +583,79 @@ export type RegisterMutationVariables = {
 
 export type RegisterMutation = (
   { __typename?: 'Mutation' }
-  & { register?: Maybe<Array<Maybe<(
-    { __typename?: 'Error' }
-    & Pick<Error, 'path' | 'message'>
-  )>>> }
+  & { register: (
+    { __typename?: 'RegisterResponse' }
+    & Pick<RegisterResponse, 'sessionId'>
+    & { errors?: Maybe<Array<(
+      { __typename?: 'Error' }
+      & Pick<Error, 'path' | 'message'>
+    )>> }
+  ) }
 );
 
-export type UploadS3MutationVariables = {
-  filename: Scalars['String'];
-  filetype: Scalars['String'];
+export type SearchServicesUserQueryVariables = {
+  search: Scalars['String'];
+  offset?: Maybe<Scalars['Int']>;
+  limit: Scalars['Int'];
 };
 
 
-export type UploadS3Mutation = (
+export type SearchServicesUserQuery = (
+  { __typename?: 'Query' }
+  & { searchServicesUser?: Maybe<(
+    { __typename?: 'ServiceUser' }
+    & { user: Array<(
+      { __typename?: 'User' }
+      & Pick<User, 'username' | 'email'>
+      & { service?: Maybe<(
+        { __typename?: 'Service' }
+        & Pick<Service, 'id' | 'name' | 'description' | 'coutryId' | 'stateId' | 'cityId' | 'Taxes' | 'Adress' | 'rating' | 'price' | 'ownerId'>
+      )> }
+    )>, service: Array<(
+      { __typename?: 'Service' }
+      & Pick<Service, 'id' | 'name' | 'description' | 'coutryId' | 'stateId' | 'cityId' | 'Taxes' | 'Adress' | 'rating' | 'price' | 'ownerId'>
+    )> }
+  )> }
+);
+
+export type ServiceByCategoryQueryVariables = {
+  category: Scalars['String'];
+};
+
+
+export type ServiceByCategoryQuery = (
+  { __typename?: 'Query' }
+  & { ServiceByCategory?: Maybe<Array<Maybe<(
+    { __typename?: 'Service' }
+    & Pick<Service, 'id' | 'name' | 'description' | 'coutryId' | 'stateId' | 'cityId' | 'Taxes' | 'Adress' | 'rating' | 'price' | 'ownerId'>
+  )>>> }
+);
+
+export type ServicesUserQueryVariables = {
+  ServiceId: Scalars['String'];
+};
+
+
+export type ServicesUserQuery = (
+  { __typename?: 'Query' }
+  & { ServiceUser?: Maybe<(
+    { __typename?: 'User' }
+    & Pick<User, 'id' | 'username' | 'email'>
+    & { service?: Maybe<(
+      { __typename?: 'Service' }
+      & Pick<Service, 'id' | 'name' | 'description' | 'coutryId' | 'stateId' | 'cityId' | 'Taxes' | 'Adress' | 'rating' | 'price' | 'ownerId'>
+    )> }
+  )> }
+);
+
+export type SignS3MutationVariables = {
+  filename: Scalars['String'];
+  filetype: Scalars['String'];
+  id: Scalars['String'];
+};
+
+
+export type SignS3Mutation = (
   { __typename?: 'Mutation' }
   & { signS3: (
     { __typename?: 'S3Payload' }
@@ -223,11 +665,12 @@ export type UploadS3Mutation = (
 
 
 export const ChangePasswordDocument = gql`
-    mutation changePassword($token: String!, $password: String!) {
+    mutation changePassword($token: Int!, $password: String!) {
   changePassword(token: $token, password: $password) {
     id
     email
     username
+    sessionId
   }
 }
     `;
@@ -257,36 +700,135 @@ export function useChangePasswordMutation(baseOptions?: ApolloReactHooks.Mutatio
 export type ChangePasswordMutationHookResult = ReturnType<typeof useChangePasswordMutation>;
 export type ChangePasswordMutationResult = ApolloReactCommon.MutationResult<ChangePasswordMutation>;
 export type ChangePasswordMutationOptions = ApolloReactCommon.BaseMutationOptions<ChangePasswordMutation, ChangePasswordMutationVariables>;
-export const ConfirmUserDocument = gql`
-    mutation confirmUser($token: String!) {
-  confirmUser(token: $token)
+export const CreateMessageDocument = gql`
+    mutation createMessage($content: String!, $recipientId: String!) {
+  createMessage(message: {content: $content, recipientId: $recipientId})
 }
     `;
-export type ConfirmUserMutationFn = ApolloReactCommon.MutationFunction<ConfirmUserMutation, ConfirmUserMutationVariables>;
+export type CreateMessageMutationFn = ApolloReactCommon.MutationFunction<CreateMessageMutation, CreateMessageMutationVariables>;
 
 /**
- * __useConfirmUserMutation__
+ * __useCreateMessageMutation__
  *
- * To run a mutation, you first call `useConfirmUserMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useConfirmUserMutation` returns a tuple that includes:
+ * To run a mutation, you first call `useCreateMessageMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateMessageMutation` returns a tuple that includes:
  * - A mutate function that you can call at any time to execute the mutation
  * - An object with fields that represent the current status of the mutation's execution
  *
  * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
  *
  * @example
- * const [confirmUserMutation, { data, loading, error }] = useConfirmUserMutation({
+ * const [createMessageMutation, { data, loading, error }] = useCreateMessageMutation({
  *   variables: {
- *      token: // value for 'token'
+ *      content: // value for 'content'
+ *      recipientId: // value for 'recipientId'
  *   },
  * });
  */
-export function useConfirmUserMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<ConfirmUserMutation, ConfirmUserMutationVariables>) {
-        return ApolloReactHooks.useMutation<ConfirmUserMutation, ConfirmUserMutationVariables>(ConfirmUserDocument, baseOptions);
+export function useCreateMessageMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<CreateMessageMutation, CreateMessageMutationVariables>) {
+        return ApolloReactHooks.useMutation<CreateMessageMutation, CreateMessageMutationVariables>(CreateMessageDocument, baseOptions);
       }
-export type ConfirmUserMutationHookResult = ReturnType<typeof useConfirmUserMutation>;
-export type ConfirmUserMutationResult = ApolloReactCommon.MutationResult<ConfirmUserMutation>;
-export type ConfirmUserMutationOptions = ApolloReactCommon.BaseMutationOptions<ConfirmUserMutation, ConfirmUserMutationVariables>;
+export type CreateMessageMutationHookResult = ReturnType<typeof useCreateMessageMutation>;
+export type CreateMessageMutationResult = ApolloReactCommon.MutationResult<CreateMessageMutation>;
+export type CreateMessageMutationOptions = ApolloReactCommon.BaseMutationOptions<CreateMessageMutation, CreateMessageMutationVariables>;
+export const FindServiceCalendarDocument = gql`
+    query findServiceCalendar($ServiceId: String!) {
+  findServiceCalendar(ServiceId: $ServiceId) {
+    CalendarId
+    monday
+    mondaySchedule {
+      StartTime
+      EndTime
+    }
+    tuesday
+    tuesdaySchedule {
+      StartTime
+      EndTime
+    }
+    wednesday
+    wednesdaySchedule {
+      StartTime
+      EndTime
+    }
+    thursday
+    thursdaySchedule {
+      StartTime
+      EndTime
+    }
+    friday
+    fridaySchedule {
+      StartTime
+      EndTime
+    }
+    saturday
+    saturdaySchedule {
+      StartTime
+      EndTime
+    }
+    sunday
+    sundaySchedule {
+      StartTime
+      EndTime
+    }
+  }
+}
+    `;
+
+/**
+ * __useFindServiceCalendarQuery__
+ *
+ * To run a query within a React component, call `useFindServiceCalendarQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFindServiceCalendarQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useFindServiceCalendarQuery({
+ *   variables: {
+ *      ServiceId: // value for 'ServiceId'
+ *   },
+ * });
+ */
+export function useFindServiceCalendarQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<FindServiceCalendarQuery, FindServiceCalendarQueryVariables>) {
+        return ApolloReactHooks.useQuery<FindServiceCalendarQuery, FindServiceCalendarQueryVariables>(FindServiceCalendarDocument, baseOptions);
+      }
+export function useFindServiceCalendarLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<FindServiceCalendarQuery, FindServiceCalendarQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<FindServiceCalendarQuery, FindServiceCalendarQueryVariables>(FindServiceCalendarDocument, baseOptions);
+        }
+export type FindServiceCalendarQueryHookResult = ReturnType<typeof useFindServiceCalendarQuery>;
+export type FindServiceCalendarLazyQueryHookResult = ReturnType<typeof useFindServiceCalendarLazyQuery>;
+export type FindServiceCalendarQueryResult = ApolloReactCommon.QueryResult<FindServiceCalendarQuery, FindServiceCalendarQueryVariables>;
+export const FindUrlDocument = gql`
+    mutation findUrl($serviceId: String!) {
+  findUrl(serviceId: $serviceId)
+}
+    `;
+export type FindUrlMutationFn = ApolloReactCommon.MutationFunction<FindUrlMutation, FindUrlMutationVariables>;
+
+/**
+ * __useFindUrlMutation__
+ *
+ * To run a mutation, you first call `useFindUrlMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useFindUrlMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [findUrlMutation, { data, loading, error }] = useFindUrlMutation({
+ *   variables: {
+ *      serviceId: // value for 'serviceId'
+ *   },
+ * });
+ */
+export function useFindUrlMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<FindUrlMutation, FindUrlMutationVariables>) {
+        return ApolloReactHooks.useMutation<FindUrlMutation, FindUrlMutationVariables>(FindUrlDocument, baseOptions);
+      }
+export type FindUrlMutationHookResult = ReturnType<typeof useFindUrlMutation>;
+export type FindUrlMutationResult = ApolloReactCommon.MutationResult<FindUrlMutation>;
+export type FindUrlMutationOptions = ApolloReactCommon.BaseMutationOptions<FindUrlMutation, FindUrlMutationVariables>;
 export const ForgotPasswordDocument = gql`
     mutation forgotPassword($email: String!) {
   forgotPassword(email: $email)
@@ -324,7 +866,7 @@ export const LoginDocument = gql`
       path
       message
     }
-    sessionID
+    sessionId
   }
 }
     `;
@@ -354,43 +896,236 @@ export function useLoginMutation(baseOptions?: ApolloReactHooks.MutationHookOpti
 export type LoginMutationHookResult = ReturnType<typeof useLoginMutation>;
 export type LoginMutationResult = ApolloReactCommon.MutationResult<LoginMutation>;
 export type LoginMutationOptions = ApolloReactCommon.BaseMutationOptions<LoginMutation, LoginMutationVariables>;
-export const QueryDocument = gql`
-    query query {
+export const LogoutDocument = gql`
+    mutation logout {
+  logout
+}
+    `;
+export type LogoutMutationFn = ApolloReactCommon.MutationFunction<LogoutMutation, LogoutMutationVariables>;
+
+/**
+ * __useLogoutMutation__
+ *
+ * To run a mutation, you first call `useLogoutMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useLogoutMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [logoutMutation, { data, loading, error }] = useLogoutMutation({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useLogoutMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<LogoutMutation, LogoutMutationVariables>) {
+        return ApolloReactHooks.useMutation<LogoutMutation, LogoutMutationVariables>(LogoutDocument, baseOptions);
+      }
+export type LogoutMutationHookResult = ReturnType<typeof useLogoutMutation>;
+export type LogoutMutationResult = ApolloReactCommon.MutationResult<LogoutMutation>;
+export type LogoutMutationOptions = ApolloReactCommon.BaseMutationOptions<LogoutMutation, LogoutMutationVariables>;
+export const MeDocument = gql`
+    query Me {
   me {
-    id
+    user {
+      id
+      email
+      username
+      service {
+        id
+        name
+        pictureUrl
+        description
+        coutryId
+        stateId
+        cityId
+        Taxes
+        Adress
+        rating
+        price
+        ownerId
+      }
+      notification {
+        message {
+          Title
+          Body
+        }
+        senderId
+        recipientId
+      }
+      messages {
+        content
+        senderId
+        recipientId
+        createdAt
+      }
+    }
+    service {
+      id
+      name
+      pictureUrl
+      description
+      coutryId
+      stateId
+      cityId
+      Taxes
+      Adress
+      rating
+      price
+      ownerId
+    }
+    sessionId
   }
 }
     `;
 
 /**
- * __useQueryQuery__
+ * __useMeQuery__
  *
- * To run a query within a React component, call `useQueryQuery` and pass it any options that fit your needs.
- * When your component renders, `useQueryQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useMeQuery` and pass it any options that fit your needs.
+ * When your component renders, `useMeQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useQueryQuery({
+ * const { data, loading, error } = useMeQuery({
  *   variables: {
  *   },
  * });
  */
-export function useQueryQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<QueryQuery, QueryQueryVariables>) {
-        return ApolloReactHooks.useQuery<QueryQuery, QueryQueryVariables>(QueryDocument, baseOptions);
+export function useMeQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<MeQuery, MeQueryVariables>) {
+        return ApolloReactHooks.useQuery<MeQuery, MeQueryVariables>(MeDocument, baseOptions);
       }
-export function useQueryLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<QueryQuery, QueryQueryVariables>) {
-          return ApolloReactHooks.useLazyQuery<QueryQuery, QueryQueryVariables>(QueryDocument, baseOptions);
+export function useMeLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<MeQuery, MeQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<MeQuery, MeQueryVariables>(MeDocument, baseOptions);
         }
-export type QueryQueryHookResult = ReturnType<typeof useQueryQuery>;
-export type QueryLazyQueryHookResult = ReturnType<typeof useQueryLazyQuery>;
-export type QueryQueryResult = ApolloReactCommon.QueryResult<QueryQuery, QueryQueryVariables>;
+export type MeQueryHookResult = ReturnType<typeof useMeQuery>;
+export type MeLazyQueryHookResult = ReturnType<typeof useMeLazyQuery>;
+export type MeQueryResult = ApolloReactCommon.QueryResult<MeQuery, MeQueryVariables>;
+export const MessageDocument = gql`
+    query Message {
+  messages {
+    content
+    senderId
+    recipientId
+    createdAt
+  }
+}
+    `;
+
+/**
+ * __useMessageQuery__
+ *
+ * To run a query within a React component, call `useMessageQuery` and pass it any options that fit your needs.
+ * When your component renders, `useMessageQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useMessageQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useMessageQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<MessageQuery, MessageQueryVariables>) {
+        return ApolloReactHooks.useQuery<MessageQuery, MessageQueryVariables>(MessageDocument, baseOptions);
+      }
+export function useMessageLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<MessageQuery, MessageQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<MessageQuery, MessageQueryVariables>(MessageDocument, baseOptions);
+        }
+export type MessageQueryHookResult = ReturnType<typeof useMessageQuery>;
+export type MessageLazyQueryHookResult = ReturnType<typeof useMessageLazyQuery>;
+export type MessageQueryResult = ApolloReactCommon.QueryResult<MessageQuery, MessageQueryVariables>;
+export const NotificationDocument = gql`
+    query notification {
+  notification {
+    message {
+      Title
+      Body
+    }
+    senderId
+    recipientId
+    createdDate
+  }
+}
+    `;
+
+/**
+ * __useNotificationQuery__
+ *
+ * To run a query within a React component, call `useNotificationQuery` and pass it any options that fit your needs.
+ * When your component renders, `useNotificationQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useNotificationQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useNotificationQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<NotificationQuery, NotificationQueryVariables>) {
+        return ApolloReactHooks.useQuery<NotificationQuery, NotificationQueryVariables>(NotificationDocument, baseOptions);
+      }
+export function useNotificationLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<NotificationQuery, NotificationQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<NotificationQuery, NotificationQueryVariables>(NotificationDocument, baseOptions);
+        }
+export type NotificationQueryHookResult = ReturnType<typeof useNotificationQuery>;
+export type NotificationLazyQueryHookResult = ReturnType<typeof useNotificationLazyQuery>;
+export type NotificationQueryResult = ApolloReactCommon.QueryResult<NotificationQuery, NotificationQueryVariables>;
+export const QueryBookingDocument = gql`
+    query QueryBooking($serviceId: String!, $date: String!) {
+  QueryBooking(serviceId: $serviceId, date: $date) {
+    startService
+    endService
+    price
+    taxes
+    depositAmount
+    isRefund
+    transactionFee
+    Total
+  }
+}
+    `;
+
+/**
+ * __useQueryBookingQuery__
+ *
+ * To run a query within a React component, call `useQueryBookingQuery` and pass it any options that fit your needs.
+ * When your component renders, `useQueryBookingQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useQueryBookingQuery({
+ *   variables: {
+ *      serviceId: // value for 'serviceId'
+ *      date: // value for 'date'
+ *   },
+ * });
+ */
+export function useQueryBookingQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<QueryBookingQuery, QueryBookingQueryVariables>) {
+        return ApolloReactHooks.useQuery<QueryBookingQuery, QueryBookingQueryVariables>(QueryBookingDocument, baseOptions);
+      }
+export function useQueryBookingLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<QueryBookingQuery, QueryBookingQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<QueryBookingQuery, QueryBookingQueryVariables>(QueryBookingDocument, baseOptions);
+        }
+export type QueryBookingQueryHookResult = ReturnType<typeof useQueryBookingQuery>;
+export type QueryBookingLazyQueryHookResult = ReturnType<typeof useQueryBookingLazyQuery>;
+export type QueryBookingQueryResult = ApolloReactCommon.QueryResult<QueryBookingQuery, QueryBookingQueryVariables>;
 export const RegisterDocument = gql`
     mutation Register($username: String!, $email: String!, $password: String!, $confirmPassword: String!) {
   register(username: $username, email: $email, password: $password, confirmPassword: $confirmPassword) {
-    path
-    message
+    errors {
+      path
+      message
+    }
+    sessionId
   }
 }
     `;
@@ -422,37 +1157,193 @@ export function useRegisterMutation(baseOptions?: ApolloReactHooks.MutationHookO
 export type RegisterMutationHookResult = ReturnType<typeof useRegisterMutation>;
 export type RegisterMutationResult = ApolloReactCommon.MutationResult<RegisterMutation>;
 export type RegisterMutationOptions = ApolloReactCommon.BaseMutationOptions<RegisterMutation, RegisterMutationVariables>;
-export const UploadS3Document = gql`
-    mutation uploadS3($filename: String!, $filetype: String!) {
-  signS3(filename: $filename, filetype: $filetype) {
+export const SearchServicesUserDocument = gql`
+    query searchServicesUser($search: String!, $offset: Int, $limit: Int!) {
+  searchServicesUser(search: $search, offset: $offset, limit: $limit) {
+    user {
+      username
+      email
+      service {
+        id
+        name
+        description
+        coutryId
+        stateId
+        cityId
+        Taxes
+        Adress
+        rating
+        price
+        ownerId
+      }
+    }
+    service {
+      id
+      name
+      description
+      coutryId
+      stateId
+      cityId
+      Taxes
+      Adress
+      rating
+      price
+      ownerId
+    }
+  }
+}
+    `;
+
+/**
+ * __useSearchServicesUserQuery__
+ *
+ * To run a query within a React component, call `useSearchServicesUserQuery` and pass it any options that fit your needs.
+ * When your component renders, `useSearchServicesUserQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useSearchServicesUserQuery({
+ *   variables: {
+ *      search: // value for 'search'
+ *      offset: // value for 'offset'
+ *      limit: // value for 'limit'
+ *   },
+ * });
+ */
+export function useSearchServicesUserQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<SearchServicesUserQuery, SearchServicesUserQueryVariables>) {
+        return ApolloReactHooks.useQuery<SearchServicesUserQuery, SearchServicesUserQueryVariables>(SearchServicesUserDocument, baseOptions);
+      }
+export function useSearchServicesUserLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<SearchServicesUserQuery, SearchServicesUserQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<SearchServicesUserQuery, SearchServicesUserQueryVariables>(SearchServicesUserDocument, baseOptions);
+        }
+export type SearchServicesUserQueryHookResult = ReturnType<typeof useSearchServicesUserQuery>;
+export type SearchServicesUserLazyQueryHookResult = ReturnType<typeof useSearchServicesUserLazyQuery>;
+export type SearchServicesUserQueryResult = ApolloReactCommon.QueryResult<SearchServicesUserQuery, SearchServicesUserQueryVariables>;
+export const ServiceByCategoryDocument = gql`
+    query ServiceByCategory($category: String!) {
+  ServiceByCategory(category: $category) {
+    id
+    name
+    description
+    coutryId
+    stateId
+    cityId
+    Taxes
+    Adress
+    rating
+    price
+    ownerId
+  }
+}
+    `;
+
+/**
+ * __useServiceByCategoryQuery__
+ *
+ * To run a query within a React component, call `useServiceByCategoryQuery` and pass it any options that fit your needs.
+ * When your component renders, `useServiceByCategoryQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useServiceByCategoryQuery({
+ *   variables: {
+ *      category: // value for 'category'
+ *   },
+ * });
+ */
+export function useServiceByCategoryQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<ServiceByCategoryQuery, ServiceByCategoryQueryVariables>) {
+        return ApolloReactHooks.useQuery<ServiceByCategoryQuery, ServiceByCategoryQueryVariables>(ServiceByCategoryDocument, baseOptions);
+      }
+export function useServiceByCategoryLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<ServiceByCategoryQuery, ServiceByCategoryQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<ServiceByCategoryQuery, ServiceByCategoryQueryVariables>(ServiceByCategoryDocument, baseOptions);
+        }
+export type ServiceByCategoryQueryHookResult = ReturnType<typeof useServiceByCategoryQuery>;
+export type ServiceByCategoryLazyQueryHookResult = ReturnType<typeof useServiceByCategoryLazyQuery>;
+export type ServiceByCategoryQueryResult = ApolloReactCommon.QueryResult<ServiceByCategoryQuery, ServiceByCategoryQueryVariables>;
+export const ServicesUserDocument = gql`
+    query ServicesUser($ServiceId: String!) {
+  ServiceUser(ServiceId: $ServiceId) {
+    id
+    username
+    email
+    service {
+      id
+      name
+      description
+      coutryId
+      stateId
+      cityId
+      Taxes
+      Adress
+      rating
+      price
+      ownerId
+    }
+  }
+}
+    `;
+
+/**
+ * __useServicesUserQuery__
+ *
+ * To run a query within a React component, call `useServicesUserQuery` and pass it any options that fit your needs.
+ * When your component renders, `useServicesUserQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useServicesUserQuery({
+ *   variables: {
+ *      ServiceId: // value for 'ServiceId'
+ *   },
+ * });
+ */
+export function useServicesUserQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<ServicesUserQuery, ServicesUserQueryVariables>) {
+        return ApolloReactHooks.useQuery<ServicesUserQuery, ServicesUserQueryVariables>(ServicesUserDocument, baseOptions);
+      }
+export function useServicesUserLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<ServicesUserQuery, ServicesUserQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<ServicesUserQuery, ServicesUserQueryVariables>(ServicesUserDocument, baseOptions);
+        }
+export type ServicesUserQueryHookResult = ReturnType<typeof useServicesUserQuery>;
+export type ServicesUserLazyQueryHookResult = ReturnType<typeof useServicesUserLazyQuery>;
+export type ServicesUserQueryResult = ApolloReactCommon.QueryResult<ServicesUserQuery, ServicesUserQueryVariables>;
+export const SignS3Document = gql`
+    mutation signS3($filename: String!, $filetype: String!, $id: String!) {
+  signS3(filename: $filename, filetype: $filetype, id: $id) {
     url
     signedRequest
   }
 }
     `;
-export type UploadS3MutationFn = ApolloReactCommon.MutationFunction<UploadS3Mutation, UploadS3MutationVariables>;
+export type SignS3MutationFn = ApolloReactCommon.MutationFunction<SignS3Mutation, SignS3MutationVariables>;
 
 /**
- * __useUploadS3Mutation__
+ * __useSignS3Mutation__
  *
- * To run a mutation, you first call `useUploadS3Mutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useUploadS3Mutation` returns a tuple that includes:
+ * To run a mutation, you first call `useSignS3Mutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useSignS3Mutation` returns a tuple that includes:
  * - A mutate function that you can call at any time to execute the mutation
  * - An object with fields that represent the current status of the mutation's execution
  *
  * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
  *
  * @example
- * const [uploadS3Mutation, { data, loading, error }] = useUploadS3Mutation({
+ * const [signS3Mutation, { data, loading, error }] = useSignS3Mutation({
  *   variables: {
  *      filename: // value for 'filename'
  *      filetype: // value for 'filetype'
+ *      id: // value for 'id'
  *   },
  * });
  */
-export function useUploadS3Mutation(baseOptions?: ApolloReactHooks.MutationHookOptions<UploadS3Mutation, UploadS3MutationVariables>) {
-        return ApolloReactHooks.useMutation<UploadS3Mutation, UploadS3MutationVariables>(UploadS3Document, baseOptions);
+export function useSignS3Mutation(baseOptions?: ApolloReactHooks.MutationHookOptions<SignS3Mutation, SignS3MutationVariables>) {
+        return ApolloReactHooks.useMutation<SignS3Mutation, SignS3MutationVariables>(SignS3Document, baseOptions);
       }
-export type UploadS3MutationHookResult = ReturnType<typeof useUploadS3Mutation>;
-export type UploadS3MutationResult = ApolloReactCommon.MutationResult<UploadS3Mutation>;
-export type UploadS3MutationOptions = ApolloReactCommon.BaseMutationOptions<UploadS3Mutation, UploadS3MutationVariables>;
+export type SignS3MutationHookResult = ReturnType<typeof useSignS3Mutation>;
+export type SignS3MutationResult = ApolloReactCommon.MutationResult<SignS3Mutation>;
+export type SignS3MutationOptions = ApolloReactCommon.BaseMutationOptions<SignS3Mutation, SignS3MutationVariables>;

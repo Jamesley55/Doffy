@@ -10,7 +10,9 @@ type Subscription {
 }
 
 type Service {
+  id: String
   name: String
+  pictureUrl: String
   category: String
   description: String
   coutryId: String
@@ -18,11 +20,13 @@ type Service {
   cityId: String
   Taxes: Boolean
   Adress: String
+  rating: Int
   price: Float
   payoutSchedule: String
   customerBillingStatement: String
   latitude: Float
   longitude: Float
+  ownerId: String
 }
 
 type User {

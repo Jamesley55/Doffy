@@ -2,7 +2,7 @@
 # in case someone need to send a message
 # to the user of a certain service
 
-query searchServicesUser($ServiceId: String) {
+query ServicesUser($ServiceId: String!) {
   ServiceUser(ServiceId: $ServiceId) {
     id
     username

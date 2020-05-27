@@ -1,0 +1,3 @@
+mutation findUrl($serviceId: String!) {
+  findUrl(serviceId: $serviceId)
+}

@@ -1,4 +1,4 @@
-query findServiceCalendar($ServiceId: String) {
+query findServiceCalendar($ServiceId: String!) {
   findServiceCalendar(ServiceId: $ServiceId) {
     CalendarId
     monday

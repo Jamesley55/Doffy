@@ -1,5 +1,4 @@
-query notification{
-{
+query notification {
   notification {
     message {
       Title
@@ -9,5 +8,4 @@ query notification{
     recipientId
     createdDate
   }
-}
 }

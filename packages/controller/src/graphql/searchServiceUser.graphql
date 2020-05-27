@@ -1,7 +1,7 @@
 # this query is for the feature search of the app
 # it will return either a user or a service or both depend on what
 # the user  search
-query searchServicesUser($search: String, $offset: Int, $limit: Int) {
+query searchServicesUser($search: String!, $offset: Int, $limit: Int!) {
   searchServicesUser(search: $search, offset: $offset, limit: $limit) {
     user {
       username

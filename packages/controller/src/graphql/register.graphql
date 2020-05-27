@@ -9,10 +9,11 @@ mutation Register(
     email: $email
     password: $password
     confirmPassword: $confirmPassword
-  )
-  errors {
-    path
-    message
+  ) {
+    errors {
+      path
+      message
+    }
+    sessionId
   }
-  sessionId
 }
