@@ -24,7 +24,7 @@ export class Message extends BaseEntity {
   content: string;
 
   @CreateDateColumn()
-  createdAt: number;
+  createdAt: Date;
 
   @Column({ nullable: true })
   type: MessageType;

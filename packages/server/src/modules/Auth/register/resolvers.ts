@@ -30,21 +30,25 @@ export const registerResolver: IResolvers = {
         select: ["id"],
       });
       if (userAlreadyExist) {
-        return [
-          {
-            path: "email",
-            message: duplicateEmail,
-          },
-        ];
+        return {
+          errors: [
+            {
+              path: "email",
+              message: duplicateEmail,
+            },
+          ],
+        };
       }
 
       if (password !== confirmPassword) {
-        return [
-          {
-            path: "password",
-            message: "your password doesnt correspond",
-          },
-        ];
+        return {
+          errors: [
+            {
+              path: "password",
+              message: "your password doesnt correspond",
+            },
+          ],
+        };
       }
       const hashedPassword = await bcrypt.hash(password, 10);
       const user = await User.create({
@@ -59,13 +63,11 @@ export const registerResolver: IResolvers = {
       );
 
       session.userId = user.id;
-      console.log("session Userid", session.userId);
 
       if (req.sessionID) {
         await redis.lpush(`${userSessionIdPrefix}${user.id}`, req.sessionID);
       }
-      console.log("sessionId", req.sessionID);
-      return [{ sessionId: req.sessionID }];
+      return { sessionId: req.sessionID };
     },
   },
 };

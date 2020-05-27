@@ -11,7 +11,7 @@ type Mutation {
     email: String!
     password: String!
     confirmPassword: String!
-  ): [RegisterResponse!]
+  ): RegisterResponse!
 }
 
 # import User from "user.graphql"
@@ -20,8 +20,8 @@ type User {
   username: String
   email: String
   service: Service
-  notification: Notification
-  messages: Message
+  notification: [Notification!]
+  messages: [Message!]
 }
 
 type service {
@@ -41,6 +41,7 @@ type service {
 
 type Me {
   user: User
+  sessionId: String
   service: [service]
 }
 

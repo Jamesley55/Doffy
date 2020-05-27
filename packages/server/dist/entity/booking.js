@@ -10,6 +10,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
+const transaction_1 = require("./transaction");
+const service_1 = require("./service");
 let Booking = class Booking extends typeorm_1.BaseEntity {
 };
 __decorate([
@@ -21,16 +23,16 @@ __decorate([
     __metadata("design:type", String)
 ], Booking.prototype, "serviceId", void 0);
 __decorate([
-    typeorm_1.Column("uuid"),
+    typeorm_1.Column("text"),
     __metadata("design:type", String)
-], Booking.prototype, "userId", void 0);
+], Booking.prototype, "date", void 0);
 __decorate([
-    typeorm_1.Column("date"),
-    __metadata("design:type", Date)
+    typeorm_1.Column("int"),
+    __metadata("design:type", Number)
 ], Booking.prototype, "startService", void 0);
 __decorate([
-    typeorm_1.Column("date"),
-    __metadata("design:type", Date)
+    typeorm_1.Column("int"),
+    __metadata("design:type", Number)
 ], Booking.prototype, "endService", void 0);
 __decorate([
     typeorm_1.Column("decimal"),
@@ -41,17 +43,17 @@ __decorate([
     __metadata("design:type", Number)
 ], Booking.prototype, "taxes", void 0);
 __decorate([
-    typeorm_1.Column("decimal"),
+    typeorm_1.Column("decimal", { default: 0 }),
     __metadata("design:type", Number)
 ], Booking.prototype, "amoutPaid", void 0);
 __decorate([
-    typeorm_1.Column("decimal"),
-    __metadata("design:type", Boolean)
-], Booking.prototype, "isRefund", void 0);
-__decorate([
     typeorm_1.Column("decimal", { default: "0" }),
     __metadata("design:type", Number)
-], Booking.prototype, "transactionId", void 0);
+], Booking.prototype, "depositAmount", void 0);
+__decorate([
+    typeorm_1.Column("boolean", { default: true }),
+    __metadata("design:type", Boolean)
+], Booking.prototype, "isRefund", void 0);
 __decorate([
     typeorm_1.Column("boolean", { default: false }),
     __metadata("design:type", Boolean)
@@ -65,13 +67,19 @@ __decorate([
     __metadata("design:type", Date)
 ], Booking.prototype, "created", void 0);
 __decorate([
-    typeorm_1.UpdateDateColumn(),
-    __metadata("design:type", Date)
-], Booking.prototype, "modify", void 0);
-__decorate([
-    typeorm_1.Column("boolean", { default: true }),
+    typeorm_1.Column("boolean", { default: false }),
     __metadata("design:type", Boolean)
 ], Booking.prototype, "status", void 0);
+__decorate([
+    typeorm_1.OneToOne(() => transaction_1.Transaction),
+    typeorm_1.JoinColumn(),
+    __metadata("design:type", transaction_1.Transaction)
+], Booking.prototype, "transaction", void 0);
+__decorate([
+    typeorm_1.ManyToOne(() => service_1.Service, (user) => user.booking),
+    typeorm_1.JoinColumn({ name: "serviceId" }),
+    __metadata("design:type", service_1.Service)
+], Booking.prototype, "service", void 0);
 Booking = __decorate([
     typeorm_1.Entity("booking")
 ], Booking);

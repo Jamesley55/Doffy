@@ -9,7 +9,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const notification_1 = require("./notification");
 const typeorm_1 = require("typeorm");
+const service_1 = require("./service");
+const message_1 = require("./message");
 let User = class User extends typeorm_1.BaseEntity {
 };
 __decorate([
@@ -80,6 +83,18 @@ __decorate([
     typeorm_1.Column("date", { nullable: true }),
     __metadata("design:type", Date)
 ], User.prototype, "modify", void 0);
+__decorate([
+    typeorm_1.OneToMany(() => service_1.Service, (serviceInstance) => serviceInstance.user),
+    __metadata("design:type", Array)
+], User.prototype, "services", void 0);
+__decorate([
+    typeorm_1.OneToMany(() => message_1.Message, (message) => message.user),
+    __metadata("design:type", Array)
+], User.prototype, "message", void 0);
+__decorate([
+    typeorm_1.OneToMany(() => notification_1.Notification, (notifications) => notifications.user),
+    __metadata("design:type", Array)
+], User.prototype, "notifications", void 0);
 User = __decorate([
     typeorm_1.Entity("users")
 ], User);

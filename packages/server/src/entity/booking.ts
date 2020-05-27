@@ -59,6 +59,9 @@ export class Booking extends BaseEntity {
   @Column("boolean", { default: false })
   status: boolean;
 
+  @Column("decimal", { default: "0" })
+  Total: number;
+
   @OneToOne(() => Transaction)
   @JoinColumn()
   transaction: Transaction;

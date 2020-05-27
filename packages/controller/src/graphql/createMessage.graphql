@@ -1,0 +1,3 @@
+mutation createMessage($content: String, $recipientId: String) {
+  createMessage(message: { content: $content, recipientId: $recipientId })
+}

@@ -1,0 +1,24 @@
+# this query will find the user of a certain service
+# in case someone need to send a message
+# to the user of a certain service
+
+query searchServicesUser($ServiceId: String) {
+  ServiceUser(ServiceId: $ServiceId) {
+    id
+    username
+    email
+    service {
+      id
+      name
+      description
+      coutryId
+      stateId
+      cityId
+      Taxes
+      Adress
+      rating
+      price
+      ownerId
+    }
+  }
+}

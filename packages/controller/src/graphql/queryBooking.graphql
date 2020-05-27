@@ -1,0 +1,12 @@
+query QueryBooking($serviceId: String, $date: String) {
+  QueryBooking(serviceId: $serviceId, date: $date) {
+    startService
+    endService
+    price
+    taxes
+    depositAmount
+    isRefund
+    transactionFee
+    Total
+  }
+}

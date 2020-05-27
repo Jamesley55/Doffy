@@ -10,17 +10,17 @@ type Subscription {
 }
 
 type Service {
-  name: String!
-  category: String!
-  description: String!
+  name: String
+  category: String
+  description: String
   coutryId: String
   stateId: String
   cityId: String
-  Taxes: Boolean!
+  Taxes: Boolean
   Adress: String
-  price: Float!
-  payoutSchedule: String!
-  customerBillingStatement: String!
+  price: Float
+  payoutSchedule: String
+  customerBillingStatement: String
   latitude: Float
   longitude: Float
 }
@@ -29,8 +29,8 @@ type User {
   username: String
   email: String
   service: Service
-  notification: Notification
-  messages: Message
+  notification: [Notification!]
+  messages: [Message!]
 }
 
 type service {
@@ -50,6 +50,7 @@ type service {
 
 type Me {
   user: User
+  sessionId: String
   service: [service]
 }
 

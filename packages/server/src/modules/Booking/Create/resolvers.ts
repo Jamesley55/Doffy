@@ -52,6 +52,9 @@ export const createBooking: IResolvers = {
       }
       let createbooking;
       if (isbetween) {
+        let Total;
+        if (service && taxes) Total = service.price + taxes;
+
         createbooking = await Booking.create({
           serviceId,
           date,
@@ -61,6 +64,7 @@ export const createBooking: IResolvers = {
           taxes,
           depositAmount: service?.depositAmount,
           isRefund: service?.isRefund,
+          Total,
         }).save();
         console.log(createbooking);
         const senderId = session.userId;
@@ -80,7 +84,7 @@ export const createBooking: IResolvers = {
           newNotification: databaseNotification,
         });
 
-        console.log("notifiID", databaseNotification.id);
+        console.log("booking", createbooking.price + createbooking.taxes);
         return {
           booking: {
             startService: createbooking.startService,
@@ -90,7 +94,7 @@ export const createBooking: IResolvers = {
             depositAmount: createbooking.depositAmount,
             isRefund: createbooking.isRefund,
             transactionFee: createbooking.transaction,
-            Total: createbooking.price + createbooking.taxes,
+            Total,
           },
         };
       } else {

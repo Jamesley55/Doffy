@@ -4,6 +4,6 @@ mutation Login($email: String!, $password: String!) {
       path
       message
     }
-    sessionID
+    sessionId
   }
 }

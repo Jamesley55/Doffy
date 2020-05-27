@@ -1,0 +1,42 @@
+# this query is for the feature search of the app
+# it will return either a user or a service or both depend on what
+# the user  search
+query searchServicesUser($search: String, $offset: Int, $limit: Int) {
+  searchServicesUser(search: $search, offset: $offset, limit: $limit) {
+    user {
+      username
+      email
+      service {
+        id
+        name
+        description
+        coutryId
+        stateId
+        cityId
+        Taxes
+        Adress
+        rating
+        price
+        ownerId
+      }
+    }
+    service {
+      id
+      name
+      description
+      coutryId
+      stateId
+      cityId
+      Taxes
+      Adress
+      rating
+      price
+      ownerId
+    }
+  }
+}
+
+#offset is like the number of  the page.
+# that mean if we are on page  we want  to check on the first page
+# we put offset to 1
+# Limit is the number of content in one page

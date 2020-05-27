@@ -11,6 +11,7 @@ COPY  package.json  ./
 COPY ./packages/server/package.json ./packages/server/
 COPY ./packages/common/package.json ./packages/common/
 
+RUN npm install yarn 
 RUN yarn install --production
 
 COPY ./packages/server/dist ./packages/server/dist

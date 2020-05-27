@@ -1,20 +1,43 @@
+import { Notification } from "./../../../entity/notification";
 import { User } from "../../../entity/User";
 import { IResolvers } from "apollo-server-express";
 import { Service } from "../../../entity/service";
+import { Message } from "../../../entity/message";
+import { getConnection } from "typeorm";
 
 export const Me: IResolvers = {
   Query: {
-    me: async (_, __, { session }) => {
+    me: async (_, __, { session, req }) => {
       const user = await User.findOne({ where: { id: session.userId } });
       const userId = user?.id;
+      const notification = await Notification.find({
+        where: { recipientId: userId },
+      });
+      const senderId = session.userId;
+      const recipientId = senderId;
+      let MessageQB = getConnection()
+        .getRepository(Message)
+        .createQueryBuilder("m");
+
+      MessageQB = MessageQB.andWhere("m.senderId = :senderId", {
+        senderId,
+      }).orWhere("m.recipientId = :recipientId", { recipientId });
+      const messages = await MessageQB.getMany();
+
       let service;
-      service =
-        user?.userType === "serviceProvider"
-          ? await Service.find({ where: { ownerId: userId } })
-          : null;
+      service = await Service.find({ where: { ownerId: userId } });
+
       const userService = {
-        user,
+        user: {
+          id: user?.id,
+          username: user?.username,
+          email: user?.email,
+          service,
+          notification,
+          messages,
+        },
         service,
+        sessionId: req.sessionID,
       };
       return userService;
     },

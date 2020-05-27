@@ -15,7 +15,7 @@ let Transaction = class Transaction extends typeorm_1.BaseEntity {
 __decorate([
     typeorm_1.PrimaryGeneratedColumn("uuid"),
     __metadata("design:type", String)
-], Transaction.prototype, "id", void 0);
+], Transaction.prototype, "transactionId", void 0);
 __decorate([
     typeorm_1.Column("uuid"),
     __metadata("design:type", String)

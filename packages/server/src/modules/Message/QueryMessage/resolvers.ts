@@ -7,7 +7,6 @@ export const findMessage: IResolvers = {
     messages: async (_, {}, { session }) => {
       const senderId = session.userId;
       const recipientId = senderId;
-      console.log("sessionID", recipientId);
       let MessageQB = getConnection()
         .getRepository(Message)
         .createQueryBuilder("m");
@@ -16,7 +15,6 @@ export const findMessage: IResolvers = {
         senderId,
       }).orWhere("m.recipientId = :recipientId", { recipientId });
       const response = await MessageQB.getMany();
-      console.log(response);
       return response;
     },
   },

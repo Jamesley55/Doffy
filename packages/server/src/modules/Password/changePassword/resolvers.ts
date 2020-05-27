@@ -1,7 +1,6 @@
 import { User } from "./../../../entity/User";
 import { IResolvers } from "apollo-server-express";
 import * as bcrypt from "bcryptjs";
-import { forgotPassword } from "../forgotPassword/resolvers";
 import { redis } from "../../../redis";
 import { MutationChangePasswordArgs } from "../../../types/graphql-hooks";
 import { forgetPasswordPrefix } from "../../../Utils/constant/redisPrefix";
@@ -12,7 +11,8 @@ export const changePassword: IResolvers = {
   Mutation: {
     changePassword: async (
       _,
-      { token, password }: MutationChangePasswordArgs
+      { token, password }: MutationChangePasswordArgs,
+      { req }
     ) => {
       const userId = await redis.get(forgetPasswordPrefix + token);
 
@@ -24,10 +24,15 @@ export const changePassword: IResolvers = {
         return null;
       }
       user.password = await bcrypt.hash(password, 10);
-      await redis.del(forgotPassword + token);
+      await redis.del(forgetPasswordPrefix + token);
       user.save();
 
-      return user;
+      return {
+        id: user.id,
+        username: user.username,
+        email: user.email,
+        sessionId: req.sessionID,
+      };
     },
   },
 };

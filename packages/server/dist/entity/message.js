@@ -10,20 +10,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
+const User_1 = require("./User");
 var MessageType;
 (function (MessageType) {
     MessageType[MessageType["TEXT"] = 0] = "TEXT";
     MessageType[MessageType["LOCATION"] = 1] = "LOCATION";
     MessageType[MessageType["PICTURE"] = 2] = "PICTURE";
 })(MessageType = exports.MessageType || (exports.MessageType = {}));
-let Message = class Message {
+let Message = class Message extends typeorm_1.BaseEntity {
 };
 __decorate([
     typeorm_1.PrimaryGeneratedColumn(),
     __metadata("design:type", Number)
 ], Message.prototype, "id", void 0);
 __decorate([
-    typeorm_1.Column(),
+    typeorm_1.Column("text"),
     __metadata("design:type", String)
 ], Message.prototype, "content", void 0);
 __decorate([
@@ -34,6 +35,19 @@ __decorate([
     typeorm_1.Column({ nullable: true }),
     __metadata("design:type", Number)
 ], Message.prototype, "type", void 0);
+__decorate([
+    typeorm_1.Column("uuid"),
+    __metadata("design:type", String)
+], Message.prototype, "senderId", void 0);
+__decorate([
+    typeorm_1.Column("uuid"),
+    __metadata("design:type", String)
+], Message.prototype, "recipientId", void 0);
+__decorate([
+    typeorm_1.ManyToOne(() => User_1.User, (user) => user.message),
+    typeorm_1.JoinColumn({ name: "senderId" }),
+    __metadata("design:type", User_1.User)
+], Message.prototype, "user", void 0);
 Message = __decorate([
     typeorm_1.Entity("message")
 ], Message);

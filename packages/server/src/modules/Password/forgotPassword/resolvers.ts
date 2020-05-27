@@ -18,7 +18,7 @@ export const forgotPassword: IResolvers = {
       }
       const token = generate(9);
       console.log(token);
-      await redis.hmset(
+      await redis.set(
         forgetPasswordPrefix + token,
         user.id,
         "ex",

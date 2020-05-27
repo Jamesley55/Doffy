@@ -1,0 +1,13 @@
+query notification{
+{
+  notification {
+    message {
+      Title
+      Body
+    }
+    senderId
+    recipientId
+    createdDate
+  }
+}
+}

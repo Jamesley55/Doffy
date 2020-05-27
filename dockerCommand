@@ -1,0 +1,19 @@
+yarn docker-build // to build the docker image
+
+yarn docker-push // to push the docker  image to the Docker dinamo server 
+
+killall node // to kill all express-server running 
+
+sudo docker pull doffyinc/ec2:1.0.1 // to pull the docker image into the AWS ubuntu server 
+
+screen // create a screen to run the docker container even afer the aws console 
+       // is closed 
+
+sudo docker ps -a  // find all docker container inside the server 
+
+sudo docker run --net="host" -d  doffyinc/ec2:1.0.1 // running a docker container
+
+sudo docker container rm -f ca3ba726575c // remove a running a docker container 
+
+
+

@@ -1,0 +1,15 @@
+query ServiceByCategory($category: String!) {
+  ServiceByCategory(category: $category) {
+    id
+    name
+    description
+    coutryId
+    stateId
+    cityId
+    Taxes
+    Adress
+    rating
+    price
+    ownerId
+  }
+}

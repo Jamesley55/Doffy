@@ -6,7 +6,9 @@
   ],
   "scripts": {
     "react": "lerna run react --parallel --stream",
-    "new-version": "lerna version --conventional-commits --yes --force-publish"
+    "new-version": "lerna version --conventional-commits --yes --force-publish",
+    "docker-build": "docker build  -t doffyinc/ec2:1.0.1 .",
+    "docker-push": "sudo docker push doffyinc/ec2:1.0.1"
   },
   "devDependencies": {
     "lerna": "^3.20.2"

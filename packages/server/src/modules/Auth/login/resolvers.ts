@@ -16,34 +16,45 @@ export const loginResolver: IResolvers = {
       { req, session, redis }
     ) => {
       const user = await User.findOne({ where: { email } });
+      console.log("arriver", user);
       if (!user) {
-        return null;
+        return {
+          errors: [
+            {
+              path: "user",
+              message: "no user with that email exit",
+            },
+          ],
+        };
       }
       const valid = await bcrypt.compare(password, user.password);
+
       if (!valid) {
-        return [
-          {
-            path: "email",
-            message: invalidLogin,
-          },
-        ];
+        return {
+          errors: [
+            {
+              path: "email",
+              message: invalidLogin,
+            },
+          ],
+        };
       }
       if (!user.confirm) {
-        return [
-          {
-            path: "email",
-            message: confirmEmailError,
-          },
-        ];
+        return {
+          errors: [
+            {
+              path: "email",
+              message: confirmEmailError,
+            },
+          ],
+        };
       }
       session.userId = user.id;
-      console.log("session Userid", session.userId);
 
       if (req.sessionID) {
         await redis.lpush(`${userSessionIdPrefix}${user.id}`, req.sessionID);
       }
-      console.log("sessionId", req.sessionID);
-      return [{ sessionId: req.sessionID }];
+      return { sessionId: req.sessionID };
     },
   },
 };

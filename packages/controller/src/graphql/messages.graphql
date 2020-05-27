@@ -1,0 +1,8 @@
+query Message {
+  messages {
+    content
+    senderId
+    recipientId
+    createdAt
+  }
+}
