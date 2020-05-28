@@ -41,8 +41,8 @@ input Schedulebool {
   sunday: Boolean
 }
 input StartEnd {
-  StartTime: Int
-  EndTime: Int
+  StartTime: Float
+  EndTime: Float
 }
 type Time {
   StartTime: Int
@@ -95,6 +95,7 @@ type Service {
   id: String
   name: String
   pictureUrl: String
+  category: String
   description: String
   coutryId: String
   stateId: String
@@ -103,6 +104,10 @@ type Service {
   Adress: String
   rating: Int
   price: Float
+  payoutSchedule: String
+  customerBillingStatement: String
+  latitude: Float
+  longitude: Float
   ownerId: String
 }
 

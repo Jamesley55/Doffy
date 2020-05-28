@@ -140,22 +140,6 @@ export type RegisterResponse = {
   sessionId?: Maybe<Scalars['String']>;
 };
 
-export type Service = {
-   __typename?: 'service';
-  id?: Maybe<Scalars['String']>;
-  name?: Maybe<Scalars['String']>;
-  pictureUrl?: Maybe<Scalars['String']>;
-  description?: Maybe<Scalars['String']>;
-  coutryId?: Maybe<Scalars['String']>;
-  stateId?: Maybe<Scalars['String']>;
-  cityId?: Maybe<Scalars['String']>;
-  Taxes?: Maybe<Scalars['Boolean']>;
-  Adress?: Maybe<Scalars['String']>;
-  rating?: Maybe<Scalars['Int']>;
-  price?: Maybe<Scalars['Float']>;
-  ownerId?: Maybe<Scalars['String']>;
-};
-
 export type Me = {
    __typename?: 'Me';
   user?: Maybe<User>;
@@ -205,7 +189,9 @@ export type QueryQueryBookingArgs = {
 
 export type Service = {
    __typename?: 'Service';
+  id?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
+  pictureUrl?: Maybe<Scalars['String']>;
   category?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
   coutryId?: Maybe<Scalars['String']>;
@@ -213,14 +199,12 @@ export type Service = {
   cityId?: Maybe<Scalars['String']>;
   Taxes?: Maybe<Scalars['Boolean']>;
   Adress?: Maybe<Scalars['String']>;
+  rating?: Maybe<Scalars['Int']>;
   price?: Maybe<Scalars['Float']>;
   payoutSchedule?: Maybe<Scalars['String']>;
   customerBillingStatement?: Maybe<Scalars['String']>;
   latitude?: Maybe<Scalars['Float']>;
   longitude?: Maybe<Scalars['Float']>;
-  id?: Maybe<Scalars['String']>;
-  pictureUrl?: Maybe<Scalars['String']>;
-  rating?: Maybe<Scalars['Int']>;
   ownerId?: Maybe<Scalars['String']>;
 };
 
@@ -350,8 +334,8 @@ export type Calendar = {
 };
 
 export type StartEnd = {
-  StartTime?: Maybe<Scalars['Int']>;
-  EndTime?: Maybe<Scalars['Int']>;
+  StartTime?: Maybe<Scalars['Float']>;
+  EndTime?: Maybe<Scalars['Float']>;
 };
 
 export type Time = {
@@ -409,6 +393,27 @@ export type ChangePasswordMutation = (
   )> }
 );
 
+export type CreateBookingMutationVariables = {
+  serviceId: Scalars['String'];
+  date: Scalars['String'];
+  startService: Scalars['Float'];
+};
+
+
+export type CreateBookingMutation = (
+  { __typename?: 'Mutation' }
+  & { createBooking?: Maybe<(
+    { __typename?: 'BookingResponse' }
+    & { errors?: Maybe<(
+      { __typename?: 'Error' }
+      & Pick<Error, 'path' | 'message'>
+    )>, booking?: Maybe<(
+      { __typename?: 'Booking' }
+      & Pick<Booking, 'startService' | 'endService' | 'price' | 'taxes' | 'depositAmount' | 'isRefund' | 'transactionFee' | 'Total'>
+    )> }
+  )> }
+);
+
 export type CreateMessageMutationVariables = {
   content: Scalars['String'];
   recipientId: Scalars['String'];
@@ -418,6 +423,38 @@ export type CreateMessageMutationVariables = {
 export type CreateMessageMutation = (
   { __typename?: 'Mutation' }
   & Pick<Mutation, 'createMessage'>
+);
+
+export type CreateNotificationMutationVariables = {
+  input?: Maybe<Input>;
+};
+
+
+export type CreateNotificationMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'createNotification'>
+);
+
+export type CreateServiceMutationVariables = {
+  inputService?: Maybe<CreateServices>;
+  ScheduleBool?: Maybe<Schedulebool>;
+  ScheduleTime?: Maybe<ScheduleTime>;
+};
+
+
+export type CreateServiceMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'createService'>
+);
+
+export type DeleteServiceMutationVariables = {
+  ServiceId: Scalars['String'];
+};
+
+
+export type DeleteServiceMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'DeleteService'>
 );
 
 export type FindServiceCalendarQueryVariables = {
@@ -527,7 +564,7 @@ export type MeQuery = (
         & Pick<Message, 'content' | 'senderId' | 'recipientId' | 'createdAt'>
       )>> }
     )>, service?: Maybe<Array<Maybe<(
-      { __typename?: 'service' }
+      { __typename?: 'Service' }
       & Pick<Service, 'id' | 'name' | 'pictureUrl' | 'description' | 'coutryId' | 'stateId' | 'cityId' | 'Taxes' | 'Adress' | 'rating' | 'price' | 'ownerId'>
     )>>> }
   )> }
@@ -663,6 +700,30 @@ export type SignS3Mutation = (
   ) }
 );
 
+export type UpdateBookingMutationVariables = {
+  NotificationId: Scalars['String'];
+  response?: Maybe<Scalars['Boolean']>;
+};
+
+
+export type UpdateBookingMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'updateBooking'>
+);
+
+export type UpdateServiceMutationVariables = {
+  serviceId: Scalars['String'];
+  inputService?: Maybe<UpdateServices>;
+  ScheduleBool?: Maybe<Schedulebool>;
+  ScheduleTime?: Maybe<ScheduleTime>;
+};
+
+
+export type UpdateServiceMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'updateService'>
+);
+
 
 export const ChangePasswordDocument = gql`
     mutation changePassword($token: Int!, $password: String!) {
@@ -700,6 +761,53 @@ export function useChangePasswordMutation(baseOptions?: ApolloReactHooks.Mutatio
 export type ChangePasswordMutationHookResult = ReturnType<typeof useChangePasswordMutation>;
 export type ChangePasswordMutationResult = ApolloReactCommon.MutationResult<ChangePasswordMutation>;
 export type ChangePasswordMutationOptions = ApolloReactCommon.BaseMutationOptions<ChangePasswordMutation, ChangePasswordMutationVariables>;
+export const CreateBookingDocument = gql`
+    mutation createBooking($serviceId: String!, $date: String!, $startService: Float!) {
+  createBooking(serviceId: $serviceId, date: $date, startService: $startService) {
+    errors {
+      path
+      message
+    }
+    booking {
+      startService
+      endService
+      price
+      taxes
+      depositAmount
+      isRefund
+      transactionFee
+      Total
+    }
+  }
+}
+    `;
+export type CreateBookingMutationFn = ApolloReactCommon.MutationFunction<CreateBookingMutation, CreateBookingMutationVariables>;
+
+/**
+ * __useCreateBookingMutation__
+ *
+ * To run a mutation, you first call `useCreateBookingMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateBookingMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createBookingMutation, { data, loading, error }] = useCreateBookingMutation({
+ *   variables: {
+ *      serviceId: // value for 'serviceId'
+ *      date: // value for 'date'
+ *      startService: // value for 'startService'
+ *   },
+ * });
+ */
+export function useCreateBookingMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<CreateBookingMutation, CreateBookingMutationVariables>) {
+        return ApolloReactHooks.useMutation<CreateBookingMutation, CreateBookingMutationVariables>(CreateBookingDocument, baseOptions);
+      }
+export type CreateBookingMutationHookResult = ReturnType<typeof useCreateBookingMutation>;
+export type CreateBookingMutationResult = ApolloReactCommon.MutationResult<CreateBookingMutation>;
+export type CreateBookingMutationOptions = ApolloReactCommon.BaseMutationOptions<CreateBookingMutation, CreateBookingMutationVariables>;
 export const CreateMessageDocument = gql`
     mutation createMessage($content: String!, $recipientId: String!) {
   createMessage(message: {content: $content, recipientId: $recipientId})
@@ -731,6 +839,98 @@ export function useCreateMessageMutation(baseOptions?: ApolloReactHooks.Mutation
 export type CreateMessageMutationHookResult = ReturnType<typeof useCreateMessageMutation>;
 export type CreateMessageMutationResult = ApolloReactCommon.MutationResult<CreateMessageMutation>;
 export type CreateMessageMutationOptions = ApolloReactCommon.BaseMutationOptions<CreateMessageMutation, CreateMessageMutationVariables>;
+export const CreateNotificationDocument = gql`
+    mutation createNotification($input: input) {
+  createNotification(input: $input)
+}
+    `;
+export type CreateNotificationMutationFn = ApolloReactCommon.MutationFunction<CreateNotificationMutation, CreateNotificationMutationVariables>;
+
+/**
+ * __useCreateNotificationMutation__
+ *
+ * To run a mutation, you first call `useCreateNotificationMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateNotificationMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createNotificationMutation, { data, loading, error }] = useCreateNotificationMutation({
+ *   variables: {
+ *      input: // value for 'input'
+ *   },
+ * });
+ */
+export function useCreateNotificationMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<CreateNotificationMutation, CreateNotificationMutationVariables>) {
+        return ApolloReactHooks.useMutation<CreateNotificationMutation, CreateNotificationMutationVariables>(CreateNotificationDocument, baseOptions);
+      }
+export type CreateNotificationMutationHookResult = ReturnType<typeof useCreateNotificationMutation>;
+export type CreateNotificationMutationResult = ApolloReactCommon.MutationResult<CreateNotificationMutation>;
+export type CreateNotificationMutationOptions = ApolloReactCommon.BaseMutationOptions<CreateNotificationMutation, CreateNotificationMutationVariables>;
+export const CreateServiceDocument = gql`
+    mutation createService($inputService: CreateServices, $ScheduleBool: Schedulebool, $ScheduleTime: ScheduleTime) {
+  createService(inputService: $inputService, ScheduleBool: $ScheduleBool, ScheduleTime: $ScheduleTime)
+}
+    `;
+export type CreateServiceMutationFn = ApolloReactCommon.MutationFunction<CreateServiceMutation, CreateServiceMutationVariables>;
+
+/**
+ * __useCreateServiceMutation__
+ *
+ * To run a mutation, you first call `useCreateServiceMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateServiceMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createServiceMutation, { data, loading, error }] = useCreateServiceMutation({
+ *   variables: {
+ *      inputService: // value for 'inputService'
+ *      ScheduleBool: // value for 'ScheduleBool'
+ *      ScheduleTime: // value for 'ScheduleTime'
+ *   },
+ * });
+ */
+export function useCreateServiceMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<CreateServiceMutation, CreateServiceMutationVariables>) {
+        return ApolloReactHooks.useMutation<CreateServiceMutation, CreateServiceMutationVariables>(CreateServiceDocument, baseOptions);
+      }
+export type CreateServiceMutationHookResult = ReturnType<typeof useCreateServiceMutation>;
+export type CreateServiceMutationResult = ApolloReactCommon.MutationResult<CreateServiceMutation>;
+export type CreateServiceMutationOptions = ApolloReactCommon.BaseMutationOptions<CreateServiceMutation, CreateServiceMutationVariables>;
+export const DeleteServiceDocument = gql`
+    mutation DeleteService($ServiceId: String!) {
+  DeleteService(ServiceId: $ServiceId)
+}
+    `;
+export type DeleteServiceMutationFn = ApolloReactCommon.MutationFunction<DeleteServiceMutation, DeleteServiceMutationVariables>;
+
+/**
+ * __useDeleteServiceMutation__
+ *
+ * To run a mutation, you first call `useDeleteServiceMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteServiceMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteServiceMutation, { data, loading, error }] = useDeleteServiceMutation({
+ *   variables: {
+ *      ServiceId: // value for 'ServiceId'
+ *   },
+ * });
+ */
+export function useDeleteServiceMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<DeleteServiceMutation, DeleteServiceMutationVariables>) {
+        return ApolloReactHooks.useMutation<DeleteServiceMutation, DeleteServiceMutationVariables>(DeleteServiceDocument, baseOptions);
+      }
+export type DeleteServiceMutationHookResult = ReturnType<typeof useDeleteServiceMutation>;
+export type DeleteServiceMutationResult = ApolloReactCommon.MutationResult<DeleteServiceMutation>;
+export type DeleteServiceMutationOptions = ApolloReactCommon.BaseMutationOptions<DeleteServiceMutation, DeleteServiceMutationVariables>;
 export const FindServiceCalendarDocument = gql`
     query findServiceCalendar($ServiceId: String!) {
   findServiceCalendar(ServiceId: $ServiceId) {
@@ -1347,3 +1547,67 @@ export function useSignS3Mutation(baseOptions?: ApolloReactHooks.MutationHookOpt
 export type SignS3MutationHookResult = ReturnType<typeof useSignS3Mutation>;
 export type SignS3MutationResult = ApolloReactCommon.MutationResult<SignS3Mutation>;
 export type SignS3MutationOptions = ApolloReactCommon.BaseMutationOptions<SignS3Mutation, SignS3MutationVariables>;
+export const UpdateBookingDocument = gql`
+    mutation updateBooking($NotificationId: String!, $response: Boolean) {
+  updateBooking(NotificationId: $NotificationId, response: $response)
+}
+    `;
+export type UpdateBookingMutationFn = ApolloReactCommon.MutationFunction<UpdateBookingMutation, UpdateBookingMutationVariables>;
+
+/**
+ * __useUpdateBookingMutation__
+ *
+ * To run a mutation, you first call `useUpdateBookingMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateBookingMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateBookingMutation, { data, loading, error }] = useUpdateBookingMutation({
+ *   variables: {
+ *      NotificationId: // value for 'NotificationId'
+ *      response: // value for 'response'
+ *   },
+ * });
+ */
+export function useUpdateBookingMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<UpdateBookingMutation, UpdateBookingMutationVariables>) {
+        return ApolloReactHooks.useMutation<UpdateBookingMutation, UpdateBookingMutationVariables>(UpdateBookingDocument, baseOptions);
+      }
+export type UpdateBookingMutationHookResult = ReturnType<typeof useUpdateBookingMutation>;
+export type UpdateBookingMutationResult = ApolloReactCommon.MutationResult<UpdateBookingMutation>;
+export type UpdateBookingMutationOptions = ApolloReactCommon.BaseMutationOptions<UpdateBookingMutation, UpdateBookingMutationVariables>;
+export const UpdateServiceDocument = gql`
+    mutation updateService($serviceId: String!, $inputService: UpdateServices, $ScheduleBool: Schedulebool, $ScheduleTime: ScheduleTime) {
+  updateService(serviceId: $serviceId, inputService: $inputService, ScheduleBool: $ScheduleBool, ScheduleTime: $ScheduleTime)
+}
+    `;
+export type UpdateServiceMutationFn = ApolloReactCommon.MutationFunction<UpdateServiceMutation, UpdateServiceMutationVariables>;
+
+/**
+ * __useUpdateServiceMutation__
+ *
+ * To run a mutation, you first call `useUpdateServiceMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateServiceMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateServiceMutation, { data, loading, error }] = useUpdateServiceMutation({
+ *   variables: {
+ *      serviceId: // value for 'serviceId'
+ *      inputService: // value for 'inputService'
+ *      ScheduleBool: // value for 'ScheduleBool'
+ *      ScheduleTime: // value for 'ScheduleTime'
+ *   },
+ * });
+ */
+export function useUpdateServiceMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<UpdateServiceMutation, UpdateServiceMutationVariables>) {
+        return ApolloReactHooks.useMutation<UpdateServiceMutation, UpdateServiceMutationVariables>(UpdateServiceDocument, baseOptions);
+      }
+export type UpdateServiceMutationHookResult = ReturnType<typeof useUpdateServiceMutation>;
+export type UpdateServiceMutationResult = ApolloReactCommon.MutationResult<UpdateServiceMutation>;
+export type UpdateServiceMutationOptions = ApolloReactCommon.BaseMutationOptions<UpdateServiceMutation, UpdateServiceMutationVariables>;

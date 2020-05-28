@@ -1,0 +1,3 @@
+mutation updateBooking($NotificationId: String!, $response: Boolean) {
+  updateBooking(NotificationId: $NotificationId, response: $response)
+}

@@ -24,10 +24,11 @@ type User {
   messages: [Message!]
 }
 
-type service {
+type Service {
   id: String
   name: String
   pictureUrl: String
+  category: String
   description: String
   coutryId: String
   stateId: String
@@ -36,13 +37,17 @@ type service {
   Adress: String
   rating: Int
   price: Float
+  payoutSchedule: String
+  customerBillingStatement: String
+  latitude: Float
+  longitude: Float
   ownerId: String
 }
 
 type Me {
   user: User
   sessionId: String
-  service: [service]
+  service: [Service]
 }
 
 type Query {

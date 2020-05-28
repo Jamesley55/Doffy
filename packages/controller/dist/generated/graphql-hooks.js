@@ -21,6 +21,30 @@ function useChangePasswordMutation(baseOptions) {
     return ApolloReactHooks.useMutation(exports.ChangePasswordDocument, baseOptions);
 }
 exports.useChangePasswordMutation = useChangePasswordMutation;
+exports.CreateBookingDocument = graphql_tag_1.default `
+    mutation createBooking($serviceId: String!, $date: String!, $startService: Float!) {
+  createBooking(serviceId: $serviceId, date: $date, startService: $startService) {
+    errors {
+      path
+      message
+    }
+    booking {
+      startService
+      endService
+      price
+      taxes
+      depositAmount
+      isRefund
+      transactionFee
+      Total
+    }
+  }
+}
+    `;
+function useCreateBookingMutation(baseOptions) {
+    return ApolloReactHooks.useMutation(exports.CreateBookingDocument, baseOptions);
+}
+exports.useCreateBookingMutation = useCreateBookingMutation;
 exports.CreateMessageDocument = graphql_tag_1.default `
     mutation createMessage($content: String!, $recipientId: String!) {
   createMessage(message: {content: $content, recipientId: $recipientId})
@@ -30,6 +54,33 @@ function useCreateMessageMutation(baseOptions) {
     return ApolloReactHooks.useMutation(exports.CreateMessageDocument, baseOptions);
 }
 exports.useCreateMessageMutation = useCreateMessageMutation;
+exports.CreateNotificationDocument = graphql_tag_1.default `
+    mutation createNotification($input: input) {
+  createNotification(input: $input)
+}
+    `;
+function useCreateNotificationMutation(baseOptions) {
+    return ApolloReactHooks.useMutation(exports.CreateNotificationDocument, baseOptions);
+}
+exports.useCreateNotificationMutation = useCreateNotificationMutation;
+exports.CreateServiceDocument = graphql_tag_1.default `
+    mutation createService($inputService: CreateServices, $ScheduleBool: Schedulebool, $ScheduleTime: ScheduleTime) {
+  createService(inputService: $inputService, ScheduleBool: $ScheduleBool, ScheduleTime: $ScheduleTime)
+}
+    `;
+function useCreateServiceMutation(baseOptions) {
+    return ApolloReactHooks.useMutation(exports.CreateServiceDocument, baseOptions);
+}
+exports.useCreateServiceMutation = useCreateServiceMutation;
+exports.DeleteServiceDocument = graphql_tag_1.default `
+    mutation DeleteService($ServiceId: String!) {
+  DeleteService(ServiceId: $ServiceId)
+}
+    `;
+function useDeleteServiceMutation(baseOptions) {
+    return ApolloReactHooks.useMutation(exports.DeleteServiceDocument, baseOptions);
+}
+exports.useDeleteServiceMutation = useDeleteServiceMutation;
 exports.FindServiceCalendarDocument = graphql_tag_1.default `
     query findServiceCalendar($ServiceId: String!) {
   findServiceCalendar(ServiceId: $ServiceId) {
@@ -371,4 +422,22 @@ function useSignS3Mutation(baseOptions) {
     return ApolloReactHooks.useMutation(exports.SignS3Document, baseOptions);
 }
 exports.useSignS3Mutation = useSignS3Mutation;
+exports.UpdateBookingDocument = graphql_tag_1.default `
+    mutation updateBooking($NotificationId: String!, $response: Boolean) {
+  updateBooking(NotificationId: $NotificationId, response: $response)
+}
+    `;
+function useUpdateBookingMutation(baseOptions) {
+    return ApolloReactHooks.useMutation(exports.UpdateBookingDocument, baseOptions);
+}
+exports.useUpdateBookingMutation = useUpdateBookingMutation;
+exports.UpdateServiceDocument = graphql_tag_1.default `
+    mutation updateService($serviceId: String!, $inputService: UpdateServices, $ScheduleBool: Schedulebool, $ScheduleTime: ScheduleTime) {
+  updateService(serviceId: $serviceId, inputService: $inputService, ScheduleBool: $ScheduleBool, ScheduleTime: $ScheduleTime)
+}
+    `;
+function useUpdateServiceMutation(baseOptions) {
+    return ApolloReactHooks.useMutation(exports.UpdateServiceDocument, baseOptions);
+}
+exports.useUpdateServiceMutation = useUpdateServiceMutation;
 //# sourceMappingURL=graphql-hooks.js.map

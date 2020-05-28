@@ -1,0 +1,14 @@
+input MessageInput {
+  content: String!
+  recipientId: String!
+}
+
+input input {
+  BookingRequest: Boolean!
+  recipientId: String!
+  message: MessageNotif
+}
+
+mutation createNotification($input: input) {
+  createNotification(input: $input)
+}

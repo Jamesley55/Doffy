@@ -1,0 +1,26 @@
+mutation createBooking(
+  $serviceId: String!
+  $date: String!
+  $startService: Float!
+) {
+  createBooking(
+    serviceId: $serviceId
+    date: $date
+    startService: $startService
+  ) {
+    errors {
+      path
+      message
+    }
+    booking {
+      startService
+      endService
+      price
+      taxes
+      depositAmount
+      isRefund
+      transactionFee
+      Total
+    }
+  }
+}

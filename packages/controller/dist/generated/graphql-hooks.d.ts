@@ -105,21 +105,6 @@ export declare type RegisterResponse = {
     errors?: Maybe<Array<Error>>;
     sessionId?: Maybe<Scalars['String']>;
 };
-export declare type Service = {
-    __typename?: 'service';
-    id?: Maybe<Scalars['String']>;
-    name?: Maybe<Scalars['String']>;
-    pictureUrl?: Maybe<Scalars['String']>;
-    description?: Maybe<Scalars['String']>;
-    coutryId?: Maybe<Scalars['String']>;
-    stateId?: Maybe<Scalars['String']>;
-    cityId?: Maybe<Scalars['String']>;
-    Taxes?: Maybe<Scalars['Boolean']>;
-    Adress?: Maybe<Scalars['String']>;
-    rating?: Maybe<Scalars['Int']>;
-    price?: Maybe<Scalars['Float']>;
-    ownerId?: Maybe<Scalars['String']>;
-};
 export declare type Me = {
     __typename?: 'Me';
     user?: Maybe<User>;
@@ -157,7 +142,9 @@ export declare type QueryQueryBookingArgs = {
 };
 export declare type Service = {
     __typename?: 'Service';
+    id?: Maybe<Scalars['String']>;
     name?: Maybe<Scalars['String']>;
+    pictureUrl?: Maybe<Scalars['String']>;
     category?: Maybe<Scalars['String']>;
     description?: Maybe<Scalars['String']>;
     coutryId?: Maybe<Scalars['String']>;
@@ -165,14 +152,12 @@ export declare type Service = {
     cityId?: Maybe<Scalars['String']>;
     Taxes?: Maybe<Scalars['Boolean']>;
     Adress?: Maybe<Scalars['String']>;
+    rating?: Maybe<Scalars['Int']>;
     price?: Maybe<Scalars['Float']>;
     payoutSchedule?: Maybe<Scalars['String']>;
     customerBillingStatement?: Maybe<Scalars['String']>;
     latitude?: Maybe<Scalars['Float']>;
     longitude?: Maybe<Scalars['Float']>;
-    id?: Maybe<Scalars['String']>;
-    pictureUrl?: Maybe<Scalars['String']>;
-    rating?: Maybe<Scalars['Int']>;
     ownerId?: Maybe<Scalars['String']>;
 };
 export declare type Notification = {
@@ -285,8 +270,8 @@ export declare type Calendar = {
     sundaySchedule?: Maybe<Time>;
 };
 export declare type StartEnd = {
-    StartTime?: Maybe<Scalars['Int']>;
-    EndTime?: Maybe<Scalars['Int']>;
+    StartTime?: Maybe<Scalars['Float']>;
+    EndTime?: Maybe<Scalars['Float']>;
 };
 export declare type Time = {
     __typename?: 'Time';
@@ -333,6 +318,25 @@ export declare type ChangePasswordMutation = ({
         __typename?: 'User';
     } & Pick<User, 'id' | 'email' | 'username' | 'sessionId'>)>;
 });
+export declare type CreateBookingMutationVariables = {
+    serviceId: Scalars['String'];
+    date: Scalars['String'];
+    startService: Scalars['Float'];
+};
+export declare type CreateBookingMutation = ({
+    __typename?: 'Mutation';
+} & {
+    createBooking?: Maybe<({
+        __typename?: 'BookingResponse';
+    } & {
+        errors?: Maybe<({
+            __typename?: 'Error';
+        } & Pick<Error, 'path' | 'message'>)>;
+        booking?: Maybe<({
+            __typename?: 'Booking';
+        } & Pick<Booking, 'startService' | 'endService' | 'price' | 'taxes' | 'depositAmount' | 'isRefund' | 'transactionFee' | 'Total'>)>;
+    })>;
+});
 export declare type CreateMessageMutationVariables = {
     content: Scalars['String'];
     recipientId: Scalars['String'];
@@ -340,6 +344,26 @@ export declare type CreateMessageMutationVariables = {
 export declare type CreateMessageMutation = ({
     __typename?: 'Mutation';
 } & Pick<Mutation, 'createMessage'>);
+export declare type CreateNotificationMutationVariables = {
+    input?: Maybe<Input>;
+};
+export declare type CreateNotificationMutation = ({
+    __typename?: 'Mutation';
+} & Pick<Mutation, 'createNotification'>);
+export declare type CreateServiceMutationVariables = {
+    inputService?: Maybe<CreateServices>;
+    ScheduleBool?: Maybe<Schedulebool>;
+    ScheduleTime?: Maybe<ScheduleTime>;
+};
+export declare type CreateServiceMutation = ({
+    __typename?: 'Mutation';
+} & Pick<Mutation, 'createService'>);
+export declare type DeleteServiceMutationVariables = {
+    ServiceId: Scalars['String'];
+};
+export declare type DeleteServiceMutation = ({
+    __typename?: 'Mutation';
+} & Pick<Mutation, 'DeleteService'>);
 export declare type FindServiceCalendarQueryVariables = {
     ServiceId: Scalars['String'];
 };
@@ -428,7 +452,7 @@ export declare type MeQuery = ({
             } & Pick<Message, 'content' | 'senderId' | 'recipientId' | 'createdAt'>)>>;
         })>;
         service?: Maybe<Array<Maybe<({
-            __typename?: 'service';
+            __typename?: 'Service';
         } & Pick<Service, 'id' | 'name' | 'pictureUrl' | 'description' | 'coutryId' | 'stateId' | 'cityId' | 'Taxes' | 'Adress' | 'rating' | 'price' | 'ownerId'>)>>>;
     })>;
 });
@@ -539,18 +563,58 @@ export declare type SignS3Mutation = ({
         __typename?: 'S3Payload';
     } & Pick<S3Payload, 'url' | 'signedRequest'>);
 });
+export declare type UpdateBookingMutationVariables = {
+    NotificationId: Scalars['String'];
+    response?: Maybe<Scalars['Boolean']>;
+};
+export declare type UpdateBookingMutation = ({
+    __typename?: 'Mutation';
+} & Pick<Mutation, 'updateBooking'>);
+export declare type UpdateServiceMutationVariables = {
+    serviceId: Scalars['String'];
+    inputService?: Maybe<UpdateServices>;
+    ScheduleBool?: Maybe<Schedulebool>;
+    ScheduleTime?: Maybe<ScheduleTime>;
+};
+export declare type UpdateServiceMutation = ({
+    __typename?: 'Mutation';
+} & Pick<Mutation, 'updateService'>);
 export declare const ChangePasswordDocument: import("graphql").DocumentNode;
 export declare type ChangePasswordMutationFn = ApolloReactCommon.MutationFunction<ChangePasswordMutation, ChangePasswordMutationVariables>;
 export declare function useChangePasswordMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<ChangePasswordMutation, ChangePasswordMutationVariables>): ApolloReactHooks.MutationTuple<ChangePasswordMutation, ChangePasswordMutationVariables>;
 export declare type ChangePasswordMutationHookResult = ReturnType<typeof useChangePasswordMutation>;
 export declare type ChangePasswordMutationResult = ApolloReactCommon.MutationResult<ChangePasswordMutation>;
 export declare type ChangePasswordMutationOptions = ApolloReactCommon.BaseMutationOptions<ChangePasswordMutation, ChangePasswordMutationVariables>;
+export declare const CreateBookingDocument: import("graphql").DocumentNode;
+export declare type CreateBookingMutationFn = ApolloReactCommon.MutationFunction<CreateBookingMutation, CreateBookingMutationVariables>;
+export declare function useCreateBookingMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<CreateBookingMutation, CreateBookingMutationVariables>): ApolloReactHooks.MutationTuple<CreateBookingMutation, CreateBookingMutationVariables>;
+export declare type CreateBookingMutationHookResult = ReturnType<typeof useCreateBookingMutation>;
+export declare type CreateBookingMutationResult = ApolloReactCommon.MutationResult<CreateBookingMutation>;
+export declare type CreateBookingMutationOptions = ApolloReactCommon.BaseMutationOptions<CreateBookingMutation, CreateBookingMutationVariables>;
 export declare const CreateMessageDocument: import("graphql").DocumentNode;
 export declare type CreateMessageMutationFn = ApolloReactCommon.MutationFunction<CreateMessageMutation, CreateMessageMutationVariables>;
 export declare function useCreateMessageMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<CreateMessageMutation, CreateMessageMutationVariables>): ApolloReactHooks.MutationTuple<CreateMessageMutation, CreateMessageMutationVariables>;
 export declare type CreateMessageMutationHookResult = ReturnType<typeof useCreateMessageMutation>;
 export declare type CreateMessageMutationResult = ApolloReactCommon.MutationResult<CreateMessageMutation>;
 export declare type CreateMessageMutationOptions = ApolloReactCommon.BaseMutationOptions<CreateMessageMutation, CreateMessageMutationVariables>;
+export declare const CreateNotificationDocument: import("graphql").DocumentNode;
+export declare type CreateNotificationMutationFn = ApolloReactCommon.MutationFunction<CreateNotificationMutation, CreateNotificationMutationVariables>;
+export declare function useCreateNotificationMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<CreateNotificationMutation, CreateNotificationMutationVariables>): ApolloReactHooks.MutationTuple<CreateNotificationMutation, CreateNotificationMutationVariables>;
+export declare type CreateNotificationMutationHookResult = ReturnType<typeof useCreateNotificationMutation>;
+export declare type CreateNotificationMutationResult = ApolloReactCommon.MutationResult<CreateNotificationMutation>;
+export declare type CreateNotificationMutationOptions = ApolloReactCommon.BaseMutationOptions<CreateNotificationMutation, CreateNotificationMutationVariables>;
+export declare const CreateServiceDocument: import("graphql").DocumentNode;
+export declare type CreateServiceMutationFn = ApolloReactCommon.MutationFunction<CreateServiceMutation, CreateServiceMutationVariables>;
+export declare function useCreateServiceMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<CreateServiceMutation, CreateServiceMutationVariables>): ApolloReactHooks.MutationTuple<CreateServiceMutation, CreateServiceMutationVariables>;
+export declare type CreateServiceMutationHookResult = ReturnType<typeof useCreateServiceMutation>;
+export declare type CreateServiceMutationResult = ApolloReactCommon.MutationResult<CreateServiceMutation>;
+export declare type CreateServiceMutationOptions = ApolloReactCommon.BaseMutationOptions<CreateServiceMutation, CreateServiceMutationVariables>;
+export declare const DeleteServiceDocument: import("graphql").DocumentNode;
+export declare type DeleteServiceMutationFn = ApolloReactCommon.MutationFunction<DeleteServiceMutation, DeleteServiceMutationVariables>;
+export declare function useDeleteServiceMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<DeleteServiceMutation, DeleteServiceMutationVariables>): ApolloReactHooks.MutationTuple<DeleteServiceMutation, DeleteServiceMutationVariables>;
+export declare type DeleteServiceMutationHookResult = ReturnType<typeof useDeleteServiceMutation>;
+export declare type DeleteServiceMutationResult = ApolloReactCommon.MutationResult<DeleteServiceMutation>;
+export declare type DeleteServiceMutationOptions = ApolloReactCommon.BaseMutationOptions<DeleteServiceMutation, DeleteServiceMutationVariables>;
 export declare const FindServiceCalendarDocument: import("graphql").DocumentNode;
 export declare function useFindServiceCalendarQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<FindServiceCalendarQuery, FindServiceCalendarQueryVariables>): ApolloReactCommon.QueryResult<FindServiceCalendarQuery, FindServiceCalendarQueryVariables>;
 export declare function useFindServiceCalendarLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<FindServiceCalendarQuery, FindServiceCalendarQueryVariables>): ApolloReactHooks.QueryTuple<FindServiceCalendarQuery, FindServiceCalendarQueryVariables>;
@@ -635,3 +699,15 @@ export declare function useSignS3Mutation(baseOptions?: ApolloReactHooks.Mutatio
 export declare type SignS3MutationHookResult = ReturnType<typeof useSignS3Mutation>;
 export declare type SignS3MutationResult = ApolloReactCommon.MutationResult<SignS3Mutation>;
 export declare type SignS3MutationOptions = ApolloReactCommon.BaseMutationOptions<SignS3Mutation, SignS3MutationVariables>;
+export declare const UpdateBookingDocument: import("graphql").DocumentNode;
+export declare type UpdateBookingMutationFn = ApolloReactCommon.MutationFunction<UpdateBookingMutation, UpdateBookingMutationVariables>;
+export declare function useUpdateBookingMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<UpdateBookingMutation, UpdateBookingMutationVariables>): ApolloReactHooks.MutationTuple<UpdateBookingMutation, UpdateBookingMutationVariables>;
+export declare type UpdateBookingMutationHookResult = ReturnType<typeof useUpdateBookingMutation>;
+export declare type UpdateBookingMutationResult = ApolloReactCommon.MutationResult<UpdateBookingMutation>;
+export declare type UpdateBookingMutationOptions = ApolloReactCommon.BaseMutationOptions<UpdateBookingMutation, UpdateBookingMutationVariables>;
+export declare const UpdateServiceDocument: import("graphql").DocumentNode;
+export declare type UpdateServiceMutationFn = ApolloReactCommon.MutationFunction<UpdateServiceMutation, UpdateServiceMutationVariables>;
+export declare function useUpdateServiceMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<UpdateServiceMutation, UpdateServiceMutationVariables>): ApolloReactHooks.MutationTuple<UpdateServiceMutation, UpdateServiceMutationVariables>;
+export declare type UpdateServiceMutationHookResult = ReturnType<typeof useUpdateServiceMutation>;
+export declare type UpdateServiceMutationResult = ApolloReactCommon.MutationResult<UpdateServiceMutation>;
+export declare type UpdateServiceMutationOptions = ApolloReactCommon.BaseMutationOptions<UpdateServiceMutation, UpdateServiceMutationVariables>;
