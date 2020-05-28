@@ -8,11 +8,11 @@ import * as ImagePicker from "expo-image-picker";
 import Constants from "expo-constants";
 import * as Permissions from "expo-permissions";
 import { formatFilename } from "../../../../shareFuction/formatFileName";
-import { useUploadS3Mutation } from "../../../../../controller/src/generated/graphql-hooks";
+import { useSignS3Mutation } from "../../../../../controller/src/generated/graphql-hooks";
 import { uploadToS3 } from "../../../../shareFuction/uploadS3";
 
 export function picDownload({ navigation }: any) {
-  const [uploadS3] = useUploadS3Mutation();
+  const [uploadS3] = useSignS3Mutation();
   const getPermissionAsync = async () => {
     if (Constants.platform?.ios) {
       const { status } = await Permissions.askAsync(
@@ -38,6 +38,7 @@ export function picDownload({ navigation }: any) {
         console.log(files);
         const response = await uploadS3({
           variables: {
+            id: "hdhdhdhd",
             filename: formatFilename(files.uri),
             filetype: files.type !== undefined ? files.type : "image",
           },

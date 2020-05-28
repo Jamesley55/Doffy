@@ -5,7 +5,7 @@ import IoniconsIcon from "react-native-vector-icons/Ionicons";
 import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import MaterialButtonPrimary from "../components/MaterialButtonPrimary";
 
-export function requestPage({ navigation }) {
+export async function requestPage({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.icon1Row}>
