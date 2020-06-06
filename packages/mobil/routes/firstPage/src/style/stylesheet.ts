@@ -6,7 +6,7 @@ export const firstPageStyle = StyleSheet.create({
   backgroundImage: {
     flex: 1,
     width: "100%",
-    aspectRatio: 2 / 3,
+    height: HEIGHT / 1.445,
     position: "absolute",
   },
   stack: {
@@ -43,19 +43,19 @@ export const firstPageStyle = StyleSheet.create({
   chercherService: {
     alignSelf: "center",
     color: "rgba(96,96,96,1)",
-    fontSize: 12,
+    fontSize: (WIDTH * 3) / 100,
     fontFamily: "armata-regular",
   },
   offrirService: {
     alignSelf: "center",
     color: "rgba(96,96,96,1)",
-    fontSize: 12,
+    fontSize: (WIDTH * 3) / 100,
     fontFamily: "armata-regular",
   },
   Text: {
     alignSelf: "center",
     color: "rgba(96,96,96,1)",
-    fontSize: 18,
+    fontSize: (WIDTH * 5) / 100,
     fontFamily: "armata-regular",
     top: (HEIGHT * 2) / 2.8,
     marginTop: WIDTH / 10,

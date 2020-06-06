@@ -3,15 +3,11 @@ import { StyleSheet, View, Text, Image } from "react-native";
 import MaterialButtonHamburger from "../components/MaterialButtonHamburger";
 import Icon from "react-native-vector-icons/Ionicons";
 import { ScrollView } from "react-native-gesture-handler";
-import { AuthContext } from "../../../Auth";
 import List from "../components/List";
 import { MeQuery } from "../../../schemaTypes";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
-import {
-  useQueryQuery,
-  useRegisterMutation,
-} from "../../../../../controller/src/generated/graphql-hooks";
+import { deleteSessionID } from "../../../../shareFuction/sessionId";
 
 interface Props {
   navigation: any;
@@ -26,7 +22,6 @@ const meQuery = gql`
 `;
 
 export class HomePage extends React.PureComponent<Props> {
-  static contextType = AuthContext;
   render() {
     return (
       <Query<MeQuery> query={meQuery}>
@@ -37,7 +32,14 @@ export class HomePage extends React.PureComponent<Props> {
                 <View style={styles.rect2StackStack}>
                   <View style={styles.rect2Stack}>
                     <View style={styles.rect2}>
-                      <Text style={styles.helloName}>Hello</Text>
+                      <Text
+                        style={styles.helloName}
+                        onPress={async () => {
+                          console.log(await deleteSessionID("sid"));
+                        }}
+                      >
+                        Hello
+                      </Text>
                     </View>
 
                     <MaterialButtonHamburger

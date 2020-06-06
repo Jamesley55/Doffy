@@ -1,97 +1,73 @@
-import React, { Component } from "react";
-import {
-  StyleSheet,
-  Image,
-  Text,
-  ScrollView,
-  TouchableOpacity,
-} from "react-native";
+import * as React from "react";
+import { Image, Text, ScrollView, TouchableOpacity } from "react-native";
 import { Item } from "native-base";
-import { RouteComponentProps } from "react-router";
-import {
-  FieldProps,
-  Field,
-  FormikErrors,
-  FormikProps,
-  withFormik,
-} from "formik";
+import { Field, FormikErrors, FormikProps, withFormik } from "formik";
 import { validationSchema } from "@doffy/common";
 import { InputField } from "../../../Conponent/InputField";
+import { registerStyle } from "../style/style";
+import { getSessionID } from "../../../../shareFuction/sessionId";
 interface FormValues {
   username: string;
   email: string;
   password: string;
   confirmPassword: string;
 }
+
 interface Props {
-  submit: (values: FormValues) => Promise<FormikErrors<FormValues> | null>;
-}
-interface state {
-  email: string;
-  emailError: boolean;
-  password: string;
-  passwordError: boolean;
-  confirmPassword: string;
-  confirmPasswordError: boolean;
+  submit: (values: FormValues) => Promise<FormikErrors<FormValues> | any>;
+  navigation: any;
 }
 
-export class R extends React.PureComponent<
-  FormikProps<FormValues> & Props,
-  state,
-  RouteComponentProps<{}>
-> {
-  textInput: {};
-  // constructor(props) {
-  //  super(props);
-  //  this.textInput = {};
-  // }
-  //
-  // focusNextTextInput(id) {
-  //  this.textInput[id].focus();
-  // }
-
+export class R extends React.PureComponent<FormikProps<FormValues> & Props> {
   render() {
-    const { handleChange, handleSubmit, touched, errors } = this.props;
+    const { handleSubmit } = this.props;
+    const { navigation } = this.props;
     return (
-      <ScrollView style={styles.container}>
-        <TouchableOpacity onPress={() => alert("image clicked")}>
+      <ScrollView style={registerStyle.container}>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("firstPage");
+          }}
+        >
           <Image
             source={require("../../../../logo/LogoJamesleyApp.png")}
-            resizeMode="contain"
-            style={styles.image1}
+            style={registerStyle.doffyImage}
           />
         </TouchableOpacity>
-        <Text style={styles.loremIpsum1}>
+        <Text style={registerStyle.Title}>
           Pease enter a username &amp; password
         </Text>
-        <Item>
+        <Item style={registerStyle.input}>
           <Field
             leftIcon={{ type: "Octicons", name: "email" }}
             name="username"
             placeholder="Username"
             component={InputField}
             autoCapitalize="none"
+            returnKeyType="next"
           />
         </Item>
-        <Item>
+        <Item style={registerStyle.input}>
           <Field
             leftIcon={{ type: "Octicons", name: "email" }}
             name="email"
             placeholder="Email"
             component={InputField}
             autoCapitalize="none"
+            returnKeyType="next"
           />
         </Item>
-        <Item>
+        <Item style={registerStyle.input}>
           <Field
             leftIcon={{ type: "Octicons", name: "lock" }}
             name="password"
             secureTextEntry={true}
             placeholder="password"
             component={InputField}
+            returnKeyType="next"
           />
         </Item>
-        <Item>
+        <Item style={registerStyle.input}>
           <Field
             leftIcon={{ type: "Octicons", name: "lock" }}
             secureTextEntry={true}
@@ -99,16 +75,17 @@ export class R extends React.PureComponent<
             placeholder="Re-enter Password"
             component={InputField}
             containerStyle={{ width: "100%" }}
+            returnKeyType="done"
           />
         </Item>
 
-        <Text style={styles.signIn} onPress={handleSubmit}>
+        <Text onPress={handleSubmit} style={registerStyle.Submit}>
           SIGN IN
         </Text>
         <Text
-          style={styles.logIn}
-          onPress={() => {
-            //      this.props.navigation.navigate("login");
+          style={registerStyle.Submit}
+          onPress={async () => {
+            navigation.navigate("login");
           }}
         >
           Login
@@ -118,78 +95,17 @@ export class R extends React.PureComponent<
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "rgba(155,145,145,30)",
-  },
-  image1: {
-    alignContent: "center",
-    width: 296,
-    height: 70,
-    marginTop: 109,
-    marginLeft: 37,
-  },
-  loremIpsum1: {
-    alignContent: "center",
-
-    width: 296,
-    height: 18,
-    color: "rgba(255,255,255,1)",
-    fontSize: 14,
-    fontFamily: "armata-regular",
-    lineHeight: 20,
-    textAlign: "center",
-    marginTop: 68,
-    alignSelf: "center",
-  },
-
-  materialMessageTextbox1: {
-    alignContent: "center",
-    width: "80%",
-  },
-  materialMessageTextbox2: {
-    width: "20%",
-  },
-
-  signIn: {
-    alignContent: "center",
-    width: 161,
-    height: 21,
-    color: "rgba(255,255,255,1)",
-    fontSize: 18,
-    fontFamily: "armata-regular",
-    textAlign: "center",
-    marginTop: 195,
-    marginLeft: 108,
-  },
-  logIn: {
-    alignContent: "center",
-    width: 161,
-    height: 24,
-    color: "rgba(255,255,255,1)",
-    fontSize: 18,
-    fontFamily: "armata-regular",
-    textAlign: "center",
-    marginTop: 95,
-    marginLeft: 108,
-  },
-  materialMessageTextbox3: {
-    width: 320,
-  },
-});
-
 export const RegisterView = withFormik<Props, FormValues>({
   validationSchema,
-  mapPropsToValues: () => ({
-    username: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-  }),
-  handleSubmit: async (values, { props, setErrors }) => {
-    const errors = await props.submit(values);
-    if (errors) {
-      setErrors(errors);
+  handleSubmit: async (values, { props, setFieldError }) => {
+    const submit = await props.submit(values);
+    if (submit) {
+      if (submit.path === "email") {
+        setFieldError(submit.path, submit.message);
+      } else if (submit.path === "password") {
+        setFieldError(submit.path, submit.message);
+        setFieldError("confirmPassword", submit.message);
+      }
     }
   },
 })(R);

@@ -1,16 +1,14 @@
 import React, { Component, useContext } from "react";
 import { StyleSheet, TouchableOpacity, Text } from "react-native";
-import { AuthContext } from "../../../Auth";
 import { useNavigation } from "@react-navigation/native";
 
 function MaterialButtonPrimary(props) {
-  const { login, userToken } = useContext(AuthContext);
   const navigation = useNavigation();
   return (
     <TouchableOpacity
       style={[styles.container, props.style]}
       onPress={() => {
-        userToken ? navigation.navigate("home") : login();
+        userToken ? navigation.navigate("home") : navigation.navigate("home");
       }}
     >
       <Text style={styles.caption}>{props.text1 || "BUTTON"}</Text>

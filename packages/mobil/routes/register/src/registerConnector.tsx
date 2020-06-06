@@ -1,38 +1,33 @@
 import * as React from "react";
 import { RegisterView } from "./screens/register";
-import { AuthContext } from "../../Auth";
-// tslint:disable-next-line: no-duplicate-imports
-import { useContext } from "react";
-import { useRegisterMutation, useLoginMutation } from "@doffy/controller";
-import * as SecureStore from "expo-secure-store";
+import { useRegisterMutation } from "@doffy/controller";
+import { saveSessionID, getSessionID } from "../../../shareFuction/sessionId";
 
-export function RegisterConnector() {
-  const { login } = useContext(AuthContext);
-  const [loginMutation] = useLoginMutation();
-  const [registerMutation, { error }] = useRegisterMutation();
-  if (error) {
-    console.log(error);
-  }
-  const saveSessionID = (sid: string) => {
-    SecureStore.setItemAsync("sid", sid);
-  };
+export function RegisterConnector({ navigation }) {
+  const [registerMutation] = useRegisterMutation();
+
   const submit = async (values: any) => {
     const register = await registerMutation({
       variables: values,
     });
 
-    if (register.data?.register?.length === null) {
-      const loginDB = await loginMutation({ variables: values });
-      if (!loginDB.data?.login.errors)
-        if (loginDB.data?.login.sessionID != null) {
-          saveSessionID(loginDB.data?.login.sessionID);
-        }
-      console.log(SecureStore.getItemAsync("sid"));
-      login();
+    if (
+      !register.data?.register.errors &&
+      register?.data?.register?.sessionId
+    ) {
+      const sessionId = register?.data?.register?.sessionId;
+      console.log(sessionId);
+      saveSessionID(sessionId);
+      await getSessionID("sid");
+      return null;
+    } else if (
+      register.data?.register.errors &&
+      register.data.register.errors[0]
+    ) {
+      return register.data.register.errors[0];
     }
-
     return null;
   };
 
-  return <RegisterView submit={submit} />;
+  return <RegisterView submit={submit} navigation={navigation} />;
 }

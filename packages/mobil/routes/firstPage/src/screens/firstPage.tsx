@@ -7,10 +7,7 @@ import {
   Text,
   TouchableOpacity,
   SafeAreaView,
-  Dimensions,
 } from "react-native";
-
-const dim = Dimensions.get("window");
 
 export function firstPage({ navigation }) {
   return (
@@ -21,7 +18,9 @@ export function firstPage({ navigation }) {
       />
       <View style={firstPageStyle.stack}>
         <View style={firstPageStyle.leftRectStack}>
-          <TouchableOpacity onPress={() => navigation.navigate("Page2")}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("serviceHomePage")}
+          >
             <Image
               source={require("../assets/images/cut.jpg")}
               style={firstPageStyle.leftImage}
@@ -30,9 +29,7 @@ export function firstPage({ navigation }) {
           <TouchableOpacity>
             <Text
               style={firstPageStyle.chercherService}
-              onPress={() => {
-                console.log(dim);
-              }}
+              onPress={() => navigation.navigate("serviceHomePage")}
             >
               chercher un service
             </Text>
@@ -57,7 +54,7 @@ export function firstPage({ navigation }) {
       </View>
       <Text
         style={firstPageStyle.Text}
-        onPress={() => navigation.navigate("connection")}
+        onPress={() => navigation.navigate("welcomePage")}
       >
         Register
       </Text>

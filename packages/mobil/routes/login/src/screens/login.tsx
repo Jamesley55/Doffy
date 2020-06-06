@@ -1,9 +1,5 @@
 import React, { Component, useState } from "react";
-import { StyleSheet, View, Image, Text, ScrollView } from "react-native";
-import EntypoIcon from "react-native-vector-icons/Entypo";
-import MaterialMessageTextbox from "../components/MaterialMessageTextbox";
-import MaterialMessagePassword from "../components/MaterialMessagePassword";
-import { AuthContext } from "../../../Auth";
+import { StyleSheet, Image, Text, ScrollView } from "react-native";
 import { Item } from "native-base";
 import { Input } from "react-native-elements";
 
@@ -19,18 +15,7 @@ export class login extends React.PureComponent {
     this.textInput[id].focus();
   }
 
-  static contextType = AuthContext;
   render() {
-    const {
-      login,
-      email,
-      password,
-      setEmail,
-      setPassword,
-      emailError,
-      passwordError,
-    } = this.context;
-
     return (
       <ScrollView style={styles.container}>
         <Image
@@ -41,7 +26,7 @@ export class login extends React.PureComponent {
         <Text style={styles.loremIpsum}>
           PLease enter a username &amp; password
         </Text>
-        <Item error={emailError}>
+        <Item>
           <Input
             ref={(input) => {
               this.textInput["one"] = input;
@@ -50,7 +35,7 @@ export class login extends React.PureComponent {
             leftIcon={{ type: "MaterialIcons", name: "email" }}
             placeholder="Email"
             style={styles.materialMessageTextbox}
-            onChangeText={(value) => setEmail(value)}
+            onChangeText={(value) => value}
             autoCorrect={false}
             keyboardAppearance="dark"
             onSubmitEditing={() => {
@@ -59,7 +44,7 @@ export class login extends React.PureComponent {
             returnKeyType="next"
           />
         </Item>
-        <Item error={passwordError}>
+        <Item>
           <Input
             ref={(input) => {
               this.textInput["two"] = input;
@@ -68,12 +53,12 @@ export class login extends React.PureComponent {
             leftIcon={{ type: "Octicons", name: "lock" }}
             placeholder="Password"
             style={styles.materialMessageTextbox1}
-            onChangeText={(value) => setPassword(value)}
+            onChangeText={(value) => value}
             autoCorrect={false}
             secureTextEntry
             keyboardAppearance="dark"
             onSubmitEditing={() => {
-              login();
+              console.log("moral");
             }}
             returnKeyType="next"
           />
@@ -81,7 +66,7 @@ export class login extends React.PureComponent {
         <Text
           style={styles.lOgIn1}
           onPress={() => {
-            login();
+            console.log("moral");
           }}
         >
           lOG IN

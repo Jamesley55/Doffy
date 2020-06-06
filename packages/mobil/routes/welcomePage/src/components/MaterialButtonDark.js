@@ -5,15 +5,13 @@ import { useNavigation } from "@react-navigation/native";
 function MaterialButtonDark(props) {
   const navigation = useNavigation();
   return (
-    <TouchableOpacity style={[styles.container, props.style]}>
-      <Text
-        style={styles.caption}
-        onPress={() => {
-          navigation.push("register");
-        }}
-      >
-        {props.text1 || "BUTTON"}
-      </Text>
+    <TouchableOpacity
+      onPress={() => {
+        navigation.navigate(props.navigation);
+      }}
+      style={[styles.container, props.style]}
+    >
+      <Text style={styles.caption}>{props.text1 || "BUTTON"}</Text>
     </TouchableOpacity>
   );
 }
@@ -31,17 +29,17 @@ const styles = StyleSheet.create({
     borderRadius: 2,
     shadowOffset: {
       height: 1,
-      width: 0
+      width: 0,
     },
     shadowColor: "#000",
     shadowOpacity: 0.35,
-    shadowRadius: 5
+    shadowRadius: 5,
   },
   caption: {
     color: "#fff",
     fontSize: 14,
-    fontFamily: "roboto-regular"
-  }
+    fontFamily: "roboto-regular",
+  },
 });
 
 export default MaterialButtonDark;

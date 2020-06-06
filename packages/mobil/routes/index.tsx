@@ -1,16 +1,15 @@
 import * as React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import { NavigationContainer, useNavigation } from "@react-navigation/native";
+import { NavigationContainer } from "@react-navigation/native";
 import { firstPage } from "./firstPage/src/screens/firstPage";
-import { connection } from "./connectionPage/src/screens/connect";
+import { welcomePage } from "./welcomePage/src/screens/welcomePage";
 import { login } from "./login/src/screens/login";
 import { RouteProps } from "react-router-native";
 import * as Font from "expo-font";
 import AppLoading from "expo/build/launch/AppLoading";
-import { firstPage2 } from "./firstPage2/src/screens/firstPage2";
+import { serviceHomePage } from "./serviceHomePage/src/screens/serviceHomePage";
 import { firstPage3 } from "./firstPage3/src/screens/firstPage3";
 import { HomePage } from "./homePage/src/screens/homePage";
-import { CustomDrawerContent } from "./option/src/screens/option";
 import { searchPage } from "./searchPage/src/screens/searchPage";
 import { sellerSteps } from "./sellerSteps/src/screens/sellerSteps";
 import { help } from "./help/src/screens/help";
@@ -23,18 +22,19 @@ import { requestPage } from "./requestPage/src/screens/request";
 import { locationPage } from "./locationPage/src/screens/location";
 import { payement } from "./payementPage/src/screens/payement";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { createDrawerNavigator, DrawerItem } from "@react-navigation/drawer";
-import { AuthContext } from "./Auth";
-import { useContext } from "react";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 import { Notification } from "./Notification/notification";
 import { Message } from "./Message/Message";
 import { RegisterConnector } from "./register/src/registerConnector";
 import { useState } from "react";
+import { getSessionID } from "../shareFuction/sessionId";
 import {
   Ionicons,
   AntDesign,
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
+import { AuthContext } from "./Auth";
+import { useEffect } from "react";
 
 const Stack = createStackNavigator();
 const Tabs = createBottomTabNavigator();
@@ -65,8 +65,8 @@ const tabs = () => (
   <Tabs.Navigator
     tabBarOptions={{ activeTintColor: "tomato", inactiveTintColor: "gray" }}
     screenOptions={({ route }) => ({
-      tabBarIcon: ({ focused, color, size }) => {
-        let iconName;
+      tabBarIcon: ({ color, size }) => {
+        let iconName: string;
 
         if (route.name === "homepage") {
           iconName = "home";
@@ -120,9 +120,8 @@ const sellerPage = () => (
   </Stack.Navigator>
 );
 
-const drawer = (logout) => (
+export const drawer = () => (
   <Drawer.Navigator
-    drawerContent={(props) => CustomDrawerContent(props, logout)}
     drawerStyle={{
       width: "65%",
     }}
@@ -143,11 +142,11 @@ const creationPage = () => (
   <Stack.Navigator
     screenOptions={{ header: () => null, gestureEnabled: false }}
   >
-    <Stack.Screen name="Page1" component={firstPage} />
-    <Stack.Screen name="connection" component={connection} />
+    <Stack.Screen name="firstPage" component={firstPage} />
+    <Stack.Screen name="welcomePage" component={welcomePage} />
     <Stack.Screen name="register" component={RegisterConnector} />
     <Stack.Screen name="login" component={login} />
-    <Stack.Screen name="Page2" component={firstPage2} />
+    <Stack.Screen name="serviceHomePage" component={serviceHomePage} />
     <Stack.Screen name="seller" component={sellerPage} />
   </Stack.Navigator>
 );
@@ -162,16 +161,33 @@ const getFont = () =>
     "roboto-regular": require("../assets/fonts/roboto-regular.ttf"),
   });
 
+const navigator = async () => {
+  const id = await getSessionID("sid");
+  if (id) {
+    return drawer();
+  } else {
+    return creationPage();
+  }
+};
+
 export const Routes: React.FC<RouteProps> = ({}) => {
   const [fontLoaded, setFontisLoaded] = useState(false);
-  const { userToken, logout } = useContext(AuthContext);
+  const [screen, setScreen] = React.useState<JSX.Element>();
+
+  useEffect(() => {
+    navigator()
+      .then((result) => {
+        setScreen(result);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }, []);
+
+  console.log("screen", screen);
 
   if (fontLoaded) {
-    return (
-      <NavigationContainer>
-        {userToken ? drawer(logout) : creationPage()}
-      </NavigationContainer>
-    );
+    return <NavigationContainer>{screen}</NavigationContainer>;
   } else {
     return (
       <AppLoading startAsync={getFont} onFinish={() => setFontisLoaded(true)} />
