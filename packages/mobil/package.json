@@ -38,7 +38,7 @@
     "formik": "^2.1.4",
     "global": "^4.4.0",
     "gql": "^1.1.2",
-    "graphql": "^15.0.0",
+    "graphql": "^15.2.0",
     "graphql-tag": "^2.10.3",
     "moment": "^2.25.3",
     "native-base": "2.13.8",
