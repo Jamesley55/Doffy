@@ -1,47 +1,46 @@
 {
-  "name": "doffy",
-  "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
-  "scripts": {
-    "react": "lerna run react --parallel --stream",
-    "new-version": "lerna version --conventional-commits --yes --force-publish",
-    "docker-build": "docker build  -t doffyinc/ec2:1.0.1 .",
-    "docker-push": "sudo docker push doffyinc/ec2:1.0.1"
-  },
-  "devDependencies": {
-    "lerna": "^3.20.2"
-  },
-  "nohoist": [
-    "**/graphql/**",
-    "**/rimraf",
-    "**/rimraf/**",
-    "**/react/**",
-    "**/react-native-elements",
-    "**/react-native-elements/**",
-    "**/react-native",
-    "**/react-native/**",
-    "**/expo",
-    "**/expo/**",
-    "**/react-native-typescript-transformer",
-    "**/react-native-typescript-transformer/**",
-    "**/metro-bundler-config-yarn-workspaces",
-    "**/metro-bundler-config-yarn-workspaces/**"
-  ],
-  "resolutions": {
-    "**/graphql": "^15.0.0",
-    "**/react": "16.13.1",
-    "**/apollo-boost": "0.4.7",
-    "**/@apollo/react-hooks": "3.1.5"
-  },
-  "version": "1.0.11",
-  "main": "none",
-  "repository": "https://github.com/Jamesley55/NewApp.git",
-  "author": "Jamesley Joseph <jamesleyjoseph5@gmail.com>",
-  "license": "MIT",
-  "dependencies": {
-    "@apollo/react-hooks": "^3.1.5",
-    "graphql": "^15.0.0"
-  }
+	"name": "doffy",
+	"private": true,
+	"workspaces": [
+		"packages/*"
+	],
+	"scripts": {
+		"react": "lerna run react --parallel --stream",
+		"new-version": "lerna version --conventional-commits --yes --force-publish",
+		"docker-build": "docker build  -t doffyinc/ec2:1.0.1 .",
+		"docker-push": "sudo docker push doffyinc/ec2:1.0.1"
+	},
+	"devDependencies": {
+		"lerna": "^3.20.2"
+	},
+	"nohoist": [
+		"**/graphql/**",
+		"**/rimraf",
+		"**/rimraf/**",
+		"**/react/**",
+		"**/react-native-elements",
+		"**/react-native-elements/**",
+		"**/react-native",
+		"**/react-native/**",
+		"**/expo",
+		"**/expo/**",
+		"**/react-native-typescript-transformer",
+		"**/react-native-typescript-transformer/**",
+		"**/metro-bundler-config-yarn-workspaces",
+		"**/metro-bundler-config-yarn-workspaces/**"
+	],
+	"resolutions": {
+		"**/react": "16.13.1",
+		"**/apollo-boost": "0.4.7",
+		"**/@apollo/react-hooks": "3.1.5"
+	},
+	"version": "1.0.11",
+	"main": "none",
+	"repository": "https://github.com/Jamesley55/NewApp.git",
+	"author": "Jamesley Joseph <jamesleyjoseph5@gmail.com>",
+	"license": "MIT",
+	"dependencies": {
+		"@apollo/react-hooks": "^3.1.5",
+		"graphql": "^15.0.0"
+	}
 }

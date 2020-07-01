@@ -1,8 +1,7 @@
 import React, { Component, useState } from "react";
-import { StyleSheet, View, Text, Image } from "react-native";
+import { StyleSheet, View, Text, Image, Scrollview} from "react-native";
 import MaterialButtonHamburger from "../components/MaterialButtonHamburger";
 import Icon from "react-native-vector-icons/Ionicons";
-import { ScrollView } from "react-native-gesture-handler";
 import List from "../components/List";
 import { MeQuery } from "../../../schemaTypes";
 import { Query } from "react-apollo";
