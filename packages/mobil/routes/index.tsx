@@ -1,196 +1,59 @@
-import * as React from "react";
-import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
-import { firstPage } from "./firstPage/src/screens/firstPage";
-import { welcomePage } from "./welcomePage/src/screens/welcomePage";
-import { login } from "./login/src/screens/login";
-import { RouteProps } from "react-router-native";
 import * as Font from "expo-font";
+import * as SecureStore from "expo-secure-store";
 import AppLoading from "expo/build/launch/AppLoading";
-import { serviceHomePage } from "./serviceHomePage/src/screens/serviceHomePage";
-import { firstPage3 } from "./firstPage3/src/screens/firstPage3";
-import { HomePage } from "./homePage/src/screens/homePage";
-import { searchPage } from "./searchPage/src/screens/searchPage";
-import { sellerSteps } from "./sellerSteps/src/screens/sellerSteps";
-import { help } from "./help/src/screens/help";
-import { serviceProvider } from "./serviceProvider/src/screens/serviceProvider";
-import { pricePage } from "./pricePage/src/screens/pricePage";
-import { schedulePage } from "./schedulePage/src/screens/schedulePage";
-import { picDownload } from "./picDownload/src/screens/picDownload";
-import { payout } from "./payout/src/screens/payout";
-import { requestPage } from "./requestPage/src/screens/request";
-import { locationPage } from "./locationPage/src/screens/location";
-import { payement } from "./payementPage/src/screens/payement";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { createDrawerNavigator } from "@react-navigation/drawer";
-import { Notification } from "./Notification/notification";
-import { Message } from "./Message/Message";
-import { RegisterConnector } from "./register/src/registerConnector";
-import { useState } from "react";
-import { getSessionID } from "../shareFuction/sessionId";
-import {
-  Ionicons,
-  AntDesign,
-  MaterialCommunityIcons,
-} from "@expo/vector-icons";
-import { AuthContext } from "./Auth";
-import { useEffect } from "react";
-
-const Stack = createStackNavigator();
-const Tabs = createBottomTabNavigator();
-const HomeStack = createStackNavigator();
-const profilStack = createStackNavigator();
-const Drawer = createDrawerNavigator();
-
-const HomeStackScreen = () => (
-  <HomeStack.Navigator
-    screenOptions={{
-      gestureEnabled: false,
-    }}
-    headerMode="none"
-  >
-    <HomeStack.Screen name="homepage" component={HomePage} />
-    <HomeStack.Screen name="requestPage" component={requestPage} />
-    <HomeStack.Screen name="payement" component={payement} />
-    <HomeStack.Screen name="location" component={locationPage} />
-  </HomeStack.Navigator>
-);
-
-const SearchStackScreen = () => (
-  <profilStack.Navigator screenOptions={{ header: () => null }}>
-    <profilStack.Screen name="search" component={searchPage} />
-  </profilStack.Navigator>
-);
-const tabs = () => (
-  <Tabs.Navigator
-    tabBarOptions={{ activeTintColor: "tomato", inactiveTintColor: "gray" }}
-    screenOptions={({ route }) => ({
-      tabBarIcon: ({ color, size }) => {
-        let iconName: string;
-
-        if (route.name === "homepage") {
-          iconName = "home";
-          return <Ionicons name={"ios-home"} size={size} color={color} />;
-        } else if (route.name === "searchPage") {
-          iconName = "search";
-          return <Ionicons name={"md-search"} size={size} color={color} />;
-        } else if (route.name === "notification") {
-          iconName = "notification";
-          return (
-            <MaterialCommunityIcons
-              name={"notification-clear-all"}
-              size={size}
-              color={color}
-            />
-          );
-        } else if (route.name === "message") {
-          iconName = "message";
-          return (
-            <MaterialCommunityIcons
-              name={"message-reply"}
-              size={size}
-              color={color}
-            />
-          );
-        }
-
-        // You can return any component that you like here!
-        return <AntDesign name={iconName} size={size} color={color} />;
-      },
-    })}
-  >
-    <Tabs.Screen name="homepage" component={HomeStackScreen} />
-    <Tabs.Screen name="searchPage" component={SearchStackScreen} />
-    <Tabs.Screen name="notification" component={Notification} />
-    <Tabs.Screen name="message" component={Message} />
-  </Tabs.Navigator>
-);
-const sellerPage = () => (
-  <Stack.Navigator
-    screenOptions={{ header: () => null, gestureEnabled: false }}
-  >
-    <Stack.Screen name="Page3" component={firstPage3} />
-    <Stack.Screen name="sellerSteps" component={sellerSteps} />
-    <Stack.Screen name="schedulePage" component={schedulePage} />
-    <Stack.Screen name="pricePage" component={pricePage} />
-    <Stack.Screen name="picDownload" component={picDownload} />
-    <Stack.Screen name="help" component={help} />
-    <Stack.Screen name="payout" component={payout} />
-    <Stack.Screen name="serviceProvider" component={serviceProvider} />
-  </Stack.Navigator>
-);
-
-export const drawer = () => (
-  <Drawer.Navigator
-    drawerStyle={{
-      width: "65%",
-    }}
-    drawerContentOptions={{
-      activeTintColor: "#e91e63",
-      itemStyle: { marginVertical: 10 },
-    }}
-  >
-    <Drawer.Screen name="home" component={tabs} />
-    <Drawer.Screen name="become a seller" component={sellerPage} />
-    <Drawer.Screen name="payment Methode" component={payement} />
-    <Drawer.Screen name="help" component={help} />
-    <Drawer.Screen name="pricePage" component={pricePage} />
-  </Drawer.Navigator>
-);
-
-const creationPage = () => (
-  <Stack.Navigator
-    screenOptions={{ header: () => null, gestureEnabled: false }}
-  >
-    <Stack.Screen name="firstPage" component={firstPage} />
-    <Stack.Screen name="welcomePage" component={welcomePage} />
-    <Stack.Screen name="register" component={RegisterConnector} />
-    <Stack.Screen name="login" component={login} />
-    <Stack.Screen name="serviceHomePage" component={serviceHomePage} />
-    <Stack.Screen name="seller" component={sellerPage} />
-  </Stack.Navigator>
-);
+import * as React from "react";
+import { ActivityIndicator } from "react-native";
+import { RouteProps } from "react-router-native";
+import { creationPage } from "../screenStack/creation";
+import { drawer } from "../screenStack/drawers";
+import { AuthContext } from "../shareFuction/userContext";
 
 const getFont = () =>
-  Font.loadAsync({
-    "armata-regular": require("../assets/fonts/armata-regular.ttf"),
-    "alef-regular": require("../assets/fonts/alef-regular.ttf"),
-    "arial-regular": require("../assets/fonts/arial-regular.ttf"),
-    "calibri-bold": require("../assets/fonts/calibri-bold.ttf"),
-    "roboto-700": require("../assets/fonts/roboto-700.ttf"),
-    "roboto-regular": require("../assets/fonts/roboto-regular.ttf"),
-  });
-
-const navigator = async () => {
-  const id = await getSessionID("sid");
-  if (id) {
-    return drawer();
-  } else {
-    return creationPage();
-  }
-};
+	Font.loadAsync({
+		"armata-regular": require("../assets/fonts/armata-regular.ttf"),
+		"alef-regular": require("../assets/fonts/alef-regular.ttf"),
+		"arial-regular": require("../assets/fonts/arial-regular.ttf"),
+		"calibri-bold": require("../assets/fonts/calibri-bold.ttf"),
+		"roboto-700": require("../assets/fonts/roboto-700.ttf"),
+		"roboto-regular": require("../assets/fonts/roboto-regular.ttf"),
+	});
 
 export const Routes: React.FC<RouteProps> = ({}) => {
-  const [fontLoaded, setFontisLoaded] = useState(false);
-  const [screen, setScreen] = React.useState<JSX.Element>();
+	const [loading, setLoading] = React.useState(true);
+	const [fontLoaded, setFontisLoaded] = React.useState(false);
+	const { user, me, token, homeScreen } = React.useContext(AuthContext);
+	React.useEffect(() => {
+		SecureStore.getItemAsync("sid")
+			.then((tk) => {
+				if (tk) {
+					// decode it
+					homeScreen(tk);
+					me();
+					console.log("me", user);
+					setLoading(false);
+				} else {
+					setLoading(false);
+				}
+			})
+			.catch((err) => {
+				console.log(err);
+				setLoading(false);
+			});
+	}, []);
 
-  useEffect(() => {
-    navigator()
-      .then((result) => {
-        setScreen(result);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  }, []);
-
-  console.log("screen", screen);
-
-  if (fontLoaded) {
-    return <NavigationContainer>{screen}</NavigationContainer>;
-  } else {
-    return (
-      <AppLoading startAsync={getFont} onFinish={() => setFontisLoaded(true)} />
-    );
-  }
+	if (loading) {
+		return <ActivityIndicator size="large" style={{ flex: 1 }} />;
+	}
+	if (fontLoaded) {
+		return (
+			<NavigationContainer>
+				{token ? drawer() : creationPage()}
+			</NavigationContainer>
+		);
+	} else {
+		return (
+			<AppLoading startAsync={getFont} onFinish={() => setFontisLoaded(true)} />
+		);
+	}
 };

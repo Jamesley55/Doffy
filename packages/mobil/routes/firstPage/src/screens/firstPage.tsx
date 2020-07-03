@@ -36,7 +36,7 @@ export function firstPage({ navigation }) {
 					</TouchableOpacity>
 				</View>
 				<View style={firstPageStyle.rightRectStack}>
-					<TouchableOpacity onPress={() => navigation.navigate("seller")}>
+					<TouchableOpacity onPress={() => navigation.navigate("welcomePage")}>
 						<Image
 							source={require("../assets/images/barber.jpg")}
 							style={firstPageStyle.rightImage}
@@ -45,7 +45,7 @@ export function firstPage({ navigation }) {
 					<TouchableOpacity>
 						<Text
 							style={firstPageStyle.offrirService}
-							onPress={() => navigation.navigate("seller")}
+							onPress={() => navigation.navigate("welcomePage")}
 						>
 							offrir a service
 						</Text>
