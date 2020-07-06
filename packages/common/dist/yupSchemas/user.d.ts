@@ -1,2 +1,3 @@
 import * as yup from "yup";
-export declare const validationSchema: yup.ObjectSchema<unknown>;
+export declare const RegisterValidationSchema: yup.ObjectSchema<unknown>;
+export declare const LoginValidationSchema: yup.ObjectSchema<unknown>;

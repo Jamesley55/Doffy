@@ -14,10 +14,6 @@
 		"lerna": "^3.20.2"
 	},
 	"nohoist": [
-		"**/graphql/**",
-		"**/rimraf",
-		"**/rimraf/**",
-		"**/react/**",
 		"**/react-native-elements",
 		"**/react-native-elements/**",
 		"**/react-native",

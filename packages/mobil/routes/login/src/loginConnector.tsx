@@ -1,12 +1,8 @@
 import * as React from "react";
-import { LoginMutation } from "@doffy/controller";
-import {SecureStore} from "expo"
+import { AuthContext } from "../../../shareFuction/userContext";
+import { LoginView } from "./screens/login";
 
-
-export class loginController extends baseEnty {
-	
-	render(){
-		return( 
-		)
-	}
+export function LoginConnector({ navigation }) {
+	const { login } = React.useContext(AuthContext);
+	return <LoginView submit={login} navigation={navigation} />;
 }

@@ -16,9 +16,6 @@ export function serviceHomePage({ navigation }) {
 			>
 				Go back
 			</Text>
-			<Text style={serviceHomePageStyle.Text}>
-				Choose the service that you need at the moment
-			</Text>
 			<ScrollView>
 				<View style={serviceHomePageStyle.rectRow}>
 					<TouchableOpacity

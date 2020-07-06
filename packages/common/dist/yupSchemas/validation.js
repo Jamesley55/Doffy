@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.registerEmailValidation = exports.registerPasswordValidation = void 0;
 const yup = require("yup");
 const emailNotLongEnough = "email must be at least 3 characters";
 const passwordNotLongEnough = "password must be at least 3 characters";

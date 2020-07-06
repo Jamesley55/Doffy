@@ -1,148 +1,81 @@
+import { Field, FormikErrors, FormikProps, withFormik } from "formik";
 import { Item } from "native-base";
 import * as React from "react";
-import { Image, ScrollView, StyleSheet, Text } from "react-native";
-import { Input } from "react-native-elements";
+import { Image, ScrollView, Text } from "react-native";
+import { InputField } from "../../../Conponent/InputField";
+import { loginStyle } from "../style/styles";
 
-export class login extends React.PureComponent {
-	textInput: {};
+interface FormValues {
+	email: string;
+	password: string;
+}
 
-	constructor(props) {
-		super(props);
-		this.textInput = {};
-	}
+interface Props {
+	submit: (values: FormValues) => Promise<FormikErrors<FormValues> | any> | any;
+	navigation: any;
+}
 
-	focusNextTextInput(id) {
-		this.textInput[id].focus();
-	}
-
+export class L extends React.PureComponent<FormikProps<FormValues> & Props> {
 	render() {
+		const { handleSubmit } = this.props;
+		const { navigation } = this.props;
 		return (
-			<ScrollView style={styles.container}>
+			<ScrollView style={loginStyle.container}>
 				<Image
 					source={require("../../../../logo/LogoJamesleyApp.png")}
 					resizeMode="contain"
-					style={styles.image1}
+					style={loginStyle.doffyImage}
 				></Image>
-				<Text style={styles.loremIpsum}>
+				<Text style={loginStyle.Title}>
 					PLease enter a username &amp; password
 				</Text>
-				<Item>
-					<Input
-						ref={(input) => {
-							this.textInput["one"] = input;
-						}}
-						blurOnSubmit={false}
-						leftIcon={{ type: "MaterialIcons", name: "email" }}
+				<Item style={loginStyle.input}>
+					<Field
+						leftIcon={{ type: "Octicons", name: "email" }}
+						name="email"
 						placeholder="Email"
-						style={styles.materialMessageTextbox}
-						onChangeText={(value) => value}
 						autoCorrect={false}
-						keyboardAppearance="dark"
-						onSubmitEditing={() => {
-							this.focusNextTextInput("two");
-						}}
+						component={InputField}
+						autoCapitalize="none"
 						returnKeyType="next"
+						keyboardAppearance="dark"
 					/>
 				</Item>
-				<Item>
-					<Input
-						ref={(input) => {
-							this.textInput["two"] = input;
-						}}
-						blurOnSubmit={false}
+				<Item style={loginStyle.input}>
+					<Field
 						leftIcon={{ type: "Octicons", name: "lock" }}
-						placeholder="Password"
-						style={styles.materialMessageTextbox1}
-						onChangeText={(value) => value}
+						name="password"
 						autoCorrect={false}
-						secureTextEntry
+						secureTextEntry={true}
+						placeholder="Password"
+						component={InputField}
+						returnKeyType="done"
 						keyboardAppearance="dark"
-						onSubmitEditing={() => {
-							console.log("moral");
-						}}
-						returnKeyType="next"
 					/>
 				</Item>
-				<Text
-					style={styles.lOgIn1}
-					onPress={() => {
-						console.log("moral");
-					}}
-				>
+				<Text onPress={handleSubmit} style={loginStyle.Submit}>
 					lOG IN
 				</Text>
-				<Text style={styles.lOgIn1}>sign up for free</Text>
+				<Text
+					onPress={() => navigation.navigate("welcomePage")}
+					style={loginStyle.Submit}
+				>
+					sign up for free
+				</Text>
 			</ScrollView>
 		);
 	}
 }
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: "rgba(155,145,145,30)",
+export const LoginView = withFormik<Props, FormValues>({
+	handleSubmit: async (values, { props, setFieldError }) => {
+		const submit = await props.submit(values);
+		if (submit) {
+			if (submit.path === "email" || submit.path === "user") {
+				setFieldError("email", submit.message);
+			} else if (submit.path === "email") {
+				setFieldError("password", submit.message);
+			}
+		}
 	},
-	image1: {
-		width: 296,
-		height: 70,
-		marginTop: 109,
-		marginLeft: 37,
-	},
-	loremIpsum: {
-		width: 296,
-		height: 16,
-		color: "rgba(255,255,255,1)",
-		fontSize: 15,
-		fontFamily: "armata-regular",
-		lineHeight: 15,
-		textAlign: "center",
-		marginTop: 100,
-		marginBottom: 60,
-		alignSelf: "center",
-	},
-	icon: {
-		color: "rgba(255,255,255,1)",
-		fontSize: 24,
-		marginBottom: 14,
-	},
-	icon2: {
-		color: "rgba(255,255,255,1)",
-		fontSize: 24,
-		marginTop: 35,
-	},
-	iconColumn: {
-		width: 24,
-		marginTop: 37,
-	},
-	materialMessageTextbox: {
-		width: 320,
-		height: 57,
-		marginLeft: 3,
-		marginBottom: 20,
-	},
-	materialMessageTextbox1: {
-		width: 320,
-		height: 57,
-		marginTop: 3,
-	},
-	materialMessageTextboxColumn: {
-		width: 272,
-		marginBottom: 2,
-	},
-	iconColumnRow: {
-		height: 119,
-		flexDirection: "row",
-		marginLeft: 37,
-		marginRight: 42,
-	},
-	lOgIn1: {
-		width: 161,
-		height: 21,
-		color: "rgba(255,255,255,1)",
-		fontSize: 18,
-		fontFamily: "armata-regular",
-		textAlign: "center",
-		marginTop: 169,
-		marginLeft: 108,
-	},
-});
+})(L);

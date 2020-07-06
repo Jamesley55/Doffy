@@ -74,13 +74,14 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 					setUser(username);
 				},
 				login: async (values: any) => {
+					console.log("entrer dans login");
 					const login = await loginMutation({
 						variables: values,
 					});
 
 					if (!login.data?.login.errors && login.data?.login.sessionId) {
 						const sessionId = login?.data?.login?.sessionId;
-						setUser(sessionId);
+						setToken(sessionId);
 						await SecureStore.setItemAsync("sid", sessionId);
 					} else if (login.data?.login.errors && login.data.login.errors[0]) {
 						return login.data.login.errors[0];
