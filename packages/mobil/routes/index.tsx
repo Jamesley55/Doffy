@@ -25,9 +25,9 @@ export const Routes: React.FC<RouteProps> = ({}) => {
 	const { user, me, token, homeScreen } = React.useContext(AuthContext);
 	React.useEffect(() => {
 		SecureStore.getItemAsync("sid")
+
 			.then((tk) => {
 				if (tk) {
-					// decode it
 					homeScreen(tk);
 					me();
 					console.log("me", user);
