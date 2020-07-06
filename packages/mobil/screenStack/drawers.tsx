@@ -1,8 +1,8 @@
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import * as React from "react";
-import { help } from "../routes/help/src/screens/help";
-import { payement } from "../routes/payementPage/src/screens/payement";
-import { pricePage } from "../routes/pricePage/src/screens/pricePage";
+import { payement } from "../routes/bookingPages/payementPage/src/screens/payement";
+import { pricePage } from "../routes/bookingPages/pricePage/src/screens/pricePage";
+import { help } from "../routes/otherPages/help/src/screens/help";
 import { sellerPage } from "./seller";
 import { tabs } from "./Tabs";
 

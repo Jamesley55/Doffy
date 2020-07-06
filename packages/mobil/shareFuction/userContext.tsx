@@ -6,19 +6,21 @@ import {
 } from "@doffy/controller/src/generated/graphql-hooks";
 import * as SecureStore from "expo-secure-store";
 import * as React from "react";
+import { Error } from "../../controller/src/generated/graphql-hooks";
+
 type User = null | string | undefined;
+type loginRegister = Promise<
+	| ({ __typename?: "Error" | undefined } & Pick<Error, "path" | "message">)
+	| null
+>;
+
 export const AuthContext = React.createContext<{
 	token: string | null;
 	user: User;
-	register: (
-		values: any
-	) => Promise<
-		| ({ __typename?: "Error" | undefined } & Pick<Error, "path" | "message">)
-		| null
-	>;
+	register: (values: any) => loginRegister;
 	homeScreen: (token: string) => void;
 	me: () => void;
-	login: (values: any) => void;
+	login: (values: any) => loginRegister;
 	logout: () => void;
 }>({
 	token: null,
@@ -26,7 +28,7 @@ export const AuthContext = React.createContext<{
 	register: async () => null,
 	homeScreen: () => null,
 	me: () => {},
-	login: async () => {},
+	login: async () => null,
 	logout: () => {},
 });
 

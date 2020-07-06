@@ -5,8 +5,8 @@ import {
 } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import * as React from "react";
-import { Message } from "../routes/Message/Message";
-import { Notification } from "../routes/Notification/notification";
+import { Message } from "../routes/HomeStack/Message/Message";
+import { Notification } from "../routes/HomeStack/Notification/notification";
 import { HomeStackScreen } from "./Homestack";
 import { SearchStackScreen } from "./profilstack";
 
@@ -17,7 +17,7 @@ export const tabs = () => (
 		tabBarOptions={{ activeTintColor: "tomato", inactiveTintColor: "gray" }}
 		screenOptions={({ route }) => ({
 			tabBarIcon: ({ color, size }) => {
-				let iconName: string;
+				let iconName: string = "";
 
 				if (route.name === "homepage") {
 					iconName = "home";

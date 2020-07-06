@@ -5,7 +5,7 @@ import AppLoading from "expo/build/launch/AppLoading";
 import * as React from "react";
 import { ActivityIndicator } from "react-native";
 import { RouteProps } from "react-router-native";
-import { creationPage } from "../screenStack/creation";
+import { AuthPages } from "../screenStack/creation";
 import { drawer } from "../screenStack/drawers";
 import { AuthContext } from "../shareFuction/userContext";
 
@@ -48,7 +48,7 @@ export const Routes: React.FC<RouteProps> = ({}) => {
 	if (fontLoaded) {
 		return (
 			<NavigationContainer>
-				{token ? drawer() : creationPage()}
+				{token ? drawer() : AuthPages()}
 			</NavigationContainer>
 		);
 	} else {

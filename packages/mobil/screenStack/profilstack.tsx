@@ -1,6 +1,6 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import * as React from "react";
-import { searchPage } from "../routes/searchPage/src/screens/searchPage";
+import { searchPage } from "../routes/HomeStack/searchPage/src/screens/searchPage";
 
 const profilStack = createStackNavigator();
 

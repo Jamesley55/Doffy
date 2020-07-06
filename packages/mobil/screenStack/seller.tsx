@@ -1,13 +1,13 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import * as React from "react";
-import { firstPage3 } from "../routes/firstPage3/src/screens/firstPage3";
-import { help } from "../routes/help/src/screens/help";
-import { payout } from "../routes/payout/src/screens/payout";
-import { picDownload } from "../routes/picDownload/src/screens/picDownload";
-import { pricePage } from "../routes/pricePage/src/screens/pricePage";
-import { schedulePage } from "../routes/schedulePage/src/screens/schedulePage";
-import { sellerSteps } from "../routes/sellerSteps/src/screens/sellerSteps";
-import { serviceProvider } from "../routes/serviceProvider/src/screens/serviceProvider";
+import { pricePage } from "../routes/bookingPages/pricePage/src/screens/pricePage";
+import { help } from "../routes/otherPages/help/src/screens/help";
+import { firstPage3 } from "../routes/sellerStack/firstPage3/src/screens/firstPage3";
+import { payout } from "../routes/sellerStack/payout/src/screens/payout";
+import { picDownload } from "../routes/sellerStack/picDownload/src/screens/picDownload";
+import { schedulePage } from "../routes/sellerStack/schedulePage/src/screens/schedulePage";
+import { sellerSteps } from "../routes/sellerStack/sellerSteps/src/screens/sellerSteps";
+import { serviceProvider } from "../routes/sellerStack/serviceProvider/src/screens/serviceProvider";
 const Stack = createStackNavigator();
 
 export const sellerPage = () => (
