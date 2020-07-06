@@ -11,6 +11,7 @@ const host =
 export const client = new ApolloClient({
 	link: createUploadLink({
 		uri: host,
+		credentials: "include",
 	}),
 	cache: new InMemoryCache(),
 });

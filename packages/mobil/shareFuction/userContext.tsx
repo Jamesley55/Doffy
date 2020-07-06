@@ -2,11 +2,14 @@ import { useRegisterMutation } from "@doffy/controller";
 import {
 	useLoginMutation,
 	useLogoutMutation,
-	useMeQuery,
 } from "@doffy/controller/src/generated/graphql-hooks";
 import * as SecureStore from "expo-secure-store";
 import * as React from "react";
-import { Error } from "../../controller/src/generated/graphql-hooks";
+import {
+	Error,
+	MeDocument,
+} from "../../controller/src/generated/graphql-hooks";
+import { client } from "../src/apollo";
 
 type User = null | string | undefined;
 type loginRegister = Promise<
@@ -27,7 +30,7 @@ export const AuthContext = React.createContext<{
 	user: null,
 	register: async () => null,
 	homeScreen: () => null,
-	me: () => {},
+	me: async () => {},
 	login: async () => null,
 	logout: () => {},
 });
@@ -41,8 +44,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 	const [registerMutation] = useRegisterMutation();
 	const [loginMutation] = useLoginMutation();
 	const [logoutMutation] = useLogoutMutation();
-	const { data } = useMeQuery();
-	const meData = data;
 	return (
 		<AuthContext.Provider
 			value={{
@@ -71,9 +72,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 				homeScreen: (tk: string) => {
 					setToken(tk);
 				},
-				me: () => {
-					const username = meData?.me?.user?.username;
-					setUser(username);
+				me: async () => {
+					const me = await client.query({ query: MeDocument });
+					// tslint:disable-next-line: no-shadowed-variable
+					const User: any = me.data.me.user.username;
+					console.log("user", User);
+					setUser(User);
 				},
 				login: async (values: any) => {
 					console.log("entrer dans login");

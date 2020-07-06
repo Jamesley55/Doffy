@@ -21,13 +21,15 @@ const getFont = () =>
 
 export const Routes: React.FC<RouteProps> = ({}) => {
 	const [loading, setLoading] = React.useState(true);
+
 	const [fontLoaded, setFontisLoaded] = React.useState(false);
-	const { user, me, token, homeScreen } = React.useContext(AuthContext);
+	const { user, token, homeScreen, me } = React.useContext(AuthContext);
+
 	React.useEffect(() => {
 		SecureStore.getItemAsync("sid")
-
 			.then((tk) => {
 				if (tk) {
+					console.log("tk", tk);
 					homeScreen(tk);
 					me();
 					console.log("me", user);

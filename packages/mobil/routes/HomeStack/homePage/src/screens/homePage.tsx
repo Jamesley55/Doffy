@@ -10,7 +10,8 @@ interface Props {
 }
 
 export function HomePage({ navigation }) {
-	const { user } = React.useContext(AuthContext);
+	const { me, user } = React.useContext(AuthContext);
+	me();
 	return (
 		<View style={styles.container}>
 			<View style={styles.rectStack}>
@@ -24,7 +25,7 @@ export function HomePage({ navigation }) {
 										console.log("kaka");
 									}}
 								>
-									Hello, {user}
+									Hello, {user ? user : "User"}
 								</Text>
 							</View>
 

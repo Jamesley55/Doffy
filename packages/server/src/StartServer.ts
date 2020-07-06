@@ -28,9 +28,13 @@ export const StartServer = async () => {
 			res,
 			pubsub,
 		}),
+		playground: {
+			settings: {
+				"request.credentials": "include",
+			},
+		},
 	});
 	await createTypeormConn();
-	console.log("sorti de la");
 
 	const RedisStore = connectRedis(session);
 
@@ -52,9 +56,14 @@ export const StartServer = async () => {
 	);
 
 	ConfirmEmail();
+	const cors = {
+		credentials: true,
+		origin: "http://localhost:19002/",
+	};
 
 	server.applyMiddleware({
 		app,
+		cors,
 	});
 
 	// for pubsub (subscription)
