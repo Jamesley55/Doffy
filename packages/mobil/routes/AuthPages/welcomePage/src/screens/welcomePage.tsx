@@ -1,9 +1,9 @@
 import * as React from "react";
 import { Image, SafeAreaView, Text, TouchableOpacity } from "react-native";
+import MaterialButtonDark from "../../../../../Component/MaterialButtonDark";
+import MaterialButtonGrey from "../../../../../Component/MaterialButtonGrey";
+import MaterialButtonViolet1 from "../../../../../Component/MaterialButtonViolet1";
 import { AuthStackNavProps } from "../../../../../screenStack/Tydefs/AuthParamList";
-import MaterialButtonDark from "../components/MaterialButtonDark";
-import MaterialButtonGrey from "../components/MaterialButtonGrey";
-import MaterialButtonViolet1 from "../components/MaterialButtonViolet1";
 import { welcomePageStyle } from "../style/style";
 
 export function welcomePage({ navigation }: AuthStackNavProps<"welcomePage">) {
@@ -17,26 +17,30 @@ export function welcomePage({ navigation }: AuthStackNavProps<"welcomePage">) {
 			</TouchableOpacity>
 			<Text style={welcomePageStyle.welcome}>Welcome</Text>
 			<MaterialButtonGrey
-				navigation="register"
-				Appleicon="logo-apple"
+				navigation={navigation}
+				nextScreen="register"
+				icon="logo-apple"
 				text1="Continue With Apple "
 				style={welcomePageStyle.continueWithApple}
 			></MaterialButtonGrey>
 			<MaterialButtonViolet1
-				navigation="register"
+				navigation={navigation}
+				nextScreen="register"
 				icon="sc-facebook"
 				text1="Continue with Facebook "
 				style={welcomePageStyle.continueWithFacebook}
 			/>
 			<MaterialButtonGrey
-				navigation="register"
-				googleIcon="sc-google-plus"
+				navigation={navigation}
+				nextScreen="register"
+				icon="sc-google-plus"
 				text1="Continue With Google"
 				style={welcomePageStyle.continueWithGoogle}
 			/>
 
 			<MaterialButtonDark
-				navigation="register"
+				navigation={navigation}
+				nextScreen="register"
 				text1="SIGN UP FREE"
 				style={welcomePageStyle.signUpFree}
 			/>

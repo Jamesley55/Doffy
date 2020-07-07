@@ -1,23 +1,21 @@
 import * as React from "react";
 import { Button, FlatList, Text, TouchableOpacity, View } from "react-native";
-import { TabsStackNavProps } from "../../../screenStack/Tydefs/tabsParamsList";
-import { IntercommunicationContext } from "../../../shareFuction/IntercommunicationContext";
+import { TabsStackNavProps } from "../../../../screenStack/Tydefs/tabsParamsList";
+import { IntercommunicationContext } from "../../../../shareFuction/IntercommunicationContext";
 
-export function Notification({
-	navigation,
-}: TabsStackNavProps<"notification">) {
-	const { NotificationQuery } = React.useContext(IntercommunicationContext);
+export function Message({ navigation }: TabsStackNavProps<"message">) {
+	const { MessageQuery } = React.useContext(IntercommunicationContext);
 	const [loading, setLoading] = React.useState(true);
 	const [array, setArray] = React.useState<any[]>([]);
 
 	React.useEffect(() => {
-		NotificationQuery()
+		MessageQuery()
 			.then((index: any) => {
 				console.log("variables ", index);
 				setArray(index);
 				setLoading(false);
 			})
-			.catch((err) => {
+			.catch((err: any) => {
 				console.log(err);
 				setLoading(false);
 			});
@@ -32,16 +30,12 @@ export function Notification({
 					justifyContent: "center",
 				}}
 			>
-				<Text
-					style={{
-						flex: 1,
-						alignItems: "center",
-						justifyContent: "center",
-						position: "absolute",
-					}}
-				>
-					no data
+				<Text>SEND A MESSAGE, GET A MESSAGE</Text>
+				<Text style={{ textAlign: "center" }}>
+					Direct Messages are private conversations between you and other people
+					on Doffy.
 				</Text>
+				<Button title="Send a message" onPress={() => {}} />
 			</View>
 		);
 	} else {
@@ -62,26 +56,24 @@ export function Notification({
 							}}
 						>
 							<Button
-								title={item.message.Title}
+								title={item.content}
 								onPress={() => {
-									navigation.navigate("NotifDescription", {
-										kaka: item.message.Title,
+									navigation.navigate("DirectMessage", {
+										kaka: "kaka",
 									});
 								}}
 							/>
-							<Button title={item.message.Body} onPress={() => {}} />
 						</TouchableOpacity>
 					);
 				}}
 				keyExtractor={(_item, index) => index.toString()}
 				data={array}
-				inverted
 			/>
 		);
 	}
 }
 
-export function NotifDescription({
+export function DirectMessage({
 	route,
 }: TabsStackNavProps<"NotifDescription">) {
 	return (

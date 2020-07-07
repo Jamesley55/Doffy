@@ -1,10 +1,10 @@
 import * as React from "react";
 import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
-import { TabsStackNavProps } from "../../../../../screenStack/Tydefs/tabsParamsList";
-import { AuthContext } from "../../../../../shareFuction/userContext";
-import List from "../components/List";
-import MaterialButtonHamburger from "../components/MaterialButtonHamburger";
+import List from "../../../../Component/List";
+import MaterialButtonHamburger from "../../../../Component/MaterialButtonHamburger";
+import { TabsStackNavProps } from "../../../../screenStack/Tydefs/tabsParamsList";
+import { AuthContext } from "../../../../shareFuction/userContext";
 
 interface Props {
 	navigation: any;
@@ -31,6 +31,7 @@ export function HomePage({ navigation }: TabsStackNavProps<"homepage">) {
 							</View>
 
 							<MaterialButtonHamburger
+								navigation={navigation}
 								style={styles.materialButtonHamburger}
 							></MaterialButtonHamburger>
 							<Icon
@@ -42,28 +43,28 @@ export function HomePage({ navigation }: TabsStackNavProps<"homepage">) {
 							></Icon>
 						</View>
 						<Image
-							source={require("../../../../../logo/LogoJamesleyApp.png")}
+							source={require("../../../../logo/LogoJamesleyApp.png")}
 							resizeMode="contain"
 							style={styles.image}
 						></Image>
 					</View>
 					<ScrollView style={{ marginBottom: 10 }}>
 						<Text style={styles.yourRecentServices}>your recent services</Text>
-						<List></List>
+						<List navigation={navigation} />
 						<Text style={styles.popularNearYou}>Popular near you</Text>
-						<List></List>
+						<List navigation={navigation} />
 						<Text style={styles.barbershop}>Barbershop</Text>
-						<List></List>
+						<List navigation={navigation} />
 						<Text style={styles.nailSalon}>Nail Salon</Text>
-						<List></List>
+						<List navigation={navigation} />
 						<Text style={styles.nailSalon}>Nail Salon</Text>
-						<List></List>
+						<List navigation={navigation} />
 						<Text style={styles.nailSalon}>Nail Salon</Text>
-						<List></List>
+						<List navigation={navigation} />
 						<Text style={styles.nailSalon}>Nail Salon</Text>
-						<List></List>
+						<List navigation={navigation} />
 						<Text style={styles.nailSalon}>Nail Salon</Text>
-						<List></List>
+						<List navigation={navigation} />
 					</ScrollView>
 				</View>
 			</View>

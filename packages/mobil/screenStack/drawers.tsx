@@ -2,7 +2,7 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import * as React from "react";
 import { payement } from "../routes/bookingPages/payementPage/src/screens/payement";
 import { pricePage } from "../routes/bookingPages/pricePage/src/screens/pricePage";
-import { help } from "../routes/otherPages/help/src/screens/help";
+import { help } from "../routes/otherPages/help/screens/help";
 import { sellerPage } from "./seller";
 import { tabs } from "./Tabs";
 import { DrawerParamList } from "./Tydefs/drawerParamList";

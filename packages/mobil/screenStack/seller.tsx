@@ -1,7 +1,7 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import * as React from "react";
 import { pricePage } from "../routes/bookingPages/pricePage/src/screens/pricePage";
-import { help } from "../routes/otherPages/help/src/screens/help";
+import { help } from "../routes/otherPages/help/screens/help";
 import { firstPage3 } from "../routes/sellerStack/firstPage3/src/screens/firstPage3";
 import { payout } from "../routes/sellerStack/payout/src/screens/payout";
 import { picDownload } from "../routes/sellerStack/picDownload/src/screens/picDownload";

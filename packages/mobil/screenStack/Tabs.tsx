@@ -6,11 +6,14 @@ import {
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import * as React from "react";
-import { DirectMessage, Message } from "../routes/HomeStack/Message/Message";
+import {
+	DirectMessage,
+	Message,
+} from "../routes/HomeStack/Message/screen/Message";
 import {
 	NotifDescription,
 	Notification,
-} from "../routes/HomeStack/Notification/notification";
+} from "../routes/HomeStack/Notification/screen/notification";
 import { HomeStackScreen } from "./Homestack";
 import { SearchStackScreen } from "./profilstack";
 import { TabsParamList } from "./Tydefs/tabsParamsList";

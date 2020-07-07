@@ -2,7 +2,7 @@ import * as React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import EntypoIcon from "react-native-vector-icons/Entypo";
 import FeatherIcon from "react-native-vector-icons/Feather";
-import { AuthContext } from "../../../../../shareFuction/userContext";
+import { AuthContext } from "../../../../shareFuction/userContext";
 
 export function help({ navigation }) {
 	const { logout } = React.useContext(AuthContext);

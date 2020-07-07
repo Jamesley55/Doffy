@@ -1,8 +1,8 @@
 import * as React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 import EntypoIcon from "react-native-vector-icons/Entypo";
-import { TabsStackNavProps } from "../../../../../screenStack/Tydefs/tabsParamsList";
-import MaterialUnderlineTextbox from "../components/MaterialUnderlineTextbox";
+import MaterialUnderlineTextbox from "../../../../Component/MaterialUnderlineTextbox";
+import { TabsStackNavProps } from "../../../../screenStack/Tydefs/tabsParamsList";
 
 export function searchPage({ navigation }: TabsStackNavProps<"searchPage">) {
 	return (
@@ -16,7 +16,7 @@ export function searchPage({ navigation }: TabsStackNavProps<"searchPage">) {
 					}}
 				></EntypoIcon>
 				<Image
-					source={require("../../../../../logo/LogoJamesleyApp.png")}
+					source={require("../../../../logo/LogoJamesleyApp.png")}
 					resizeMode="contain"
 					style={styles.image1}
 				></Image>
