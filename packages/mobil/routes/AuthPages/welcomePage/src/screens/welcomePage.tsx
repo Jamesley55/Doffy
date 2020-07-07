@@ -1,11 +1,12 @@
 import * as React from "react";
 import { Image, SafeAreaView, Text, TouchableOpacity } from "react-native";
+import { AuthStackNavProps } from "../../../../../screenStack/Tydefs/AuthParamList";
 import MaterialButtonDark from "../components/MaterialButtonDark";
 import MaterialButtonGrey from "../components/MaterialButtonGrey";
 import MaterialButtonViolet1 from "../components/MaterialButtonViolet1";
 import { welcomePageStyle } from "../style/style";
 
-export function welcomePage({ navigation }) {
+export function welcomePage({ navigation }: AuthStackNavProps<"welcomePage">) {
 	return (
 		<SafeAreaView style={welcomePageStyle.container}>
 			<TouchableOpacity onPress={() => navigation.push("firstPage")}>

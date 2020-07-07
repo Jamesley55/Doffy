@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
+import { TabsStackNavProps } from "../../../../../screenStack/Tydefs/tabsParamsList";
 import { AuthContext } from "../../../../../shareFuction/userContext";
 import List from "../components/List";
 import MaterialButtonHamburger from "../components/MaterialButtonHamburger";
@@ -9,7 +10,7 @@ interface Props {
 	navigation: any;
 }
 
-export function HomePage({ navigation }) {
+export function HomePage({ navigation }: TabsStackNavProps<"homepage">) {
 	const { me, user } = React.useContext(AuthContext);
 	me();
 	return (

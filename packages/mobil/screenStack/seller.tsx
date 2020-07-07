@@ -8,7 +8,8 @@ import { picDownload } from "../routes/sellerStack/picDownload/src/screens/picDo
 import { schedulePage } from "../routes/sellerStack/schedulePage/src/screens/schedulePage";
 import { sellerSteps } from "../routes/sellerStack/sellerSteps/src/screens/sellerSteps";
 import { serviceProvider } from "../routes/sellerStack/serviceProvider/src/screens/serviceProvider";
-const Stack = createStackNavigator();
+import { SellerParamList } from "./Tydefs/sellerParamList";
+const Stack = createStackNavigator<SellerParamList>();
 
 export const sellerPage = () => (
 	<Stack.Navigator

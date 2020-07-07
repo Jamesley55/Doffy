@@ -2,10 +2,11 @@ import * as React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 import EntypoIcon from "react-native-vector-icons/Entypo";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
+import { HomeStackNavProps } from "../../../../../screenStack/Tydefs/homeParamList";
 import MaterialButtonPrimary from "../components/MaterialButtonPrimary";
 import MaterialMapView1 from "../components/MaterialMapView1";
 
-export function locationPage({ navigation }) {
+export function locationPage({ navigation }: HomeStackNavProps<"location">) {
 	return (
 		<View style={styles.container}>
 			<View style={styles.icon1Row}>

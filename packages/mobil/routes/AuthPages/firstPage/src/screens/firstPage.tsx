@@ -7,9 +7,10 @@ import {
 	TouchableOpacity,
 	View,
 } from "react-native";
+import { AuthStackNavProps } from "../../../../../screenStack/Tydefs/AuthParamList";
 import { firstPageStyle } from "../style/stylesheet";
 
-export function firstPage({ navigation }) {
+export function firstPage({ navigation }: AuthStackNavProps<"firstPage">) {
 	return (
 		<SafeAreaView>
 			<ImageBackground

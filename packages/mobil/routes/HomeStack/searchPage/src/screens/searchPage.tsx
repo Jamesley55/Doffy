@@ -1,9 +1,10 @@
 import * as React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 import EntypoIcon from "react-native-vector-icons/Entypo";
+import { TabsStackNavProps } from "../../../../../screenStack/Tydefs/tabsParamsList";
 import MaterialUnderlineTextbox from "../components/MaterialUnderlineTextbox";
 
-export function searchPage({ navigation }) {
+export function searchPage({ navigation }: TabsStackNavProps<"searchPage">) {
 	return (
 		<View style={styles.container}>
 			<View style={styles.iconRow}>

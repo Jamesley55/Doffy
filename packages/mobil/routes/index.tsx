@@ -21,7 +21,6 @@ const getFont = () =>
 
 export const Routes: React.FC<RouteProps> = ({}) => {
 	const [loading, setLoading] = React.useState(true);
-
 	const [fontLoaded, setFontisLoaded] = React.useState(false);
 	const { user, token, homeScreen, me } = React.useContext(AuthContext);
 

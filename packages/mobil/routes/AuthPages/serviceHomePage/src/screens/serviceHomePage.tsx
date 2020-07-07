@@ -2,9 +2,13 @@ import * as React from "react";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Icon from "react-native-vector-icons/Entypo";
+import { AuthStackNavProps } from "../../../../../screenStack/Tydefs/AuthParamList";
 import { getSessionID } from "../../../../../shareFuction/sessionId";
 import { serviceHomePageStyle } from "../style/style";
-export function serviceHomePage({ navigation }) {
+
+export function serviceHomePage({
+	navigation,
+}: AuthStackNavProps<"serviceHomePage">) {
 	return (
 		<SafeAreaView>
 			<Icon name="chevron-thin-up" style={serviceHomePageStyle.upIcon}></Icon>

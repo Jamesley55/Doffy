@@ -5,8 +5,9 @@ import { LoginConnector } from "../routes/AuthPages/login/src/loginConnector";
 import { RegisterConnector } from "../routes/AuthPages/register/src/registerConnector";
 import { serviceHomePage } from "../routes/AuthPages/serviceHomePage/src/screens/serviceHomePage";
 import { welcomePage } from "../routes/AuthPages/welcomePage/src/screens/welcomePage";
+import { AuthParamList } from "./Tydefs/AuthParamList";
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator<AuthParamList>();
 
 export const AuthPages = () => (
 	<Stack.Navigator

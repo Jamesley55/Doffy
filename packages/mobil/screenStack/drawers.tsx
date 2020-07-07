@@ -5,8 +5,9 @@ import { pricePage } from "../routes/bookingPages/pricePage/src/screens/pricePag
 import { help } from "../routes/otherPages/help/src/screens/help";
 import { sellerPage } from "./seller";
 import { tabs } from "./Tabs";
+import { DrawerParamList } from "./Tydefs/drawerParamList";
 
-const Drawer = createDrawerNavigator();
+const Drawer = createDrawerNavigator<DrawerParamList>();
 
 export const drawer = () => (
 	<Drawer.Navigator
@@ -19,8 +20,8 @@ export const drawer = () => (
 		}}
 	>
 		<Drawer.Screen name="home" component={tabs} />
-		<Drawer.Screen name="become a seller" component={sellerPage} />
-		<Drawer.Screen name="payment Methode" component={payement} />
+		<Drawer.Screen name="becomeAseller" component={sellerPage} />
+		<Drawer.Screen name="paymentMethode" component={payement} />
 		<Drawer.Screen name="help" component={help} />
 		<Drawer.Screen name="pricePage" component={pricePage} />
 	</Drawer.Navigator>

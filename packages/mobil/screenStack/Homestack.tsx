@@ -4,8 +4,9 @@ import { locationPage } from "../routes/bookingPages/locationPage/src/screens/lo
 import { payement } from "../routes/bookingPages/payementPage/src/screens/payement";
 import { requestPage } from "../routes/bookingPages/requestPage/src/screens/request";
 import { HomePage } from "../routes/HomeStack/homePage/src/screens/homePage";
+import { HomeParamList } from "./Tydefs/homeParamList";
 
-const HomeStack = createStackNavigator();
+const HomeStack = createStackNavigator<HomeParamList>();
 
 export const HomeStackScreen = () => (
 	<HomeStack.Navigator

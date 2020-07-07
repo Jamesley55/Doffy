@@ -2,8 +2,11 @@ import * as React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 import EntypoIcon from "react-native-vector-icons/Entypo";
 import IoniconsIcon from "react-native-vector-icons/Ionicons";
+import { SellerStackNavProps } from "../../../../../screenStack/Tydefs/sellerParamList";
 
-export function sellerSteps({ navigation }) {
+export function sellerSteps({
+	navigation,
+}: SellerStackNavProps<"sellerSteps">) {
 	return (
 		<View style={styles.container}>
 			<View style={styles.image1Row}>
@@ -61,7 +64,7 @@ export function sellerSteps({ navigation }) {
 						name="chevron-thin-right"
 						style={styles.icon4}
 						onPress={() => {
-							navigation.navigate("picDownload");
+							navigation.navigate("picDownload", { kaka: "" });
 						}}
 					></EntypoIcon>
 				</View>

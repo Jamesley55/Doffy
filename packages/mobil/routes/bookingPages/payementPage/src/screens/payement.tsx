@@ -2,13 +2,14 @@ import * as React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import EntypoIcon from "react-native-vector-icons/Entypo";
 import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
+import { HomeStackNavProps } from "../../../../../screenStack/Tydefs/homeParamList";
 import CupertinoRadio from "../components/CupertinoRadio";
 import CupertinoRadio1 from "../components/CupertinoRadio1";
 import CupertinoRadio2 from "../components/CupertinoRadio2";
 import CupertinoRadio3 from "../components/CupertinoRadio3";
 import MaterialButtonPrimary from "../components/MaterialButtonPrimary";
 
-export function payement({ navigation }) {
+export function payement({ navigation }: HomeStackNavProps<"payement">) {
 	return (
 		<View style={styles.container}>
 			<View style={styles.icon1Row}>

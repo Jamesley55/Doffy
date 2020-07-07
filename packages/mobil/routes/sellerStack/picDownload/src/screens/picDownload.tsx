@@ -7,11 +7,14 @@ import { StyleSheet, Text, View } from "react-native";
 import EntypoIcon from "react-native-vector-icons/Entypo";
 import IoniconsIcon from "react-native-vector-icons/Ionicons";
 import MaterialIconsIcon from "react-native-vector-icons/MaterialIcons";
+import { SellerStackNavProps } from "../../../../../screenStack/Tydefs/sellerParamList";
 import { formatFilename } from "../../../../../shareFuction/formatFileName";
 import { uploadToS3 } from "../../../../../shareFuction/uploadS3";
 import MaterialButtonPrimary from "../components/MaterialButtonPrimary";
 
-export function picDownload({ navigation }: any) {
+export function picDownload({
+	navigation,
+}: SellerStackNavProps<"picDownload">) {
 	const [uploadS3] = useSignS3Mutation();
 	const getPermissionAsync = async () => {
 		if (Constants.platform?.ios) {

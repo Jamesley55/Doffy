@@ -3,9 +3,10 @@ import { Image, StyleSheet, Text, View } from "react-native";
 import EntypoIcon from "react-native-vector-icons/Entypo";
 import IoniconsIcon from "react-native-vector-icons/Ionicons";
 import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
+import { HomeStackNavProps } from "../../../../../screenStack/Tydefs/homeParamList";
 import MaterialButtonPrimary from "../components/MaterialButtonPrimary";
 
-export function requestPage({ navigation }) {
+export function requestPage({ navigation }: HomeStackNavProps<"requestPage">) {
 	return (
 		<View style={styles.container}>
 			<View style={styles.icon1Row}>

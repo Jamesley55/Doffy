@@ -1,14 +1,11 @@
-import { useRegisterMutation } from "@doffy/controller";
+import { MeDocument, useRegisterMutation } from "@doffy/controller";
 import {
 	useLoginMutation,
 	useLogoutMutation,
 } from "@doffy/controller/src/generated/graphql-hooks";
 import * as SecureStore from "expo-secure-store";
 import * as React from "react";
-import {
-	Error,
-	MeDocument,
-} from "../../controller/src/generated/graphql-hooks";
+import { Error, MeQuery } from "../../controller/src/generated/graphql-hooks";
 import { client } from "../src/apollo";
 
 type User = null | string | undefined;
@@ -73,9 +70,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 					setToken(tk);
 				},
 				me: async () => {
-					const me = await client.query({ query: MeDocument });
+					const Me = await client.query<MeQuery>({ query: MeDocument });
 					// tslint:disable-next-line: no-shadowed-variable
-					const User: any = me.data.me.user.username;
+					const User: any = Me.data?.me?.user?.username;
 					console.log("user", User);
 					setUser(User);
 				},
