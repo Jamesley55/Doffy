@@ -7,12 +7,15 @@ import {
 	View,
 } from "react-native";
 interface Props {
+	SearchInputState: any;
+	setSearchInput: any;
 	style: StyleProp<TextStyle>;
 	textInput1: any;
 }
 
-export class MaterialUnderlineTextbox extends React.PureComponent<Props> {
+export class SearchInput extends React.PureComponent<Props> {
 	render() {
+		const { setSearchInput, SearchInputState } = this.props;
 		return (
 			<View style={[styles.container, this.props.style]}>
 				<TextInput
@@ -20,6 +23,10 @@ export class MaterialUnderlineTextbox extends React.PureComponent<Props> {
 					returnKeyType="search"
 					placeholder="What are you looking for?"
 					style={styles.inputStyle}
+					onChangeText={(text) =>
+						setSearchInput({ search: text, offset: 1, limit: 3 })
+					}
+					value={SearchInputState.username}
 				></TextInput>
 			</View>
 		);
@@ -46,5 +53,3 @@ const styles = StyleSheet.create({
 		lineHeight: 16,
 	},
 });
-
-export default MaterialUnderlineTextbox;

@@ -1,77 +1,90 @@
+import { SearchServicesUserQueryVariables } from "@doffy/controller";
 import * as React from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import {
+	Button,
+	FlatList,
+	Image,
+	Text,
+	TouchableOpacity,
+	View,
+} from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import EntypoIcon from "react-native-vector-icons/Entypo";
-import MaterialUnderlineTextbox from "../../../../Component/MaterialUnderlineTextbox";
+import { SearchInput } from "../../../../Component/SearchInput";
 import { TabsStackNavProps } from "../../../../screenStack/Tydefs/tabsParamsList";
+import { SearchQueryContext } from "../../../../shareFuction/Searchcontext";
+import { SearchPageStyle } from "../style/style";
 
 export function searchPage({ navigation }: TabsStackNavProps<"searchPage">) {
+	const { SearchQuery } = React.useContext(SearchQueryContext);
+	const [loading, setLoading] = React.useState(true);
+	const [array, setArray] = React.useState<any[]>([]);
+	const [SearchInputState, setSearchInputState] = React.useState<
+		SearchServicesUserQueryVariables
+	>({ search: "", offset: 1, limit: 3 });
+
+	console.log(SearchInputState.search);
+	React.useEffect(() => {
+		SearchQuery(SearchInputState)
+			.then((index: any) => {
+				console.log("variables ", index);
+				setLoading(false);
+			})
+			.catch((err) => {
+				console.log(err);
+				setLoading(false);
+			});
+	}, [SearchInputState]);
+	console.log(SearchInputState);
+	console.log("array sa mere ", array);
+
 	return (
-		<View style={styles.container}>
-			<View style={styles.iconRow}>
-				<EntypoIcon
-					name="arrow-left"
-					style={styles.icon}
-					onPress={() => {
-						navigation.goBack();
-					}}
-				></EntypoIcon>
-				<Image
-					source={require("../../../../logo/LogoJamesleyApp.png")}
-					resizeMode="contain"
-					style={styles.image1}
-				></Image>
+		<React.Fragment>
+			<SafeAreaView style={{ marginTop: -50 }} />
+			<View style={SearchPageStyle.container}>
+				<View style={{ flexDirection: "row", justifyContent: "flex-start" }}>
+					<EntypoIcon
+						name="arrow-left"
+						style={SearchPageStyle.iconFleche}
+						onPress={() => {
+							navigation.goBack();
+						}}
+					/>
+					<Image
+						source={require("../../../../logo/LogoJamesleyApp.png")}
+						resizeMode="contain"
+						style={SearchPageStyle.doffyImage}
+					/>
+				</View>
+				<EntypoIcon name="cross" style={SearchPageStyle.iconDelete} />
+				<Text style={SearchPageStyle.Submit}>What are you looking for?</Text>
+				<SearchInput
+					SearchInputState={setSearchInputState}
+					setSearchInput={setSearchInputState}
+					textInput1="What are you looking for?"
+					style={SearchPageStyle.materialUnderlineTextbox}
+				></SearchInput>
 			</View>
-			<EntypoIcon name="cross" style={styles.icon2}></EntypoIcon>
-			<MaterialUnderlineTextbox
-				textInput1="What are you looking for?"
-				style={styles.materialUnderlineTextbox}
-			></MaterialUnderlineTextbox>
-			<Text style={styles.loremIpsum}>What are you looking for?</Text>
-		</View>
+			<FlatList
+				style={{ flex: 1 }}
+				renderItem={({ item }) => {
+					return (
+						<TouchableOpacity
+							style={{
+								flex: 1,
+								borderWidth: 1,
+								borderRadius: 3,
+								width: "100%",
+								height: 80,
+							}}
+						>
+							<Button title={item.username} onPress={() => {}} />
+						</TouchableOpacity>
+					);
+				}}
+				keyExtractor={(_item, index) => index.toString()}
+				data={array}
+			/>
+		</React.Fragment>
 	);
 }
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-	},
-	icon: {
-		color: "rgba(128,128,128,1)",
-		fontSize: 35,
-		marginTop: 24,
-	},
-	image1: {
-		width: 191,
-		height: 64,
-		marginLeft: 43,
-	},
-	iconRow: {
-		height: 64,
-		flexDirection: "row",
-		marginTop: 30,
-		marginLeft: 17,
-		marginRight: 89,
-	},
-	icon2: {
-		color: "rgba(128,128,128,1)",
-		fontSize: 35,
-		marginTop: 29,
-		marginLeft: 23,
-	},
-	materialUnderlineTextbox: {
-		width: 336,
-		height: 55,
-		backgroundColor: "rgba(245,245,245,1)",
-		marginTop: 39,
-		marginLeft: 23,
-	},
-	loremIpsum: {
-		width: 297,
-		height: 26,
-		color: "rgba(0,0,0,1)",
-		fontSize: 20,
-		fontFamily: "roboto-regular",
-		marginTop: -83,
-		marginLeft: 23,
-	},
-});

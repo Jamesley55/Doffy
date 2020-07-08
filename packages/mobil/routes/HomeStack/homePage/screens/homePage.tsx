@@ -1,9 +1,17 @@
 import * as React from "react";
-import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import {
+	ActivityIndicator,
+	Image,
+	ScrollView,
+	StyleSheet,
+	Text,
+	View,
+} from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
-import List from "../../../../Component/List";
 import MaterialButtonHamburger from "../../../../Component/MaterialButtonHamburger";
+import List from "../../../../Component/ServiceList";
 import { TabsStackNavProps } from "../../../../screenStack/Tydefs/tabsParamsList";
+import { IntercommunicationContext } from "../../../../shareFuction/IntercommunicationContext";
 import { AuthContext } from "../../../../shareFuction/userContext";
 
 interface Props {
@@ -12,64 +20,86 @@ interface Props {
 
 export function HomePage({ navigation }: TabsStackNavProps<"homepage">) {
 	const { me, user } = React.useContext(AuthContext);
+	const { NotificationQuery } = React.useContext(IntercommunicationContext);
+	const [loading, setLoading] = React.useState(true);
+	const [array, setArray] = React.useState<any[]>([]);
 	me();
-	return (
-		<View style={styles.container}>
-			<View style={styles.rectStack}>
-				<View style={styles.rect}>
-					<View style={styles.rect2StackStack}>
-						<View style={styles.rect2Stack}>
-							<View style={styles.rect2}>
-								<Text
-									style={styles.helloName}
-									onPress={async () => {
-										console.log("kaka");
-									}}
-								>
-									Hello, {user ? user : "User"}
-								</Text>
-							</View>
+	React.useEffect(() => {
+		NotificationQuery()
+			.then((index: any) => {
+				console.log("variables ", index);
+				setArray(index);
+				setLoading(false);
+			})
+			.catch((err: any) => {
+				console.log(err);
+				setLoading(false);
+			});
+	}, []);
+	if (loading) {
+		console.log("cette fonction sanbs flatlist");
+		return <ActivityIndicator size="large" style={{ flex: 1 }} />;
+	} else {
+		return (
+			<View style={styles.container}>
+				<View style={styles.rectStack}>
+					<View style={styles.rect}>
+						<View style={styles.rect2StackStack}>
+							<View style={styles.rect2Stack}>
+								<View style={styles.rect2}>
+									<Text
+										style={styles.helloName}
+										onPress={async () => {
+											console.log("kaka");
+										}}
+									>
+										Hello, {user ? user : "User"}
+									</Text>
+								</View>
 
-							<MaterialButtonHamburger
-								navigation={navigation}
-								style={styles.materialButtonHamburger}
-							></MaterialButtonHamburger>
-							<Icon
-								name="md-search"
-								style={styles.icon}
-								onPress={() => {
-									navigation.navigate("searchPage");
-								}}
-							></Icon>
+								<MaterialButtonHamburger
+									navigation={navigation}
+									style={styles.materialButtonHamburger}
+								></MaterialButtonHamburger>
+								<Icon
+									name="md-search"
+									style={styles.icon}
+									onPress={() => {
+										navigation.navigate("searchPage");
+									}}
+								></Icon>
+							</View>
+							<Image
+								source={require("../../../../logo/LogoJamesleyApp.png")}
+								resizeMode="contain"
+								style={styles.image}
+							></Image>
 						</View>
-						<Image
-							source={require("../../../../logo/LogoJamesleyApp.png")}
-							resizeMode="contain"
-							style={styles.image}
-						></Image>
+						<ScrollView style={{ marginBottom: 10 }}>
+							<Text style={styles.yourRecentServices}>
+								your recent services
+							</Text>
+							<List navigation={navigation} data={array} />
+							<Text style={styles.popularNearYou}>Popular near you</Text>
+							<List navigation={navigation} data={array} />
+							<Text style={styles.barbershop}>Barbershop</Text>
+							<List navigation={navigation} data={array} />
+							<Text style={styles.nailSalon}>Nail Salon</Text>
+							<List navigation={navigation} data={array} />
+							<Text style={styles.nailSalon}>Nail Salon</Text>
+							<List navigation={navigation} data={array} />
+							<Text style={styles.nailSalon}>Nail Salon</Text>
+							<List navigation={navigation} data={array} />
+							<Text style={styles.nailSalon}>Nail Salon</Text>
+							<List navigation={navigation} data={array} />
+							<Text style={styles.nailSalon}>Nail Salon</Text>
+							<List navigation={navigation} data={array} />
+						</ScrollView>
 					</View>
-					<ScrollView style={{ marginBottom: 10 }}>
-						<Text style={styles.yourRecentServices}>your recent services</Text>
-						<List navigation={navigation} />
-						<Text style={styles.popularNearYou}>Popular near you</Text>
-						<List navigation={navigation} />
-						<Text style={styles.barbershop}>Barbershop</Text>
-						<List navigation={navigation} />
-						<Text style={styles.nailSalon}>Nail Salon</Text>
-						<List navigation={navigation} />
-						<Text style={styles.nailSalon}>Nail Salon</Text>
-						<List navigation={navigation} />
-						<Text style={styles.nailSalon}>Nail Salon</Text>
-						<List navigation={navigation} />
-						<Text style={styles.nailSalon}>Nail Salon</Text>
-						<List navigation={navigation} />
-						<Text style={styles.nailSalon}>Nail Salon</Text>
-						<List navigation={navigation} />
-					</ScrollView>
 				</View>
 			</View>
-		</View>
-	);
+		);
+	}
 }
 
 const styles = StyleSheet.create({

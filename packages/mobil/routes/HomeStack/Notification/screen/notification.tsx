@@ -69,7 +69,6 @@ export function Notification({
 				}}
 				keyExtractor={(_item, index) => index.toString()}
 				data={array}
-				inverted
 			/>
 		);
 	}
