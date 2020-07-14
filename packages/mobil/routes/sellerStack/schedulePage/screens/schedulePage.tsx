@@ -1,16 +1,16 @@
 import * as React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { SafeAreaView, StyleSheet, Text, View } from "react-native";
 import EntypoIcon from "react-native-vector-icons/Entypo";
 import IoniconsIcon from "react-native-vector-icons/Ionicons";
-import { SellerStackNavProps } from "../../../../../screenStack/Tydefs/sellerParamList";
-import MaterialButtonPrimary from "../components/MaterialButtonPrimary";
-import MaterialSwitch2 from "../components/MaterialSwitch2";
+import { BlueButton } from "../../../../Component/BlueBotton";
+import { MaterialSwitch2 } from "../../../../Component/MaterialSwitch2";
+import { SellerStackNavProps } from "../../../../screenStack/Tydefs/sellerParamList";
 
 export function schedulePage({
 	navigation,
 }: SellerStackNavProps<"schedulePage">) {
 	return (
-		<View style={styles.container}>
+		<SafeAreaView style={styles.container}>
 			<View style={styles.icon1Row}>
 				<EntypoIcon
 					name="arrow-left"
@@ -92,18 +92,21 @@ export function schedulePage({
 					Would you like your adresse to be accesible by your client?
 				</Text>
 				<MaterialSwitch2></MaterialSwitch2>
-				<MaterialButtonPrimary
-					text1="Continue"
+				<BlueButton
+					navigationPage="picDownload"
+					navigation={navigation}
+					Text1="Continue"
 					style={styles.materialButtonPrimary1}
-				></MaterialButtonPrimary>
+				></BlueButton>
 			</View>
-		</View>
+		</SafeAreaView>
 	);
 }
 
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
+		alignSelf: "center",
 	},
 	icon1: {
 		color: "rgba(128,128,128,1)",

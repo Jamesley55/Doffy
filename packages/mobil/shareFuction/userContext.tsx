@@ -71,9 +71,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 				},
 				me: async () => {
 					const Me = await client.query<MeQuery>({ query: MeDocument });
+					if (!Me.data.me) {
+						logoutMutation();
+						setToken(null);
+					}
 					// tslint:disable-next-line: no-shadowed-variable
 					const User: any = Me.data?.me?.user?.username;
-					console.log("user", User);
 					setUser(User);
 				},
 				login: async (values: any) => {

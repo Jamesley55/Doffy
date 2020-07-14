@@ -21,13 +21,14 @@ export function searchPage({ navigation }: TabsStackNavProps<"searchPage">) {
 	const [array, setArray] = React.useState<any[]>([]);
 	const [SearchInputState, setSearchInputState] = React.useState<
 		SearchServicesUserQueryVariables
-	>({ search: "", offset: 1, limit: 3 });
+	>({ search: "kaka", offset: 10, limit: 3 });
 
 	console.log(SearchInputState.search);
 	React.useEffect(() => {
 		SearchQuery(SearchInputState)
 			.then((index: any) => {
 				console.log("variables ", index);
+				setArray(index.user);
 				setLoading(false);
 			})
 			.catch((err) => {
@@ -83,7 +84,7 @@ export function searchPage({ navigation }: TabsStackNavProps<"searchPage">) {
 					);
 				}}
 				keyExtractor={(_item, index) => index.toString()}
-				data={array}
+				data={array.length > 0 ? array : [{ username: "" }]}
 			/>
 		</React.Fragment>
 	);

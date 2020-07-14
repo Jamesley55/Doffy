@@ -29,12 +29,11 @@ export function HomePage({ navigation }: TabsStackNavProps<"homepage">) {
 			.then((index: any) => {
 				console.log("variables ", index);
 				setArray(index);
-				setLoading(false);
 			})
 			.catch((err: any) => {
 				console.log(err);
-				setLoading(false);
 			});
+		setLoading(false);
 	}, []);
 	if (loading) {
 		console.log("cette fonction sanbs flatlist");
@@ -53,7 +52,7 @@ export function HomePage({ navigation }: TabsStackNavProps<"homepage">) {
 											console.log("kaka");
 										}}
 									>
-										Hello, {user ? user : "User"}
+										Hello, {user ? user : "user"}
 									</Text>
 								</View>
 

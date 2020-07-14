@@ -2,12 +2,12 @@ import { createStackNavigator } from "@react-navigation/stack";
 import * as React from "react";
 import { pricePage } from "../routes/bookingPages/pricePage/src/screens/pricePage";
 import { help } from "../routes/otherPages/help/screens/help";
-import { firstPage3 } from "../routes/sellerStack/firstPage3/src/screens/firstPage3";
-import { payout } from "../routes/sellerStack/payout/src/screens/payout";
-import { picDownload } from "../routes/sellerStack/picDownload/src/screens/picDownload";
-import { schedulePage } from "../routes/sellerStack/schedulePage/src/screens/schedulePage";
-import { sellerSteps } from "../routes/sellerStack/sellerSteps/src/screens/sellerSteps";
-import { serviceProvider } from "../routes/sellerStack/serviceProvider/src/screens/serviceProvider";
+import { firstPage3 } from "../routes/sellerStack/firstPage3/screens/firstPage3";
+import { payout } from "../routes/sellerStack/payout/screens/payout";
+import { picDownload } from "../routes/sellerStack/picDownload/screens/picDownload";
+import { schedulePage } from "../routes/sellerStack/schedulePage/screens/schedulePage";
+import { sellerSteps } from "../routes/sellerStack/sellerSteps/screens/sellerSteps";
+import { serviceProvider } from "../routes/sellerStack/serviceProvider/screens/serviceProvider";
 import { SellerParamList } from "./Tydefs/sellerParamList";
 const Stack = createStackNavigator<SellerParamList>();
 

@@ -2,7 +2,7 @@ import * as React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import EntypoIcon from "react-native-vector-icons/Entypo";
 import IoniconsIcon from "react-native-vector-icons/Ionicons";
-import { SellerStackNavProps } from "../../../../../screenStack/Tydefs/sellerParamList";
+import { SellerStackNavProps } from "../../../../screenStack/Tydefs/sellerParamList";
 import MaterialButtonPrimary from "../components/MaterialButtonPrimary";
 import MaterialCheckbox5 from "../components/MaterialCheckbox5";
 import MaterialFixedLabelTextbox from "../components/MaterialFixedLabelTextbox";
