@@ -12,7 +12,7 @@ export function schedulePage({
 	navigation,
 }: SellerStackNavProps<"schedulePage">) {
 	const [isDatePickerVisible, setDatePickerVisibility] = React.useState(false);
-
+	const [hours, setHours] = React.useState("");
 	const showDatePicker = () => {
 		setDatePickerVisibility(true);
 	};
@@ -23,6 +23,12 @@ export function schedulePage({
 
 	const handleConfirm = (time) => {
 		console.log("A time has been picked: ", time);
+		const d = new Date(time);
+		console.log("hours", d.getUTCHours()); // Hours
+		console.log("minute", d.getUTCMinutes()); // minute
+		console.log("seconds", d.getUTCSeconds()); // seconds
+		const hours = `${d.getUTCHours()}:${d.getUTCMinutes()}`;
+		setHours(hours);
 		hideDatePicker();
 	};
 
@@ -55,11 +61,15 @@ export function schedulePage({
 					<TouchableOpacity
 						style={SchedulePagestyles.blackRect}
 						onPress={showDatePicker}
-					/>
+					>
+						<Text>{hours}</Text>
+					</TouchableOpacity>
 					<TouchableOpacity
 						style={SchedulePagestyles.blackRect}
 						onPress={showDatePicker}
-					/>
+					>
+						<Text>{hours}</Text>
+					</TouchableOpacity>
 				</View>
 				<View style={SchedulePagestyles.scheduleRow}>
 					<MaterialSwitch2 />
@@ -67,11 +77,15 @@ export function schedulePage({
 					<TouchableOpacity
 						style={SchedulePagestyles.blackRect}
 						onPress={showDatePicker}
-					/>
+					>
+						<Text>{hours}</Text>
+					</TouchableOpacity>
 					<TouchableOpacity
 						style={SchedulePagestyles.blackRect}
 						onPress={showDatePicker}
-					/>
+					>
+						<Text>{hours}</Text>
+					</TouchableOpacity>
 				</View>
 				<View style={SchedulePagestyles.scheduleRow}>
 					<MaterialSwitch2 />
@@ -79,11 +93,15 @@ export function schedulePage({
 					<TouchableOpacity
 						style={SchedulePagestyles.blackRect}
 						onPress={showDatePicker}
-					/>
+					>
+						<Text>{hours}</Text>
+					</TouchableOpacity>
 					<TouchableOpacity
 						style={SchedulePagestyles.blackRect}
 						onPress={showDatePicker}
-					/>
+					>
+						<Text>{hours}</Text>
+					</TouchableOpacity>
 				</View>
 				<View style={SchedulePagestyles.scheduleRow}>
 					<MaterialSwitch2 />
@@ -91,11 +109,15 @@ export function schedulePage({
 					<TouchableOpacity
 						style={SchedulePagestyles.blackRect}
 						onPress={showDatePicker}
-					/>
+					>
+						<Text>{hours}</Text>
+					</TouchableOpacity>
 					<TouchableOpacity
 						style={SchedulePagestyles.blackRect}
 						onPress={showDatePicker}
-					/>
+					>
+						<Text>{hours}</Text>
+					</TouchableOpacity>
 				</View>
 				<View style={SchedulePagestyles.scheduleRow}>
 					<MaterialSwitch2 />
@@ -103,11 +125,15 @@ export function schedulePage({
 					<TouchableOpacity
 						style={SchedulePagestyles.blackRect}
 						onPress={showDatePicker}
-					/>
+					>
+						<Text>{hours}</Text>
+					</TouchableOpacity>
 					<TouchableOpacity
 						style={SchedulePagestyles.blackRect}
 						onPress={showDatePicker}
-					/>
+					>
+						<Text>{hours}</Text>
+					</TouchableOpacity>
 				</View>
 				<View style={SchedulePagestyles.scheduleRow}>
 					<MaterialSwitch2 />
@@ -115,11 +141,15 @@ export function schedulePage({
 					<TouchableOpacity
 						style={SchedulePagestyles.blackRect}
 						onPress={showDatePicker}
-					/>
+					>
+						<Text>{hours}</Text>
+					</TouchableOpacity>
 					<TouchableOpacity
 						style={SchedulePagestyles.blackRect}
 						onPress={showDatePicker}
-					/>
+					>
+						<Text>{hours}</Text>
+					</TouchableOpacity>
 				</View>
 				<View style={SchedulePagestyles.scheduleRow}>
 					<MaterialSwitch2 />
@@ -127,11 +157,15 @@ export function schedulePage({
 					<TouchableOpacity
 						style={SchedulePagestyles.blackRect}
 						onPress={showDatePicker}
-					/>
+					>
+						<Text>{hours}</Text>
+					</TouchableOpacity>
 					<TouchableOpacity
 						style={SchedulePagestyles.blackRect}
 						onPress={showDatePicker}
-					/>
+					>
+						<Text>{hours}</Text>
+					</TouchableOpacity>
 				</View>
 				<Text style={SchedulePagestyles.Text1}>
 					Would you like your adresse to be accesible by your client?
@@ -145,9 +179,11 @@ export function schedulePage({
 				/>
 			</View>
 			<DateTimePickerModal
+				date={new Date(2300, 10, 20)}
+				timeZoneOffsetInMinutes={0}
 				minuteInterval={15}
 				isVisible={isDatePickerVisible}
-				mode="datetime"
+				mode="time"
 				onConfirm={handleConfirm}
 				onCancel={hideDatePicker}
 			/>

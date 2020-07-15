@@ -49,7 +49,7 @@ export const SchedulePagestyles = StyleSheet.create({
 		marginLeft: WIDTH / 20,
 		width: WIDTH / 6,
 		height: HEIGHT / 20,
-		backgroundColor: "rgba(0,0,0,1)",
+		backgroundColor: "white",
 	},
 
 	Text1: {
