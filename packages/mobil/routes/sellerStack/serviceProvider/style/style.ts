@@ -39,10 +39,10 @@ export const serviceProviderStyle = StyleSheet.create({
 	},
 
 	materialButtonPrimary1: {
-		width: 294,
-		height: 66,
+		width: WIDTH / 1.2,
+		height: HEIGHT / 13,
 		borderRadius: 100,
-		marginTop: 22,
-		marginLeft: 41,
+		marginTop: WIDTH / 20,
+		alignSelf: "center",
 	},
 });
