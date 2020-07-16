@@ -43,7 +43,7 @@ export function serviceProvider({
 				<View style={serviceProviderStyle.ServicesRect}></View>
 			</View>
 			<BlueButton
-				navigationPage="schedulePage"
+				navigationPage="pricePage"
 				navigation={navigation}
 				Text1="Continue "
 				style={serviceProviderStyle.materialButtonPrimary1}

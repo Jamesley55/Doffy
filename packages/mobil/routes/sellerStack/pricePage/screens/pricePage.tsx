@@ -1,64 +1,62 @@
 import * as React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import MaterialButtonPrimary from "../components/MaterialButtonPrimary";
-import MaterialSwitch from "../components/MaterialSwitch";
+import { SafeAreaView, StyleSheet, Text, TextInput, View } from "react-native";
+import EntypoIcon from "react-native-vector-icons/Entypo";
+import IoniconsIcon from "react-native-vector-icons/Ionicons";
+import { AddressInput } from "../../../../Component/adressInput";
+import { BlueButton } from "../../../../Component/BlueBotton";
+import { SchedulePagestyles } from "../../schedulePage/style/style";
 
 export function pricePage({ navigation }) {
 	return (
-		<View style={styles.container}>
-			<View style={styles.rectStack}>
-				<View style={styles.rect}>
-					<Text style={styles.price}>Price</Text>
-					<View style={styles.rect2Row}>
-						<View style={styles.rect2}></View>
-						<MaterialSwitch style={styles.materialSwitch}></MaterialSwitch>
-						<Text style={styles.beardIncluded}>Beard included</Text>
-					</View>
-					<Text style={styles.beardPrice}>Beard price</Text>
-					<View style={styles.rect3}></View>
-					<View style={styles.materialSwitch1Row}>
-						<MaterialSwitch style={styles.materialSwitch1}></MaterialSwitch>
-						<Text style={styles.beardIncluded2}>
-							initial deposit for booking
-						</Text>
-					</View>
-					<View style={styles.rect4Row}>
-						<View style={styles.rect4}></View>
-						<Text style={styles.beardIncluded3}>
-							percentage of your price that the customer will have to pay
-							forward
-						</Text>
-					</View>
-					<Text style={styles.advanceOption1}>Advance option</Text>
-				</View>
-				<Text style={styles.cuttingHair}>Cutting hair</Text>
+		<SafeAreaView style={SchedulePagestyles.container}>
+			<View style={SchedulePagestyles.Row}>
+				<EntypoIcon
+					name="arrow-left"
+					style={SchedulePagestyles.arrowLeft}
+					onPress={() => {
+						navigation.goBack();
+					}}
+				/>
+				<IoniconsIcon
+					name="md-help-circle-outline"
+					style={SchedulePagestyles.Help}
+					onPress={() => {
+						navigation.navigate("help");
+					}}
+				/>
 			</View>
-			<View style={styles.rect5Stack}>
-				<View style={styles.rect5}>
-					<Text style={styles.price1}>Price</Text>
-					<View style={styles.rect6}></View>
-					<View style={styles.materialSwitch2Row}>
-						<MaterialSwitch style={styles.materialSwitch2}></MaterialSwitch>
-						<Text style={styles.beardIncluded4}>
-							initial deposit for booking
-						</Text>
-					</View>
-					<View style={styles.rect7Row}>
-						<View style={styles.rect7}></View>
-						<Text style={styles.beardIncluded5}>
-							percentage of your price that the customer will have to pay
-							forward
-						</Text>
-					</View>
-					<Text style={styles.advanceOption}>Advance option</Text>
+
+			<View style={SchedulePagestyles.rect}>
+				<View>
+					<Text>How much would you like people to call your business </Text>
+					<TextInput placeholder="business name" />
 				</View>
-				<Text style={styles.nailSalon}>Nail salon</Text>
+				<View>
+					<Text>
+						Write a short description to tell people more about your business{" "}
+					</Text>
+					<TextInput placeholder="business name" />
+				</View>
+				<View>
+					<Text>How much would you charge your services on average? </Text>
+					<TextInput placeholder="$$$" />
+				</View>
+				<AddressInput />
+
+				{
+					//<Text style={SchedulePagestyles.Text1}>
+					//Would you like your adresse to be accesible by your client?
+					//</Text>
+					//	<MaterialSwitch2 green={true} />
+				}
+				<BlueButton
+					navigationPage="schedulePage"
+					navigation={navigation}
+					Text1="Continue"
+					style={SchedulePagestyles.BlueButton}
+				/>
 			</View>
-			<MaterialButtonPrimary
-				text1="Continue "
-				style={styles.materialButtonPrimary1}
-			></MaterialButtonPrimary>
-		</View>
+		</SafeAreaView>
 	);
 }
 

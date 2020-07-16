@@ -1,10 +1,10 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import * as React from "react";
-import { pricePage } from "../routes/bookingPages/pricePage/src/screens/pricePage";
 import { help } from "../routes/otherPages/help/screens/help";
 import { firstPage3 } from "../routes/sellerStack/firstPage3/screens/firstPage3";
 import { payout } from "../routes/sellerStack/payout/screens/payout";
 import { picDownload } from "../routes/sellerStack/picDownload/screens/picDownload";
+import { pricePage } from "../routes/sellerStack/pricePage/screens/pricePage";
 import { schedulePage } from "../routes/sellerStack/schedulePage/screens/schedulePage";
 import { sellerSteps } from "../routes/sellerStack/sellerSteps/screens/sellerSteps";
 import { serviceProvider } from "../routes/sellerStack/serviceProvider/screens/serviceProvider";

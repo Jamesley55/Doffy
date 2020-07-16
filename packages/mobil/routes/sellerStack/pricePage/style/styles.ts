@@ -3,7 +3,7 @@ import { Dimensions, StyleSheet } from "react-native";
 const WIDTH = Dimensions.get("window").width;
 const HEIGHT = Dimensions.get("window").height;
 
-export const SchedulePagestyles = StyleSheet.create({
+export const pricePagestyles = StyleSheet.create({
 	container: {
 		flex: 1,
 		alignSelf: "center",
@@ -65,7 +65,7 @@ export const SchedulePagestyles = StyleSheet.create({
 		width: WIDTH / 1.3,
 		height: HEIGHT / 13,
 		borderRadius: 100,
-		marginTop: WIDTH / 5,
+		marginTop: WIDTH / 20,
 		alignSelf: "center",
 	},
 });

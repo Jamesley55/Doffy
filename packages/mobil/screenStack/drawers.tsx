@@ -1,7 +1,5 @@
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import * as React from "react";
-import { payement } from "../routes/bookingPages/payementPage/src/screens/payement";
-import { pricePage } from "../routes/bookingPages/pricePage/src/screens/pricePage";
 import { help } from "../routes/otherPages/help/screens/help";
 import { sellerPage } from "./seller";
 import { tabs } from "./Tabs";
@@ -21,8 +19,6 @@ export const drawer = () => (
 	>
 		<Drawer.Screen name="home" component={tabs} />
 		<Drawer.Screen name="becomeAseller" component={sellerPage} />
-		<Drawer.Screen name="paymentMethode" component={payement} />
 		<Drawer.Screen name="help" component={help} />
-		<Drawer.Screen name="pricePage" component={pricePage} />
 	</Drawer.Navigator>
 );

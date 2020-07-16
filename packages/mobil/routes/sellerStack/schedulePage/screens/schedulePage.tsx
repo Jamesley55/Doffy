@@ -27,8 +27,8 @@ export function schedulePage({
 		console.log("hours", d.getUTCHours()); // Hours
 		console.log("minute", d.getUTCMinutes()); // minute
 		console.log("seconds", d.getUTCSeconds()); // seconds
-		const hours = `${d.getUTCHours()}:${d.getUTCMinutes()}`;
-		setHours(hours);
+		const houres = `${d.getUTCHours()}:${d.getUTCMinutes()}`;
+		setHours(houres);
 		hideDatePicker();
 	};
 
@@ -167,15 +167,11 @@ export function schedulePage({
 						<Text>{hours}</Text>
 					</TouchableOpacity>
 				</View>
-				<Text style={SchedulePagestyles.Text1}>
-					Would you like your adresse to be accesible by your client?
-				</Text>
-				<MaterialSwitch2 />
 				<BlueButton
 					navigationPage="picDownload"
 					navigation={navigation}
 					Text1="Continue"
-					style={SchedulePagestyles.materialButtonPrimary1}
+					style={SchedulePagestyles.BlueButton}
 				/>
 			</View>
 			<DateTimePickerModal

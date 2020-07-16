@@ -32,18 +32,15 @@ export function firstPage3({ navigation }: SellerStackNavProps<"Page3">) {
 			</Text>
 
 			<View style={firstPage3Style.Row}>
-				<FeatherIcon name="user" style={firstPage3Style.icon}></FeatherIcon>
+				<FeatherIcon name="user" style={firstPage3Style.icon} />
 				<Text style={firstPage3Style.TextSteps}>Create your profile</Text>
 			</View>
 			<View style={firstPage3Style.Row}>
-				<EntypoIcon name="text" style={firstPage3Style.icon}></EntypoIcon>
+				<EntypoIcon name="text" style={firstPage3Style.icon} />
 				<Text style={firstPage3Style.TextSteps}>do your schedule</Text>
 			</View>
 			<View style={firstPage3Style.Row}>
-				<IoniconsIcon
-					name="ios-images"
-					style={firstPage3Style.icon}
-				></IoniconsIcon>
+				<IoniconsIcon name="ios-images" style={firstPage3Style.icon} />
 				<Text style={firstPage3Style.TextSteps}>
 					presente some preview of your work
 				</Text>
@@ -66,7 +63,7 @@ export function firstPage3({ navigation }: SellerStackNavProps<"Page3">) {
 				navigationPage="sellerSteps"
 				navigation={navigation}
 				Text1="Continue "
-				style={firstPage3Style.materialButtonPrimary}
+				style={firstPage3Style.BlueButton}
 			></BlueButton>
 		</SafeAreaView>
 	);

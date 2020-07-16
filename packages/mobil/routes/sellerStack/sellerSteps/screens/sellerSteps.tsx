@@ -53,6 +53,18 @@ export function sellerSteps({
 			</View>
 			<View style={sellerStepsStyle.rect}>
 				<View style={sellerStepsStyle.BoxRow}>
+					<Text style={sellerStepsStyle.BoxText}>Bookings information</Text>
+					<EntypoIcon
+						name="chevron-thin-right"
+						style={sellerStepsStyle.Nexticon}
+						onPress={() => {
+							navigation.navigate("pricePage");
+						}}
+					></EntypoIcon>
+				</View>
+			</View>
+			<View style={sellerStepsStyle.rect}>
+				<View style={sellerStepsStyle.BoxRow}>
 					<Text style={sellerStepsStyle.BoxText}>
 						do your avabaility schedule
 					</Text>
@@ -73,18 +85,6 @@ export function sellerSteps({
 						style={sellerStepsStyle.Nexticon}
 						onPress={() => {
 							navigation.navigate("picDownload", { kaka: "" });
-						}}
-					></EntypoIcon>
-				</View>
-			</View>
-			<View style={sellerStepsStyle.rect}>
-				<View style={sellerStepsStyle.BoxRow}>
-					<Text style={sellerStepsStyle.BoxText}>Payout information</Text>
-					<EntypoIcon
-						name="chevron-thin-right"
-						style={sellerStepsStyle.Nexticon}
-						onPress={() => {
-							navigation.navigate("payout");
 						}}
 					></EntypoIcon>
 				</View>

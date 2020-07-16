@@ -42,13 +42,11 @@ export const firstPage3Style = StyleSheet.create({
 		flexDirection: "row",
 		marginTop: HEIGHT / 20,
 	},
-	materialButtonPrimary: {
-		width: 294,
-		height: 66,
+	BlueButton: {
+		width: WIDTH / 1.3,
+		height: HEIGHT / 13,
 		borderRadius: 100,
-		marginTop: 62,
-		marginLeft: 29,
-		textAlign: "center",
+		marginTop: WIDTH / 20,
 		alignSelf: "center",
 	},
 });

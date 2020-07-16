@@ -4,6 +4,10 @@ import { StyleProp, StyleSheet, Switch, TextStyle, View } from "react-native";
 interface Props {
 	style: StyleProp<TextStyle> | any;
 }
+interface PropsGreen {
+	style: StyleProp<TextStyle> | any;
+	green: boolean;
+}
 
 export class MaterialSwitch2 extends React.PureComponent<Props | any> {
 	state = {
@@ -15,13 +19,16 @@ export class MaterialSwitch2 extends React.PureComponent<Props | any> {
 			<View style={[styles.container, this.props.style]}>
 				<Switch
 					value={this.state.values}
-					disabled={false}
 					trackColor={{
 						true: "green",
 						false: "rgba(230, 230, 230,1)",
 					}}
 					style={styles.switch1}
-					onChange={() => this.setState({ values: !this.state.values })}
+					onChange={() =>
+						this.state.values
+							? this.setState({ values: false })
+							: this.setState({ values: true })
+					}
 				/>
 			</View>
 		);

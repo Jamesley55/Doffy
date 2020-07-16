@@ -2,10 +2,10 @@ import * as React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import EntypoIcon from "react-native-vector-icons/Entypo";
 import IoniconsIcon from "react-native-vector-icons/Ionicons";
+import { BlueButton } from "../../../../Component/BlueBotton";
+import MaterialCheckbox5 from "../../../../Component/MaterialCheckbox5";
+import MaterialFixedLabelTextbox from "../../../../Component/MaterialFixedLabelTextbox";
 import { SellerStackNavProps } from "../../../../screenStack/Tydefs/sellerParamList";
-import MaterialButtonPrimary from "../components/MaterialButtonPrimary";
-import MaterialCheckbox5 from "../components/MaterialCheckbox5";
-import MaterialFixedLabelTextbox from "../components/MaterialFixedLabelTextbox";
 import MaterialRadio from "../components/MaterialRadio";
 
 export function payout({ navigation }: SellerStackNavProps<"payout">) {
@@ -19,7 +19,7 @@ export function payout({ navigation }: SellerStackNavProps<"payout">) {
 						onPress={() => {
 							navigation.goBack();
 						}}
-					></EntypoIcon>
+					/>
 				</View>
 				<IoniconsIcon
 					name="md-help-circle-outline"
@@ -27,7 +27,7 @@ export function payout({ navigation }: SellerStackNavProps<"payout">) {
 					onPress={() => {
 						navigation.navigate("help");
 					}}
-				></IoniconsIcon>
+				/>
 			</View>
 			<View style={styles.rect}>
 				<View style={styles.materialCheckbox5Stack}>
@@ -75,16 +75,18 @@ export function payout({ navigation }: SellerStackNavProps<"payout">) {
 				<View style={styles.loremIpsum7Stack}>
 					<Text style={styles.loremIpsum7}>customer statement descriptor</Text>
 					<MaterialFixedLabelTextbox
-						textInput1="$name$"
+						textInput="$name$"
 						text1="luxes*"
 						style={styles.materialFixedLabelTextbox}
 					></MaterialFixedLabelTextbox>
 				</View>
 			</View>
-			<MaterialButtonPrimary
-				text1="Continue "
+			<BlueButton
+				navigationPage="home"
+				navigation={navigation}
+				Text1="Continue "
 				style={styles.materialButtonPrimary1}
-			></MaterialButtonPrimary>
+			/>
 		</View>
 	);
 }
