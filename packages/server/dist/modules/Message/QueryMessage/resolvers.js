@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.findMessage = void 0;
 const message_1 = require("../../../entity/message");
 const typeorm_1 = require("typeorm");
 exports.findMessage = {
@@ -16,7 +17,6 @@ exports.findMessage = {
         messages: (_, {}, { session }) => __awaiter(void 0, void 0, void 0, function* () {
             const senderId = session.userId;
             const recipientId = senderId;
-            console.log("sessionID", recipientId);
             let MessageQB = typeorm_1.getConnection()
                 .getRepository(message_1.Message)
                 .createQueryBuilder("m");
@@ -24,7 +24,6 @@ exports.findMessage = {
                 senderId,
             }).orWhere("m.recipientId = :recipientId", { recipientId });
             const response = yield MessageQB.getMany();
-            console.log(response);
             return response;
         }),
     },

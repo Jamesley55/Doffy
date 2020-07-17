@@ -35,7 +35,7 @@ export function pricePage({ navigation }) {
 					<Text>
 						Write a short description to tell people more about your business{" "}
 					</Text>
-					<TextInput placeholder="business name" />
+					<TextInput placeholder="Short description" />
 				</View>
 				<View>
 					<Text>How much would you charge your services on average? </Text>

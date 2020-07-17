@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.QueryBooking = void 0;
 const booking_1 = require("../../../entity/booking");
 exports.QueryBooking = {
     Query: {

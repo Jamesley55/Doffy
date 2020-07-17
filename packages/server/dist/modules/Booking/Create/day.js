@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.week = void 0;
 const wekkday_1 = require("./wekkday");
 const isbetween_1 = require("./isbetween");
 const schedule_1 = require("../../Calendar/QueryCalendar/schedule");

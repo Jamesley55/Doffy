@@ -1,0 +1,124 @@
+# import user from "user.graphql"
+
+input CreateServices {
+  name: String!
+  category: String!
+  description: String!
+  coutryId: String
+  stateId: String
+  cityId: String
+  Taxes: Boolean!
+  Adress: String
+  price: Float!
+  payoutSchedule: String!
+  customerBillingStatement: String!
+  latitude: Float
+  longitude: Float
+}
+
+input UpdateServices {
+  name: String
+  description: String
+  coutryId: String
+  stateId: String
+  cityId: String
+  Taxes: Boolean
+  Adress: String
+  price: Float
+  payoutSchedule: String
+  customerBillingStatement: String
+  latitude: Float
+  longitude: Float
+}
+
+input Schedulebool {
+  monday: Boolean
+  tuesday: Boolean
+  wednesday: Boolean
+  thusday: Boolean
+  friday: Boolean
+  saturday: Boolean
+  sunday: Boolean
+}
+input StartEnd {
+  StartTime: Float
+  EndTime: Float
+}
+type Time {
+  StartTime: Int
+  EndTime: Int
+}
+input ScheduleTime {
+  mondaySchedule: StartEnd
+  tuesdaySchedule: StartEnd
+  wednesdaySchedule: StartEnd
+  thursdaySchedule: StartEnd
+  fridaySchedule: StartEnd
+  saturdaySchedule: StartEnd
+  sundaySchedule: StartEnd
+}
+type Mutation {
+  createService(
+    inputService: CreateServices
+    ScheduleBool: Schedulebool
+    ScheduleTime: ScheduleTime
+  ): Boolean!
+  DeleteService(ServiceId: String!): Boolean
+
+  updateService(
+    serviceId: String!
+    inputService: UpdateServices
+    ScheduleBool: Schedulebool
+    ScheduleTime: ScheduleTime
+  ): Boolean!
+}
+
+type Calendar {
+  CalendarId: String
+  monday: Boolean
+  mondaySchedule: Time
+  tuesday: Boolean
+  tuesdaySchedule: Time
+  wednesday: Boolean
+  wednesdaySchedule: Time
+  thursday: Boolean
+  thursdaySchedule: Time
+  friday: Boolean
+  fridaySchedule: Time
+  saturday: Boolean
+  saturdaySchedule: Time
+  sunday: Boolean
+  sundaySchedule: Time
+}
+
+type Service {
+  id: String
+  name: String
+  pictureUrl: String
+  category: String
+  description: String
+  coutryId: String
+  stateId: String
+  cityId: String
+  Taxes: Boolean
+  Adress: String
+  rating: Int
+  price: Float
+  payoutSchedule: String
+  customerBillingStatement: String
+  latitude: Float
+  longitude: Float
+  ownerId: String
+}
+
+type ServiceUser {
+  user: [User!]!
+  service: [Service!]!
+}
+
+type Query {
+  searchServicesUser(search: String!, offset: Int, limit: Int!): ServiceUser
+  ServiceUser(ServiceId: String!): User
+  ServiceByCategory(category: String!): [Service]
+  findServiceCalendar(ServiceId: String!): Calendar
+}

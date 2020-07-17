@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.fileUpload = void 0;
 const aws = require("aws-sdk");
 const service_1 = require("../../../entity/service");
 const BUCKET_NAME = process.env.BUCKET_NAME;

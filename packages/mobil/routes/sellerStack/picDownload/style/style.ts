@@ -49,6 +49,14 @@ export const picDownloadStyle = StyleSheet.create({
 		alignSelf: "center",
 		marginTop: HEIGHT / 40,
 	},
+	Imagerect: {
+		width: WIDTH / 2.5,
+		height: HEIGHT / 7,
+		borderRadius: 20,
+		marginTop: HEIGHT / 20,
+		alignSelf: "center",
+	},
+	Image: { width: "100%", height: "100%", borderRadius: 20 },
 
 	BlueButton: {
 		width: WIDTH / 1.3,

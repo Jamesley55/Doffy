@@ -41,7 +41,7 @@ export function searchPage({ navigation }: TabsStackNavProps<"searchPage">) {
 
 	return (
 		<React.Fragment>
-			<SafeAreaView style={{ marginTop: -50 }} />
+			<SafeAreaView />
 			<View style={SearchPageStyle.container}>
 				<View style={{ flexDirection: "row", justifyContent: "flex-start" }}>
 					<EntypoIcon

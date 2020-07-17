@@ -9,19 +9,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-require("reflect-metadata");
-require("dotenv/config");
-const session = require("express-session");
+exports.StartServer = exports.app = void 0;
 const apollo_server_express_1 = require("apollo-server-express");
-const graphql_redis_subscriptions_1 = require("graphql-redis-subscriptions");
+const connectRedis = require("connect-redis");
+require("dotenv/config");
 const express = require("express");
+const session = require("express-session");
+const graphql_redis_subscriptions_1 = require("graphql-redis-subscriptions");
+require("reflect-metadata");
+const confirm_1 = require("./modules/Auth/confirmUser/confirm");
+const redis_1 = require("./redis");
 const createTypeOrmConnection_1 = require("./Utils/dbConnection/createTypeOrmConnection");
 const host_1 = require("./Utils/host/host");
-const typeDefs_1 = require("./Utils/typeDefs/typeDefs");
 const resolver_1 = require("./Utils/resolverPath/resolver");
-const redis_1 = require("./redis");
-const connectRedis = require("connect-redis");
-const confirm_1 = require("./modules/Auth/confirmUser/confirm");
+const typeDefs_1 = require("./Utils/typeDefs/typeDefs");
 const http = require("http");
 exports.app = express();
 exports.StartServer = () => __awaiter(void 0, void 0, void 0, function* () {
@@ -36,6 +37,11 @@ exports.StartServer = () => __awaiter(void 0, void 0, void 0, function* () {
             res,
             pubsub,
         }),
+        playground: {
+            settings: {
+                "request.credentials": "include",
+            },
+        },
     });
     yield createTypeOrmConnection_1.createTypeormConn();
     const RedisStore = connectRedis(session);
@@ -54,8 +60,13 @@ exports.StartServer = () => __awaiter(void 0, void 0, void 0, function* () {
         },
     }));
     confirm_1.ConfirmEmail();
+    const cors = {
+        credentials: true,
+        origin: "http://localhost:19002/",
+    };
     server.applyMiddleware({
         app: exports.app,
+        cors,
     });
     const httpServer = http.createServer(exports.app);
     server.installSubscriptionHandlers(httpServer);

@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.createMessage = void 0;
 const message_1 = require("../../../entity/message");
 const constant_1 = require("../pubSub/constant");
 exports.createMessage = {

@@ -17,7 +17,7 @@ export class AddressInput extends React.PureComponent<Props> {
 			<View>
 				<View>
 					<AddressItem
-						onChange={(e) => this.setState({ streetValue: e })}
+						onChange={(e: any) => this.setState({ streetValue: e })}
 						label="Adress"
 						value={this.state.streetValue}
 						placeholder="Adresse"

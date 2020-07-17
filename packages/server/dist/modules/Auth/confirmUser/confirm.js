@@ -9,10 +9,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const StartServer_1 = require("../../../StartServer");
-const redis_1 = require("../../../redis");
-const redisPrefix_1 = require("../../../Utils/constant/redisPrefix");
+exports.ConfirmEmail = void 0;
 const User_1 = require("../../../entity/User");
+const redis_1 = require("../../../redis");
+const StartServer_1 = require("../../../StartServer");
+const redisPrefix_1 = require("../../../Utils/constant/redisPrefix");
 exports.ConfirmEmail = () => {
     StartServer_1.app.get("/graphql/confirm/:token", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const token = req.params.token;

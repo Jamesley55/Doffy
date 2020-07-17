@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.overLappingAppointements = void 0;
 const booking_1 = require("../../../entity/booking");
 const typeorm_1 = require("typeorm");
 function overLappingAppointements(start, endservice, averageTime, serviceId, date) {

@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.convertMiliseconds = void 0;
 function convertMiliseconds(miliseconds, format) {
     let totalHours, totalMinutes, totalSeconds;
     totalSeconds = Math.floor(miliseconds / 1000);

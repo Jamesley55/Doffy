@@ -1,1 +1,1 @@
-{"version":3,"file":"rating.js","sourceRoot":"","sources":["../../src/entity/rating.ts"],"names":[],"mappings":";;;;;;;;;;;AAAA,qCAA6C;AAE7C,MAAa,MAAO,SAAQ,oBAAU;CAGrC;AADC;IADC,gBAAM,CAAC,kBAAkB,EAAE,EAAE,OAAO,EAAE,IAAI,EAAE,CAAC;;qCAChC;AAFhB,wBAGC"}
+{"version":3,"file":"rating.js","sourceRoot":"","sources":["../../src/entity/rating.ts"],"names":[],"mappings":";;;;;;;;;;;;AAAA,qCAA6C;AAE7C,MAAa,MAAO,SAAQ,oBAAU;CAGrC;AADC;IADC,gBAAM,CAAC,kBAAkB,EAAE,EAAE,OAAO,EAAE,IAAI,EAAE,CAAC;;qCAChC;AAFhB,wBAGC"}

@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.createBooking = void 0;
 const booking_1 = require("../../../entity/booking");
 const service_1 = require("../../../entity/service");
 const calculateTaxes_1 = require("./calculateTaxes");
@@ -48,6 +49,9 @@ exports.createBooking = {
             }
             let createbooking;
             if (isbetween) {
+                let Total;
+                if (service && taxes)
+                    Total = service.price + taxes;
                 createbooking = yield booking_1.Booking.create({
                     serviceId,
                     date,
@@ -57,6 +61,7 @@ exports.createBooking = {
                     taxes,
                     depositAmount: service === null || service === void 0 ? void 0 : service.depositAmount,
                     isRefund: service === null || service === void 0 ? void 0 : service.isRefund,
+                    Total,
                 }).save();
                 console.log(createbooking);
                 const senderId = session.userId;
@@ -74,7 +79,7 @@ exports.createBooking = {
                 pubsub.publish(constant_1.PUBSUB_NEW_NOTIFICATION, {
                     newNotification: databaseNotification,
                 });
-                console.log("notifiID", databaseNotification.id);
+                console.log("booking", createbooking.price + createbooking.taxes);
                 return {
                     booking: {
                         startService: createbooking.startService,
@@ -84,7 +89,7 @@ exports.createBooking = {
                         depositAmount: createbooking.depositAmount,
                         isRefund: createbooking.isRefund,
                         transactionFee: createbooking.transaction,
-                        Total: createbooking.price + createbooking.taxes,
+                        Total,
                     },
                 };
             }

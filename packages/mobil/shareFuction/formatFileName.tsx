@@ -1,4 +1,4 @@
-import * as moment from "moment";
+import moment from "moment/src/moment";
 
 export const formatFilename = (filename: string) => {
 	const date = moment().format("YYYYMMDD");

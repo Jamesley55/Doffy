@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.resolvers = void 0;
 const resolvers_1 = require("./../../modules/Password/changePassword/resolvers");
 const resolvers_2 = require("../../modules/Auth/login/resolvers");
 const resolvers_3 = require("../../modules/Auth/register/resolvers");

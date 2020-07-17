@@ -1,7 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.typeDefs = void 0;
 const graphql_import_1 = require("graphql-import");
-const SchemaPath = "./src/Schemas/";
+const SchemaPath = "./src/Schemas/Problem";
 const AuthPath = "./src/Schemas/Auth";
 const MessagePath = "./src/Schemas/Message";
 const NotificationPath = "./src/Schemas/Notification";
