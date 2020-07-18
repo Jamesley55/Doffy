@@ -1,9 +1,7 @@
 import * as React from "react";
 import { Image, SafeAreaView, Text, TouchableOpacity } from "react-native";
-import MaterialButtonDark from "../../../../../Component/MaterialButtonDark";
-import MaterialButtonGrey from "../../../../../Component/MaterialButtonGrey";
-import MaterialButtonViolet1 from "../../../../../Component/MaterialButtonViolet1";
-import { AuthStackNavProps } from "../../../../../screenStack/Tydefs/AuthParamList";
+import MaterialButtonDark from "../../../../Component/MaterialButtonDark";
+import { AuthStackNavProps } from "../../../../screenStack/Tydefs/AuthParamList";
 import { welcomePageStyle } from "../style/style";
 
 export function welcomePage({ navigation }: AuthStackNavProps<"welcomePage">) {
@@ -11,18 +9,18 @@ export function welcomePage({ navigation }: AuthStackNavProps<"welcomePage">) {
 		<SafeAreaView style={welcomePageStyle.container}>
 			<TouchableOpacity onPress={() => navigation.push("firstPage")}>
 				<Image
-					source={require("../../../../../logo/LogoJamesleyApp.png")}
+					source={require("../../../../logo/LogoJamesleyApp.png")}
 					style={welcomePageStyle.image}
 				/>
 			</TouchableOpacity>
 			<Text style={welcomePageStyle.welcome}>Welcome</Text>
-			<MaterialButtonGrey
+			{/* <MaterialButtonGrey
 				navigation={navigation}
 				nextScreen="register"
 				icon="logo-apple"
 				text1="Continue With Apple "
 				style={welcomePageStyle.continueWithApple}
-			></MaterialButtonGrey>
+			/>
 			<MaterialButtonViolet1
 				navigation={navigation}
 				nextScreen="register"
@@ -37,7 +35,7 @@ export function welcomePage({ navigation }: AuthStackNavProps<"welcomePage">) {
 				text1="Continue With Google"
 				style={welcomePageStyle.continueWithGoogle}
 			/>
-
+		*/}
 			<MaterialButtonDark
 				navigation={navigation}
 				nextScreen="register"

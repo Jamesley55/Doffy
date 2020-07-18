@@ -15,7 +15,6 @@ import {
 	Notification,
 } from "../routes/HomeStack/Notification/screen/notification";
 import { HomeStackScreen } from "./Homestack";
-import { SearchStackScreen } from "./profilstack";
 import { TabsParamList } from "./Tydefs/tabsParamsList";
 
 const Tabs = createBottomTabNavigator<TabsParamList>();
@@ -75,8 +74,12 @@ export const tabs = () => (
 		})}
 	>
 		<Tabs.Screen name="homepage" component={HomeStackScreen} />
-		<Tabs.Screen name="searchPage" component={SearchStackScreen} />
+		{
+			// <Tabs.Screen name="searchPage" component={SearchStackScreen} />
+		}
 		<Tabs.Screen name="notification" component={Notif} />
-		<Tabs.Screen name="message" component={MSG} />
+		{
+			// <Tabs.Screen name="message" component={MSG} />
+		}
 	</Tabs.Navigator>
 );

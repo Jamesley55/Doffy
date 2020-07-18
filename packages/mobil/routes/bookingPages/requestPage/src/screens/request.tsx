@@ -1,10 +1,9 @@
 import * as React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 import EntypoIcon from "react-native-vector-icons/Entypo";
-import IoniconsIcon from "react-native-vector-icons/Ionicons";
 import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
+import { BlueButton } from "../../../../../Component/BlueBotton";
 import { HomeStackNavProps } from "../../../../../screenStack/Tydefs/homeParamList";
-import MaterialButtonPrimary from "../components/MaterialButtonPrimary";
 
 export function requestPage({ navigation }: HomeStackNavProps<"requestPage">) {
 	return (
@@ -22,13 +21,13 @@ export function requestPage({ navigation }: HomeStackNavProps<"requestPage">) {
 					resizeMode="contain"
 					style={styles.image1}
 				></Image>
-				<IoniconsIcon
+				{/* <IoniconsIcon
 					name="md-search"
 					style={styles.icon2}
 					onPress={() => {
 						navigation.navigate("searchPage");
 					}}
-				></IoniconsIcon>
+				/> */}
 				<MaterialCommunityIconsIcon
 					name="account"
 					style={styles.icon3}
@@ -75,10 +74,11 @@ export function requestPage({ navigation }: HomeStackNavProps<"requestPage">) {
 					</Text>
 				</View>
 			</View>
-			<MaterialButtonPrimary
-				text1="Request an appointment"
+			<BlueButton
+				onPress={() => navigation.navigate("requestPage")}
+				Text1="Request an appointment"
 				style={styles.materialButtonPrimary1}
-			></MaterialButtonPrimary>
+			/>
 		</View>
 	);
 }

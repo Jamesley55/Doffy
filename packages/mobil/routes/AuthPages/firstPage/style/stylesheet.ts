@@ -40,20 +40,15 @@ export const firstPageStyle = StyleSheet.create({
 		borderTopLeftRadius: 30,
 		borderTopRightRadius: 30,
 	},
-	chercherService: {
-		alignSelf: "center",
-		color: "rgba(96,96,96,1)",
-		fontSize: (WIDTH * 3) / 100,
-		fontFamily: "armata-regular",
-	},
-	offrirService: {
-		alignSelf: "center",
+
+	TextBox: {
+		textAlign: "center",
 		color: "rgba(96,96,96,1)",
 		fontSize: (WIDTH * 3) / 100,
 		fontFamily: "armata-regular",
 	},
 	Text: {
-		alignSelf: "center",
+		textAlign: "center",
 		color: "rgba(96,96,96,1)",
 		fontSize: (WIDTH * 5) / 100,
 		fontFamily: "armata-regular",

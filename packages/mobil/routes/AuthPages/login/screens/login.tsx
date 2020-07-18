@@ -2,8 +2,9 @@ import { Field, FormikErrors, FormikProps, withFormik } from "formik";
 import { Item } from "native-base";
 import * as React from "react";
 import { Image, ScrollView, Text } from "react-native";
-import { InputField } from "../../../../../Component/InputField";
-import { loginStyle } from "../style/styles";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { InputField } from "../../../../Component/InputField";
+import loginStyle from "../style/styles";
 
 interface FormValues {
 	email: string;
@@ -21,11 +22,13 @@ export class L extends React.PureComponent<FormikProps<FormValues> & Props> {
 		const { navigation } = this.props;
 		return (
 			<ScrollView style={loginStyle.container}>
-				<Image
-					source={require("../../../../../logo/LogoJamesleyApp.png")}
-					resizeMode="contain"
-					style={loginStyle.doffyImage}
-				></Image>
+				<TouchableOpacity onPress={() => navigation.push("firstPage")}>
+					<Image
+						source={require("../../../../logo/LogoJamesleyApp.png")}
+						resizeMode="contain"
+						style={loginStyle.doffyImage}
+					/>
+				</TouchableOpacity>
 				<Text style={loginStyle.Title}>
 					PLease enter a username &amp; password
 				</Text>
@@ -36,8 +39,8 @@ export class L extends React.PureComponent<FormikProps<FormValues> & Props> {
 						placeholder="Email"
 						autoCorrect={false}
 						component={InputField}
-						autoCapitalize="none"
-						returnKeyType="next"
+						autoCapitalize="words"
+						returnKeyType="done"
 						keyboardAppearance="dark"
 					/>
 				</Item>
@@ -48,9 +51,11 @@ export class L extends React.PureComponent<FormikProps<FormValues> & Props> {
 						autoCorrect={false}
 						secureTextEntry={true}
 						placeholder="Password"
+						autoCapitalize="none"
 						component={InputField}
 						returnKeyType="done"
 						keyboardAppearance="dark"
+						onSubmitEditing={handleSubmit}
 					/>
 				</Item>
 				<Text onPress={handleSubmit} style={loginStyle.Submit}>

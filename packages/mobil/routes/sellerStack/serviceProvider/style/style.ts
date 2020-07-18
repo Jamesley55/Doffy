@@ -32,17 +32,34 @@ export const serviceProviderStyle = StyleSheet.create({
 		marginBottom: HEIGHT / 40,
 	},
 	ServicesRect: {
+		shadowColor: "#000",
+		shadowOpacity: 0.35,
+		shadowRadius: 5,
 		width: WIDTH / 2.5,
 		height: HEIGHT / 7,
 		backgroundColor: "rgba(230, 230, 230,1)",
 		borderRadius: 30,
 	},
-
+	Image: {
+		width: "100%",
+		height: "75%",
+		backgroundColor: "rgba(230, 230, 230,1)",
+		borderTopLeftRadius: 30,
+		borderTopRightRadius: 30,
+	},
+	TextBox: {
+		textAlign: "center",
+		color: "rgba(96,96,96,1)",
+		marginTop: "5%",
+		fontSize: (WIDTH * 3) / 100,
+		fontFamily: "armata-regular",
+	},
 	materialButtonPrimary1: {
 		width: WIDTH / 1.2,
 		height: HEIGHT / 13,
 		borderRadius: 100,
-		marginTop: WIDTH / 20,
+		marginTop: WIDTH / 30,
+		marginBottom: WIDTH / 5,
 		alignSelf: "center",
 	},
 });

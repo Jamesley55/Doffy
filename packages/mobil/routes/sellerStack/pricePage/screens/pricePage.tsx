@@ -4,9 +4,10 @@ import EntypoIcon from "react-native-vector-icons/Entypo";
 import IoniconsIcon from "react-native-vector-icons/Ionicons";
 import { AddressInput } from "../../../../Component/adressInput";
 import { BlueButton } from "../../../../Component/BlueBotton";
+import { SellerStackNavProps } from "../../../../screenStack/Tydefs/sellerParamList";
 import { SchedulePagestyles } from "../../schedulePage/style/style";
 
-export function pricePage({ navigation }) {
+export function pricePage({ navigation }: SellerStackNavProps<"pricePage">) {
 	return (
 		<SafeAreaView style={SchedulePagestyles.container}>
 			<View style={SchedulePagestyles.Row}>
@@ -50,8 +51,7 @@ export function pricePage({ navigation }) {
 					//	<MaterialSwitch2 green={true} />
 				}
 				<BlueButton
-					navigationPage="schedulePage"
-					navigation={navigation}
+					onPress={() => navigation.navigate("schedulePage")}
 					Text1="Continue"
 					style={SchedulePagestyles.BlueButton}
 				/>

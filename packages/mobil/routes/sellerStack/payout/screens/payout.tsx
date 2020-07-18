@@ -82,8 +82,7 @@ export function payout({ navigation }: SellerStackNavProps<"payout">) {
 				</View>
 			</View>
 			<BlueButton
-				navigationPage="home"
-				navigation={navigation}
+				onPress={() => navigation.navigate("home" as any)}
 				Text1="Continue "
 				style={styles.materialButtonPrimary1}
 			/>

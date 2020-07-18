@@ -168,8 +168,7 @@ export function schedulePage({
 					</TouchableOpacity>
 				</View>
 				<BlueButton
-					navigationPage="picDownload"
-					navigation={navigation}
+					onPress={() => navigation.navigate("picDownload", { kaka: "k" })}
 					Text1="Continue"
 					style={SchedulePagestyles.BlueButton}
 				/>

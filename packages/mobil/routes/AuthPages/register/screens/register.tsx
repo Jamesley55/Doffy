@@ -3,7 +3,7 @@ import { Field, FormikErrors, FormikProps, withFormik } from "formik";
 import { Item } from "native-base";
 import * as React from "react";
 import { Image, ScrollView, Text, TouchableOpacity } from "react-native";
-import { InputField } from "../../../../../Component/InputField";
+import { InputField } from "../../../../Component/InputField";
 import { registerStyle } from "../style/style";
 interface FormValues {
 	username: string;
@@ -29,12 +29,12 @@ export class R extends React.PureComponent<FormikProps<FormValues> & Props> {
 					}}
 				>
 					<Image
-						source={require("../../../../../logo/LogoJamesleyApp.png")}
+						source={require("../../../../logo/LogoJamesleyApp.png")}
 						style={registerStyle.doffyImage}
 					/>
 				</TouchableOpacity>
 				<Text style={registerStyle.Title}>
-					Pease enter a username &amp; password
+					Pease enter a username, Email &amp; password
 				</Text>
 				<Item style={registerStyle.input}>
 					<Field
@@ -43,7 +43,8 @@ export class R extends React.PureComponent<FormikProps<FormValues> & Props> {
 						placeholder="Username"
 						component={InputField}
 						autoCapitalize="none"
-						returnKeyType="next"
+						returnKeyType="done"
+						keyboardAppearance="dark"
 					/>
 				</Item>
 				<Item style={registerStyle.input}>
@@ -52,8 +53,9 @@ export class R extends React.PureComponent<FormikProps<FormValues> & Props> {
 						name="email"
 						placeholder="Email"
 						component={InputField}
-						autoCapitalize="none"
-						returnKeyType="next"
+						autoCapitalize="words"
+						returnKeyType="done"
+						keyboardAppearance="dark"
 					/>
 				</Item>
 				<Item style={registerStyle.input}>
@@ -63,18 +65,23 @@ export class R extends React.PureComponent<FormikProps<FormValues> & Props> {
 						secureTextEntry={true}
 						placeholder="password"
 						component={InputField}
-						returnKeyType="next"
+						autoCapitalize="none"
+						returnKeyType="done"
+						keyboardAppearance="dark"
 					/>
 				</Item>
 				<Item style={registerStyle.input}>
 					<Field
 						leftIcon={{ type: "Octicons", name: "lock" }}
 						secureTextEntry={true}
+						keyboardAppearance="dark"
+						autoCapitalize="none"
 						name="confirmPassword"
 						placeholder="Re-enter Password"
 						component={InputField}
 						containerStyle={{ width: "100%" }}
 						returnKeyType="done"
+						onSubmitEditing={handleSubmit}
 					/>
 				</Item>
 

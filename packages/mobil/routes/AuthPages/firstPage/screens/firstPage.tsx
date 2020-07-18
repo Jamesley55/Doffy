@@ -20,37 +20,45 @@ export function firstPage({ navigation }: AuthStackNavProps<"firstPage">) {
 			<View style={firstPageStyle.stack}>
 				<View style={firstPageStyle.leftRectStack}>
 					<TouchableOpacity
-						onPress={() => navigation.navigate("serviceHomePage")}
+						onPress={() =>
+							navigation.navigate("serviceHomePage", { Type: "find" })
+						}
 					>
 						<Image
-							source={require("../assets/images/cut.jpg")}
+							source={require("../../../../ImagesAsset/eyelash.jpg")}
 							style={firstPageStyle.leftImage}
-						></Image>
+						/>
 					</TouchableOpacity>
 					<TouchableOpacity>
 						<Text
-							style={firstPageStyle.chercherService}
-							onPress={() => navigation.navigate("serviceHomePage")}
+							style={firstPageStyle.TextBox}
+							onPress={() =>
+								navigation.navigate("serviceHomePage", { Type: "find" })
+							}
 						>
-							chercher un service
+							find a Service
 						</Text>
 					</TouchableOpacity>
 				</View>
 				<View style={firstPageStyle.rightRectStack}>
 					<TouchableOpacity
-						onPress={() => navigation.navigate("serviceHomePage")}
+						onPress={() =>
+							navigation.navigate("serviceHomePage", { Type: "provide" })
+						}
 					>
 						<Image
-							source={require("../assets/images/barber.jpg")}
+							source={require("../assets/images/cut.jpg")}
 							style={firstPageStyle.rightImage}
-						></Image>
+						/>
 					</TouchableOpacity>
 					<TouchableOpacity>
 						<Text
-							style={firstPageStyle.offrirService}
-							onPress={() => navigation.navigate("serviceHomePage")}
+							style={firstPageStyle.TextBox}
+							onPress={() =>
+								navigation.navigate("serviceHomePage", { Type: "provide" })
+							}
 						>
-							offrir a service
+							provide a Service
 						</Text>
 					</TouchableOpacity>
 				</View>

@@ -6,7 +6,7 @@ export type AuthParamList = {
 	welcomePage: undefined;
 	register: undefined;
 	login: undefined;
-	serviceHomePage: undefined;
+	serviceHomePage: { Type: string };
 };
 
 export type AuthStackNavProps<T extends keyof AuthParamList> = {

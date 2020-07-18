@@ -17,7 +17,7 @@ export function firstPage3({ navigation }: SellerStackNavProps<"Page3">) {
 				onPress={() => {
 					navigation.goBack();
 				}}
-			></EntypoIcon>
+			/>
 			<Text
 				onPress={() => {
 					navigation.goBack();
@@ -60,8 +60,7 @@ export function firstPage3({ navigation }: SellerStackNavProps<"Page3">) {
 				<Text style={firstPage3Style.TextSteps}> Get paid</Text>
 			</View>
 			<BlueButton
-				navigationPage="sellerSteps"
-				navigation={navigation}
+				onPress={() => navigation.navigate("sellerSteps")}
 				Text1="Continue "
 				style={firstPage3Style.BlueButton}
 			></BlueButton>

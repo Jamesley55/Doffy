@@ -125,8 +125,7 @@ export function picDownload({
 				</View>
 			)}
 			<BlueButton
-				navigationPage="home"
-				navigation={navigation}
+				onPress={() => navigation.navigate("home" as any)}
 				Text1="Continue"
 				style={picDownloadStyle.BlueButton}
 			/>

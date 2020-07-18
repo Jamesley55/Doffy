@@ -6,7 +6,7 @@ const errStyle = {
 	color: "red",
 };
 export class InputField extends React.Component<
-	FieldProps<any> & { name: string }
+	FieldProps<any> & { name: string; inputname: string; nextInputName: string }
 > {
 	onChangeText = (text: string) => {
 		const {
@@ -26,10 +26,9 @@ export class InputField extends React.Component<
 			<Input
 				{...props}
 				errorStyle={errStyle}
-				errorMessage={errorMsg}
+				errorMessage={errorMsg as string}
 				onChangeText={this.onChangeText}
 				value={field.value}
-				onBlur={field.onBlur}
 			/>
 		);
 	}

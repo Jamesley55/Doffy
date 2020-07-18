@@ -1,6 +1,6 @@
 import * as React from "react";
-import { AuthStackNavProps } from "../../../../screenStack/Tydefs/AuthParamList";
-import { AuthContext } from "../../../../shareFuction/userContext";
+import { AuthStackNavProps } from "../../../screenStack/Tydefs/AuthParamList";
+import { AuthContext } from "../../../shareFuction/userContext";
 import { LoginView } from "./screens/login";
 
 export function LoginConnector({ navigation }: AuthStackNavProps<"login">) {

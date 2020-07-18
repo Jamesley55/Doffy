@@ -2,6 +2,7 @@ import * as React from "react";
 import { Routes } from ".";
 import { Intercommunication } from "../shareFuction/IntercommunicationContext";
 import { SearchQuery } from "../shareFuction/Searchcontext";
+import { ServiceCreationProviders } from "../shareFuction/serviceCreation";
 import { AuthProvider } from "../shareFuction/userContext";
 
 interface ProvidersProps {}
@@ -11,7 +12,9 @@ export const Providers: React.FC<ProvidersProps> = ({}) => {
 		<AuthProvider>
 			<Intercommunication>
 				<SearchQuery>
-					<Routes />
+					<ServiceCreationProviders>
+						<Routes />
+					</ServiceCreationProviders>
 				</SearchQuery>
 			</Intercommunication>
 		</AuthProvider>

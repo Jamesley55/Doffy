@@ -3,7 +3,7 @@ import { Dimensions, StyleSheet } from "react-native";
 const WIDTH = Dimensions.get("window").width;
 const HEIGHT = Dimensions.get("window").height;
 
-export const loginStyle = StyleSheet.create({
+export const registerStyle = StyleSheet.create({
 	container: {
 		backgroundColor: "rgba(155,145,145,30)",
 	},

@@ -1,10 +1,10 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import * as React from "react";
 import { firstPage } from "../routes/AuthPages/firstPage/screens/firstPage";
-import { LoginConnector } from "../routes/AuthPages/login/src/loginConnector";
-import { RegisterConnector } from "../routes/AuthPages/register/src/registerConnector";
+import { LoginConnector } from "../routes/AuthPages/login/loginConnector";
+import { RegisterConnector } from "../routes/AuthPages/register/registerConnector";
 import { serviceHomePage } from "../routes/AuthPages/serviceHomePage/screens/serviceHomePage";
-import { welcomePage } from "../routes/AuthPages/welcomePage/src/screens/welcomePage";
+import { welcomePage } from "../routes/AuthPages/welcomePage/screens/welcomePage";
 import { AuthParamList } from "./Tydefs/AuthParamList";
 
 const Stack = createStackNavigator<AuthParamList>();

@@ -7,7 +7,6 @@ import {
 	Text,
 	View,
 } from "react-native";
-import Icon from "react-native-vector-icons/Ionicons";
 import MaterialButtonHamburger from "../../../../Component/MaterialButtonHamburger";
 import List from "../../../../Component/ServiceList";
 import { TabsStackNavProps } from "../../../../screenStack/Tydefs/tabsParamsList";
@@ -60,13 +59,13 @@ export function HomePage({ navigation }: TabsStackNavProps<"homepage">) {
 									navigation={navigation}
 									style={styles.materialButtonHamburger}
 								></MaterialButtonHamburger>
-								<Icon
+								{/*<Icon
 									name="md-search"
 									style={styles.icon}
 									onPress={() => {
 										navigation.navigate("searchPage");
 									}}
-								></Icon>
+								/> */}
 							</View>
 							<Image
 								source={require("../../../../logo/LogoJamesleyApp.png")}
