@@ -27,7 +27,7 @@ export class SearchInput extends React.PureComponent<Props> {
 						setSearchInput({ search: text, offset: 1, limit: 3 })
 					}
 					value={SearchInputState.username}
-				></TextInput>
+				/>
 			</View>
 		);
 	}

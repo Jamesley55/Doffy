@@ -1,11 +1,12 @@
 import * as React from "react";
-import { Text, TextInput, View } from "react-native";
+import { StyleProp, Text, TextInput, TextStyle, View } from "react-native";
 
 interface Props {
 	value: any;
 	onChange: any;
 	placeholder: any;
 	label: any;
+	styleTextInput: StyleProp<TextStyle>;
 }
 class AddressItem extends React.PureComponent<Props> {
 	render() {
@@ -13,9 +14,12 @@ class AddressItem extends React.PureComponent<Props> {
 			<View>
 				<Text>{this.props.label}</Text>
 				<TextInput
+					keyboardAppearance="dark"
+					returnKeyType="done"
 					value={this.props.value}
 					onChangeText={this.props.onChange}
 					placeholder={this.props.placeholder}
+					style={this.props.styleTextInput || undefined}
 				/>
 			</View>
 		);

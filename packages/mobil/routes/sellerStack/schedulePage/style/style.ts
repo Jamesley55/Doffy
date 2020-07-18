@@ -13,9 +13,11 @@ export const SchedulePagestyles = StyleSheet.create({
 		flexDirection: "row",
 	},
 	scheduleRow: {
-		justifyContent: "center",
+		width: "100%",
 		flexDirection: "row",
+		justifyContent: "space-around",
 	},
+
 	rect: {
 		alignSelf: "center",
 		width: WIDTH / 1.2,
@@ -33,8 +35,10 @@ export const SchedulePagestyles = StyleSheet.create({
 
 	Text: {
 		color: "rgba(59,33,33,1)",
+		textAlign: "center",
+		marginTop: HEIGHT / 40,
+		width: WIDTH / 4,
 		fontSize: WIDTH / 20,
-		marginLeft: WIDTH / 40,
 		fontFamily: "roboto-regular",
 		letterSpacing: -1,
 	},
@@ -47,7 +51,7 @@ export const SchedulePagestyles = StyleSheet.create({
 	blackRect: {
 		marginTop: WIDTH / 40,
 		marginLeft: WIDTH / 20,
-		width: WIDTH / 6,
+		width: WIDTH / 7,
 		height: HEIGHT / 20,
 		backgroundColor: "white",
 	},

@@ -52,8 +52,8 @@ export function schedulePage({
 			</View>
 			<View style={SchedulePagestyles.rect}>
 				<View style={SchedulePagestyles.fromRow}>
-					<Text style={SchedulePagestyles.Text}>From</Text>
-					<Text style={SchedulePagestyles.Text}>To</Text>
+					<Text>From</Text>
+					<Text>To</Text>
 				</View>
 				<View style={SchedulePagestyles.scheduleRow}>
 					<MaterialSwitch2 />

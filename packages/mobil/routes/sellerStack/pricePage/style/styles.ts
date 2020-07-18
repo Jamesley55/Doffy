@@ -30,13 +30,38 @@ export const pricePagestyles = StyleSheet.create({
 		color: "rgba(128,128,128,1)",
 		fontSize: HEIGHT / 20,
 	},
-
+	Title: {
+		color: "rgba(0,0,0,1)",
+		fontSize: WIDTH / 25,
+		fontFamily: "armata-regular",
+		textAlign: "center",
+		marginTop: WIDTH / 20,
+		marginBottom: WIDTH / 20,
+	},
+	description: {
+		alignSelf: "center",
+		width: "95%",
+		height: WIDTH / 15,
+		backgroundColor: "white",
+	},
+	shortDescription: {
+		alignSelf: "center",
+		width: "95%",
+		height: WIDTH / 7,
+		backgroundColor: "white",
+	},
+	Numbers: {
+		textAlign: "center",
+		alignSelf: "center",
+		width: "20%",
+		backgroundColor: "white",
+	},
 	Text: {
-		color: "rgba(59,33,33,1)",
-		fontSize: WIDTH / 20,
-		marginLeft: WIDTH / 40,
-		fontFamily: "roboto-regular",
-		letterSpacing: -1,
+		color: "rgba(130,96,96,1)",
+		fontSize: WIDTH / 30,
+		fontFamily: "armata-regular",
+		marginBottom: WIDTH / 40,
+		textAlign: "center",
 	},
 	fromRow: {
 		width: WIDTH / 1.5,
@@ -66,6 +91,7 @@ export const pricePagestyles = StyleSheet.create({
 		height: HEIGHT / 13,
 		borderRadius: 100,
 		marginTop: WIDTH / 20,
+		marginBottom: HEIGHT / 4,
 		alignSelf: "center",
 	},
 });
