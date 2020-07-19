@@ -32,7 +32,7 @@ export const SchedulePagestyles = StyleSheet.create({
 		color: "rgba(128,128,128,1)",
 		fontSize: HEIGHT / 20,
 	},
-
+	hours: { textAlign: "center", marginVertical: "10%" },
 	Text: {
 		color: "rgba(59,33,33,1)",
 		textAlign: "center",
