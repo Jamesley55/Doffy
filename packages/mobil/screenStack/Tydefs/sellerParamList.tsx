@@ -5,7 +5,7 @@ export type SellerParamList = {
 	Page3: undefined;
 	sellerSteps: undefined;
 	schedulePage: undefined;
-	pricePage: undefined;
+	InformationPage: undefined;
 	picDownload: { kaka: string };
 	help: undefined;
 	payout: undefined;

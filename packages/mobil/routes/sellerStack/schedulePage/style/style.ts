@@ -55,17 +55,17 @@ export const SchedulePagestyles = StyleSheet.create({
 		height: HEIGHT / 20,
 		backgroundColor: "#6b6661",
 	},
-	from: {
+	Start: {
 		color: "rgba(0,0,0,1)",
 		fontSize: WIDTH / 25,
 		fontFamily: "armata-regular",
-		marginLeft: WIDTH / 2,
+		marginLeft: WIDTH / 2.1,
 	},
-	to: {
+	Ends: {
 		color: "rgba(0,0,0,1)",
 		fontSize: WIDTH / 25,
 		fontFamily: "armata-regular",
-		marginLeft: WIDTH / 20,
+		marginLeft: WIDTH / 10,
 	},
 
 	Text1: {

@@ -11,7 +11,9 @@ import { SellerStackNavProps } from "../../../../screenStack/Tydefs/sellerParamL
 import { ServiceCreationContext } from "../../../../shareFuction/serviceCreation";
 import { pricePagestyles } from "../style/styles";
 
-export function pricePage({ navigation }: SellerStackNavProps<"pricePage">) {
+export function InformationService({
+	navigation,
+}: SellerStackNavProps<"InformationPage">) {
 	const [bizzName, setBizzName] = React.useState<string>("");
 	const [description, setDescription] = React.useState<string>("");
 	const [money, setMomey] = React.useState<number>(0);

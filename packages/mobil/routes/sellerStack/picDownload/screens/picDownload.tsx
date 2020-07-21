@@ -1,9 +1,18 @@
 import { useSignS3Mutation } from "@doffy/controller/src/generated/graphql-hooks";
+import { Entypo } from "@expo/vector-icons";
 import Constants from "expo-constants";
 import * as ImagePicker from "expo-image-picker";
 import * as Permissions from "expo-permissions";
 import * as React from "react";
-import { Image, SafeAreaView, Text, View } from "react-native";
+import {
+	ActivityIndicator,
+	Image,
+	Modal,
+	SafeAreaView,
+	Text,
+	View,
+} from "react-native";
+import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import EntypoIcon from "react-native-vector-icons/Entypo";
 import IoniconsIcon from "react-native-vector-icons/Ionicons";
 import MaterialIconsIcon from "react-native-vector-icons/MaterialIcons";
@@ -16,8 +25,24 @@ import { picDownloadStyle } from "../style/style";
 export function picDownload({
 	navigation,
 }: SellerStackNavProps<"picDownload">) {
-	const [link, setLink] = React.useState<string | null>(null);
-	console.log("link", link);
+	const [PreviewProfilPicture, setPreviewProfilPicture] = React.useState<
+		string | undefined
+	>("");
+	const [linkProfilPicture, setlinkProfilPicture] = React.useState<string>("");
+
+	const [previewWorkPicture, setPreviewWorkPicture] = React.useState<string>(
+		""
+	);
+
+	const [linkWorkPicture, setlinkWorkPicture] = React.useState<
+		string | undefined
+	>("");
+
+	const [fullScreen, setfullScreen] = React.useState<boolean>(false);
+	const [modal, setModal] = React.useState<boolean>(false);
+	const [profil, setProfil] = React.useState<boolean>(false);
+
+	console.log("link", PreviewProfilPicture);
 	const [uploadS3] = useSignS3Mutation();
 	const getPermissionAsync = async () => {
 		if (Constants.platform?.ios) {
@@ -33,7 +58,7 @@ export function picDownload({
 		return true;
 	};
 
-	const download = async () => {
+	const download = async (type: string) => {
 		const permisionAcces = await getPermissionAsync();
 		if (permisionAcces === true) {
 			const files = await ImagePicker.launchImageLibraryAsync({
@@ -41,6 +66,12 @@ export function picDownload({
 				allowsMultipleSelection: true,
 			});
 			if (!files.cancelled) {
+				if (type === "profil") {
+					setPreviewProfilPicture(files.uri);
+				} else {
+					setPreviewWorkPicture(files.uri);
+				}
+
 				console.log(files);
 				const response = await uploadS3({
 					variables: {
@@ -52,83 +83,170 @@ export function picDownload({
 				if (response.data?.signS3 !== undefined) {
 					const { signedRequest, url } = response.data.signS3;
 					await uploadToS3(files, signedRequest);
-					setLink(url);
+					if (type === "profil") {
+						setlinkProfilPicture(url);
+					} else {
+						setlinkWorkPicture(url);
+					}
 					console.log("url", url);
 				}
 			}
 		}
 	};
+
+	React.useEffect(() => {
+		console.log("link", linkProfilPicture);
+	}, [linkProfilPicture]);
 	return (
 		<SafeAreaView style={picDownloadStyle.container}>
-			<View style={picDownloadStyle.Row}>
-				<EntypoIcon
-					name="arrow-left"
-					style={picDownloadStyle.arrowLeft}
+			<Modal visible={modal} animationType="slide">
+				<TouchableOpacity
+					style={
+						fullScreen
+							? picDownloadStyle.fullScrreen
+							: picDownloadStyle.Imagerect
+					}
 					onPress={() => {
-						navigation.goBack();
+						setfullScreen(!fullScreen);
+						setModal(!modal);
 					}}
-				/>
-				<IoniconsIcon
-					name="md-help-circle-outline"
-					style={picDownloadStyle.Help}
-					onPress={() => {
-						navigation.navigate("help");
-					}}
-				/>
-			</View>
-			<Text style={picDownloadStyle.Title}>Profil picture</Text>
-			<Text style={picDownloadStyle.Text}>
-				Customers will use that photo to identify you or your brand.
-			</Text>
-			{!link ? (
-				<View style={picDownloadStyle.rect}>
-					<MaterialIconsIcon
-						name="add-to-photos"
-						style={picDownloadStyle.icon}
-						onPress={download}
+				>
+					{profil ? (
+						<Image
+							style={picDownloadStyle.ImageFullScreen}
+							source={{
+								uri: PreviewProfilPicture,
+							}}
+						/>
+					) : (
+						<Image
+							style={picDownloadStyle.ImageFullScreen}
+							source={{
+								uri: previewWorkPicture,
+							}}
+						/>
+					)}
+				</TouchableOpacity>
+			</Modal>
+			<ScrollView>
+				<View style={picDownloadStyle.Row}>
+					<EntypoIcon
+						name="arrow-left"
+						style={picDownloadStyle.arrowLeft}
+						onPress={() => {
+							navigation.goBack();
+						}}
 					/>
-				</View>
-			) : (
-				<View style={picDownloadStyle.Imagerect}>
-					<Image
-						style={picDownloadStyle.Image}
-						source={{
-							uri:
-								"https://d3bw9plfvszcnd.cloudfront.net/images/20200716-fbtb21l8r3n-file----users-jamesleyjoseph-library-developer-coresimulator-devices-ed626c56-f963-4da1-969e-5321b87d66f2-data-containers-data-application-dbb8cf0f-69cc-4c58-be06-05240061dd02-library-caches-exponentexperiencedata--2540doffyinc-252fmobil-imagepicker-f07de422-846a-498a-a9f5-a82d1b85decb-jpg",
+					<IoniconsIcon
+						name="md-help-circle-outline"
+						style={picDownloadStyle.Help}
+						onPress={() => {
+							navigation.navigate("help");
 						}}
 					/>
 				</View>
-			)}
-			<Text style={picDownloadStyle.Title}>Picture of your work</Text>
-			<Text style={picDownloadStyle.Text}>
-				Customers will judge your work by looking at those pictures. This is an
-				important step for your business growth
-			</Text>
+				<Text style={picDownloadStyle.Title}>Profil picture</Text>
+				<Text style={picDownloadStyle.Text}>
+					Customers will use that photo to identify you or your brand.
+				</Text>
+				{!linkProfilPicture ? (
+					<TouchableOpacity
+						style={picDownloadStyle.rect}
+						onPress={() => {
+							download("profil");
+						}}
+					>
+						<MaterialIconsIcon
+							name="add-to-photos"
+							style={picDownloadStyle.icon}
+							onPress={() => {
+								download("profil");
+							}}
+						/>
+					</TouchableOpacity>
+				) : (
+					<TouchableOpacity
+						style={picDownloadStyle.Imagerect}
+						onPress={() => {
+							setfullScreen(!fullScreen);
+							setModal(!modal);
+							setProfil(true);
+						}}
+					>
+						<Image
+							style={picDownloadStyle.Image}
+							source={{
+								uri: PreviewProfilPicture,
+							}}
+						/>
 
-			{!link ? (
-				<View style={picDownloadStyle.rect}>
-					<MaterialIconsIcon
-						name="add-to-photos"
-						style={picDownloadStyle.icon}
-						onPress={download}
-					/>
-				</View>
-			) : (
-				<View style={picDownloadStyle.Imagerect}>
-					<Image
-						style={picDownloadStyle.Image}
-						source={{
-							uri:
-								"https://d3bw9plfvszcnd.cloudfront.net/images/20200716-fbtb21l8r3n-file----users-jamesleyjoseph-library-developer-coresimulator-devices-ed626c56-f963-4da1-969e-5321b87d66f2-data-containers-data-application-dbb8cf0f-69cc-4c58-be06-05240061dd02-library-caches-exponentexperiencedata--2540doffyinc-252fmobil-imagepicker-f07de422-846a-498a-a9f5-a82d1b85decb-jpg",
+						<Entypo
+							name="resize-full-screen"
+							size={24}
+							color="black"
+							style={{
+								position: "absolute",
+								zIndex: 99999,
+							}}
+						/>
+					</TouchableOpacity>
+				)}
+				<Text style={picDownloadStyle.Title}>Picture of your work</Text>
+				<Text style={picDownloadStyle.Text}>
+					Customers will judge your work by looking at those pictures. This is
+					an important step for your business growth
+				</Text>
+
+				{!linkWorkPicture ? (
+					<TouchableOpacity
+						style={picDownloadStyle.rect}
+						onPress={() => {
+							download("work");
 						}}
-					/>
-				</View>
-			)}
-			<BlueButton
-				onPress={() => navigation.navigate("home" as any)}
-				Text1="Continue"
-				style={picDownloadStyle.BlueButton}
-			/>
+					>
+						<MaterialIconsIcon
+							name="add-to-photos"
+							style={picDownloadStyle.icon}
+							onPress={() => {
+								download("work");
+							}}
+						/>
+					</TouchableOpacity>
+				) : (
+					<TouchableOpacity
+						style={picDownloadStyle.Imagerect}
+						onPress={() => {
+							setfullScreen(!fullScreen);
+							setModal(!modal);
+							setProfil(false);
+						}}
+					>
+						<Image
+							style={picDownloadStyle.Image}
+							source={{
+								uri: previewWorkPicture,
+							}}
+							onLoadStart={() => {
+								return <ActivityIndicator />;
+							}}
+						/>
+						<Entypo
+							name="resize-full-screen"
+							size={24}
+							color="black"
+							style={{
+								position: "absolute",
+								zIndex: 99999,
+							}}
+						/>
+					</TouchableOpacity>
+				)}
+				<BlueButton
+					onPress={() => navigation.navigate("home" as any)}
+					Text1="Continue"
+					style={picDownloadStyle.BlueButton}
+				/>
+			</ScrollView>
 		</SafeAreaView>
 	);
 }

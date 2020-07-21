@@ -7,11 +7,14 @@ import IoniconsIcon from "react-native-vector-icons/Ionicons";
 import { BlueButton } from "../../../../Component/BlueBotton";
 import { MaterialSwitch2 } from "../../../../Component/MaterialSwitch2";
 import { SellerStackNavProps } from "../../../../screenStack/Tydefs/sellerParamList";
-import { pricePagestyles } from "../../pricePage/style/styles";
+import { ServiceCreationContext } from "../../../../shareFuction/serviceCreation";
+import { pricePagestyles } from "../../Information/style/styles";
 import { SchedulePagestyles } from "../style/style";
 export function schedulePage({
 	navigation,
 }: SellerStackNavProps<"schedulePage">) {
+	const { schedule } = React.useContext(ServiceCreationContext);
+
 	const [isDatePickerVisible, setDatePickerVisibility] = React.useState(false);
 	const [date, selectDate] = React.useState("");
 	const [monday, setMonday] = React.useState<boolean>(false);
@@ -123,8 +126,8 @@ export function schedulePage({
 					please select your disponibility day and the hours you're available
 				</Text>
 				<View style={{ flexDirection: "row" }}>
-					<Text style={[SchedulePagestyles.from]}>From</Text>
-					<Text style={[SchedulePagestyles.to, { marginLeft: 50 }]}>To</Text>
+					<Text style={[SchedulePagestyles.Start]}>Starts</Text>
+					<Text style={[SchedulePagestyles.Ends]}>Ends</Text>
 				</View>
 
 				<View style={SchedulePagestyles.scheduleRow}>
@@ -378,7 +381,32 @@ export function schedulePage({
 					</TouchableOpacity>
 				</View>
 				<BlueButton
-					onPress={() => navigation.navigate("picDownload", { kaka: "k" })}
+					onPress={() => {
+						schedule(
+							monday,
+							tuesday,
+							wednesday,
+							thursday,
+							friday,
+							saturday,
+							sunday,
+							mondayStart,
+							tuesdayStart,
+							wednesdayStart,
+							thursdayStart,
+							fridayStart,
+							saturdayStart,
+							sundayStart,
+							mondayEnd,
+							tuesdayEnd,
+							wednesdayEnd,
+							thursdayEnd,
+							fridayEnd,
+							saturdayEnd,
+							sundayEnd
+						);
+						navigation.navigate("picDownload", { kaka: "k" });
+					}}
 					Text1="Continue"
 					style={SchedulePagestyles.BlueButton}
 				/>

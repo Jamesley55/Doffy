@@ -56,8 +56,18 @@ export const picDownloadStyle = StyleSheet.create({
 		marginTop: HEIGHT / 20,
 		alignSelf: "center",
 	},
-	Image: { width: "100%", height: "100%", borderRadius: 20 },
-
+	Image: {
+		width: "100%",
+		height: "100%",
+		alignSelf: "center",
+		borderRadius: 20,
+	},
+	ImageFullScreen: { backgroundColor: "black", flex: 1, resizeMode: "contain" },
+	fullScrreen: {
+		width: "100%",
+		height: "100%",
+		resizeMode: "cover",
+	},
 	BlueButton: {
 		width: WIDTH / 1.3,
 		height: HEIGHT / 13,

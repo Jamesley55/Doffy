@@ -341,7 +341,7 @@ export function serviceProvider({
 					onPress={() => {
 						const retour = handlePress();
 						retour
-							? navigation.navigate("pricePage")
+							? navigation.navigate("InformationPage")
 							: Alert.alert(
 									"",
 									"Choose a service to continue",
