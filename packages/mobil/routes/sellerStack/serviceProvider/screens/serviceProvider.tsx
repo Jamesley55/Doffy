@@ -1,5 +1,6 @@
 import * as React from "react";
 import {
+	Alert,
 	Image,
 	SafeAreaView,
 	Text,
@@ -341,7 +342,19 @@ export function serviceProvider({
 						const retour = handlePress();
 						retour
 							? navigation.navigate("pricePage")
-							: alert("choose a service to continue");
+							: Alert.alert(
+									"",
+									"Choose a service to continue",
+									[
+										{
+											text: "Cancel",
+											onPress: () => navigation.goBack(),
+											style: "cancel",
+										},
+										{ text: "OK", onPress: () => console.log("OK Pressed") },
+									],
+									{ cancelable: false }
+							  );
 					}}
 					Text1="Continue "
 					style={serviceProviderStyle.materialButtonPrimary1}

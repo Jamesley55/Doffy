@@ -3,8 +3,10 @@ import { Image, SafeAreaView, Text, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import EntypoIcon from "react-native-vector-icons/Entypo";
 import IoniconsIcon from "react-native-vector-icons/Ionicons";
+import { BlueButton } from "../../../../Component/BlueBotton";
 import { SellerStackNavProps } from "../../../../screenStack/Tydefs/sellerParamList";
 import { AuthContext } from "../../../../shareFuction/userContext";
+import { firstPage3Style } from "../../firstPage3/style/style";
 import { sellerStepsStyle } from "../style/style";
 
 export function sellerSteps({
@@ -48,19 +50,12 @@ export function sellerSteps({
 						onPress={() => {
 							navigation.navigate("serviceProvider");
 						}}
-					></EntypoIcon>
+					/>
 				</View>
 			</View>
 			<View style={sellerStepsStyle.rect}>
 				<View style={sellerStepsStyle.BoxRow}>
 					<Text style={sellerStepsStyle.BoxText}>Bookings information</Text>
-					<EntypoIcon
-						name="chevron-thin-right"
-						style={sellerStepsStyle.Nexticon}
-						onPress={() => {
-							navigation.navigate("pricePage");
-						}}
-					></EntypoIcon>
 				</View>
 			</View>
 			<View style={sellerStepsStyle.rect}>
@@ -68,27 +63,18 @@ export function sellerSteps({
 					<Text style={sellerStepsStyle.BoxText}>
 						do your avabaility schedule
 					</Text>
-					<EntypoIcon
-						name="chevron-thin-right"
-						style={sellerStepsStyle.Nexticon}
-						onPress={() => {
-							navigation.navigate("schedulePage");
-						}}
-					></EntypoIcon>
 				</View>
 			</View>
 			<View style={sellerStepsStyle.rect}>
 				<View style={sellerStepsStyle.BoxRow}>
 					<Text style={sellerStepsStyle.BoxText}>Show your talents</Text>
-					<EntypoIcon
-						name="chevron-thin-right"
-						style={sellerStepsStyle.Nexticon}
-						onPress={() => {
-							navigation.navigate("picDownload", { kaka: "" });
-						}}
-					></EntypoIcon>
 				</View>
 			</View>
+			<BlueButton
+				onPress={() => navigation.navigate("serviceProvider")}
+				Text1="Continue "
+				style={firstPage3Style.BlueButton}
+			/>
 		</SafeAreaView>
 	);
 }

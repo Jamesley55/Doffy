@@ -18,7 +18,11 @@ export const drawer = () => (
 		}}
 	>
 		<Drawer.Screen name="home" component={tabs} />
-		<Drawer.Screen name="becomeAseller" component={sellerPage} />
+		<Drawer.Screen
+			name="becomeAseller"
+			component={sellerPage}
+			options={{ title: "become A seller", unmountOnBlur: true }}
+		/>
 		<Drawer.Screen name="help" component={help} />
 	</Drawer.Navigator>
 );

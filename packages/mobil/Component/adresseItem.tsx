@@ -17,7 +17,7 @@ class AddressItem extends React.PureComponent<Props> {
 					keyboardAppearance="dark"
 					returnKeyType="done"
 					value={this.props.value}
-					onChangeText={this.props.onChange}
+					onChange={this.props.onChange}
 					placeholder={this.props.placeholder}
 					style={this.props.styleTextInput || undefined}
 				/>

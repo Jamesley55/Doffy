@@ -1,22 +1,18 @@
 import * as React from "react";
-import { StyleProp, StyleSheet, Switch, TextStyle, View } from "react-native";
+import { StyleSheet, Switch, View } from "react-native";
 
 interface Props {
-	style: StyleProp<TextStyle> | any;
-}
-interface PropsGreen {
-	style: StyleProp<TextStyle> | any;
-	green: boolean;
+	handle: any;
 }
 
-export class MaterialSwitch2 extends React.PureComponent<Props | any> {
+export class MaterialSwitch2 extends React.PureComponent<Props> {
 	state = {
 		values: false,
 	};
 
 	render() {
 		return (
-			<View style={[styles.container, this.props.style]}>
+			<View style={[styles.container]}>
 				<Switch
 					value={this.state.values}
 					trackColor={{
@@ -24,11 +20,18 @@ export class MaterialSwitch2 extends React.PureComponent<Props | any> {
 						false: "rgba(230, 230, 230,1)",
 					}}
 					style={styles.switch1}
-					onChange={() =>
+					onValueChange={() => {
 						this.state.values
-							? this.setState({ values: false })
-							: this.setState({ values: true })
-					}
+							? this.setState({ values: false }, () => {
+									this.setState({ values: false });
+
+									this.props.handle(this.state.values);
+							  })
+							: this.setState({ values: true }, () => {
+									this.setState({ values: true });
+									this.props.handle(this.state.values);
+							  });
+					}}
 				/>
 			</View>
 		);

@@ -2,12 +2,15 @@ import * as React from "react";
 import { StyleProp, Text, TextInput, TextStyle, View } from "react-native";
 
 interface Props {
-	viewStyle: StyleProp<TextStyle>;
+	viewStyle?: StyleProp<TextStyle>;
 	TextStyle: StyleProp<TextStyle>;
 	TextInputStyle: StyleProp<TextStyle>;
 	Text: string;
 	placeHolder: string;
 	onSubmit: any;
+	keyboardType?: any;
+	multiline?: any;
+	blurOnSubmit?: any;
 }
 export class Input extends React.PureComponent<Props> {
 	render() {
@@ -20,7 +23,7 @@ export class Input extends React.PureComponent<Props> {
 					returnKeyType="done"
 					style={this.props.TextInputStyle || undefined}
 					placeholder={this.props.placeHolder}
-					onSubmitEditing={this.props.onSubmit}
+					onBlur={this.props.onSubmit}
 				/>
 			</View>
 		);
