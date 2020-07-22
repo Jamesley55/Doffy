@@ -26,11 +26,17 @@ export class List extends React.PureComponent<Props> {
 					style={{ flex: 1 }}
 					renderItem={({ item }) => {
 						const link = item.profilPicture;
+
 						return (
 							<TouchableOpacity
 								onPress={() => {
 									console.log(item.profilPicture);
-									navigation.navigate("requestPage");
+									navigation.navigate("requestPage", {
+										profilPic: link,
+										pictureUrl: item.picturesUrl,
+										name: item.name,
+										price: item.price,
+									});
 								}}
 								style={{
 									flex: 1,
@@ -53,11 +59,20 @@ export class List extends React.PureComponent<Props> {
 										uri: link ? link : undefined,
 										cache: "force-cache",
 									}}
+									onLoadStart={() => {
+										this.setState({ imageLoaded: false });
+									}}
 									onLoadEnd={() => {
-										this.setState({ loading: true });
+										this.setState({ imageLoaded: true });
 									}}
 								>
-									<ActivityIndicator animating={this.state.imageLoaded} />
+									<ActivityIndicator
+										style={{
+											alignSelf: "center",
+											justifyContent: "flex-start",
+										}}
+										animating={!this.state.imageLoaded}
+									/>
 								</ImageBackground>
 							</TouchableOpacity>
 						);

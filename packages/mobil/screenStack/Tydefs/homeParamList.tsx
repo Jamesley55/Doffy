@@ -3,7 +3,12 @@ import { StackNavigationProp } from "@react-navigation/stack";
 
 export type HomeParamList = {
 	homepage: undefined;
-	requestPage: undefined;
+	requestPage: {
+		profilPic: string;
+		pictureUrl: string;
+		name: string;
+		price: number;
+	};
 	payement: undefined;
 	location: undefined;
 };

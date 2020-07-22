@@ -1,11 +1,14 @@
 import * as React from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, ImageBackground, StyleSheet, Text, View } from "react-native";
 import EntypoIcon from "react-native-vector-icons/Entypo";
 import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import { BlueButton } from "../../../../../Component/BlueBotton";
 import { HomeStackNavProps } from "../../../../../screenStack/Tydefs/homeParamList";
 
-export function requestPage({ navigation }: HomeStackNavProps<"requestPage">) {
+export function requestPage({
+	navigation,
+	route,
+}: HomeStackNavProps<"requestPage">) {
 	return (
 		<View style={styles.container}>
 			<View style={styles.icon1Row}>
@@ -15,12 +18,12 @@ export function requestPage({ navigation }: HomeStackNavProps<"requestPage">) {
 					onPress={() => {
 						navigation.goBack();
 					}}
-				></EntypoIcon>
+				/>
 				<Image
 					source={require("../../../../../logo/LogoJamesleyApp.png")}
 					resizeMode="contain"
 					style={styles.image1}
-				></Image>
+				/>
 				{/* <IoniconsIcon
 					name="md-search"
 					style={styles.icon2}
@@ -32,26 +35,41 @@ export function requestPage({ navigation }: HomeStackNavProps<"requestPage">) {
 					name="account"
 					style={styles.icon3}
 					onPress={() => {
-						navigation.toggleDrawer();
+						navigation.openDrawer();
 					}}
 				></MaterialCommunityIconsIcon>
 			</View>
 			<View style={styles.rect}>
-				<MaterialCommunityIconsIcon
-					name="fire"
-					style={styles.icon4}
-				></MaterialCommunityIconsIcon>
+				<ImageBackground
+					style={{
+						flex: 1,
+						width: "100%",
+						height: "100%",
+					}}
+					source={{ uri: route.params.profilPic }}
+				>
+					<MaterialCommunityIconsIcon name="fire" style={styles.icon4} />
+				</ImageBackground>
 			</View>
 			<View style={styles.nameOfTheShopStackStack}>
-				<View style={styles.nameOfTheShopStack}>
-					<Text style={styles.nameOfTheShop}>$Name of the shop $</Text>
-					<Text style={styles.rating}>Rating</Text>
-					<Text style={styles.loremIpsum}>$$$$$</Text>
-				</View>
+				<Text style={styles.nameOfTheShop}> {route.params.name}</Text>
+				<Text>{route.params.price}</Text>
+
 				<Text style={styles.price}>Price</Text>
 			</View>
 			<View style={styles.rect2Stack}>
-				<View style={styles.rect2}></View>
+				<View style={styles.rect2}>
+					<ImageBackground
+						style={{
+							flex: 1,
+							width: "100%",
+							height: "100%",
+						}}
+						source={{ uri: route.params.pictureUrl[0] }}
+					>
+						<MaterialCommunityIconsIcon name="fire" style={styles.icon4} />
+					</ImageBackground>
+				</View>
 				<Text style={styles.preview2}>Preview</Text>
 			</View>
 			<View style={styles.rect3}>
@@ -75,7 +93,7 @@ export function requestPage({ navigation }: HomeStackNavProps<"requestPage">) {
 				</View>
 			</View>
 			<BlueButton
-				onPress={() => navigation.navigate("requestPage")}
+				onPress={() => navigation.navigate("location")}
 				Text1="Request an appointment"
 				style={styles.materialButtonPrimary1}
 			/>
