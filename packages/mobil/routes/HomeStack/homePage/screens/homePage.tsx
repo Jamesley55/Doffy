@@ -10,7 +10,7 @@ import {
 import MaterialButtonHamburger from "../../../../Component/MaterialButtonHamburger";
 import List from "../../../../Component/ServiceList";
 import { TabsStackNavProps } from "../../../../screenStack/Tydefs/tabsParamsList";
-import { IntercommunicationContext } from "../../../../shareFuction/IntercommunicationContext";
+import { serviceByCategoryContext } from "../../../../shareFuction/serviceByCategory";
 import { AuthContext } from "../../../../shareFuction/userContext";
 
 interface Props {
@@ -19,12 +19,12 @@ interface Props {
 
 export function HomePage({ navigation }: TabsStackNavProps<"homepage">) {
 	const { me, user } = React.useContext(AuthContext);
-	const { NotificationQuery } = React.useContext(IntercommunicationContext);
+	const { BarbershopQuery } = React.useContext(serviceByCategoryContext);
 	const [loading, setLoading] = React.useState(true);
 	const [array, setArray] = React.useState<any[]>([]);
 	me();
 	React.useEffect(() => {
-		NotificationQuery()
+		BarbershopQuery()
 			.then((index: any) => {
 				console.log("variables ", index);
 				setArray(index);

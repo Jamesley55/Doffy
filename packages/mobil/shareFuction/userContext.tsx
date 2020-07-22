@@ -70,10 +70,22 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 					setToken(tk);
 				},
 				me: async () => {
-					const Me = await client.query<MeQuery>({ query: MeDocument });
-					if (!Me.data.me) {
+					let Me: any = "";
+					try {
+						Me = await client.query<MeQuery>({ query: MeDocument });
+					} catch (e) {
+						console.log(
+							"errors                                                     ",
+							e.networkError.result.errors
+						);
 						logoutMutation();
 						setToken(null);
+						await SecureStore.deleteItemAsync("sid");
+					}
+					if (!Me.data.me?.user || !Me.data.me?.user === undefined) {
+						logoutMutation();
+						setToken(null);
+						await SecureStore.deleteItemAsync("sid");
 					}
 					// tslint:disable-next-line: no-shadowed-variable
 					const User: any = Me.data?.me?.user?.username;

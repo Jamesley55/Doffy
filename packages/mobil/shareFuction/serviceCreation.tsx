@@ -39,6 +39,7 @@ export const ServiceCreationContext = React.createContext<{
 		saturdayEnd: string,
 		sundayEnd: string
 	) => void;
+	setfinish: () => void;
 	Picture: (profilPicture: string, workPicture: string) => void;
 	createService: () => void;
 }>({
@@ -47,6 +48,7 @@ export const ServiceCreationContext = React.createContext<{
 	information: () => {},
 	schedule: () => {},
 	Picture: () => {},
+	setfinish: () => {},
 	createService: () => {},
 });
 
@@ -100,11 +102,13 @@ export const ServiceCreationProviders: React.FC<serviceCreationProps> = ({
 	const [sundayEnd, setsundayEnd] = React.useState("17:05");
 
 	const [profilPicture, setlinkProfilPicture] = React.useState<string>("");
-	const [picturesUrl, setlinkWorkPicture] = React.useState<string>("");
+	const [picturesUrl, setlinkWorkPicture] = React.useState<string>();
+	const [finish, setFinish] = React.useState<boolean>();
 
 	React.useEffect(() => {
-		console.log("monday", averageTime);
-	}, [averageTime]);
+		console.log("create service");
+		createService();
+	}, [finish]);
 	const [createService] = useCreateServiceMutation();
 	return (
 		<ServiceCreationContext.Provider
@@ -251,6 +255,9 @@ export const ServiceCreationProviders: React.FC<serviceCreationProps> = ({
 					} catch (e) {
 						console.log(e.networkError.result.errors);
 					}
+				},
+				setfinish: () => {
+					setFinish(true);
 				},
 			}}
 		>

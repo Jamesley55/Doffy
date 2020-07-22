@@ -5,7 +5,7 @@ import { Platform } from "react-native";
 
 const host =
 	Platform.OS === "ios"
-		? "http://localhost:4000/graphql/graphql"
+		? "https://f01c541134c7.ngrok.io/graphql"
 		: "http://10.0.2.2:4000";
 
 export const client = new ApolloClient({

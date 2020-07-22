@@ -22,7 +22,7 @@ const getFont = () =>
 export const Routes: React.FC<RouteProps> = ({}) => {
 	const [loading, setLoading] = React.useState(true);
 	const [fontLoaded, setFontisLoaded] = React.useState(false);
-	const { user, token, homeScreen, me } = React.useContext(AuthContext);
+	const { user, token, homeScreen, me, logout } = React.useContext(AuthContext);
 
 	React.useEffect(() => {
 		SecureStore.getItemAsync("sid")
@@ -39,6 +39,12 @@ export const Routes: React.FC<RouteProps> = ({}) => {
 			})
 			.catch((err) => {
 				console.log(err);
+				console.log(
+					"errors                                                     ",
+					err.networkError.result.errors
+				);
+				logout();
+
 				setLoading(false);
 			});
 	}, []);

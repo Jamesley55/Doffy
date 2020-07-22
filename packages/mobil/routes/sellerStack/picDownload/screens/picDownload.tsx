@@ -27,7 +27,7 @@ import { picDownloadStyle } from "../style/style";
 export function picDownload({
 	navigation,
 }: SellerStackNavProps<"picDownload">) {
-	const { Picture, createService } = React.useContext(ServiceCreationContext);
+	const { Picture, setfinish } = React.useContext(ServiceCreationContext);
 
 	const [PreviewProfilPicture, setPreviewProfilPicture] = React.useState<
 		string | undefined
@@ -244,10 +244,13 @@ export function picDownload({
 				)}
 				<BlueButton
 					onPress={() => {
-						if (linkProfilPicture && linkWorkPicture) {
+						if (
+							(linkProfilPicture !== "" && linkWorkPicture !== "") ||
+							(!linkProfilPicture && !linkWorkPicture)
+						) {
 							Picture(linkProfilPicture, linkWorkPicture);
+							setfinish();
 							navigation.navigate("home" as any);
-							createService();
 						} else {
 							Alert.alert(
 								"",
