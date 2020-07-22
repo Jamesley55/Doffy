@@ -59,7 +59,6 @@ export declare type MutationChangePasswordArgs = {
 export declare type MutationSignS3Args = {
     filename: Scalars['String'];
     filetype: Scalars['String'];
-    id?: Maybe<Scalars['String']>;
 };
 export declare type MutationFindUrlArgs = {
     serviceId: Scalars['String'];
@@ -208,16 +207,20 @@ export declare type CreateServices = {
     name: Scalars['String'];
     category: Scalars['String'];
     description: Scalars['String'];
-    coutryId?: Maybe<Scalars['String']>;
-    stateId?: Maybe<Scalars['String']>;
-    cityId?: Maybe<Scalars['String']>;
-    Taxes: Scalars['Boolean'];
-    Adress?: Maybe<Scalars['String']>;
+    coutryId: Scalars['String'];
+    stateId: Scalars['String'];
+    cityId: Scalars['String'];
+    Taxes?: Maybe<Scalars['Boolean']>;
+    Adress: Scalars['String'];
     price: Scalars['Float'];
-    payoutSchedule: Scalars['String'];
-    customerBillingStatement: Scalars['String'];
+    payoutSchedule?: Maybe<Scalars['String']>;
+    customerBillingStatement?: Maybe<Scalars['String']>;
     latitude?: Maybe<Scalars['Float']>;
     longitude?: Maybe<Scalars['Float']>;
+    profilPicture: Scalars['String'];
+    picturesUrl: Scalars['String'];
+    adresseVisible: Scalars['Boolean'];
+    averageTime: Scalars['Float'];
 };
 export declare type Schedulebool = {
     monday?: Maybe<Scalars['Boolean']>;
@@ -567,7 +570,6 @@ export declare type ServicesUserQuery = ({
 export declare type SignS3MutationVariables = Exact<{
     filename: Scalars['String'];
     filetype: Scalars['String'];
-    id: Scalars['String'];
 }>;
 export declare type SignS3Mutation = ({
     __typename?: 'Mutation';
@@ -781,7 +783,6 @@ export declare type SignS3MutationFn = ApolloReactCommon.MutationFunction<SignS3
 export declare function useSignS3Mutation(baseOptions?: ApolloReactHooks.MutationHookOptions<SignS3Mutation, SignS3MutationVariables>): ApolloReactHooks.MutationTuple<SignS3Mutation, Exact<{
     filename: string;
     filetype: string;
-    id: string;
 }>>;
 export declare type SignS3MutationHookResult = ReturnType<typeof useSignS3Mutation>;
 export declare type SignS3MutationResult = ApolloReactCommon.MutationResult<SignS3Mutation>;

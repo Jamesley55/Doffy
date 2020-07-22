@@ -1,9 +1,6 @@
-import {
-	useCreateServiceMutation,
-	useLogoutMutation,
-} from "@doffy/controller/src/generated/graphql-hooks";
-import { SecureStore } from "expo";
+import { useCreateServiceMutation } from "@doffy/controller/src/generated/graphql-hooks";
 import * as React from "react";
+import { milisecond } from "./convertionMilisecond";
 
 export const ServiceCreationContext = React.createContext<{
 	categorie: string | null | undefined;
@@ -42,13 +39,15 @@ export const ServiceCreationContext = React.createContext<{
 		saturdayEnd: string,
 		sundayEnd: string
 	) => void;
-	logout: () => void;
+	Picture: (profilPicture: string, workPicture: string) => void;
+	createService: () => void;
 }>({
 	categorie: null,
 	ServiceCategorie: () => {},
 	information: () => {},
 	schedule: () => {},
-	logout: () => {},
+	Picture: () => {},
+	createService: () => {},
 });
 
 interface serviceCreationProps {}
@@ -61,44 +60,52 @@ export const ServiceCreationProviders: React.FC<serviceCreationProps> = ({
 		null
 	);
 	// information
-	const [, setBizzName] = React.useState<string | null | undefined>(null);
-	const [, setDescription] = React.useState<string | null | undefined>(null);
-	const [, setMomey] = React.useState<number | null | undefined>(null);
-	const [, setMinute] = React.useState<number | null | undefined>(null);
-	const [, setAddy] = React.useState<string | null | undefined>(null);
-	const [, setcity] = React.useState<string | null | undefined>(null);
-	const [, setstate] = React.useState<string | null | undefined>(null);
-	const [, setcountry] = React.useState<string | null | undefined>(null);
-	const [, setAccesible] = React.useState<boolean | null | undefined>(null);
+	const [name, setBizzName] = React.useState<string | null | undefined>(null);
+	const [description, setDescription] = React.useState<
+		string | null | undefined
+	>(null);
+	const [price, setMomey] = React.useState<number | null | undefined>(null);
+	const [averageTime, setaverageTime] = React.useState<number>(0);
+	const [Adress, setAddy] = React.useState<string | null | undefined>(null);
+	const [cityId, setcity] = React.useState<string | null | undefined>(null);
+	const [stateId, setstate] = React.useState<string | null | undefined>(null);
+	const [countryId, setcountry] = React.useState<string | null | undefined>(
+		null
+	);
+	const [adresseVisible, setAccesible] = React.useState<
+		boolean | null | undefined
+	>(null);
 
 	// Schedule day
 	const [monday, setMonday] = React.useState<boolean>(false);
-	const [, setTuesday] = React.useState(false);
-	const [, setWednesday] = React.useState(false);
-	const [, setThursday] = React.useState(false);
-	const [, setFriday] = React.useState(false);
-	const [, setSaturday] = React.useState(false);
-	const [, setsunday] = React.useState(false);
+	const [tuesday, setTuesday] = React.useState<boolean>(false);
+	const [wednesday, setWednesday] = React.useState<boolean>(false);
+	const [thursday, setThursday] = React.useState(false);
+	const [friday, setFriday] = React.useState(false);
+	const [saturday, setSaturday] = React.useState(false);
+	const [sunday, setsunday] = React.useState(false);
 	const [mondayStart, setMondayStart] = React.useState("9:05");
-	const [, setTuesdayStart] = React.useState("9:05");
-	const [, setWednesdayStart] = React.useState("9:05");
-	const [, setThursdayStart] = React.useState("9:05");
-	const [, setFridayStart] = React.useState("9:05");
-	const [, setSaturdayStart] = React.useState("9:05");
-	const [, setSundayStart] = React.useState("9:05");
-	const [, setMondayEnd] = React.useState("17:05");
-	const [, setTuesdayEnd] = React.useState("17:05");
-	const [, setWednesdayEnd] = React.useState("17:05");
-	const [, setThursdayEnd] = React.useState("17:05");
-	const [, setFridayEnd] = React.useState("17:05");
-	const [, setSaturdayEnd] = React.useState("17:05");
-	const [, setsundayEnd] = React.useState("17:05");
+	const [tuesdayStart, setTuesdayStart] = React.useState("9:05");
+	const [wednesdayStart, setWednesdayStart] = React.useState("9:05");
+	const [thursdayStart, setThursdayStart] = React.useState("9:05");
+	const [fridayStart, setFridayStart] = React.useState("9:05");
+	const [saturdayStart, setSaturdayStart] = React.useState("9:05");
+	const [sundayStart, setSundayStart] = React.useState("9:05");
+	const [mondayEnd, setMondayEnd] = React.useState("17:05");
+	const [tuesdayEnd, setTuesdayEnd] = React.useState("17:05");
+	const [wednesdayEnd, setWednesdayEnd] = React.useState("17:05");
+	const [thursdayEnd, setThursdayEnd] = React.useState("17:05");
+	const [fridayEnd, setFridayEnd] = React.useState("17:05");
+	const [saturdayEnd, setSaturdayEnd] = React.useState("17:05");
+	const [sundayEnd, setsundayEnd] = React.useState("17:05");
+
+	const [profilPicture, setlinkProfilPicture] = React.useState<string>("");
+	const [picturesUrl, setlinkWorkPicture] = React.useState<string>("");
 
 	React.useEffect(() => {
-		console.log("monday", mondayStart);
-	}, [monday]);
-	const [] = useCreateServiceMutation();
-	const [logoutMutation] = useLogoutMutation();
+		console.log("monday", averageTime);
+	}, [averageTime]);
+	const [createService] = useCreateServiceMutation();
 	return (
 		<ServiceCreationContext.Provider
 			value={{
@@ -122,12 +129,13 @@ export const ServiceCreationProviders: React.FC<serviceCreationProps> = ({
 					setBizzName(BusinessName);
 					setDescription(ShortDescription);
 					setMomey(Price);
-					setMinute(Time);
+					setaverageTime(Time);
 					setAddy(Adresse);
 					setcity(City);
 					setstate(State);
 					setcountry(Country);
 					setAccesible(Accesible);
+
 					console.log("inside context", Adresse);
 				},
 				// the first letter of each argument need to be in Capital letter
@@ -177,9 +185,72 @@ export const ServiceCreationProviders: React.FC<serviceCreationProps> = ({
 					setSaturdayEnd(SaturdayEnd);
 					setsundayEnd(SundayEnd);
 				},
-				logout: async () => {
-					logoutMutation();
-					await SecureStore.deleteItemAsync("sid");
+				Picture: (ProfilPicture: string, workPicture: string) => {
+					setlinkProfilPicture(ProfilPicture);
+					setlinkWorkPicture(workPicture);
+				},
+				createService: async () => {
+					try {
+						await createService({
+							variables: {
+								inputService: {
+									name: name as string,
+									category: categorie as string,
+									description: description as string,
+									coutryId: countryId as string,
+									stateId: stateId as string,
+									cityId: cityId as string,
+									Adress: Adress as string,
+									price: price as number,
+									profilPicture,
+									picturesUrl: picturesUrl as string,
+									adresseVisible: adresseVisible as boolean,
+									averageTime: averageTime * 60000, // to convert to average time in minute to miliseconds,
+								},
+								ScheduleBool: {
+									monday,
+									tuesday,
+									wednesday,
+									thusday: thursday,
+									friday,
+									saturday,
+									sunday,
+								},
+								ScheduleTime: {
+									mondaySchedule: {
+										StartTime: milisecond(mondayStart), // convert the hours select in miliseconds
+										EndTime: milisecond(mondayEnd),
+									},
+									tuesdaySchedule: {
+										StartTime: milisecond(tuesdayStart),
+										EndTime: milisecond(tuesdayEnd),
+									},
+									wednesdaySchedule: {
+										StartTime: milisecond(wednesdayStart),
+										EndTime: milisecond(wednesdayEnd),
+									},
+									thursdaySchedule: {
+										StartTime: milisecond(thursdayStart),
+										EndTime: milisecond(thursdayEnd),
+									},
+									fridaySchedule: {
+										StartTime: milisecond(fridayStart),
+										EndTime: milisecond(fridayEnd),
+									},
+									saturdaySchedule: {
+										StartTime: milisecond(saturdayStart),
+										EndTime: milisecond(saturdayEnd),
+									},
+									sundaySchedule: {
+										StartTime: milisecond(sundayStart),
+										EndTime: milisecond(sundayEnd),
+									},
+								},
+							},
+						});
+					} catch (e) {
+						console.log(e.networkError.result.errors);
+					}
 				},
 			}}
 		>

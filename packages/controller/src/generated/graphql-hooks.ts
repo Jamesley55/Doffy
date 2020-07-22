@@ -72,7 +72,6 @@ export type MutationChangePasswordArgs = {
 export type MutationSignS3Args = {
   filename: Scalars['String'];
   filetype: Scalars['String'];
-  id?: Maybe<Scalars['String']>;
 };
 
 
@@ -262,16 +261,20 @@ export type CreateServices = {
   name: Scalars['String'];
   category: Scalars['String'];
   description: Scalars['String'];
-  coutryId?: Maybe<Scalars['String']>;
-  stateId?: Maybe<Scalars['String']>;
-  cityId?: Maybe<Scalars['String']>;
-  Taxes: Scalars['Boolean'];
-  Adress?: Maybe<Scalars['String']>;
+  coutryId: Scalars['String'];
+  stateId: Scalars['String'];
+  cityId: Scalars['String'];
+  Taxes?: Maybe<Scalars['Boolean']>;
+  Adress: Scalars['String'];
   price: Scalars['Float'];
-  payoutSchedule: Scalars['String'];
-  customerBillingStatement: Scalars['String'];
+  payoutSchedule?: Maybe<Scalars['String']>;
+  customerBillingStatement?: Maybe<Scalars['String']>;
   latitude?: Maybe<Scalars['Float']>;
   longitude?: Maybe<Scalars['Float']>;
+  profilPicture: Scalars['String'];
+  picturesUrl: Scalars['String'];
+  adresseVisible: Scalars['Boolean'];
+  averageTime: Scalars['Float'];
 };
 
 export type Schedulebool = {
@@ -689,7 +692,6 @@ export type ServicesUserQuery = (
 export type SignS3MutationVariables = Exact<{
   filename: Scalars['String'];
   filetype: Scalars['String'];
-  id: Scalars['String'];
 }>;
 
 
@@ -1514,8 +1516,8 @@ export type ServicesUserQueryHookResult = ReturnType<typeof useServicesUserQuery
 export type ServicesUserLazyQueryHookResult = ReturnType<typeof useServicesUserLazyQuery>;
 export type ServicesUserQueryResult = ApolloReactCommon.QueryResult<ServicesUserQuery, ServicesUserQueryVariables>;
 export const SignS3Document = gql`
-    mutation signS3($filename: String!, $filetype: String!, $id: String!) {
-  signS3(filename: $filename, filetype: $filetype, id: $id) {
+    mutation signS3($filename: String!, $filetype: String!) {
+  signS3(filename: $filename, filetype: $filetype) {
     url
     signedRequest
   }
@@ -1538,7 +1540,6 @@ export type SignS3MutationFn = ApolloReactCommon.MutationFunction<SignS3Mutation
  *   variables: {
  *      filename: // value for 'filename'
  *      filetype: // value for 'filetype'
- *      id: // value for 'id'
  *   },
  * });
  */

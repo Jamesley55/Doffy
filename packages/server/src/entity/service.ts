@@ -1,88 +1,94 @@
 import {
-  Entity,
-  Column,
-  BaseEntity,
-  PrimaryGeneratedColumn,
-  ManyToOne,
-  JoinColumn,
-  OneToOne,
-  OneToMany,
+	BaseEntity,
+	Column,
+	Entity,
+	JoinColumn,
+	ManyToOne,
+	OneToMany,
+	OneToOne,
+	PrimaryGeneratedColumn,
 } from "typeorm";
-import { User } from "./User";
-import { Calendar } from "./calendar";
 import { Booking } from "./booking";
+import { Calendar } from "./calendar";
 import { Scores } from "./rating";
+import { User } from "./User";
 
 @Entity("service")
 export class Service extends BaseEntity {
-  @PrimaryGeneratedColumn("uuid") id: string;
+	@PrimaryGeneratedColumn("uuid") id: string;
 
-  @Column("varchar", { length: 100 })
-  name: string;
+	@Column("varchar", { length: 100 })
+	name: string;
 
-  @Column("varchar", { length: 100 })
-  category: string;
+	@Column("varchar", { length: 100 })
+	category: string;
 
-  @Column("simple-array", { nullable: true, array: true })
-  pictureUrl: string[];
+	@Column("varchar", { nullable: true, array: true })
+	picturesUrl: string[];
 
-  @Column("varchar", { length: 255 })
-  description: string;
+	@Column("varchar", { nullable: false })
+	profilPicture: string;
 
-  @Column("varchar", { length: 100 })
-  coutryId: string;
+	@Column("varchar", { length: 255 })
+	description: string;
 
-  @Column("varchar", { length: 100 })
-  stateId: string;
+	@Column("varchar", { length: 100 })
+	coutryId: string;
 
-  @Column("varchar", { length: 100 })
-  cityId: string;
+	@Column("varchar", { length: 100 })
+	stateId: string;
 
-  @Column("uuid") calendarId: string;
+	@Column("varchar", { length: 100 })
+	cityId: string;
 
-  @OneToOne(() => Calendar, (calendar) => calendar.services)
-  @JoinColumn({ name: "calendarId" })
-  calendar: Calendar;
+	@Column("uuid") calendarId: string;
 
-  // in milisecond
-  // 45 minute is equal to 2700000 milisecond
-  @Column("int", { default: 2700000 })
-  averageTime: number;
+	@OneToOne(() => Calendar, (calendar) => calendar.services)
+	@JoinColumn({ name: "calendarId" })
+	calendar: Calendar;
 
-  @Column("boolean")
-  Taxes: boolean;
+	@Column("boolean", { default: false })
+	adresseVisible: boolean;
 
-  @Column("text")
-  Adress: string;
+	// in milisecond
+	// 45 minute is equal to 2700000 milisecond
+	@Column("int", { default: 2700000 })
+	averageTime: number;
 
-  @Column(() => Scores)
-  score: Scores[];
+	@Column("boolean", { nullable: true })
+	Taxes: boolean;
 
-  @Column("double precision", { default: null })
-  rating: number;
+	@Column("text")
+	Adress: string;
 
-  @Column("double precision") price: number;
+	@Column(() => Scores)
+	score: Scores[];
 
-  @Column("text") payoutSchedule: string;
+	@Column("double precision", { default: null })
+	rating: number;
 
-  @Column("text") customerBillingStatement: string;
+	@Column("double precision") price: number;
 
-  @Column("double precision") latitude: number;
+	@Column("text", { nullable: true }) payoutSchedule: string;
 
-  @Column("double precision") longitude: number;
+	@Column("text", { nullable: true }) customerBillingStatement: string;
 
-  @Column("uuid") ownerId: string;
+	@Column("double precision", { nullable: true }) latitude: number;
 
-  @Column("decimal", { default: "0" })
-  depositAmount: number;
+	@Column("double precision", { nullable: true }) longitude: number;
 
-  @Column("boolean", { default: true })
-  isRefund: boolean;
+	@Column("uuid") ownerId: string;
 
-  @ManyToOne(() => User, (user) => user.services)
-  @JoinColumn({ name: "ownerId" })
-  user: User;
+	@Column("decimal", { default: "0" })
+	depositAmount: number;
 
-  @OneToMany(() => Booking, (booking) => booking.service)
-  booking: Booking[];
+	@Column("boolean", { default: true })
+	isRefund: boolean;
+
+	@ManyToOne(() => User, (user) => user.services)
+	@JoinColumn({ name: "ownerId" })
+	user: User;
+
+	@OneToMany(() => Booking, (booking) => booking.service)
+	booking: Booking[];
 }

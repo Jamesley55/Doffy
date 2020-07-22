@@ -412,8 +412,8 @@ function useServicesUserLazyQuery(baseOptions) {
 }
 exports.useServicesUserLazyQuery = useServicesUserLazyQuery;
 exports.SignS3Document = graphql_tag_1.default `
-    mutation signS3($filename: String!, $filetype: String!, $id: String!) {
-  signS3(filename: $filename, filetype: $filetype, id: $id) {
+    mutation signS3($filename: String!, $filetype: String!) {
+  signS3(filename: $filename, filetype: $filetype) {
     url
     signedRequest
   }

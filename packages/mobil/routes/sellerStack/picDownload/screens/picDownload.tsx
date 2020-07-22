@@ -6,6 +6,7 @@ import * as Permissions from "expo-permissions";
 import * as React from "react";
 import {
 	ActivityIndicator,
+	Alert,
 	Image,
 	Modal,
 	SafeAreaView,
@@ -19,12 +20,15 @@ import MaterialIconsIcon from "react-native-vector-icons/MaterialIcons";
 import { BlueButton } from "../../../../Component/BlueBotton";
 import { SellerStackNavProps } from "../../../../screenStack/Tydefs/sellerParamList";
 import { formatFilename } from "../../../../shareFuction/formatFileName";
+import { ServiceCreationContext } from "../../../../shareFuction/serviceCreation";
 import { uploadToS3 } from "../../../../shareFuction/uploadS3";
 import { picDownloadStyle } from "../style/style";
 
 export function picDownload({
 	navigation,
 }: SellerStackNavProps<"picDownload">) {
+	const { Picture, createService } = React.useContext(ServiceCreationContext);
+
 	const [PreviewProfilPicture, setPreviewProfilPicture] = React.useState<
 		string | undefined
 	>("");
@@ -34,9 +38,7 @@ export function picDownload({
 		""
 	);
 
-	const [linkWorkPicture, setlinkWorkPicture] = React.useState<
-		string | undefined
-	>("");
+	const [linkWorkPicture, setlinkWorkPicture] = React.useState<string>("");
 
 	const [fullScreen, setfullScreen] = React.useState<boolean>(false);
 	const [modal, setModal] = React.useState<boolean>(false);
@@ -75,7 +77,6 @@ export function picDownload({
 				console.log(files);
 				const response = await uploadS3({
 					variables: {
-						id: "110ec58a-a0f2-4ac4-8393-c866d813b8d1",
 						filename: formatFilename(files.uri),
 						filetype: files.type !== undefined ? files.type : "image",
 					},
@@ -183,7 +184,7 @@ export function picDownload({
 						<Entypo
 							name="resize-full-screen"
 							size={24}
-							color="black"
+							color="white"
 							style={{
 								position: "absolute",
 								zIndex: 99999,
@@ -233,7 +234,7 @@ export function picDownload({
 						<Entypo
 							name="resize-full-screen"
 							size={24}
-							color="black"
+							color="white"
 							style={{
 								position: "absolute",
 								zIndex: 99999,
@@ -242,7 +243,20 @@ export function picDownload({
 					</TouchableOpacity>
 				)}
 				<BlueButton
-					onPress={() => navigation.navigate("home" as any)}
+					onPress={() => {
+						if (linkProfilPicture && linkWorkPicture) {
+							Picture(linkProfilPicture, linkWorkPicture);
+							navigation.navigate("home" as any);
+							createService();
+						} else {
+							Alert.alert(
+								"",
+								"Please Enter all required information",
+								[{ text: "OK", onPress: () => console.log("OK Pressed") }],
+								{ cancelable: false }
+							);
+						}
+					}}
 					Text1="Continue"
 					style={picDownloadStyle.BlueButton}
 				/>

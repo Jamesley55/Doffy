@@ -1,9 +1,9 @@
 type S3Payload {
-  signedRequest: String!
-  url: String!
+	signedRequest: String!
+	url: String!
 }
 
 type Mutation {
-  signS3(filename: String!, filetype: String!, id: String): S3Payload!
-  findUrl(serviceId: String!): [String!]
+	signS3(filename: String!, filetype: String!): S3Payload!
+	findUrl(serviceId: String!): [String!]
 }

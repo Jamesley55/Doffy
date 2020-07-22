@@ -17,7 +17,7 @@ export function InformationService({
 	const [bizzName, setBizzName] = React.useState<string>("");
 	const [description, setDescription] = React.useState<string>("");
 	const [money, setMomey] = React.useState<number>(0);
-	const [minutes, setMinute] = React.useState<number>(0);
+	const [averageTime, setAverageTime] = React.useState<number>(42000);
 	const [addy, setAddy] = React.useState<string>("");
 	const [city, setcity] = React.useState<string>("");
 	const [state, setstate] = React.useState<string>("");
@@ -74,7 +74,7 @@ export function InformationService({
 					blurOnSubmit={true}
 				/>
 				<Input
-					onSubmit={(e) => setMomey(e.nativeEvent.text)}
+					onSubmit={(e) => setMomey(parseFloat(e.nativeEvent.text))}
 					TextInputStyle={pricePagestyles.Numbers}
 					TextStyle={pricePagestyles.Text}
 					Text="How much do you charge on average for your services?"
@@ -82,7 +82,7 @@ export function InformationService({
 					keyboardType="decimal-pad"
 				/>
 				<Input
-					onSubmit={(e) => setMinute(e.nativeEvent.text)}
+					onSubmit={(e) => setAverageTime(parseFloat(e.nativeEvent.text))}
 					TextInputStyle={pricePagestyles.Numbers}
 					TextStyle={pricePagestyles.Text}
 					Text="How long on average does it take you to provide the service you selected"
@@ -111,7 +111,7 @@ export function InformationService({
 							bizzName === "" ||
 							description === "" ||
 							money === 0 ||
-							minutes === 0 ||
+							averageTime === 0 ||
 							addy === "" ||
 							city === "" ||
 							state === "" ||
@@ -128,7 +128,7 @@ export function InformationService({
 								bizzName,
 								description,
 								money,
-								minutes,
+								averageTime,
 								addy,
 								city,
 								state,
