@@ -4,6 +4,7 @@ import { milisecond } from "./convertionMilisecond";
 
 export const ServiceCreationContext = React.createContext<{
 	categorie: string | null | undefined;
+	finish: any;
 	ServiceCategorie: (categorie: any) => void;
 	information: (
 		businessName: string,
@@ -39,17 +40,18 @@ export const ServiceCreationContext = React.createContext<{
 		saturdayEnd: string,
 		sundayEnd: string
 	) => void;
-	setfinish: () => void;
+	setfinish: (valued: boolean) => void;
 	Picture: (profilPicture: string, workPicture: string) => void;
-	createService: () => void;
+	CreateService: () => void;
 }>({
 	categorie: null,
+	finish: null,
 	ServiceCategorie: () => {},
 	information: () => {},
 	schedule: () => {},
 	Picture: () => {},
 	setfinish: () => {},
-	createService: () => {},
+	CreateService: () => {},
 });
 
 interface serviceCreationProps {}
@@ -62,7 +64,7 @@ export const ServiceCreationProviders: React.FC<serviceCreationProps> = ({
 		null
 	);
 	// information
-	const [name, setBizzName] = React.useState<string | null | undefined>(null);
+	const [name, setName] = React.useState<string>("");
 	const [description, setDescription] = React.useState<
 		string | null | undefined
 	>(null);
@@ -103,20 +105,18 @@ export const ServiceCreationProviders: React.FC<serviceCreationProps> = ({
 
 	const [profilPicture, setlinkProfilPicture] = React.useState<string>("");
 	const [picturesUrl, setlinkWorkPicture] = React.useState<string>();
-	const [finish, setFinish] = React.useState<boolean>();
+	const [finish, setFinish] = React.useState<boolean>(false);
 
-	React.useEffect(() => {
-		console.log("create service");
-		createService();
-	}, [finish]);
 	const [createService] = useCreateServiceMutation();
 	return (
 		<ServiceCreationContext.Provider
 			value={{
 				categorie,
+				finish,
 				ServiceCategorie: (c: any) => {
 					setCategory(c);
 				},
+
 				// the first letter of each argument need to be in Capital letter
 				// to avoid confusion between the state and the argument wich have the same name
 				information: (
@@ -130,7 +130,7 @@ export const ServiceCreationProviders: React.FC<serviceCreationProps> = ({
 					Country: string,
 					Accesible: boolean
 				) => {
-					setBizzName(BusinessName);
+					setName(BusinessName);
 					setDescription(ShortDescription);
 					setMomey(Price);
 					setaverageTime(Time);
@@ -193,71 +193,68 @@ export const ServiceCreationProviders: React.FC<serviceCreationProps> = ({
 					setlinkProfilPicture(ProfilPicture);
 					setlinkWorkPicture(workPicture);
 				},
-				createService: async () => {
-					try {
-						await createService({
-							variables: {
-								inputService: {
-									name: name as string,
-									category: categorie as string,
-									description: description as string,
-									coutryId: countryId as string,
-									stateId: stateId as string,
-									cityId: cityId as string,
-									Adress: Adress as string,
-									price: price as number,
-									profilPicture,
-									picturesUrl: picturesUrl as string,
-									adresseVisible: adresseVisible as boolean,
-									averageTime: averageTime * 60000, // to convert to average time in minute to miliseconds,
+				CreateService: async () => {
+					console.log("entrer dans creteService");
+					await createService({
+						variables: {
+							inputService: {
+								name,
+								category: categorie as string,
+								description: description as string,
+								coutryId: countryId as string,
+								stateId: stateId as string,
+								cityId: cityId as string,
+								Adress: Adress as string,
+								price: price as number,
+								profilPicture,
+								picturesUrl: picturesUrl as string,
+								adresseVisible: adresseVisible as boolean,
+								averageTime: averageTime * 60000, // to convert to average time in minute to miliseconds,
+							},
+							ScheduleBool: {
+								monday,
+								tuesday,
+								wednesday,
+								thusday: thursday,
+								friday,
+								saturday,
+								sunday,
+							},
+							ScheduleTime: {
+								mondaySchedule: {
+									StartTime: milisecond(mondayStart), // convert the hours select in miliseconds
+									EndTime: milisecond(mondayEnd),
 								},
-								ScheduleBool: {
-									monday,
-									tuesday,
-									wednesday,
-									thusday: thursday,
-									friday,
-									saturday,
-									sunday,
+								tuesdaySchedule: {
+									StartTime: milisecond(tuesdayStart),
+									EndTime: milisecond(tuesdayEnd),
 								},
-								ScheduleTime: {
-									mondaySchedule: {
-										StartTime: milisecond(mondayStart), // convert the hours select in miliseconds
-										EndTime: milisecond(mondayEnd),
-									},
-									tuesdaySchedule: {
-										StartTime: milisecond(tuesdayStart),
-										EndTime: milisecond(tuesdayEnd),
-									},
-									wednesdaySchedule: {
-										StartTime: milisecond(wednesdayStart),
-										EndTime: milisecond(wednesdayEnd),
-									},
-									thursdaySchedule: {
-										StartTime: milisecond(thursdayStart),
-										EndTime: milisecond(thursdayEnd),
-									},
-									fridaySchedule: {
-										StartTime: milisecond(fridayStart),
-										EndTime: milisecond(fridayEnd),
-									},
-									saturdaySchedule: {
-										StartTime: milisecond(saturdayStart),
-										EndTime: milisecond(saturdayEnd),
-									},
-									sundaySchedule: {
-										StartTime: milisecond(sundayStart),
-										EndTime: milisecond(sundayEnd),
-									},
+								wednesdaySchedule: {
+									StartTime: milisecond(wednesdayStart),
+									EndTime: milisecond(wednesdayEnd),
+								},
+								thursdaySchedule: {
+									StartTime: milisecond(thursdayStart),
+									EndTime: milisecond(thursdayEnd),
+								},
+								fridaySchedule: {
+									StartTime: milisecond(fridayStart),
+									EndTime: milisecond(fridayEnd),
+								},
+								saturdaySchedule: {
+									StartTime: milisecond(saturdayStart),
+									EndTime: milisecond(saturdayEnd),
+								},
+								sundaySchedule: {
+									StartTime: milisecond(sundayStart),
+									EndTime: milisecond(sundayEnd),
 								},
 							},
-						});
-					} catch (e) {
-						console.log(e.networkError.result.errors);
-					}
+						},
+					});
 				},
-				setfinish: () => {
-					setFinish(true);
+				setfinish: (valued: boolean) => {
+					setFinish(valued);
 				},
 			}}
 		>

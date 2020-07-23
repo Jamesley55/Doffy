@@ -8,9 +8,9 @@ import {
 } from "react-native";
 
 interface Props {
-	style: StyleProp<TextStyle>;
+	style?: StyleProp<TextStyle>;
 	Text1: any;
-	onPress: any;
+	onPress?: any;
 }
 
 export class BlueButton extends React.PureComponent<Props> {

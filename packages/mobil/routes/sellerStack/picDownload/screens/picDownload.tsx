@@ -27,7 +27,9 @@ import { picDownloadStyle } from "../style/style";
 export function picDownload({
 	navigation,
 }: SellerStackNavProps<"picDownload">) {
-	const { Picture, setfinish } = React.useContext(ServiceCreationContext);
+	const { Picture, setfinish, CreateService, finish } = React.useContext(
+		ServiceCreationContext
+	);
 
 	const [PreviewProfilPicture, setPreviewProfilPicture] = React.useState<
 		string | undefined
@@ -96,8 +98,12 @@ export function picDownload({
 	};
 
 	React.useEffect(() => {
-		console.log("link", linkProfilPicture);
-	}, [linkProfilPicture]);
+		if (finish) {
+			CreateService();
+			navigation.navigate("home" as any);
+			setfinish(false);
+		}
+	}, [finish]);
 	return (
 		<SafeAreaView style={picDownloadStyle.container}>
 			<Modal visible={modal} animationType="slide">
@@ -249,8 +255,7 @@ export function picDownload({
 							(!linkProfilPicture && !linkWorkPicture)
 						) {
 							Picture(linkProfilPicture, linkWorkPicture);
-							setfinish();
-							navigation.navigate("home" as any);
+							setfinish(true);
 						} else {
 							Alert.alert(
 								"",

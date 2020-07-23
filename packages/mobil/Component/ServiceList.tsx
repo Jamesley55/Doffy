@@ -1,15 +1,30 @@
+import { View } from "native-base";
 import * as React from "react";
 import {
 	ActivityIndicator,
+	Button,
 	FlatList,
 	ImageBackground,
 	Text,
 	TouchableOpacity,
 } from "react-native";
+import { HomePageStyle } from "../routes/HomeStack/homePage/style/style";
 interface Props {
 	navigation: any;
 	data: any;
+	Type: string;
 }
+
+const LeftAction = () => {
+	return (
+		<TouchableOpacity
+			style={{ backgroundColor: "green" }}
+			onPress={() => console.log("hello")}
+		>
+			<Text>Hello</Text>
+		</TouchableOpacity>
+	);
+};
 export class List extends React.PureComponent<Props> {
 	state = {
 		imageLoaded: false,
@@ -18,7 +33,17 @@ export class List extends React.PureComponent<Props> {
 	render() {
 		const { navigation, data } = this.props;
 		if (data.length === 0) {
-			return <Text> no data </Text>;
+			return (
+				<View>
+					<Text style={{ textAlign: "center" }}>
+						They're currently no {this.props.Type} in your Area
+					</Text>
+					<Button
+						title={`Become a ${this.props.Type}`}
+						onPress={() => navigation.navigate("becomeAseller")}
+					/>
+				</View>
+			);
 		} else {
 			return (
 				<FlatList
@@ -38,16 +63,7 @@ export class List extends React.PureComponent<Props> {
 										price: item.price,
 									});
 								}}
-								style={{
-									flex: 1,
-									borderWidth: 1,
-									borderRadius: 1,
-									width: 300,
-									height: 150,
-									justifyContent: "center",
-									marginLeft: 40,
-									backgroundColor: "gray",
-								}}
+								style={HomePageStyle.ListRectStyle}
 							>
 								<ImageBackground
 									style={{
@@ -77,7 +93,6 @@ export class List extends React.PureComponent<Props> {
 							</TouchableOpacity>
 						);
 					}}
-					keyExtractor={(product, idx) => product + idx}
 					data={data}
 					showsHorizontalScrollIndicator={false}
 					// Performance settings
