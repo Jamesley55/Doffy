@@ -98,7 +98,6 @@ type Calendar {
 type Service {
 	id: String
 	name: String
-	pictureUrl: String
 	category: String
 	description: String
 	coutryId: String
@@ -113,6 +112,10 @@ type Service {
 	latitude: Float
 	longitude: Float
 	ownerId: String
+	profilPicture: String
+	picturesUrl: [String!]
+	adresseVisible: Boolean!
+	averageTime: Float!
 }
 
 type ServiceUser {

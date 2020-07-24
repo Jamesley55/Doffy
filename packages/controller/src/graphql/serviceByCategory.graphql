@@ -1,15 +1,24 @@
 query ServiceByCategory($category: String!) {
-  ServiceByCategory(category: $category) {
-    id
-    name
-    description
-    coutryId
-    stateId
-    cityId
-    Taxes
-    Adress
-    rating
-    price
-    ownerId
-  }
+	ServiceByCategory(category: $category) {
+		id
+		name
+		category
+		description
+		coutryId
+		stateId
+		cityId
+		Taxes
+		Adress
+		rating
+		price
+		payoutSchedule
+		customerBillingStatement
+		latitude
+		longitude
+		ownerId
+		profilPicture
+		picturesUrl
+		adresseVisible
+		averageTime
+	}
 }

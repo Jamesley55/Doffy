@@ -10,6 +10,8 @@ export const createService: IResolvers = {
 			{ inputService, ScheduleBool, ScheduleTime },
 			{ session }
 		) => {
+			console.log("entrer dans inpiut");
+			console.log("name", inputService.name);
 			const {
 				name,
 				category,
@@ -29,6 +31,8 @@ export const createService: IResolvers = {
 				averageTime,
 				adresseVisible,
 			} = inputService;
+
+			console.log("name", inputService.category);
 
 			const ownerId = session.userId;
 

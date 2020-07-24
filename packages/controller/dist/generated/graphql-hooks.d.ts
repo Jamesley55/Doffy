@@ -163,6 +163,10 @@ export declare type Service = {
     latitude?: Maybe<Scalars['Float']>;
     longitude?: Maybe<Scalars['Float']>;
     ownerId?: Maybe<Scalars['String']>;
+    profilPicture?: Maybe<Scalars['String']>;
+    picturesUrl?: Maybe<Array<Scalars['String']>>;
+    adresseVisible: Scalars['Boolean'];
+    averageTime: Scalars['Float'];
 };
 export declare type Notification = {
     __typename?: 'Notification';
@@ -551,7 +555,7 @@ export declare type ServiceByCategoryQuery = ({
 } & {
     ServiceByCategory?: Maybe<Array<Maybe<({
         __typename?: 'Service';
-    } & Pick<Service, 'id' | 'name' | 'description' | 'coutryId' | 'stateId' | 'cityId' | 'Taxes' | 'Adress' | 'rating' | 'price' | 'ownerId'>)>>>;
+    } & Pick<Service, 'id' | 'name' | 'category' | 'description' | 'coutryId' | 'stateId' | 'cityId' | 'Taxes' | 'Adress' | 'rating' | 'price' | 'payoutSchedule' | 'customerBillingStatement' | 'latitude' | 'longitude' | 'ownerId' | 'profilPicture' | 'picturesUrl' | 'adresseVisible' | 'averageTime'>)>>>;
 });
 export declare type ServicesUserQueryVariables = Exact<{
     ServiceId: Scalars['String'];

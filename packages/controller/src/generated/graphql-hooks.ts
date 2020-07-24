@@ -206,6 +206,10 @@ export type Service = {
   latitude?: Maybe<Scalars['Float']>;
   longitude?: Maybe<Scalars['Float']>;
   ownerId?: Maybe<Scalars['String']>;
+  profilPicture?: Maybe<Scalars['String']>;
+  picturesUrl?: Maybe<Array<Scalars['String']>>;
+  adresseVisible: Scalars['Boolean'];
+  averageTime: Scalars['Float'];
 };
 
 export type Notification = {
@@ -668,7 +672,7 @@ export type ServiceByCategoryQuery = (
   { __typename?: 'Query' }
   & { ServiceByCategory?: Maybe<Array<Maybe<(
     { __typename?: 'Service' }
-    & Pick<Service, 'id' | 'name' | 'description' | 'coutryId' | 'stateId' | 'cityId' | 'Taxes' | 'Adress' | 'rating' | 'price' | 'ownerId'>
+    & Pick<Service, 'id' | 'name' | 'category' | 'description' | 'coutryId' | 'stateId' | 'cityId' | 'Taxes' | 'Adress' | 'rating' | 'price' | 'payoutSchedule' | 'customerBillingStatement' | 'latitude' | 'longitude' | 'ownerId' | 'profilPicture' | 'picturesUrl' | 'adresseVisible' | 'averageTime'>
   )>>> }
 );
 
@@ -1429,6 +1433,7 @@ export const ServiceByCategoryDocument = gql`
   ServiceByCategory(category: $category) {
     id
     name
+    category
     description
     coutryId
     stateId
@@ -1437,7 +1442,15 @@ export const ServiceByCategoryDocument = gql`
     Adress
     rating
     price
+    payoutSchedule
+    customerBillingStatement
+    latitude
+    longitude
     ownerId
+    profilPicture
+    picturesUrl
+    adresseVisible
+    averageTime
   }
 }
     `;

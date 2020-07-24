@@ -361,6 +361,7 @@ exports.ServiceByCategoryDocument = graphql_tag_1.default `
   ServiceByCategory(category: $category) {
     id
     name
+    category
     description
     coutryId
     stateId
@@ -369,7 +370,15 @@ exports.ServiceByCategoryDocument = graphql_tag_1.default `
     Adress
     rating
     price
+    payoutSchedule
+    customerBillingStatement
+    latitude
+    longitude
     ownerId
+    profilPicture
+    picturesUrl
+    adresseVisible
+    averageTime
   }
 }
     `;
