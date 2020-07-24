@@ -31,7 +31,6 @@ export const Routes: React.FC<RouteProps> = ({}) => {
 					console.log("tk", tk);
 					homeScreen(tk);
 					me();
-					console.log("me", user);
 					setLoading(false);
 				} else {
 					setLoading(false);
@@ -47,7 +46,7 @@ export const Routes: React.FC<RouteProps> = ({}) => {
 
 				setLoading(false);
 			});
-	}, []);
+	}, [user]);
 
 	if (loading) {
 		return <ActivityIndicator size="large" style={{ flex: 1 }} />;

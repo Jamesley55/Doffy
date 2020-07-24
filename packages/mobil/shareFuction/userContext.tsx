@@ -74,15 +74,15 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 					try {
 						Me = await client.query<MeQuery>({ query: MeDocument });
 					} catch (e) {
-						console.log(
-							"errors                                                     ",
-							e.networkError.result.errors
-						);
+						console.log("ta mere la pute wesh ");
 						logoutMutation();
 						setToken(null);
 						await SecureStore.deleteItemAsync("sid");
 					}
-					if (!Me.data.me?.user || !Me.data.me?.user === undefined) {
+					if (
+						!Me.data?.me?.user?.username ||
+						!Me.data?.me?.user?.username === undefined
+					) {
 						logoutMutation();
 						setToken(null);
 						await SecureStore.deleteItemAsync("sid");

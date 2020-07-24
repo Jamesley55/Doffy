@@ -85,7 +85,6 @@ export class List extends React.PureComponent<Props> {
 									<ActivityIndicator
 										style={{
 											alignSelf: "center",
-											justifyContent: "flex-start",
 										}}
 										animating={!this.state.imageLoaded}
 									/>

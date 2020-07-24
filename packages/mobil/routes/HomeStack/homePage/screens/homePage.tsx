@@ -1,4 +1,3 @@
-import { View } from "native-base";
 import * as React from "react";
 import {
 	ActivityIndicator,
@@ -52,7 +51,6 @@ export function HomePage({ navigation }: TabsStackNavProps<"homepage">) {
 	React.useEffect(() => {
 		BarbershopQuery()
 			.then((index: any) => {
-				console.log("variables ", index);
 				setbarber(index);
 			})
 			.catch((err: any) => {
@@ -61,7 +59,6 @@ export function HomePage({ navigation }: TabsStackNavProps<"homepage">) {
 
 		TatooQuery()
 			.then((index: any) => {
-				console.log("variables ", index);
 				settatoo(index);
 			})
 			.catch((err: any) => {
@@ -69,7 +66,6 @@ export function HomePage({ navigation }: TabsStackNavProps<"homepage">) {
 			});
 		HairstylistQuery()
 			.then((index: any) => {
-				console.log("variables ", index);
 				setHair(index);
 			})
 			.catch((err: any) => {
@@ -77,7 +73,6 @@ export function HomePage({ navigation }: TabsStackNavProps<"homepage">) {
 			});
 		MakeupQuery()
 			.then((index: any) => {
-				console.log("variables ", index);
 				setMakeup(index);
 			})
 			.catch((err: any) => {
@@ -85,7 +80,6 @@ export function HomePage({ navigation }: TabsStackNavProps<"homepage">) {
 			});
 		EyebrowQuery()
 			.then((index: any) => {
-				console.log("variables ", index);
 				setEyebrows(index);
 			})
 			.catch((err: any) => {
@@ -93,7 +87,6 @@ export function HomePage({ navigation }: TabsStackNavProps<"homepage">) {
 			});
 		LashQuery()
 			.then((index: any) => {
-				console.log("variables ", index);
 				setLash(index);
 			})
 			.catch((err: any) => {
@@ -101,7 +94,6 @@ export function HomePage({ navigation }: TabsStackNavProps<"homepage">) {
 			});
 		NailQuery()
 			.then((index: any) => {
-				console.log("variables ", index);
 				setNail(index);
 			})
 			.catch((err: any) => {
@@ -109,31 +101,28 @@ export function HomePage({ navigation }: TabsStackNavProps<"homepage">) {
 			});
 		AestheticianQuery()
 			.then((index: any) => {
-				console.log("variables ", index);
 				setAesthetician(index);
 			})
 			.catch((err: any) => {
 				console.log(err);
 			});
 		setLoading(false);
-	}, []);
+	}, [user]);
 	if (loading) {
 		console.log("cette fonction sanbs flatlist");
 		return <ActivityIndicator size="large" style={{ flex: 1 }} />;
 	} else {
 		return (
 			<SafeAreaView style={HomePageStyle.Background}>
-				<View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-					<MaterialButtonHamburger
-						navigation={navigation}
-						style={HomePageStyle.materialButtonHamburger}
-					/>
-					<Image
-						source={require("../../../../logo/LogoJamesleyApp.png")}
-						resizeMode="contain"
-						style={HomePageStyle.image}
-					/>
-				</View>
+				<Image
+					source={require("../../../../logo/LogoJamesleyApp.png")}
+					resizeMode="contain"
+					style={HomePageStyle.image}
+				/>
+				<MaterialButtonHamburger
+					navigation={navigation}
+					style={HomePageStyle.materialButtonHamburger}
+				/>
 				<Text
 					style={HomePageStyle.Title}
 					onPress={async () => {

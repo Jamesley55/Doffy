@@ -44,7 +44,6 @@ export const ServiceByCategoryProvider: React.FC<serviceByCategoryContextProps> 
 							category: "barbershop",
 						},
 					});
-					console.log(Notification.data.ServiceByCategory);
 					return Notification.data.ServiceByCategory;
 				},
 
@@ -55,7 +54,6 @@ export const ServiceByCategoryProvider: React.FC<serviceByCategoryContextProps> 
 							category: "TatooArtist",
 						},
 					});
-					console.log(Notification.data.ServiceByCategory);
 					return Notification.data.ServiceByCategory;
 				},
 				HairstylistQuery: async () => {
@@ -65,7 +63,6 @@ export const ServiceByCategoryProvider: React.FC<serviceByCategoryContextProps> 
 							category: "HairStylist",
 						},
 					});
-					console.log(Notification.data.ServiceByCategory);
 					return Notification.data.ServiceByCategory;
 				},
 				MakeupQuery: async () => {
@@ -75,7 +72,6 @@ export const ServiceByCategoryProvider: React.FC<serviceByCategoryContextProps> 
 							category: "MakeupArtist",
 						},
 					});
-					console.log(Notification.data.ServiceByCategory);
 					return Notification.data.ServiceByCategory;
 				},
 				EyebrowQuery: async () => {
@@ -85,7 +81,6 @@ export const ServiceByCategoryProvider: React.FC<serviceByCategoryContextProps> 
 							category: "EyebrowTechnician",
 						},
 					});
-					console.log(Notification.data.ServiceByCategory);
 					return Notification.data.ServiceByCategory;
 				},
 				LashQuery: async () => {
@@ -95,7 +90,6 @@ export const ServiceByCategoryProvider: React.FC<serviceByCategoryContextProps> 
 							category: "LashTechnician",
 						},
 					});
-					console.log(Notification.data.ServiceByCategory);
 					return Notification.data.ServiceByCategory;
 				},
 				NailQuery: async () => {
@@ -105,7 +99,6 @@ export const ServiceByCategoryProvider: React.FC<serviceByCategoryContextProps> 
 							category: "NailTechnician",
 						},
 					});
-					console.log(Notification.data.ServiceByCategory);
 					return Notification.data.ServiceByCategory;
 				},
 				AestheticianQuery: async () => {
@@ -115,14 +108,12 @@ export const ServiceByCategoryProvider: React.FC<serviceByCategoryContextProps> 
 							category: "Aesthetician",
 						},
 					});
-					console.log(Notification.data.ServiceByCategory);
 					return Notification.data.ServiceByCategory;
 				},
 				MessageQuery: async () => {
 					const Message = await client.query<MessageQuery>({
 						query: MessageDocument,
 					});
-					console.log(Message.data.messages);
 					return Message.data.messages;
 				},
 			}}

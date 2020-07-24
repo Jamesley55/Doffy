@@ -18,12 +18,11 @@ export const HomePageStyle = StyleSheet.create({
 		marginBottom: HEIGHT / 50,
 	},
 	materialButtonHamburger: {
-		marginLeft: WIDTH / 20,
+		marginLeft: WIDTH / 40,
 		width: 57,
 		height: 57,
 		backgroundColor: "rgba(66,66,66,1)",
-		borderRadius: 100,
-		alignSelf: "baseline",
+		borderRadius: 30,
 	},
 	icon: {
 		top: 0,
@@ -35,8 +34,8 @@ export const HomePageStyle = StyleSheet.create({
 		width: 30,
 	},
 	image: {
-		height: HEIGHT / 13,
 		alignSelf: "center",
+		height: HEIGHT / 13,
 	},
 
 	ListRectStyle: {
