@@ -88,7 +88,6 @@ export const requestPageStyle = StyleSheet.create({
 		borderRadius: 100,
 		marginTop: WIDTH / 20,
 		marginBottom: WIDTH / 10,
-
 		alignSelf: "center",
 	},
 });

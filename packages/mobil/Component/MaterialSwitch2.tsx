@@ -2,7 +2,7 @@ import * as React from "react";
 import { StyleSheet, Switch, View } from "react-native";
 
 interface Props {
-	handle: any;
+	handle?: any;
 }
 
 export class MaterialSwitch2 extends React.PureComponent<Props> {

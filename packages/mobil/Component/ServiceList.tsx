@@ -57,6 +57,14 @@ export class List extends React.PureComponent<Props> {
 								onPress={() => {
 									console.log(item.profilPicture);
 									navigation.navigate("requestPage", {
+										id: item.id,
+										description: item.description,
+										Adresse: item.Adress,
+										countryId: item.coutryId,
+										stateId: item.stateId,
+										cityId: item.cityId,
+										ownerId: item.ownerId,
+										adresseVisible: item.adresseVisible,
 										profilPic: link,
 										pictureUrl: item.picturesUrl,
 										name: item.name,
