@@ -1,15 +1,6 @@
-import { AntDesign } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import * as React from "react";
-import {
-	Image,
-	ImageBackground,
-	SafeAreaView,
-	StyleSheet,
-	Text,
-	View,
-} from "react-native";
-import CalendarStrip from "react-native-calendar-strip";
+import { Image, ImageBackground, SafeAreaView, Text, View } from "react-native";
 import {
 	FlatList,
 	ScrollView,
@@ -18,18 +9,28 @@ import {
 import EntypoIcon from "react-native-vector-icons/Entypo";
 import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import { BlueButton } from "../../../../Component/BlueBotton";
+import { Checkbox } from "../../../../Component/checkBox";
+import { HoursList } from "../../../../Component/HoursList";
 import { PhotoGalery } from "../../../../Component/PhotosGallery";
 import { HomeStackNavProps } from "../../../../screenStack/Tydefs/homeParamList";
 import { requestPageStyle } from "../styles/style";
+import CalendarStrip from "./fuckedupImport";
+const moment = require("moment");
+
 export function requestPage({
 	navigation,
 	route,
 }: HomeStackNavProps<"requestPage">) {
-	const [service, setService] = React.useState(false);
-	const [payement, setPayement] = React.useState(false);
 	const handleConfirm = () => {
-		console.log("that's jessica");
+		console.log("that's date");
 	};
+
+	const onDateSelected = (date) => {
+		console.log(date.format("YYYY-MM-DD"));
+	};
+
+	const [time, timePress] = React.useState<boolean>();
+	const [Index, indexPress] = React.useState<number>();
 
 	return (
 		<SafeAreaView style={requestPageStyle.container}>
@@ -47,13 +48,7 @@ export function requestPage({
 						resizeMode="contain"
 						style={requestPageStyle.image1}
 					/>
-					{/* <IoniconsIcon
-					name="md-search"
-					style={requestPageStyle.icon2}
-					onPress={() => {
-						navigation.navigate("searchPage");
-					}}
-				/> */}
+
 					<MaterialCommunityIconsIcon
 						name="account"
 						style={requestPageStyle.icon3}
@@ -206,21 +201,7 @@ export function requestPage({
 						flexDirection: "row",
 					}}
 				>
-					<TouchableOpacity
-						style={{
-							borderRadius: 30,
-							marginLeft: 10,
-						}}
-						onPress={() => {
-							setService(!service);
-						}}
-					>
-						<AntDesign
-							name="checkcircle"
-							size={24}
-							color={service ? "green" : "black"}
-						/>
-					</TouchableOpacity>
+					<Checkbox handle={handleConfirm} />
 					<View style={{ width: 300 }}>
 						<Text style={requestPageStyle.Text}>Type of service</Text>
 						<Text>average time of service </Text>
@@ -235,18 +216,38 @@ export function requestPage({
 				>
 					Select Date and Time
 				</Text>
-
-				<CalendarStrip showMonth={true} />
+				<CalendarStrip
+					minDate={moment()}
+					showMonth={true}
+					scrollable
+					calendarAnimation={{ type: "sequence", duration: 30 }}
+					daySelectionAnimation={{
+						type: "background",
+						highlightColor: "green",
+					}}
+					iconContainer={{ flex: 0.1 }}
+					useIsoWeekday={false}
+					style={{ height: 80 }}
+					onDateSelected={onDateSelected}
+				/>
 				<View style={{ width: "100%", height: 50, backgroundColor: "white" }}>
 					<FlatList
 						horizontal={true}
 						keyExtractor={(idem, index) => index.toString()}
 						style={{ alignSelf: "center", marginLeft: 10 }}
 						renderItem={({ item, index }) => {
-							return <HoursList handle={handleConfirm}></HoursList>;
+							return (
+								<HoursList
+									backgroundColor={index === Index && time ? true : false}
+									onPress={() => {
+										indexPress(index);
+										timePress(!time);
+									}}
+								/>
+							);
 						}}
 						contentContainerStyle={{ justifyContent: "space-between" }}
-						data={route.params.profilPic}
+						data={route.params.profilPic as any}
 						showsHorizontalScrollIndicator={false}
 						// Performance settings
 						removeClippedSubviews={true} // Unmount components when outside of window
@@ -274,22 +275,7 @@ export function requestPage({
 						flexDirection: "row",
 					}}
 				>
-					<TouchableOpacity
-						style={{
-							borderRadius: 30,
-							marginLeft: 10,
-							alignItems: "center",
-						}}
-						onPress={() => {
-							setPayement(!payement);
-						}}
-					>
-						<AntDesign
-							name="checkcircle"
-							size={24}
-							color={payement ? "green" : "black"}
-						/>
-					</TouchableOpacity>
+					<Checkbox handle={handleConfirm} />
 					<View style={{ marginRight: 300, justifyContent: "center" }}>
 						<Text style={requestPageStyle.Text}>In shop</Text>
 					</View>
@@ -304,80 +290,3 @@ export function requestPage({
 		</SafeAreaView>
 	);
 }
-
-interface Props {
-	handle?: any;
-}
-
-export class HoursList extends React.PureComponent<Props> {
-	state = {
-		values: false,
-	};
-
-	render() {
-		return (
-			<View style={[styles.container]}>
-				<TouchableOpacity
-					style={{
-						flexDirection: "row",
-						marginBottom: 10,
-						marginTop: 10,
-					}}
-					onPress={() => {
-						this.state.values
-							? this.setState({ values: false }, () => {
-									this.setState({ values: false });
-
-									this.props.handle(this.state.values);
-							  })
-							: this.setState({ values: true }, () => {
-									this.setState({ values: true });
-									this.props.handle(this.state.values);
-							  });
-					}}
-				>
-					<View
-						style={{
-							backgroundColor: this.state.values ? "green" : "white",
-							height: 30,
-							width: 80,
-							borderRadius: 30,
-							alignSelf: "center",
-							marginLeft: 5,
-							marginRight: 5,
-							shadowOffset: {
-								height: 1,
-								width: 1,
-							},
-							shadowColor: "#000",
-							shadowOpacity: 0.35,
-							shadowRadius: 5,
-						}}
-					>
-						<Text
-							style={{
-								height: "100%",
-								textAlign: "center",
-								textAlignVertical: "center",
-								marginVertical: 5,
-							}}
-						>
-							9:00
-						</Text>
-					</View>
-				</TouchableOpacity>
-			</View>
-		);
-	}
-}
-
-const styles = StyleSheet.create({
-	container: {
-		alignItems: "center",
-		justifyContent: "center",
-	},
-	switch1: {
-		width: 45,
-		height: 22,
-	},
-});

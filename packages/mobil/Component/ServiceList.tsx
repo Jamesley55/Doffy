@@ -93,6 +93,7 @@ export class List extends React.PureComponent<Props> {
 									<ActivityIndicator
 										style={{
 											alignSelf: "center",
+											height: "100%",
 										}}
 										animating={!this.state.imageLoaded}
 									/>

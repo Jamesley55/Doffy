@@ -26,7 +26,7 @@ export class PhotoGalery extends React.PureComponent<Props> {
 				<FlatList
 					horizontal={true}
 					keyExtractor={(idem, index) => index.toString()}
-					style={{ flex: 1 }}
+					style={{}}
 					renderItem={({ item, index }) => {
 						this.setState({ index });
 						return (
@@ -74,11 +74,8 @@ export class PhotoGalery extends React.PureComponent<Props> {
 					maxToRenderPerBatch={1} // Reduce number in each render batch
 					updateCellsBatchingPeriod={100} // Increase time between renders
 					windowSize={7} // Reduce the window size
-					ref={(ref) => {
-						this.flatListRef = ref;
-					}}
 				/>
-				{this.state.index > 0 ? (
+				{this.state.index > 0 && (
 					<FlatList
 						horizontal={true}
 						keyExtractor={(idem, index) => index.toString()}
@@ -108,11 +105,8 @@ export class PhotoGalery extends React.PureComponent<Props> {
 						maxToRenderPerBatch={1} // Reduce number in each render batch
 						updateCellsBatchingPeriod={100} // Increase time between renders
 						windowSize={7} // Reduce the window size
-						ref={(ref) => {
-							this.flatListRef = ref;
-						}}
 					/>
-				) : null}
+				)}
 			</View>
 		);
 	}
