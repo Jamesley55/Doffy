@@ -1,32 +1,33 @@
 type Error {
-  path: String!
-  message: String!
+	path: String!
+	message: String!
 }
 
 type Booking {
-  startService: Float
-  endService: Float
-  price: Float
-  taxes: Float
-  depositAmount: Float
-  isRefund: Boolean
-  transactionFee: Float
-  Total: Float
+	startService: Float
+	endService: Float
+	price: Float
+	taxes: Float
+	depositAmount: Float
+	isRefund: Boolean
+	transactionFee: Float
+	Total: Float
 }
 
 type BookingResponse {
-  errors: Error
-  booking: Booking
+	errors: Error
+	booking: Booking
 }
 
 type Mutation {
-  createBooking(
-    serviceId: String!
-    date: String!
-    startService: Float
-  ): BookingResponse
-  updateBooking(NotificationId: String!, response: Boolean): Boolean
+	createBooking(
+		serviceId: String!
+		date: String!
+		startService: Float
+	): BookingResponse
+	updateBooking(NotificationId: String!, response: Boolean): Boolean
 }
 type Query {
-  QueryBooking(serviceId: String!, date: String!): [Booking!]
+	QueryBooking(serviceId: String!, date: String!): [Booking!]
+	QueryBookingTime(serviceId: String!, date: String!): [String!]
 }
