@@ -12,29 +12,28 @@ export const requestPageStyle = StyleSheet.create({
 		flexDirection: "row",
 		justifyContent: "space-between",
 	},
-	image1: {
-		width: 191,
-		height: 64,
-		marginLeft: 27,
+	logo: {
+		width: WIDTH / 2,
+		height: HEIGHT / 15,
 	},
-	icon2: {
+	icon: {
 		color: "rgba(128,128,128,1)",
 		fontSize: 40,
-		marginLeft: 8,
-		marginTop: 25,
+		marginTop: HEIGHT / 95,
 	},
-	icon3: {
-		color: "rgba(128,128,128,1)",
-		fontSize: 40,
-		marginLeft: 11,
-		marginTop: 25,
-	},
-	icon1Row: {
-		height: 65,
-		flexDirection: "row",
-		marginTop: 37,
-		marginLeft: 14,
-		marginRight: 14,
+	nameBox: {
+		backgroundColor: "white",
+		marginTop: HEIGHT / 200,
+		height: HEIGHT / 25,
+		width: WIDTH / 2.5,
+		borderRadius: 20,
+		shadowOffset: {
+			height: 1,
+			width: 0,
+		},
+		shadowColor: "#000",
+		shadowOpacity: 0.35,
+		shadowRadius: 5,
 	},
 	rect: {
 		width: WIDTH,
@@ -42,16 +41,36 @@ export const requestPageStyle = StyleSheet.create({
 		backgroundColor: "rgba(230, 230, 230,1)",
 		marginTop: HEIGHT / 80,
 	},
-	icon4: {
+	rateIcon: {
 		color: "white",
-		fontSize: 30,
+		fontSize: WIDTH / 13,
 	},
 	Title: {
 		color: "rgba(59,33,33,1)",
 		fontSize: WIDTH / 15,
 		fontFamily: "roboto-700",
+		marginTop: HEIGHT / 40,
+		textAlign: "center",
+		marginBottom: HEIGHT / 90,
 	},
-
+	AvailabilityStyle: {
+		color: "white",
+		fontFamily: "armata-regular",
+		fontSize: 12,
+		marginBottom: WIDTH / 50,
+		shadowOffset: {
+			height: 1,
+			width: 0,
+		},
+		shadowColor: "white",
+		shadowOpacity: 5,
+		shadowRadius: 5,
+	},
+	openGoogle: {
+		textAlign: "center",
+		fontSize: 12,
+		marginTop: "10%",
+	},
 	Text: {
 		color: "rgba(59,33,33,1)",
 		fontSize: WIDTH / 30,
@@ -61,27 +80,20 @@ export const requestPageStyle = StyleSheet.create({
 		width: WIDTH,
 		height: WIDTH,
 	},
-	map: {
+	open: {
 		height: HEIGHT / 5,
 		width: WIDTH,
 	},
-
-	rect3: {
-		width: "99%",
-		marginLeft: 1,
-		height: 49,
-		borderColor: "rgba(87,87,87,1)",
-		borderWidth: 1,
-		marginTop: 13,
+	map: {
+		height: HEIGHT / 4,
+		width: WIDTH,
 	},
-
-	disponibility: {
-		color: "rgba(59,33,33,1)",
-		fontSize: WIDTH / 25,
-		fontFamily: "roboto-regular",
-		textAlign: "center",
+	selectService: {
+		width: "100%",
+		backgroundColor: "white",
+		justifyContent: "space-between",
+		flexDirection: "row",
 	},
-
 	BlueButton: {
 		width: WIDTH / 1.3,
 		height: HEIGHT / 13,

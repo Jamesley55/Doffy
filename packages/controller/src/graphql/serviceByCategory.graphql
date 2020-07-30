@@ -20,5 +20,6 @@ query ServiceByCategory($category: String!) {
 		picturesUrl
 		adresseVisible
 		averageTime
+		category
 	}
 }

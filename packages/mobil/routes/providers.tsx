@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Routes } from ".";
+import { Booking } from "../shareFuction/booking";
 import { Intercommunication } from "../shareFuction/IntercommunicationContext";
 import { SearchQuery } from "../shareFuction/Searchcontext";
 import { ServiceByCategoryProvider } from "../shareFuction/serviceByCategory";
@@ -15,7 +16,9 @@ export const Providers: React.FC<ProvidersProps> = ({}) => {
 				<Intercommunication>
 					<SearchQuery>
 						<ServiceCreationProviders>
-							<Routes />
+							<Booking>
+								<Routes />
+							</Booking>
 						</ServiceCreationProviders>
 					</SearchQuery>
 				</Intercommunication>

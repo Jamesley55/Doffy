@@ -109,7 +109,6 @@ export function HomePage({ navigation }: TabsStackNavProps<"homepage">) {
 		setLoading(false);
 	}, [user]);
 	if (loading) {
-		console.log("cette fonction sanbs flatlist");
 		return <ActivityIndicator size="large" style={{ flex: 1 }} />;
 	} else {
 		return (

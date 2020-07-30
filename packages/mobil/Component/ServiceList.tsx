@@ -9,6 +9,7 @@ import {
 	TouchableOpacity,
 } from "react-native";
 import { HomePageStyle } from "../routes/HomeStack/homePage/style/style";
+import { getHours } from "../shareFuction/milisecondTohours";
 interface Props {
 	navigation: any;
 	data: any;
@@ -69,6 +70,8 @@ export class List extends React.PureComponent<Props> {
 										pictureUrl: item.picturesUrl,
 										name: item.name,
 										price: item.price,
+										averageTime: getHours(item.averageTime, true),
+										category: item.category,
 									});
 								}}
 								style={HomePageStyle.ListRectStyle}

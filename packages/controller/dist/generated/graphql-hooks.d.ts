@@ -125,6 +125,7 @@ export declare type Query = {
     findServiceCalendar?: Maybe<Calendar>;
     notification: Array<Notification>;
     QueryBooking?: Maybe<Array<Booking>>;
+    QueryBookingTime?: Maybe<Array<Scalars['String']>>;
 };
 export declare type QuerySearchServicesUserArgs = {
     search: Scalars['String'];
@@ -141,6 +142,10 @@ export declare type QueryFindServiceCalendarArgs = {
     ServiceId: Scalars['String'];
 };
 export declare type QueryQueryBookingArgs = {
+    serviceId: Scalars['String'];
+    date: Scalars['String'];
+};
+export declare type QueryQueryBookingTimeArgs = {
     serviceId: Scalars['String'];
     date: Scalars['String'];
 };
@@ -287,8 +292,8 @@ export declare type StartEnd = {
 };
 export declare type Time = {
     __typename?: 'Time';
-    StartTime?: Maybe<Scalars['Int']>;
-    EndTime?: Maybe<Scalars['Int']>;
+    StartTime?: Maybe<Scalars['String']>;
+    EndTime?: Maybe<Scalars['String']>;
 };
 export declare type Input = {
     BookingRequest: Scalars['Boolean'];
@@ -507,6 +512,13 @@ export declare type QueryBookingQuery = ({
         __typename?: 'Booking';
     } & Pick<Booking, 'startService' | 'endService' | 'price' | 'taxes' | 'depositAmount' | 'isRefund' | 'transactionFee' | 'Total'>)>>;
 });
+export declare type QueryBookingTimeQueryVariables = Exact<{
+    serviceId: Scalars['String'];
+    date: Scalars['String'];
+}>;
+export declare type QueryBookingTimeQuery = ({
+    __typename?: 'Query';
+} & Pick<Query, 'QueryBookingTime'>);
 export declare type RegisterMutationVariables = Exact<{
     username: Scalars['String'];
     email: Scalars['String'];
@@ -737,6 +749,18 @@ export declare function useQueryBookingLazyQuery(baseOptions?: ApolloReactHooks.
 export declare type QueryBookingQueryHookResult = ReturnType<typeof useQueryBookingQuery>;
 export declare type QueryBookingLazyQueryHookResult = ReturnType<typeof useQueryBookingLazyQuery>;
 export declare type QueryBookingQueryResult = ApolloReactCommon.QueryResult<QueryBookingQuery, QueryBookingQueryVariables>;
+export declare const QueryBookingTimeDocument: import("graphql").DocumentNode;
+export declare function useQueryBookingTimeQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<QueryBookingTimeQuery, QueryBookingTimeQueryVariables>): ApolloReactCommon.QueryResult<QueryBookingTimeQuery, Exact<{
+    serviceId: string;
+    date: string;
+}>>;
+export declare function useQueryBookingTimeLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<QueryBookingTimeQuery, QueryBookingTimeQueryVariables>): ApolloReactHooks.QueryTuple<QueryBookingTimeQuery, Exact<{
+    serviceId: string;
+    date: string;
+}>>;
+export declare type QueryBookingTimeQueryHookResult = ReturnType<typeof useQueryBookingTimeQuery>;
+export declare type QueryBookingTimeLazyQueryHookResult = ReturnType<typeof useQueryBookingTimeLazyQuery>;
+export declare type QueryBookingTimeQueryResult = ApolloReactCommon.QueryResult<QueryBookingTimeQuery, QueryBookingTimeQueryVariables>;
 export declare const RegisterDocument: import("graphql").DocumentNode;
 export declare type RegisterMutationFn = ApolloReactCommon.MutationFunction<RegisterMutation, RegisterMutationVariables>;
 export declare function useRegisterMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<RegisterMutation, RegisterMutationVariables>): ApolloReactHooks.MutationTuple<RegisterMutation, Exact<{

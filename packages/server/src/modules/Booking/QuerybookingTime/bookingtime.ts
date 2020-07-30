@@ -55,11 +55,14 @@ export const BookingTime: IResolvers = {
 						endService: i + service?.averageTime,
 					},
 				});
+				console.log("boook", booking);
+
 				if (!booking) {
 					const h: string = getHours(i);
 					hours.push(h);
 				}
 			}
+			console.log(hours);
 
 			return hours;
 		},

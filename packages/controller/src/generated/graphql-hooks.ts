@@ -157,6 +157,7 @@ export type Query = {
   findServiceCalendar?: Maybe<Calendar>;
   notification: Array<Notification>;
   QueryBooking?: Maybe<Array<Booking>>;
+  QueryBookingTime?: Maybe<Array<Scalars['String']>>;
 };
 
 
@@ -183,6 +184,12 @@ export type QueryFindServiceCalendarArgs = {
 
 
 export type QueryQueryBookingArgs = {
+  serviceId: Scalars['String'];
+  date: Scalars['String'];
+};
+
+
+export type QueryQueryBookingTimeArgs = {
   serviceId: Scalars['String'];
   date: Scalars['String'];
 };
@@ -348,8 +355,8 @@ export type StartEnd = {
 
 export type Time = {
   __typename?: 'Time';
-  StartTime?: Maybe<Scalars['Int']>;
-  EndTime?: Maybe<Scalars['Int']>;
+  StartTime?: Maybe<Scalars['String']>;
+  EndTime?: Maybe<Scalars['String']>;
 };
 
 export type Input = {
@@ -616,6 +623,17 @@ export type QueryBookingQuery = (
     { __typename?: 'Booking' }
     & Pick<Booking, 'startService' | 'endService' | 'price' | 'taxes' | 'depositAmount' | 'isRefund' | 'transactionFee' | 'Total'>
   )>> }
+);
+
+export type QueryBookingTimeQueryVariables = Exact<{
+  serviceId: Scalars['String'];
+  date: Scalars['String'];
+}>;
+
+
+export type QueryBookingTimeQuery = (
+  { __typename?: 'Query' }
+  & Pick<Query, 'QueryBookingTime'>
 );
 
 export type RegisterMutationVariables = Exact<{
@@ -1325,6 +1343,38 @@ export function useQueryBookingLazyQuery(baseOptions?: ApolloReactHooks.LazyQuer
 export type QueryBookingQueryHookResult = ReturnType<typeof useQueryBookingQuery>;
 export type QueryBookingLazyQueryHookResult = ReturnType<typeof useQueryBookingLazyQuery>;
 export type QueryBookingQueryResult = ApolloReactCommon.QueryResult<QueryBookingQuery, QueryBookingQueryVariables>;
+export const QueryBookingTimeDocument = gql`
+    query QueryBookingTime($serviceId: String!, $date: String!) {
+  QueryBookingTime(serviceId: $serviceId, date: $date)
+}
+    `;
+
+/**
+ * __useQueryBookingTimeQuery__
+ *
+ * To run a query within a React component, call `useQueryBookingTimeQuery` and pass it any options that fit your needs.
+ * When your component renders, `useQueryBookingTimeQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useQueryBookingTimeQuery({
+ *   variables: {
+ *      serviceId: // value for 'serviceId'
+ *      date: // value for 'date'
+ *   },
+ * });
+ */
+export function useQueryBookingTimeQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<QueryBookingTimeQuery, QueryBookingTimeQueryVariables>) {
+        return ApolloReactHooks.useQuery<QueryBookingTimeQuery, QueryBookingTimeQueryVariables>(QueryBookingTimeDocument, baseOptions);
+      }
+export function useQueryBookingTimeLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<QueryBookingTimeQuery, QueryBookingTimeQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<QueryBookingTimeQuery, QueryBookingTimeQueryVariables>(QueryBookingTimeDocument, baseOptions);
+        }
+export type QueryBookingTimeQueryHookResult = ReturnType<typeof useQueryBookingTimeQuery>;
+export type QueryBookingTimeLazyQueryHookResult = ReturnType<typeof useQueryBookingTimeLazyQuery>;
+export type QueryBookingTimeQueryResult = ApolloReactCommon.QueryResult<QueryBookingTimeQuery, QueryBookingTimeQueryVariables>;
 export const RegisterDocument = gql`
     mutation Register($username: String!, $email: String!, $password: String!, $confirmPassword: String!) {
   register(username: $username, email: $email, password: $password, confirmPassword: $confirmPassword) {
@@ -1451,6 +1501,7 @@ export const ServiceByCategoryDocument = gql`
     picturesUrl
     adresseVisible
     averageTime
+    category
   }
 }
     `;

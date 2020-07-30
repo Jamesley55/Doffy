@@ -49,8 +49,8 @@ input StartEnd {
 	EndTime: Float
 }
 type Time {
-	StartTime: Int
-	EndTime: Int
+	StartTime: String
+	EndTime: String
 }
 input ScheduleTime {
 	mondaySchedule: StartEnd
@@ -116,6 +116,7 @@ type Service {
 	picturesUrl: [String!]
 	adresseVisible: Boolean!
 	averageTime: Float!
+	category: String
 }
 
 type ServiceUser {

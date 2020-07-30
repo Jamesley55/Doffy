@@ -4,6 +4,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 interface Props {
 	backgroundColor?: any;
 	onPress: any;
+	text: string;
 }
 
 export class HoursList extends React.PureComponent<Props> {
@@ -48,7 +49,7 @@ export class HoursList extends React.PureComponent<Props> {
 								marginVertical: 5,
 							}}
 						>
-							9:00
+							{this.props.text}
 						</Text>
 					</View>
 				</TouchableOpacity>

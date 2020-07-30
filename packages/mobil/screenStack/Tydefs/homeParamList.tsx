@@ -16,6 +16,8 @@ export type HomeParamList = {
 		pictureUrl: string;
 		name: string;
 		price: number;
+		averageTime: string | number;
+		category: string;
 	};
 	payement: undefined;
 	location: undefined;

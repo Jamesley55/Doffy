@@ -6,19 +6,24 @@ interface Props {
 }
 
 export class PhotoGalery extends React.PureComponent<Props> {
-	scrollToIndex = (index) => {
+	// tslint:disable-next-line: no-empty
+
+	scrollToIndex = (Index) => {
 		this.flatListRef.scrollToIndex({
 			animated: true,
-			index,
+			index: Index,
 		});
 	};
+	Inde = (In) => {
+		this.setState({ index: In });
+	};
+
 	state = {
 		imageLoaded: false,
 		timePassed: false,
 		index: 0,
 	};
 	flatListRef: any;
-
 	render() {
 		const { data } = this.props;
 		return (
@@ -28,7 +33,7 @@ export class PhotoGalery extends React.PureComponent<Props> {
 					keyExtractor={(idem, index) => index.toString()}
 					style={{}}
 					renderItem={({ item, index }) => {
-						this.setState({ index });
+						this.Inde(index);
 						return (
 							<View style={requestPageStyle.rect2}>
 								<ImageBackground
@@ -38,7 +43,7 @@ export class PhotoGalery extends React.PureComponent<Props> {
 										height: "100%",
 										backgroundColor: "gray",
 									}}
-									source={{ uri: item }}
+									source={{ uri: item, cache: "force-cache" }}
 								>
 									{!this.state.timePassed && (
 										<View
