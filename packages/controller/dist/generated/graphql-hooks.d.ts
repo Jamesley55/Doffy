@@ -102,6 +102,7 @@ export declare type User = {
     service?: Maybe<Service>;
     notification?: Maybe<Array<Notification>>;
     messages?: Maybe<Array<Message>>;
+    userType?: Maybe<Scalars['String']>;
     sessionId: Scalars['String'];
 };
 export declare type RegisterResponse = {
@@ -179,6 +180,8 @@ export declare type Notification = {
     senderId: Scalars['String'];
     recipientId: Scalars['String'];
     createdDate: Scalars['String'];
+    bookRequest?: Maybe<Scalars['Boolean']>;
+    id?: Maybe<Scalars['String']>;
 };
 export declare type Message = {
     __typename?: 'Message';
@@ -457,7 +460,7 @@ export declare type MeQuery = ({
     } & Pick<Me, 'sessionId'> & {
         user?: Maybe<({
             __typename?: 'User';
-        } & Pick<User, 'id' | 'email' | 'username'> & {
+        } & Pick<User, 'id' | 'email' | 'username' | 'userType'> & {
             service?: Maybe<({
                 __typename?: 'Service';
             } & Pick<Service, 'id' | 'name' | 'pictureUrl' | 'description' | 'coutryId' | 'stateId' | 'cityId' | 'Taxes' | 'Adress' | 'rating' | 'price' | 'ownerId'>)>;
@@ -495,11 +498,21 @@ export declare type NotificationQuery = ({
 } & {
     notification: Array<({
         __typename?: 'Notification';
-    } & Pick<Notification, 'senderId' | 'recipientId' | 'createdDate'> & {
+    } & Pick<Notification, 'senderId' | 'recipientId' | 'createdDate' | 'id' | 'bookRequest'> & {
         message?: Maybe<({
             __typename?: 'NotificationMessage';
         } & Pick<NotificationMessage, 'Title' | 'Body'>)>;
     })>;
+});
+export declare type NewNotificationSubscriptionVariables = Exact<{
+    recipientId: Scalars['String'];
+}>;
+export declare type NewNotificationSubscription = ({
+    __typename?: 'Subscription';
+} & {
+    newNotification: ({
+        __typename?: 'Notification';
+    } & Pick<Notification, 'id' | 'bookRequest' | 'createdDate'>);
 });
 export declare type QueryBookingQueryVariables = Exact<{
     serviceId: Scalars['String'];
@@ -737,6 +750,17 @@ export declare function useNotificationLazyQuery(baseOptions?: ApolloReactHooks.
 export declare type NotificationQueryHookResult = ReturnType<typeof useNotificationQuery>;
 export declare type NotificationLazyQueryHookResult = ReturnType<typeof useNotificationLazyQuery>;
 export declare type NotificationQueryResult = ApolloReactCommon.QueryResult<NotificationQuery, NotificationQueryVariables>;
+export declare const NewNotificationDocument: import("graphql").DocumentNode;
+export declare function useNewNotificationSubscription(baseOptions?: ApolloReactHooks.SubscriptionHookOptions<NewNotificationSubscription, NewNotificationSubscriptionVariables>): {
+    variables: Exact<{
+        recipientId: string;
+    }> | undefined;
+    loading: boolean;
+    data?: NewNotificationSubscription | undefined;
+    error?: import("apollo-client").ApolloError | undefined;
+};
+export declare type NewNotificationSubscriptionHookResult = ReturnType<typeof useNewNotificationSubscription>;
+export declare type NewNotificationSubscriptionResult = ApolloReactCommon.SubscriptionResult<NewNotificationSubscription>;
 export declare const QueryBookingDocument: import("graphql").DocumentNode;
 export declare function useQueryBookingQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<QueryBookingQuery, QueryBookingQueryVariables>): ApolloReactCommon.QueryResult<QueryBookingQuery, Exact<{
     serviceId: string;

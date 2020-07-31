@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/Cellar/yarn/1.22.4/libexec/bin/yarn.js add @types/react-native-calendar-strip
+  /usr/local/bin/node /usr/local/Cellar/yarn/1.22.4/libexec/bin/yarn.js add @types/apollo-link-ws
 
 PATH: 
   /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin
@@ -14,7 +14,7 @@ Platform:
   darwin x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@types%2freact-native-calendar-strip: Not found
+  Error: https://registry.yarnpkg.com/@types%2fapollo-link-ws: Not found
       at Request.params.callback [as _callback] (/usr/local/Cellar/yarn/1.22.4/libexec/lib/cli.js:66987:18)
       at Request.self.callback (/usr/local/Cellar/yarn/1.22.4/libexec/lib/cli.js:140748:22)
       at Request.emit (events.js:315:20)
@@ -58,6 +58,7 @@ npm manifest:
   		"apollo-cache-inmemory": "^1.6.5",
   		"apollo-client": "^2.6.8",
   		"apollo-link-http": "^1.5.17",
+  		"apollo-link-ws": "^1.0.20",
   		"apollo-server-express": "^2.12.0",
   		"apollo-upload-client": "^13.0.0",
   		"axios": "^0.19.2",
@@ -81,7 +82,7 @@ npm manifest:
   		"react-apollo": "^3.1.4",
   		"react-dom": "16.11.0",
   		"react-native": "^0.62.2",
-  		"react-native-calendar-strip": "^2.0.8",
+  		"react-native-calendar-strip": "2.0.5",
   		"react-native-config": "^1.0.0",
   		"react-native-elements": "^1.2.7",
   		"react-native-fast-image-expo": "^0.0.5",
@@ -97,6 +98,7 @@ npm manifest:
   		"react-navigation": "^4.0.10",
   		"react-navigation-drawer": "^2.4.7",
   		"react-router-native": "^5.1.2",
+  		"subscriptions-transport-ws": "^0.9.17",
   		"tslint-config-prettier": "^1.18.0",
   		"yup": "^0.28.3"
   	},
@@ -217,7 +219,7 @@ Lockfile:
       ts-invariant "^0.4.4"
       tslib "^1.10.0"
   
-  "@apollo/react-hooks@3.1.5", "@apollo/react-hooks@^3.1.3", "@apollo/react-hooks@^3.1.4", "@apollo/react-hooks@^3.1.5":
+  "@apollo/react-hooks@^3.1.3", "@apollo/react-hooks@^3.1.4", "@apollo/react-hooks@^3.1.5":
     version "3.1.5"
     resolved "https://registry.yarnpkg.com/@apollo/react-hooks/-/react-hooks-3.1.5.tgz#7e710be52461255ae7fc0b3b9c2ece64299c10e6"
     integrity sha512-y0CJ393DLxIIkksRup4nt+vSjxalbZBXnnXxYbviq/woj+zKa431zy0yT4LqyRKpFy9ahMIwxBnBwfwIoupqLQ==
@@ -5586,7 +5588,7 @@ Lockfile:
       normalize-path "^3.0.0"
       picomatch "^2.0.4"
   
-  apollo-boost@0.4.7, apollo-boost@^0.4.7:
+  apollo-boost@^0.4.7:
     version "0.4.7"
     resolved "https://registry.yarnpkg.com/apollo-boost/-/apollo-boost-0.4.7.tgz#b0680ab0893e3f8b1ab1058dcfa2b00cb6440d79"
     integrity sha512-jfc3aqO0vpCV+W662EOG5gq4AH94yIsvSgAUuDvS3o/Z+8Joqn4zGC9CgLCDHusK30mFgtsEgwEe0pZoedohsQ==
@@ -5715,6 +5717,14 @@ Lockfile:
     dependencies:
       apollo-link "^1.2.14"
       apollo-link-http-common "^0.2.16"
+      tslib "^1.9.3"
+  
+  apollo-link-ws@^1.0.20:
+    version "1.0.20"
+    resolved "https://registry.yarnpkg.com/apollo-link-ws/-/apollo-link-ws-1.0.20.tgz#dfad44121f8445c6d7b7f8101a1b24813ba008ed"
+    integrity sha512-mjSFPlQxmoLArpHBeUb2Xj+2HDYeTaJqFGOqQ+I8NVJxgL9lJe84PDWcPah/yMLv3rB7QgBDSuZ0xoRFBPlySw==
+    dependencies:
+      apollo-link "^1.2.14"
       tslib "^1.9.3"
   
   apollo-link@1.2.1:
@@ -17466,10 +17476,10 @@ Lockfile:
       invariant "^2.2.4"
       use-subscription "^1.0.0"
   
-  react-native-calendar-strip@^2.0.8:
-    version "2.0.8"
-    resolved "https://registry.yarnpkg.com/react-native-calendar-strip/-/react-native-calendar-strip-2.0.8.tgz#61984da424d178ab60b4f052d9b0968e925979a8"
-    integrity sha512-/nuMwV/4HXIhpI6/zJRmMtgbJclYiwvGhqj3NFKLHux0jz1E9oJ2H98WZ8w9RG8vmghzI3e2Y7yIq7f3jSUWew==
+  react-native-calendar-strip@2.0.5:
+    version "2.0.5"
+    resolved "https://registry.yarnpkg.com/react-native-calendar-strip/-/react-native-calendar-strip-2.0.5.tgz#2019ef122501776e1ab7b1a65a2c6147eeb49d13"
+    integrity sha512-FSS5Z1hyB7hwIFRhMuIzCSOa9oVZnDNR8afF2VvS1FAIBWe9MMzpuSyi784lIVrnw46nfCvtjtHkTg+9HzEvpw==
     dependencies:
       moment ">=2.0.0"
       node-git-hooks "^1.0.1"
@@ -17761,7 +17771,16 @@ Lockfile:
       raf "^3.1.0"
       tween-functions "^1.0.1"
   
-  react@16.11.0, react@16.13.1, react@^16.13.1:
+  react@16.11.0:
+    version "16.11.0"
+    resolved "https://registry.yarnpkg.com/react/-/react-16.11.0.tgz#d294545fe62299ccee83363599bf904e4a07fdbb"
+    integrity sha512-M5Y8yITaLmU0ynd0r1Yvfq98Rmll6q8AxaEe88c8e7LxO8fZ2cNgmFt0aGAS9wzf1Ao32NKXtCl+/tVVtkxq6g==
+    dependencies:
+      loose-envify "^1.1.0"
+      object-assign "^4.1.1"
+      prop-types "^15.6.2"
+  
+  react@^16.13.1:
     version "16.13.1"
     resolved "https://registry.yarnpkg.com/react/-/react-16.13.1.tgz#2e818822f1a9743122c063d6410d85c1e3afe48e"
     integrity sha512-YMZQQq32xHLX0bz5Mnibv1/LHb3Sqzngu7xstSM+vrkE5Kzr9xE0yMByK5kMoTK30YVJE61WfbxIFFvfeDKT1w==
@@ -19652,6 +19671,17 @@ Lockfile:
       lodash.isstring "^4.0.1"
       symbol-observable "^1.0.4"
       ws "^3.0.0"
+  
+  subscriptions-transport-ws@^0.9.17:
+    version "0.9.17"
+    resolved "https://registry.yarnpkg.com/subscriptions-transport-ws/-/subscriptions-transport-ws-0.9.17.tgz#e30e40f0caae0d2781903c01a8cb51b6e2682098"
+    integrity sha512-hNHi2N80PBz4T0V0QhnnsMGvG3XDFDS9mS6BhZ3R12T6EBywC8d/uJscsga0cVO4DKtXCkCRrWm2sOYrbOdhEA==
+    dependencies:
+      backo2 "^1.0.2"
+      eventemitter3 "^3.1.0"
+      iterall "^1.2.1"
+      symbol-observable "^1.0.4"
+      ws "^5.2.0"
   
   sudo-prompt@9.1.1:
     version "9.1.1"

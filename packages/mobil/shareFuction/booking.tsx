@@ -1,6 +1,7 @@
 import {
 	FindServiceCalendarDocument,
 	FindServiceCalendarQuery,
+	useUpdateBookingMutation,
 } from "@doffy/controller";
 import * as React from "react";
 import {
@@ -14,16 +15,19 @@ export const BookingContext = React.createContext<{
 	BookingMutation: (serviceId: any, date: any, startService: any) => any;
 	bookingTime: (serviceId: any, date: any) => any;
 	Calendar: (serviceId: any) => any;
+	updateBooking: (NotificationId: string, response: boolean) => any;
 }>({
 	BookingMutation: async () => {},
 	bookingTime: async () => {},
 	Calendar: async () => {},
+	updateBooking: async () => {},
 });
 
 interface BookingContextProps {}
 
 export const Booking: React.FC<BookingContextProps> = ({ children }) => {
 	const [booking] = useCreateBookingMutation();
+	const [updateBooking] = useUpdateBookingMutation();
 	return (
 		<BookingContext.Provider
 			value={{
@@ -58,6 +62,15 @@ export const Booking: React.FC<BookingContextProps> = ({ children }) => {
 					});
 					console.log("time", time.data);
 					return time;
+				},
+				updateBooking: async (NotificationId, response) => {
+					const Notification = await updateBooking({
+						variables: {
+							NotificationId,
+							response,
+						},
+					});
+					console.log("booking", Notification.data?.updateBooking);
 				},
 			}}
 		>

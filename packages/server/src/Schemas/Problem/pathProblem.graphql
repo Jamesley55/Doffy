@@ -15,6 +15,7 @@ type User {
 	service: Service
 	notification: [Notification!]
 	messages: [Message!]
+	userType: String
 }
 
 type Me {

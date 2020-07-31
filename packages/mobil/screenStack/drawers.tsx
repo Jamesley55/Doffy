@@ -4,7 +4,6 @@ import { help } from "../routes/otherPages/help/screens/help";
 import { sellerPage } from "./seller";
 import { tabs } from "./Tabs";
 import { DrawerParamList } from "./Tydefs/drawerParamList";
-
 const Drawer = createDrawerNavigator<DrawerParamList>();
 
 export const drawer = () => (

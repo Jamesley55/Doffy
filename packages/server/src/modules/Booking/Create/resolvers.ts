@@ -3,6 +3,8 @@ import { Booking } from "../../../entity/booking";
 import { Notification } from "../../../entity/notification";
 import { Service } from "../../../entity/service";
 import { User } from "../../../entity/User";
+import { tConv24 } from "../../../Sharefonction/Convert24h";
+import { getHours } from "../../../Sharefonction/milisecondTohours";
 import { PUBSUB_NEW_NOTIFICATION } from "../../Notification/PubSub/constant";
 import { calculateTaxes } from "./calculateTaxes";
 
@@ -51,13 +53,19 @@ export const createBooking: IResolvers = {
 					isRefund: service?.isRefund,
 					Total,
 				}).save();
+				let d = new Date(date);
+
 				const senderId = session.userId;
 				const sender = await User.findOne({ where: { id: senderId } });
 				const databaseNotification = await Notification.create({
 					bookRequest: true,
 					message: {
 						Title: "new booking request",
-						Body: `${sender?.username} wants to take an appointement with you `,
+						Body: `${
+							sender?.username
+						} wants to take an appointement with you on ${d.toDateString()} between ${tConv24(
+							getHours(startService)
+						)} and ${tConv24(getHours(startService + service?.averageTime))} `,
 					},
 					recipientId: service?.ownerId,
 					senderId: session.userId,

@@ -1,38 +1,40 @@
 type NotificationMessage {
-  Title: String
-  Body: String
+	Title: String
+	Body: String
 }
 type Notification {
-  message: NotificationMessage
-  senderId: String!
-  recipientId: String!
-  createdDate: String!
+	message: NotificationMessage
+	senderId: String!
+	recipientId: String!
+	createdDate: String!
+	bookRequest: Boolean
+	id: String
 }
 
 type Subscription {
-  newNotification(recipientId: String!): Notification!
+	newNotification(recipientId: String!): Notification!
 }
 
 type Query {
-  notification: [Notification!]!
+	notification: [Notification!]!
 }
 
 input MessageNotif {
-  Title: String
-  Body: String
+	Title: String
+	Body: String
 }
 
 input input {
-  BookingRequest: Boolean!
-  recipientId: String!
-  message: MessageNotif
+	BookingRequest: Boolean!
+	recipientId: String!
+	message: MessageNotif
 }
 type Mutation {
-  createNotification(input: input): Boolean!
+	createNotification(input: input): Boolean!
 }
 
 schema {
-  query: Query
-  mutation: Mutation
-  subscription: Subscription
+	query: Query
+	mutation: Mutation
+	subscription: Subscription
 }

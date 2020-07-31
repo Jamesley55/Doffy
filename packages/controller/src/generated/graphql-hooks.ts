@@ -131,6 +131,7 @@ export type User = {
   service?: Maybe<Service>;
   notification?: Maybe<Array<Notification>>;
   messages?: Maybe<Array<Message>>;
+  userType?: Maybe<Scalars['String']>;
   sessionId: Scalars['String'];
 };
 
@@ -225,6 +226,8 @@ export type Notification = {
   senderId: Scalars['String'];
   recipientId: Scalars['String'];
   createdDate: Scalars['String'];
+  bookRequest?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
 };
 
 export type Message = {
@@ -563,7 +566,7 @@ export type MeQuery = (
     & Pick<Me, 'sessionId'>
     & { user?: Maybe<(
       { __typename?: 'User' }
-      & Pick<User, 'id' | 'email' | 'username'>
+      & Pick<User, 'id' | 'email' | 'username' | 'userType'>
       & { service?: Maybe<(
         { __typename?: 'Service' }
         & Pick<Service, 'id' | 'name' | 'pictureUrl' | 'description' | 'coutryId' | 'stateId' | 'cityId' | 'Taxes' | 'Adress' | 'rating' | 'price' | 'ownerId'>
@@ -603,12 +606,25 @@ export type NotificationQuery = (
   { __typename?: 'Query' }
   & { notification: Array<(
     { __typename?: 'Notification' }
-    & Pick<Notification, 'senderId' | 'recipientId' | 'createdDate'>
+    & Pick<Notification, 'senderId' | 'recipientId' | 'createdDate' | 'id' | 'bookRequest'>
     & { message?: Maybe<(
       { __typename?: 'NotificationMessage' }
       & Pick<NotificationMessage, 'Title' | 'Body'>
     )> }
   )> }
+);
+
+export type NewNotificationSubscriptionVariables = Exact<{
+  recipientId: Scalars['String'];
+}>;
+
+
+export type NewNotificationSubscription = (
+  { __typename?: 'Subscription' }
+  & { newNotification: (
+    { __typename?: 'Notification' }
+    & Pick<Notification, 'id' | 'bookRequest' | 'createdDate'>
+  ) }
 );
 
 export type QueryBookingQueryVariables = Exact<{
@@ -1157,6 +1173,7 @@ export const MeDocument = gql`
       id
       email
       username
+      userType
       service {
         id
         name
@@ -1274,6 +1291,8 @@ export const NotificationDocument = gql`
     senderId
     recipientId
     createdDate
+    id
+    bookRequest
   }
 }
     `;
@@ -1302,6 +1321,37 @@ export function useNotificationLazyQuery(baseOptions?: ApolloReactHooks.LazyQuer
 export type NotificationQueryHookResult = ReturnType<typeof useNotificationQuery>;
 export type NotificationLazyQueryHookResult = ReturnType<typeof useNotificationLazyQuery>;
 export type NotificationQueryResult = ApolloReactCommon.QueryResult<NotificationQuery, NotificationQueryVariables>;
+export const NewNotificationDocument = gql`
+    subscription newNotification($recipientId: String!) {
+  newNotification(recipientId: $recipientId) {
+    id
+    bookRequest
+    createdDate
+  }
+}
+    `;
+
+/**
+ * __useNewNotificationSubscription__
+ *
+ * To run a query within a React component, call `useNewNotificationSubscription` and pass it any options that fit your needs.
+ * When your component renders, `useNewNotificationSubscription` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the subscription, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useNewNotificationSubscription({
+ *   variables: {
+ *      recipientId: // value for 'recipientId'
+ *   },
+ * });
+ */
+export function useNewNotificationSubscription(baseOptions?: ApolloReactHooks.SubscriptionHookOptions<NewNotificationSubscription, NewNotificationSubscriptionVariables>) {
+        return ApolloReactHooks.useSubscription<NewNotificationSubscription, NewNotificationSubscriptionVariables>(NewNotificationDocument, baseOptions);
+      }
+export type NewNotificationSubscriptionHookResult = ReturnType<typeof useNewNotificationSubscription>;
+export type NewNotificationSubscriptionResult = ApolloReactCommon.SubscriptionResult<NewNotificationSubscription>;
 export const QueryBookingDocument = gql`
     query QueryBooking($serviceId: String!, $date: String!) {
   QueryBooking(serviceId: $serviceId, date: $date) {

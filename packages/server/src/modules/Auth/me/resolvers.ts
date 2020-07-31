@@ -38,6 +38,7 @@ export const Me: IResolvers = {
 					notification,
 					messages,
 					sessionId: req.sessionID,
+					userType: user?.userType,
 				},
 				service,
 				sessionId: req.sessionID,

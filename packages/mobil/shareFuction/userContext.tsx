@@ -17,6 +17,7 @@ type loginRegister = Promise<
 export const AuthContext = React.createContext<{
 	token: string | null;
 	user: User;
+	userType: User;
 	register: (values: any) => loginRegister;
 	homeScreen: (token: string) => void;
 	me: () => void;
@@ -25,6 +26,7 @@ export const AuthContext = React.createContext<{
 }>({
 	token: null,
 	user: null,
+	userType: null,
 	register: async () => null,
 	homeScreen: () => null,
 	me: async () => {},
@@ -36,6 +38,10 @@ interface AuthProviderProps {}
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 	const [user, setUser] = React.useState<string | null | undefined>(null);
+	const [userType, setUserType] = React.useState<string | null | undefined>(
+		null
+	);
+
 	const [token, setToken] = React.useState<string | null>(null);
 
 	const [registerMutation] = useRegisterMutation();
@@ -46,6 +52,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 			value={{
 				token,
 				user,
+				userType,
 				register: async (values: any) => {
 					const register = await registerMutation({
 						variables: values,
@@ -72,7 +79,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 				me: async () => {
 					let Me: any = "";
 					try {
-						Me = await client.query<MeQuery>({ query: MeDocument });
+						Me = await client.query<MeQuery>({
+							query: MeDocument,
+							fetchPolicy: "no-cache",
+						});
 					} catch (e) {
 						console.log("ta mere la pute wesh ");
 						logoutMutation();
@@ -89,6 +99,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 					}
 					// tslint:disable-next-line: no-shadowed-variable
 					const User: any = Me.data?.me?.user?.username;
+					const UserType: any = Me.data?.me?.user.userType;
+
+					setUserType(UserType);
+
 					setUser(User);
 				},
 				login: async (values: any) => {

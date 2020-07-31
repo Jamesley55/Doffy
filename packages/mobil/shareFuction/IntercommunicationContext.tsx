@@ -26,13 +26,15 @@ export const Intercommunication: React.FC<intercommunicationContextProps> = ({
 				NotificationQuery: async () => {
 					const Notification = await client.query<NotificationQuery>({
 						query: NotificationDocument,
+						fetchPolicy: "no-cache",
 					});
-					console.log(Notification.data.notification);
-					return Notification.data.notification;
+
+					return Notification?.data?.notification;
 				},
 				MessageQuery: async () => {
 					const Message = await client.query<MessageQuery>({
 						query: MessageDocument,
+						fetchPolicy: "no-cache",
 					});
 					console.log(Message.data.messages);
 

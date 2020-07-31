@@ -1,42 +1,42 @@
 import {
-  Column,
-  CreateDateColumn,
-  Entity,
-  PrimaryGeneratedColumn,
-  ManyToOne,
-  BaseEntity,
-  JoinColumn,
+	BaseEntity,
+	Column,
+	CreateDateColumn,
+	Entity,
+	JoinColumn,
+	ManyToOne,
+	PrimaryGeneratedColumn,
 } from "typeorm";
-import { User } from "./User";
 import { NotificationMessage } from "./notificationMessage";
+import { User } from "./User";
 
 @Entity("notification")
 export class Notification extends BaseEntity {
-  @PrimaryGeneratedColumn("uuid")
-  id: number;
+	@PrimaryGeneratedColumn("uuid")
+	id: number;
 
-  @Column("uuid")
-  senderId: string;
+	@Column("uuid")
+	senderId: string;
 
-  @Column("uuid")
-  recipientId: string;
+	@Column("uuid")
+	recipientId: string;
 
-  @Column("uuid", { nullable: true })
-  bookingId: string;
+	@Column("uuid", { nullable: true })
+	bookingId: string;
 
-  @Column(() => NotificationMessage)
-  message: NotificationMessage;
+	@Column(() => NotificationMessage)
+	message: NotificationMessage;
 
-  @Column("boolean", { default: false })
-  bookRequest: boolean;
+	@Column("boolean", { default: false })
+	bookRequest: boolean;
 
-  @Column("boolean", { default: false, nullable: true })
-  RequestAccepted: boolean;
+	@Column("boolean", { default: false, nullable: true })
+	RequestAccepted: boolean;
 
-  @CreateDateColumn()
-  createdDate: number;
+	@CreateDateColumn()
+	createdDate: number;
 
-  @ManyToOne(() => User, (user) => user.notifications)
-  @JoinColumn({ name: "senderId" })
-  user: User;
+	@ManyToOne(() => User, (user) => user.notifications)
+	@JoinColumn({ name: "senderId" })
+	user: User;
 }
