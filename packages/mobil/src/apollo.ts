@@ -1,4 +1,5 @@
-import { InMemoryCache } from "apollo-cache-inmemory";
+// import { InMemoryCache } from "apollo-cache-inmemory";
+import { Hermes } from "apollo-cache-hermes";
 import { ApolloClient } from "apollo-client";
 import { split } from "apollo-link";
 import { HttpLink } from "apollo-link-http";
@@ -8,7 +9,7 @@ import { Platform } from "react-native";
 
 const host =
 	Platform.OS === "ios"
-		? "http://localhost:4000/graphql"
+		? "https://97d76d4120d6.ngrok.io/graphql"
 		: "http://10.0.2.2:4000";
 
 const httpLink = new HttpLink({
@@ -16,7 +17,7 @@ const httpLink = new HttpLink({
 });
 
 const wsLink = new WebSocketLink({
-	uri: `ws://localhost:4000/graphql`,
+	uri: `ws://97d76d4120d6.ngrok.io/graphql`,
 	options: {
 		reconnect: true,
 	},
@@ -37,5 +38,5 @@ const link = split(
 
 export const client = new ApolloClient({
 	link,
-	cache: new InMemoryCache(),
+	cache: new Hermes({}),
 });

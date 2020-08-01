@@ -1,9 +1,9 @@
+import { NotificationQuery } from "@doffy/controller";
 import * as React from "react";
 import {
 	MessageDocument,
 	MessageQuery,
 	NotificationDocument,
-	NotificationQuery,
 } from "../../controller/src/generated/graphql-hooks";
 import { client } from "../src/apollo";
 
@@ -28,8 +28,7 @@ export const Intercommunication: React.FC<intercommunicationContextProps> = ({
 						query: NotificationDocument,
 						fetchPolicy: "no-cache",
 					});
-
-					return Notification?.data?.notification;
+					return Notification.data.notification;
 				},
 				MessageQuery: async () => {
 					const Message = await client.query<MessageQuery>({

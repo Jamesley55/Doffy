@@ -18,6 +18,7 @@ export const AuthContext = React.createContext<{
 	token: string | null;
 	user: User;
 	userType: User;
+	id: User;
 	register: (values: any) => loginRegister;
 	homeScreen: (token: string) => void;
 	me: () => void;
@@ -27,6 +28,7 @@ export const AuthContext = React.createContext<{
 	token: null,
 	user: null,
 	userType: null,
+	id: null,
 	register: async () => null,
 	homeScreen: () => null,
 	me: async () => {},
@@ -43,6 +45,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 	);
 
 	const [token, setToken] = React.useState<string | null>(null);
+	const [id, setId] = React.useState<string | null>(null);
 
 	const [registerMutation] = useRegisterMutation();
 	const [loginMutation] = useLoginMutation();
@@ -53,6 +56,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 				token,
 				user,
 				userType,
+				id,
 				register: async (values: any) => {
 					const register = await registerMutation({
 						variables: values,
@@ -100,7 +104,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 					// tslint:disable-next-line: no-shadowed-variable
 					const User: any = Me.data?.me?.user?.username;
 					const UserType: any = Me.data?.me?.user.userType;
+					const Id: any = Me.data?.me?.user.id;
 
+					setId(Id);
 					setUserType(UserType);
 
 					setUser(User);

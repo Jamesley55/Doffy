@@ -28,6 +28,7 @@ interface BookingContextProps {}
 export const Booking: React.FC<BookingContextProps> = ({ children }) => {
 	const [booking] = useCreateBookingMutation();
 	const [updateBooking] = useUpdateBookingMutation();
+
 	return (
 		<BookingContext.Provider
 			value={{

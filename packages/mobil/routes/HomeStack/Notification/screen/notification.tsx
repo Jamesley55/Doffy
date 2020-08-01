@@ -1,42 +1,80 @@
-import { useNewNotificationSubscription } from "@doffy/controller/src/generated/graphql-hooks";
+import { useNotificationQuery } from "@doffy/controller";
+import { NewNotificationDocument } from "@doffy/controller/src/generated/graphql-hooks";
+import * as Notifications from "expo-notifications";
 import * as React from "react";
-import { FlatList, Text, TouchableOpacity, View } from "react-native";
+import {
+	ActivityIndicator,
+	FlatList,
+	Text,
+	TouchableOpacity,
+	View,
+} from "react-native";
 import Swipeable from "react-native-gesture-handler/Swipeable";
 import { TabsStackNavProps } from "../../../../screenStack/Tydefs/tabsParamsList";
 import { BookingContext } from "../../../../shareFuction/booking";
 import { IntercommunicationContext } from "../../../../shareFuction/IntercommunicationContext";
 import { AuthContext } from "../../../../shareFuction/userContext";
 
+Notifications.setNotificationHandler({
+	handleNotification: async () => ({
+		shouldShowAlert: true,
+		shouldPlaySound: false,
+		shouldSetBadge: false,
+	}),
+});
+
 export function Notification({
 	navigation,
 }: TabsStackNavProps<"notification">) {
-	const { data, error } = useNewNotificationSubscription({
-		variables: {
-			recipientId: "f192de00-3a2e-40bf-8d97-a2be81705c7a",
-		},
-	});
+	Notifications.getPermissionsAsync();
 
+	const { subscribeToMore } = useNotificationQuery();
 	const { NotificationQuery } = React.useContext(IntercommunicationContext);
 	const [loading, setLoading] = React.useState(true);
-	const [array, setArray] = React.useState<any[]>([]);
-	const { userType } = React.useContext(AuthContext);
+
+	const [array, setArray] = React.useState<any[]>([null]);
+	const { userType, id } = React.useContext(AuthContext);
+
 	const { updateBooking } = React.useContext(BookingContext);
 	React.useEffect(() => {
 		NotificationQuery()
 			.then((index: any) => {
-				console.log("variables ", index);
 				setArray(index);
 				setLoading(false);
-				console.log(data);
 			})
 			.catch((err) => {
 				console.log(err);
 				setLoading(false);
 			});
+	}, [loading]);
+	React.useEffect(() => {
+		Notifications.addNotificationReceivedListener(() => {
+			return { array };
+		});
 	}, []);
-
+	React.useEffect(() => {
+		subscribeToMore({
+			document: NewNotificationDocument,
+			variables: { recipientId: id },
+			updateQuery: (prev, { subscriptionData }: any) => {
+				if (!subscriptionData.data) return prev;
+				else {
+					setLoading(true);
+					return {
+						...prev,
+						notification: [
+							...prev.notification,
+							subscriptionData.data.notification,
+						],
+					};
+				}
+			},
+		});
+	}, []);
+	if (loading) {
+		return <ActivityIndicator style={{ flex: 1 }} />;
+	}
 	if (loading || array.length === 0) {
-		console.log("cette fonction sanbs flatlist");
 		return (
 			<View
 				style={{
@@ -52,7 +90,6 @@ export function Notification({
 			</View>
 		);
 	} else {
-		console.log("cette fontion avec flatlist", array);
 		return (
 			<View style={{ flex: 1 }}>
 				{userType === "serviceProvider" ? (
@@ -72,7 +109,9 @@ export function Notification({
 					renderItem={({ item }) => {
 						return (
 							<Swipeable
-								renderRightActions={() => {
+								rightThreshold={0}
+								overshootRight={false}
+								renderRightActions={(pro, drag) => {
 									if (item.bookRequest && userType === "serviceProvider") {
 										return (
 											<TouchableOpacity
@@ -82,6 +121,7 @@ export function Notification({
 												}}
 												onPress={() => {
 													updateBooking(item.id, true);
+													setLoading(true);
 												}}
 											>
 												<Text
@@ -106,6 +146,7 @@ export function Notification({
 												style={{ backgroundColor: "red", width: "20%" }}
 												onPress={() => {
 													updateBooking(item.id, false);
+													setLoading(true);
 												}}
 											>
 												<Text
@@ -129,7 +170,7 @@ export function Notification({
 										flex: 1,
 										borderWidth: 1,
 										width: "100%",
-										height: 80,
+										height: 100,
 									}}
 								>
 									<Text
@@ -151,7 +192,7 @@ export function Notification({
 											fontSize: 14,
 											fontFamily: "roboto-regular",
 											textAlign: "center",
-											width: "80%",
+											width: "85%",
 										}}
 									>
 										{item.message.Body}
@@ -166,7 +207,7 @@ export function Notification({
 					removeClippedSubviews={true} // Unmount components when outside of window
 					initialNumToRender={2} // Reduce initial render amount
 					maxToRenderPerBatch={1} // Reduce number in each render batch
-					updateCellsBatchingPeriod={100} // Increase time between renders
+					updateCellsBatchingPeriod={400} // Increase time between renders
 					windowSize={7} // Reduce the window size
 				/>
 			</View>

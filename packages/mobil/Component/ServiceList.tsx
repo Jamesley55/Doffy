@@ -14,6 +14,7 @@ interface Props {
 	navigation: any;
 	data: any;
 	Type: string;
+	Loading?: any;
 }
 
 const LeftAction = () => {
@@ -32,7 +33,10 @@ export class List extends React.PureComponent<Props> {
 	};
 
 	render() {
-		const { navigation, data } = this.props;
+		const { navigation, data, Loading } = this.props;
+		if (Loading) {
+			return <ActivityIndicator style={{ flex: 1 }} />;
+		}
 		if (data.length === 0) {
 			return (
 				<View>

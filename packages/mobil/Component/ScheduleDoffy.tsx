@@ -10,7 +10,6 @@ export class ScheduleDoffy extends React.PureComponent<Props> {
 		return (
 			<CalendarStrip
 				minDate={moment()}
-				selectedDate={moment()}
 				showMonth={true}
 				calendarAnimation={{ type: "sequence", duration: 30 }}
 				daySelectionAnimation={{

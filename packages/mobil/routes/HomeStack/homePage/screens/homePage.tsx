@@ -48,6 +48,7 @@ export function HomePage({ navigation }: TabsStackNavProps<"homepage">) {
 	const [Aesthetician, setAesthetician] = React.useState<any[]>([]);
 
 	me();
+
 	React.useEffect(() => {
 		BarbershopQuery()
 			.then((index: any) => {
