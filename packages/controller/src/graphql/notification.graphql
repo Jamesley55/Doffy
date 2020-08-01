@@ -1,14 +1,15 @@
 query notification {
 	notification {
+		id
+		bookRequest
+		createdDate
+		recipientId
+		senderId
+		createdDate
 		message {
 			Title
 			Body
 		}
-		senderId
-		recipientId
-		createdDate
-		id
-		bookRequest
 	}
 }
 
@@ -17,5 +18,12 @@ subscription newNotification($recipientId: String!) {
 		id
 		bookRequest
 		createdDate
+		recipientId
+		senderId
+		createdDate
+		message {
+			Title
+			Body
+		}
 	}
 }

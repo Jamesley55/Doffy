@@ -258,15 +258,16 @@ exports.useMessageLazyQuery = useMessageLazyQuery;
 exports.NotificationDocument = graphql_tag_1.default `
     query notification {
   notification {
+    id
+    bookRequest
+    createdDate
+    recipientId
+    senderId
+    createdDate
     message {
       Title
       Body
     }
-    senderId
-    recipientId
-    createdDate
-    id
-    bookRequest
   }
 }
     `;
@@ -284,6 +285,13 @@ exports.NewNotificationDocument = graphql_tag_1.default `
     id
     bookRequest
     createdDate
+    recipientId
+    senderId
+    createdDate
+    message {
+      Title
+      Body
+    }
   }
 }
     `;

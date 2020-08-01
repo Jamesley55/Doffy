@@ -606,7 +606,7 @@ export type NotificationQuery = (
   { __typename?: 'Query' }
   & { notification: Array<(
     { __typename?: 'Notification' }
-    & Pick<Notification, 'senderId' | 'recipientId' | 'createdDate' | 'id' | 'bookRequest'>
+    & Pick<Notification, 'id' | 'bookRequest' | 'createdDate' | 'recipientId' | 'senderId'>
     & { message?: Maybe<(
       { __typename?: 'NotificationMessage' }
       & Pick<NotificationMessage, 'Title' | 'Body'>
@@ -623,7 +623,11 @@ export type NewNotificationSubscription = (
   { __typename?: 'Subscription' }
   & { newNotification: (
     { __typename?: 'Notification' }
-    & Pick<Notification, 'id' | 'bookRequest' | 'createdDate'>
+    & Pick<Notification, 'id' | 'bookRequest' | 'createdDate' | 'recipientId' | 'senderId'>
+    & { message?: Maybe<(
+      { __typename?: 'NotificationMessage' }
+      & Pick<NotificationMessage, 'Title' | 'Body'>
+    )> }
   ) }
 );
 
@@ -1284,15 +1288,16 @@ export type MessageQueryResult = ApolloReactCommon.QueryResult<MessageQuery, Mes
 export const NotificationDocument = gql`
     query notification {
   notification {
+    id
+    bookRequest
+    createdDate
+    recipientId
+    senderId
+    createdDate
     message {
       Title
       Body
     }
-    senderId
-    recipientId
-    createdDate
-    id
-    bookRequest
   }
 }
     `;
@@ -1327,6 +1332,13 @@ export const NewNotificationDocument = gql`
     id
     bookRequest
     createdDate
+    recipientId
+    senderId
+    createdDate
+    message {
+      Title
+      Body
+    }
   }
 }
     `;

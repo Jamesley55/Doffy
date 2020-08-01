@@ -498,7 +498,7 @@ export declare type NotificationQuery = ({
 } & {
     notification: Array<({
         __typename?: 'Notification';
-    } & Pick<Notification, 'senderId' | 'recipientId' | 'createdDate' | 'id' | 'bookRequest'> & {
+    } & Pick<Notification, 'id' | 'bookRequest' | 'createdDate' | 'recipientId' | 'senderId'> & {
         message?: Maybe<({
             __typename?: 'NotificationMessage';
         } & Pick<NotificationMessage, 'Title' | 'Body'>)>;
@@ -512,7 +512,11 @@ export declare type NewNotificationSubscription = ({
 } & {
     newNotification: ({
         __typename?: 'Notification';
-    } & Pick<Notification, 'id' | 'bookRequest' | 'createdDate'>);
+    } & Pick<Notification, 'id' | 'bookRequest' | 'createdDate' | 'recipientId' | 'senderId'> & {
+        message?: Maybe<({
+            __typename?: 'NotificationMessage';
+        } & Pick<NotificationMessage, 'Title' | 'Body'>)>;
+    });
 });
 export declare type QueryBookingQueryVariables = Exact<{
     serviceId: Scalars['String'];

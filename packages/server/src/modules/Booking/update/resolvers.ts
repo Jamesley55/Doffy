@@ -16,6 +16,8 @@ export const UpdateBooking: IResolvers = {
 			const notif = await Notification.findOne({
 				where: { id: NotificationId },
 			});
+			if (notif) notif.bookRequest = false;
+			notif?.save();
 			if (notif && response) notif.RequestAccepted = response;
 			const bookingId = notif?.bookingId;
 			const booking = await Booking.findOne({ where: { id: bookingId } });
@@ -29,12 +31,12 @@ export const UpdateBooking: IResolvers = {
 					const userId = session.userId;
 					const user = await User.findOne({ where: { id: userId } });
 					const databaseNotification = await Notification.create({
-						bookRequest: true,
+						bookRequest: false,
 						message: {
 							Title: "booking request accepted",
 							Body: `${
 								user?.username
-							}  has accept your booking request on ${d.toDateString()} between ${tConv24(
+							}  has accept your booking request on ${d.toUTCString()} between ${tConv24(
 								getHours(booking?.startService)
 							)} and ${tConv24(getHours(booking?.endService))}`,
 						},
@@ -55,12 +57,12 @@ export const UpdateBooking: IResolvers = {
 					const user = await User.findOne({ where: { id: userId } });
 
 					const databaseNotification = await Notification.create({
-						bookRequest: true,
+						bookRequest: false,
 						message: {
 							Title: "booking request refused",
 							Body: `${
 								user?.username
-							}  has refused your booking request on ${d.toDateString()} between ${tConv24(
+							}  has refused your booking request on ${d.toUTCString()} between ${tConv24(
 								getHours(booking?.startService)
 							)} and ${tConv24(getHours(booking?.endService))}`,
 						},

@@ -63,7 +63,7 @@ export const createBooking: IResolvers = {
 						Title: "new booking request",
 						Body: `${
 							sender?.username
-						} wants to take an appointement with you on ${d.toDateString()} between ${tConv24(
+						} wants to take an appointement with you on ${d.toUTCString()} between ${tConv24(
 							getHours(startService)
 						)} and ${tConv24(getHours(startService + service?.averageTime))} `,
 					},
