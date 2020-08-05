@@ -9,20 +9,21 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.registerResolver = void 0;
 const common_1 = require("@doffy/common");
-const User_1 = require("../../../entity/User");
 const bcrypt = require("bcryptjs");
-const formatYupError_1 = require("../../../Utils/FormatYupError/formatYupError");
-const createconfirmEmailLink_1 = require("../CreateConfirmEmail/createconfirmEmailLink");
+const User_1 = require("../../../entity/User");
 const ErrorMessage_1 = require("../../../Utils/FormatYupError/ErrorMessage");
-const sendMail_1 = require("../CreateConfirmEmail/sendMail");
+const formatYupError_1 = require("../../../Utils/FormatYupError/formatYupError");
 const host_1 = require("../../../Utils/host/host");
 const constant_1 = require("../../shared/constant");
+const createconfirmEmailLink_1 = require("../CreateConfirmEmail/createconfirmEmailLink");
+const sendMail_1 = require("../CreateConfirmEmail/sendMail");
 exports.registerResolver = {
     Mutation: {
         register: (_, args, { req, redis, session }) => __awaiter(void 0, void 0, void 0, function* () {
             try {
-                yield common_1.validationSchema.validate(args, { abortEarly: false });
+                yield common_1.RegisterValidationSchema.validate(args, { abortEarly: false });
             }
             catch (err) {
                 return formatYupError_1.formatYupError(err);
@@ -33,20 +34,24 @@ exports.registerResolver = {
                 select: ["id"],
             });
             if (userAlreadyExist) {
-                return [
-                    {
-                        path: "email",
-                        message: ErrorMessage_1.duplicateEmail,
-                    },
-                ];
+                return {
+                    errors: [
+                        {
+                            path: "email",
+                            message: ErrorMessage_1.duplicateEmail,
+                        },
+                    ],
+                };
             }
             if (password !== confirmPassword) {
-                return [
-                    {
-                        path: "password",
-                        message: "your password doesnt correspond",
-                    },
-                ];
+                return {
+                    errors: [
+                        {
+                            path: "password",
+                            message: "your password doesnt correspond",
+                        },
+                    ],
+                };
             }
             const hashedPassword = yield bcrypt.hash(password, 10);
             const user = yield User_1.User.create({
@@ -56,12 +61,10 @@ exports.registerResolver = {
             }).save();
             yield sendMail_1.sendEmail(email, yield createconfirmEmailLink_1.createConfirmEmailLink(host_1.host, user.id, redis));
             session.userId = user.id;
-            console.log("session Userid", session.userId);
             if (req.sessionID) {
                 yield redis.lpush(`${constant_1.userSessionIdPrefix}${user.id}`, req.sessionID);
             }
-            console.log("sessionId", req.sessionID);
-            return [{ sessionId: req.sessionID }];
+            return { sessionId: req.sessionID };
         }),
     },
 };

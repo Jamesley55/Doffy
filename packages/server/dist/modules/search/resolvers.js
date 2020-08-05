@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.searchServicesUser = void 0;
 const service_1 = require("../../entity/service");
 const typeorm_1 = require("typeorm");
 const User_1 = require("../../entity/User");

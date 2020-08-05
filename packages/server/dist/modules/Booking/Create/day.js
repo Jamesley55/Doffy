@@ -9,9 +9,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const wekkday_1 = require("./wekkday");
-const isbetween_1 = require("./isbetween");
+exports.week = void 0;
+const wekkday_1 = require("../../../Sharefonction/wekkday");
 const schedule_1 = require("../../Calendar/QueryCalendar/schedule");
+const isbetween_1 = require("./isbetween");
 function week(date, startService, service) {
     return __awaiter(this, void 0, void 0, function* () {
         const day = new Date(date);

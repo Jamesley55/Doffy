@@ -1,44 +1,44 @@
 {
-  "name": "@doffy/controller",
-  "version": "1.0.13",
-  "description": "connector between server and mobil/web",
-  "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
-  "dependencies": {
-    "@apollo/react-components": "^3.1.4",
-    "@apollo/react-hooks": "^3.1.4",
-    "@babel/runtime": "^7.9.2",
-    "@graphql-codegen/typescript-document-nodes": "^1.13.2",
-    "@graphql-codegen/typescript-resolvers": "^1.13.2",
-    "apollo-boost": "^0.4.7",
-    "apollo-client": "^2.6.8",
-    "graphql": "^15.0.0",
-    "graphql-codegen": "^0.4.0",
-    "graphql-config": "^2.2.2",
-    "graphql-tag": "^2.10.3",
-    "react": "^16.13.1",
-    "react-apollo": "3.1.3",
-    "react-dom": "^16.13.1",
-    "react-native": "^0.62.2",
-    "rimraf": "^3.0.2"
-  },
-  "devDependencies": {
-    "@graphql-codegen/cli": "^1.13.2",
-    "@graphql-codegen/typescript": "^1.13.2",
-    "@graphql-codegen/typescript-operations": "^1.13.2",
-    "@graphql-codegen/typescript-react-apollo": "^1.13.2",
-    "@types/node": "^13.11.1",
-    "@types/react": "^15.6.28",
-    "@types/react-dom": "^16.9.6",
-    "tslint": "^6.1.1",
-    "typescript": "^3.8.3"
-  },
-  "scripts": {
-    "build": "rimraf ./dist && tsc",
-    "gen": "graphql-codegen --config codegen.yml",
-    "refresh": "yarn gen && yarn build"
-  },
-  "author": "Jamesley Joseph",
-  "license": "MIT",
-  "private": true
+	"name": "@doffy/controller",
+	"version": "1.0.13",
+	"description": "connector between server and mobil/web",
+	"main": "dist/index.js",
+	"typings": "dist/index.d.ts",
+	"dependencies": {
+		"@apollo/react-components": "^3.1.4",
+		"@apollo/react-hooks": "^3.1.4",
+		"@babel/runtime": "^7.9.2",
+		"@graphql-codegen/typescript-document-nodes": "^1.13.2",
+		"@graphql-codegen/typescript-resolvers": "^1.13.2",
+		"@types/react-router-dom": "^5.1.5",
+		"apollo-boost": "^0.4.7",
+		"apollo-client": "^2.6.8",
+		"graphql": "^15.0.0",
+		"graphql-codegen": "^0.4.0",
+		"graphql-config": "^2.2.2",
+		"graphql-tag": "^2.10.3",
+		"react": "^16.13.1",
+		"react-apollo": "3.1.3",
+		"react-native": "^0.62.2",
+		"rimraf": "^3.0.2"
+	},
+	"devDependencies": {
+		"@graphql-codegen/cli": "^1.13.2",
+		"@graphql-codegen/typescript": "^1.13.2",
+		"@graphql-codegen/typescript-operations": "^1.13.2",
+		"@graphql-codegen/typescript-react-apollo": "^1.13.2",
+		"@types/node": "^13.11.1",
+		"@types/react": "^15.6.28",
+		"@types/react-dom": "^16.9.6",
+		"tslint": "^6.1.1",
+		"typescript": "^3.8.3"
+	},
+	"scripts": {
+		"build": "rimraf ./dist && tsc",
+		"gen": "graphql-codegen --config codegen.yml",
+		"refresh": "yarn gen && yarn build"
+	},
+	"author": "Jamesley Joseph",
+	"license": "MIT",
+	"private": true
 }

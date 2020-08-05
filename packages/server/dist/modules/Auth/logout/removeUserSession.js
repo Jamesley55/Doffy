@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.removeAllUsersSessions = void 0;
 const constant_1 = require("../../shared/constant");
 exports.removeAllUsersSessions = (userId, redis) => __awaiter(void 0, void 0, void 0, function* () {
     const sessionIds = yield redis.lrange(`${constant_1.userSessionIdPrefix}${userId}`, 0, -1);

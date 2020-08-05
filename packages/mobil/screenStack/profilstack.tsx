@@ -1,8 +1,9 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import * as React from "react";
-import { searchPage } from "../routes/searchPage/src/screens/searchPage";
+import { searchPage } from "../routes/HomeStack/searchPage/screen/searchPage";
+import { SearchParamList } from "./Tydefs/SearchParamList";
 
-const profilStack = createStackNavigator();
+const profilStack = createStackNavigator<SearchParamList>();
 
 export const SearchStackScreen = () => (
 	<profilStack.Navigator screenOptions={{ header: () => null }}>

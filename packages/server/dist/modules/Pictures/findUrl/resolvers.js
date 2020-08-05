@@ -9,12 +9,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.findUrl = void 0;
 const service_1 = require("../../../entity/service");
 exports.findUrl = {
     Mutation: {
         findUrl: (_, { serviceId }) => __awaiter(void 0, void 0, void 0, function* () {
             const service = yield service_1.Service.findOne({ where: { id: serviceId } });
-            return service === null || service === void 0 ? void 0 : service.pictureUrl;
+            return service === null || service === void 0 ? void 0 : service.picturesUrl;
         }),
     },
 };

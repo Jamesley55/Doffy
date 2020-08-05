@@ -1,35 +1,33 @@
 {
-  "expo": {
-    "name": "Doffy",
-    "slug": "mobil",
-    "privacy": "public",
-    "platforms": [
-      "ios",
-      "android"
-    ],
-    "version": "1.0.2",
-    "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "updates": {
-      "fallbackToCacheTimeout": 0
-    },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "packagerOpts": {
-      "config": "metro.config.js"
-    },
-    "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.JemLee.Doffy"
-    },
-    "android": {
-      "package": "com.Jem.Doffy"
-    }
-  }
+	"expo": {
+		"name": "Doffy",
+		"slug": "mobil",
+		"privacy": "public",
+		"platforms": ["ios", "android"],
+		"version": "1.0.5",
+		"orientation": "portrait",
+		"icon": "./assets/icon.png",
+		"splash": {
+			"image": "./assets/splash.png",
+			"resizeMode": "contain",
+			"backgroundColor": "#ffffff"
+		},
+		"updates": {
+			"fallbackToCacheTimeout": 0
+		},
+		"assetBundlePatterns": ["**/*"],
+		"packagerOpts": {
+			"config": "metro.config.js"
+		},
+		"ios": {
+			"supportsTablet": true,
+			"bundleIdentifier": "com.JemLee.Doffy"
+		},
+		"android": {
+			"package": "com.Jem.Doffy"
+		},
+		"notification": {
+			"icon": "./assets/icon.png"
+		}
+	}
 }

@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.updateTime = void 0;
 const createTime_1 = require("./../create/createTime");
 const updateScheduleDayBool_1 = require("../../Calendar/update/updateScheduleDayBool");
 const times_1 = require("../../../entity/times");

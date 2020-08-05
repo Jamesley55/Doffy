@@ -1,52 +1,53 @@
 query Me {
-  me {
-    user {
-      id
-      email
-      username
-      service {
-        id
-        name
-        pictureUrl
-        description
-        coutryId
-        stateId
-        cityId
-        Taxes
-        Adress
-        rating
-        price
-        ownerId
-      }
-      notification {
-        message {
-          Title
-          Body
-        }
-        senderId
-        recipientId
-      }
-      messages {
-        content
-        senderId
-        recipientId
-        createdAt
-      }
-    }
-    service {
-      id
-      name
-      pictureUrl
-      description
-      coutryId
-      stateId
-      cityId
-      Taxes
-      Adress
-      rating
-      price
-      ownerId
-    }
-    sessionId
-  }
+	me {
+		user {
+			id
+			email
+			username
+			userType
+			service {
+				id
+				name
+				pictureUrl
+				description
+				coutryId
+				stateId
+				cityId
+				Taxes
+				Adress
+				rating
+				price
+				ownerId
+			}
+			notification {
+				message {
+					Title
+					Body
+				}
+				senderId
+				recipientId
+			}
+			messages {
+				content
+				senderId
+				recipientId
+				createdAt
+			}
+		}
+		service {
+			id
+			name
+			pictureUrl
+			description
+			coutryId
+			stateId
+			cityId
+			Taxes
+			Adress
+			rating
+			price
+			ownerId
+		}
+		sessionId
+	}
 }

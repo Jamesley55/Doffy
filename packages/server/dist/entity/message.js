@@ -9,6 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Message = exports.MessageType = void 0;
 const typeorm_1 = require("typeorm");
 const User_1 = require("./User");
 var MessageType;
@@ -29,7 +30,7 @@ __decorate([
 ], Message.prototype, "content", void 0);
 __decorate([
     typeorm_1.CreateDateColumn(),
-    __metadata("design:type", Number)
+    __metadata("design:type", Date)
 ], Message.prototype, "createdAt", void 0);
 __decorate([
     typeorm_1.Column({ nullable: true }),

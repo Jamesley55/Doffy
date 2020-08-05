@@ -28,9 +28,13 @@ export const StartServer = async () => {
 			res,
 			pubsub,
 		}),
+		playground: {
+			settings: {
+				"request.credentials": "include",
+			},
+		},
 	});
 	await createTypeormConn();
-	console.log("sorti de la");
 
 	const RedisStore = connectRedis(session);
 
@@ -44,17 +48,24 @@ export const StartServer = async () => {
 			resave: false,
 			saveUninitialized: false,
 			cookie: {
-				httpOnly: true,
-				secure: process.env.NODE_ENV === "production",
+				httpOnly: false,
+				// Todo write a more secure express session
+				// secure: process.env.NODE_ENV === "production",
 				maxAge: 1000 * 60 * 60 * 24 * 12 * 365, // 7 years
 			},
+			proxy: true,
 		})
 	);
 
 	ConfirmEmail();
+	const cors = {
+		credentials: true,
+		origin: "http://localhost:19002/",
+	};
 
 	server.applyMiddleware({
 		app,
+		cors,
 	});
 
 	// for pubsub (subscription)

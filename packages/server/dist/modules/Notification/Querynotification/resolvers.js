@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.findNotification = void 0;
 const typeorm_1 = require("typeorm");
 const notification_1 = require("../../../entity/notification");
 exports.findNotification = {
@@ -20,9 +21,9 @@ exports.findNotification = {
             let MessageQB = typeorm_1.getConnection()
                 .getRepository(notification_1.Notification)
                 .createQueryBuilder("n");
-            MessageQB = MessageQB.andWhere("n.senderId = :senderId", {
-                senderId,
-            }).orWhere("n.recipientId = :recipientId", { recipientId });
+            MessageQB = MessageQB.andWhere("n.recipientId = :recipientId", {
+                recipientId,
+            }).addOrderBy("n.createdDate", "DESC");
             const response = yield MessageQB.getMany();
             console.log(response);
             return response;

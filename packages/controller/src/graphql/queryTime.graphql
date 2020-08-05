@@ -1,0 +1,3 @@
+query QueryBookingTime($serviceId: String!, $date: String!) {
+	QueryBookingTime(serviceId: $serviceId, date: $date)
+}

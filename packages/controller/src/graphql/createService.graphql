@@ -1,50 +1,54 @@
 input CreateServices {
-  name: String!
-  category: String!
-  description: String!
-  coutryId: String
-  stateId: String
-  cityId: String
-  Taxes: Boolean!
-  Adress: String
-  price: Float!
-  payoutSchedule: String!
-  customerBillingStatement: String!
-  latitude: Float
-  longitude: Float
+	name: String!
+	category: String!
+	description: String!
+	coutryId: String!
+	stateId: String!
+	cityId: String!
+	Taxes: Boolean
+	Adress: String!
+	price: Float!
+	payoutSchedule: String
+	customerBillingStatement: String
+	latitude: Float
+	longitude: Float
+	profilPicture: String!
+	picturesUrl: String!
+	adresseVisible: Boolean!
+	averageTime: Float!
 }
 input StartEnd {
-  StartTime: Float
-  EndTime: Float
+	StartTime: Float
+	EndTime: Float
 }
 
 input Schedulebool {
-  monday: Boolean
-  tuesday: Boolean
-  wednesday: Boolean
-  thusday: Boolean
-  friday: Boolean
-  saturday: Boolean
-  sunday: Boolean
+	monday: Boolean
+	tuesday: Boolean
+	wednesday: Boolean
+	thusday: Boolean
+	friday: Boolean
+	saturday: Boolean
+	sunday: Boolean
 }
 
 input ScheduleTime {
-  mondaySchedule: StartEnd
-  tuesdaySchedule: StartEnd
-  wednesdaySchedule: StartEnd
-  thursdaySchedule: StartEnd
-  fridaySchedule: StartEnd
-  saturdaySchedule: StartEnd
-  sundaySchedule: StartEnd
+	mondaySchedule: StartEnd
+	tuesdaySchedule: StartEnd
+	wednesdaySchedule: StartEnd
+	thursdaySchedule: StartEnd
+	fridaySchedule: StartEnd
+	saturdaySchedule: StartEnd
+	sundaySchedule: StartEnd
 }
 mutation createService(
-  $inputService: CreateServices
-  $ScheduleBool: Schedulebool
-  $ScheduleTime: ScheduleTime
+	$inputService: CreateServices
+	$ScheduleBool: Schedulebool
+	$ScheduleTime: ScheduleTime
 ) {
-  createService(
-    inputService: $inputService
-    ScheduleBool: $ScheduleBool
-    ScheduleTime: $ScheduleTime
-  )
+	createService(
+		inputService: $inputService
+		ScheduleBool: $ScheduleBool
+		ScheduleTime: $ScheduleTime
+	)
 }

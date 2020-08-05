@@ -3,7 +3,7 @@
 		"name": "production",
 		"host": "doffyincdb.cib1nvnz2x7y.us-east-2.rds.amazonaws.com",
 		"port": 5432,
-		"username": "jamesleyjoseph",
+		"username": "postgres",
 		"password": "Database",
 		"database": "productionDB",
 		"type": "postgres",

@@ -2,6 +2,7 @@ import gql from 'graphql-tag';
 import * as ApolloReactCommon from '@apollo/react-common';
 import * as ApolloReactHooks from '@apollo/react-hooks';
 export type Maybe<T> = T | null;
+export type Exact<T extends { [key: string]: any }> = { [K in keyof T]: T[K] };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -14,13 +15,13 @@ export type Scalars = {
 };
 
 export type LoginResponse = {
-   __typename?: 'LoginResponse';
+  __typename?: 'LoginResponse';
   errors?: Maybe<Array<Error>>;
   sessionId?: Maybe<Scalars['String']>;
 };
 
 export type Mutation = {
-   __typename?: 'Mutation';
+  __typename?: 'Mutation';
   login: LoginResponse;
   logout?: Maybe<Scalars['Boolean']>;
   register: RegisterResponse;
@@ -71,7 +72,6 @@ export type MutationChangePasswordArgs = {
 export type MutationSignS3Args = {
   filename: Scalars['String'];
   filetype: Scalars['String'];
-  id?: Maybe<Scalars['String']>;
 };
 
 
@@ -118,37 +118,38 @@ export type MutationUpdateBookingArgs = {
 };
 
 export type Error = {
-   __typename?: 'Error';
+  __typename?: 'Error';
   path: Scalars['String'];
   message: Scalars['String'];
 };
 
 export type User = {
-   __typename?: 'User';
+  __typename?: 'User';
   id: Scalars['ID'];
   username?: Maybe<Scalars['String']>;
   email: Scalars['String'];
   service?: Maybe<Service>;
   notification?: Maybe<Array<Notification>>;
   messages?: Maybe<Array<Message>>;
+  userType?: Maybe<Scalars['String']>;
   sessionId: Scalars['String'];
 };
 
 export type RegisterResponse = {
-   __typename?: 'RegisterResponse';
+  __typename?: 'RegisterResponse';
   errors?: Maybe<Array<Error>>;
   sessionId?: Maybe<Scalars['String']>;
 };
 
 export type Me = {
-   __typename?: 'Me';
+  __typename?: 'Me';
   user?: Maybe<User>;
   sessionId?: Maybe<Scalars['String']>;
   service?: Maybe<Array<Maybe<Service>>>;
 };
 
 export type Query = {
-   __typename?: 'Query';
+  __typename?: 'Query';
   me?: Maybe<Me>;
   messages: Array<Message>;
   searchServicesUser?: Maybe<ServiceUser>;
@@ -157,6 +158,7 @@ export type Query = {
   findServiceCalendar?: Maybe<Calendar>;
   notification: Array<Notification>;
   QueryBooking?: Maybe<Array<Booking>>;
+  QueryBookingTime?: Maybe<Array<Scalars['String']>>;
 };
 
 
@@ -187,8 +189,14 @@ export type QueryQueryBookingArgs = {
   date: Scalars['String'];
 };
 
+
+export type QueryQueryBookingTimeArgs = {
+  serviceId: Scalars['String'];
+  date: Scalars['String'];
+};
+
 export type Service = {
-   __typename?: 'Service';
+  __typename?: 'Service';
   id?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
   pictureUrl?: Maybe<Scalars['String']>;
@@ -206,18 +214,24 @@ export type Service = {
   latitude?: Maybe<Scalars['Float']>;
   longitude?: Maybe<Scalars['Float']>;
   ownerId?: Maybe<Scalars['String']>;
+  profilPicture?: Maybe<Scalars['String']>;
+  picturesUrl?: Maybe<Array<Scalars['String']>>;
+  adresseVisible: Scalars['Boolean'];
+  averageTime: Scalars['Float'];
 };
 
 export type Notification = {
-   __typename?: 'Notification';
+  __typename?: 'Notification';
   message?: Maybe<NotificationMessage>;
   senderId: Scalars['String'];
   recipientId: Scalars['String'];
   createdDate: Scalars['String'];
+  bookRequest?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
 };
 
 export type Message = {
-   __typename?: 'Message';
+  __typename?: 'Message';
   content: Scalars['String'];
   senderId: Scalars['String'];
   recipientId: Scalars['String'];
@@ -225,13 +239,13 @@ export type Message = {
 };
 
 export type NotificationMessage = {
-   __typename?: 'NotificationMessage';
+  __typename?: 'NotificationMessage';
   Title?: Maybe<Scalars['String']>;
   Body?: Maybe<Scalars['String']>;
 };
 
 export type Subscription = {
-   __typename?: 'Subscription';
+  __typename?: 'Subscription';
   newMessage: Message;
   newNotification: Notification;
 };
@@ -252,7 +266,7 @@ export type MessageInput = {
 };
 
 export type S3Payload = {
-   __typename?: 'S3Payload';
+  __typename?: 'S3Payload';
   signedRequest: Scalars['String'];
   url: Scalars['String'];
 };
@@ -261,16 +275,20 @@ export type CreateServices = {
   name: Scalars['String'];
   category: Scalars['String'];
   description: Scalars['String'];
-  coutryId?: Maybe<Scalars['String']>;
-  stateId?: Maybe<Scalars['String']>;
-  cityId?: Maybe<Scalars['String']>;
-  Taxes: Scalars['Boolean'];
-  Adress?: Maybe<Scalars['String']>;
+  coutryId: Scalars['String'];
+  stateId: Scalars['String'];
+  cityId: Scalars['String'];
+  Taxes?: Maybe<Scalars['Boolean']>;
+  Adress: Scalars['String'];
   price: Scalars['Float'];
-  payoutSchedule: Scalars['String'];
-  customerBillingStatement: Scalars['String'];
+  payoutSchedule?: Maybe<Scalars['String']>;
+  customerBillingStatement?: Maybe<Scalars['String']>;
   latitude?: Maybe<Scalars['Float']>;
   longitude?: Maybe<Scalars['Float']>;
+  profilPicture: Scalars['String'];
+  picturesUrl: Scalars['String'];
+  adresseVisible: Scalars['Boolean'];
+  averageTime: Scalars['Float'];
 };
 
 export type Schedulebool = {
@@ -309,13 +327,13 @@ export type UpdateServices = {
 };
 
 export type ServiceUser = {
-   __typename?: 'ServiceUser';
+  __typename?: 'ServiceUser';
   user: Array<User>;
   service: Array<Service>;
 };
 
 export type Calendar = {
-   __typename?: 'Calendar';
+  __typename?: 'Calendar';
   CalendarId?: Maybe<Scalars['String']>;
   monday?: Maybe<Scalars['Boolean']>;
   mondaySchedule?: Maybe<Time>;
@@ -339,9 +357,9 @@ export type StartEnd = {
 };
 
 export type Time = {
-   __typename?: 'Time';
-  StartTime?: Maybe<Scalars['Int']>;
-  EndTime?: Maybe<Scalars['Int']>;
+  __typename?: 'Time';
+  StartTime?: Maybe<Scalars['String']>;
+  EndTime?: Maybe<Scalars['String']>;
 };
 
 export type Input = {
@@ -356,13 +374,13 @@ export type MessageNotif = {
 };
 
 export type BookingResponse = {
-   __typename?: 'BookingResponse';
+  __typename?: 'BookingResponse';
   errors?: Maybe<Error>;
   booking?: Maybe<Booking>;
 };
 
 export type Booking = {
-   __typename?: 'Booking';
+  __typename?: 'Booking';
   startService?: Maybe<Scalars['Float']>;
   endService?: Maybe<Scalars['Float']>;
   price?: Maybe<Scalars['Float']>;
@@ -379,10 +397,10 @@ export enum CacheControlScope {
 }
 
 
-export type ChangePasswordMutationVariables = {
+export type ChangePasswordMutationVariables = Exact<{
   token: Scalars['Int'];
   password: Scalars['String'];
-};
+}>;
 
 
 export type ChangePasswordMutation = (
@@ -393,11 +411,11 @@ export type ChangePasswordMutation = (
   )> }
 );
 
-export type CreateBookingMutationVariables = {
+export type CreateBookingMutationVariables = Exact<{
   serviceId: Scalars['String'];
   date: Scalars['String'];
   startService: Scalars['Float'];
-};
+}>;
 
 
 export type CreateBookingMutation = (
@@ -414,10 +432,10 @@ export type CreateBookingMutation = (
   )> }
 );
 
-export type CreateMessageMutationVariables = {
+export type CreateMessageMutationVariables = Exact<{
   content: Scalars['String'];
   recipientId: Scalars['String'];
-};
+}>;
 
 
 export type CreateMessageMutation = (
@@ -425,9 +443,9 @@ export type CreateMessageMutation = (
   & Pick<Mutation, 'createMessage'>
 );
 
-export type CreateNotificationMutationVariables = {
+export type CreateNotificationMutationVariables = Exact<{
   input?: Maybe<Input>;
-};
+}>;
 
 
 export type CreateNotificationMutation = (
@@ -435,11 +453,11 @@ export type CreateNotificationMutation = (
   & Pick<Mutation, 'createNotification'>
 );
 
-export type CreateServiceMutationVariables = {
+export type CreateServiceMutationVariables = Exact<{
   inputService?: Maybe<CreateServices>;
   ScheduleBool?: Maybe<Schedulebool>;
   ScheduleTime?: Maybe<ScheduleTime>;
-};
+}>;
 
 
 export type CreateServiceMutation = (
@@ -447,9 +465,9 @@ export type CreateServiceMutation = (
   & Pick<Mutation, 'createService'>
 );
 
-export type DeleteServiceMutationVariables = {
+export type DeleteServiceMutationVariables = Exact<{
   ServiceId: Scalars['String'];
-};
+}>;
 
 
 export type DeleteServiceMutation = (
@@ -457,9 +475,9 @@ export type DeleteServiceMutation = (
   & Pick<Mutation, 'DeleteService'>
 );
 
-export type FindServiceCalendarQueryVariables = {
+export type FindServiceCalendarQueryVariables = Exact<{
   ServiceId: Scalars['String'];
-};
+}>;
 
 
 export type FindServiceCalendarQuery = (
@@ -492,9 +510,9 @@ export type FindServiceCalendarQuery = (
   )> }
 );
 
-export type FindUrlMutationVariables = {
+export type FindUrlMutationVariables = Exact<{
   serviceId: Scalars['String'];
-};
+}>;
 
 
 export type FindUrlMutation = (
@@ -502,9 +520,9 @@ export type FindUrlMutation = (
   & Pick<Mutation, 'findUrl'>
 );
 
-export type ForgotPasswordMutationVariables = {
+export type ForgotPasswordMutationVariables = Exact<{
   email: Scalars['String'];
-};
+}>;
 
 
 export type ForgotPasswordMutation = (
@@ -512,10 +530,10 @@ export type ForgotPasswordMutation = (
   & Pick<Mutation, 'forgotPassword'>
 );
 
-export type LoginMutationVariables = {
+export type LoginMutationVariables = Exact<{
   email: Scalars['String'];
   password: Scalars['String'];
-};
+}>;
 
 
 export type LoginMutation = (
@@ -530,7 +548,7 @@ export type LoginMutation = (
   ) }
 );
 
-export type LogoutMutationVariables = {};
+export type LogoutMutationVariables = Exact<{ [key: string]: never; }>;
 
 
 export type LogoutMutation = (
@@ -538,7 +556,7 @@ export type LogoutMutation = (
   & Pick<Mutation, 'logout'>
 );
 
-export type MeQueryVariables = {};
+export type MeQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type MeQuery = (
@@ -548,7 +566,7 @@ export type MeQuery = (
     & Pick<Me, 'sessionId'>
     & { user?: Maybe<(
       { __typename?: 'User' }
-      & Pick<User, 'id' | 'email' | 'username'>
+      & Pick<User, 'id' | 'email' | 'username' | 'userType'>
       & { service?: Maybe<(
         { __typename?: 'Service' }
         & Pick<Service, 'id' | 'name' | 'pictureUrl' | 'description' | 'coutryId' | 'stateId' | 'cityId' | 'Taxes' | 'Adress' | 'rating' | 'price' | 'ownerId'>
@@ -570,7 +588,7 @@ export type MeQuery = (
   )> }
 );
 
-export type MessageQueryVariables = {};
+export type MessageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type MessageQuery = (
@@ -581,14 +599,14 @@ export type MessageQuery = (
   )> }
 );
 
-export type NotificationQueryVariables = {};
+export type NotificationQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type NotificationQuery = (
   { __typename?: 'Query' }
   & { notification: Array<(
     { __typename?: 'Notification' }
-    & Pick<Notification, 'senderId' | 'recipientId' | 'createdDate'>
+    & Pick<Notification, 'id' | 'bookRequest' | 'createdDate' | 'recipientId' | 'senderId'>
     & { message?: Maybe<(
       { __typename?: 'NotificationMessage' }
       & Pick<NotificationMessage, 'Title' | 'Body'>
@@ -596,10 +614,27 @@ export type NotificationQuery = (
   )> }
 );
 
-export type QueryBookingQueryVariables = {
+export type NewNotificationSubscriptionVariables = Exact<{
+  recipientId: Scalars['String'];
+}>;
+
+
+export type NewNotificationSubscription = (
+  { __typename?: 'Subscription' }
+  & { newNotification: (
+    { __typename?: 'Notification' }
+    & Pick<Notification, 'id' | 'bookRequest' | 'createdDate' | 'recipientId' | 'senderId'>
+    & { message?: Maybe<(
+      { __typename?: 'NotificationMessage' }
+      & Pick<NotificationMessage, 'Title' | 'Body'>
+    )> }
+  ) }
+);
+
+export type QueryBookingQueryVariables = Exact<{
   serviceId: Scalars['String'];
   date: Scalars['String'];
-};
+}>;
 
 
 export type QueryBookingQuery = (
@@ -610,12 +645,23 @@ export type QueryBookingQuery = (
   )>> }
 );
 
-export type RegisterMutationVariables = {
+export type QueryBookingTimeQueryVariables = Exact<{
+  serviceId: Scalars['String'];
+  date: Scalars['String'];
+}>;
+
+
+export type QueryBookingTimeQuery = (
+  { __typename?: 'Query' }
+  & Pick<Query, 'QueryBookingTime'>
+);
+
+export type RegisterMutationVariables = Exact<{
   username: Scalars['String'];
   email: Scalars['String'];
   password: Scalars['String'];
   confirmPassword: Scalars['String'];
-};
+}>;
 
 
 export type RegisterMutation = (
@@ -630,11 +676,11 @@ export type RegisterMutation = (
   ) }
 );
 
-export type SearchServicesUserQueryVariables = {
+export type SearchServicesUserQueryVariables = Exact<{
   search: Scalars['String'];
   offset?: Maybe<Scalars['Int']>;
   limit: Scalars['Int'];
-};
+}>;
 
 
 export type SearchServicesUserQuery = (
@@ -655,22 +701,22 @@ export type SearchServicesUserQuery = (
   )> }
 );
 
-export type ServiceByCategoryQueryVariables = {
+export type ServiceByCategoryQueryVariables = Exact<{
   category: Scalars['String'];
-};
+}>;
 
 
 export type ServiceByCategoryQuery = (
   { __typename?: 'Query' }
   & { ServiceByCategory?: Maybe<Array<Maybe<(
     { __typename?: 'Service' }
-    & Pick<Service, 'id' | 'name' | 'description' | 'coutryId' | 'stateId' | 'cityId' | 'Taxes' | 'Adress' | 'rating' | 'price' | 'ownerId'>
+    & Pick<Service, 'id' | 'name' | 'category' | 'description' | 'coutryId' | 'stateId' | 'cityId' | 'Taxes' | 'Adress' | 'rating' | 'price' | 'payoutSchedule' | 'customerBillingStatement' | 'latitude' | 'longitude' | 'ownerId' | 'profilPicture' | 'picturesUrl' | 'adresseVisible' | 'averageTime'>
   )>>> }
 );
 
-export type ServicesUserQueryVariables = {
+export type ServicesUserQueryVariables = Exact<{
   ServiceId: Scalars['String'];
-};
+}>;
 
 
 export type ServicesUserQuery = (
@@ -685,11 +731,10 @@ export type ServicesUserQuery = (
   )> }
 );
 
-export type SignS3MutationVariables = {
+export type SignS3MutationVariables = Exact<{
   filename: Scalars['String'];
   filetype: Scalars['String'];
-  id: Scalars['String'];
-};
+}>;
 
 
 export type SignS3Mutation = (
@@ -700,10 +745,10 @@ export type SignS3Mutation = (
   ) }
 );
 
-export type UpdateBookingMutationVariables = {
+export type UpdateBookingMutationVariables = Exact<{
   NotificationId: Scalars['String'];
   response?: Maybe<Scalars['Boolean']>;
-};
+}>;
 
 
 export type UpdateBookingMutation = (
@@ -711,12 +756,12 @@ export type UpdateBookingMutation = (
   & Pick<Mutation, 'updateBooking'>
 );
 
-export type UpdateServiceMutationVariables = {
+export type UpdateServiceMutationVariables = Exact<{
   serviceId: Scalars['String'];
   inputService?: Maybe<UpdateServices>;
   ScheduleBool?: Maybe<Schedulebool>;
   ScheduleTime?: Maybe<ScheduleTime>;
-};
+}>;
 
 
 export type UpdateServiceMutation = (
@@ -1132,6 +1177,7 @@ export const MeDocument = gql`
       id
       email
       username
+      userType
       service {
         id
         name
@@ -1242,13 +1288,16 @@ export type MessageQueryResult = ApolloReactCommon.QueryResult<MessageQuery, Mes
 export const NotificationDocument = gql`
     query notification {
   notification {
+    id
+    bookRequest
+    createdDate
+    recipientId
+    senderId
+    createdDate
     message {
       Title
       Body
     }
-    senderId
-    recipientId
-    createdDate
   }
 }
     `;
@@ -1277,6 +1326,44 @@ export function useNotificationLazyQuery(baseOptions?: ApolloReactHooks.LazyQuer
 export type NotificationQueryHookResult = ReturnType<typeof useNotificationQuery>;
 export type NotificationLazyQueryHookResult = ReturnType<typeof useNotificationLazyQuery>;
 export type NotificationQueryResult = ApolloReactCommon.QueryResult<NotificationQuery, NotificationQueryVariables>;
+export const NewNotificationDocument = gql`
+    subscription newNotification($recipientId: String!) {
+  newNotification(recipientId: $recipientId) {
+    id
+    bookRequest
+    createdDate
+    recipientId
+    senderId
+    createdDate
+    message {
+      Title
+      Body
+    }
+  }
+}
+    `;
+
+/**
+ * __useNewNotificationSubscription__
+ *
+ * To run a query within a React component, call `useNewNotificationSubscription` and pass it any options that fit your needs.
+ * When your component renders, `useNewNotificationSubscription` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the subscription, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useNewNotificationSubscription({
+ *   variables: {
+ *      recipientId: // value for 'recipientId'
+ *   },
+ * });
+ */
+export function useNewNotificationSubscription(baseOptions?: ApolloReactHooks.SubscriptionHookOptions<NewNotificationSubscription, NewNotificationSubscriptionVariables>) {
+        return ApolloReactHooks.useSubscription<NewNotificationSubscription, NewNotificationSubscriptionVariables>(NewNotificationDocument, baseOptions);
+      }
+export type NewNotificationSubscriptionHookResult = ReturnType<typeof useNewNotificationSubscription>;
+export type NewNotificationSubscriptionResult = ApolloReactCommon.SubscriptionResult<NewNotificationSubscription>;
 export const QueryBookingDocument = gql`
     query QueryBooking($serviceId: String!, $date: String!) {
   QueryBooking(serviceId: $serviceId, date: $date) {
@@ -1318,6 +1405,38 @@ export function useQueryBookingLazyQuery(baseOptions?: ApolloReactHooks.LazyQuer
 export type QueryBookingQueryHookResult = ReturnType<typeof useQueryBookingQuery>;
 export type QueryBookingLazyQueryHookResult = ReturnType<typeof useQueryBookingLazyQuery>;
 export type QueryBookingQueryResult = ApolloReactCommon.QueryResult<QueryBookingQuery, QueryBookingQueryVariables>;
+export const QueryBookingTimeDocument = gql`
+    query QueryBookingTime($serviceId: String!, $date: String!) {
+  QueryBookingTime(serviceId: $serviceId, date: $date)
+}
+    `;
+
+/**
+ * __useQueryBookingTimeQuery__
+ *
+ * To run a query within a React component, call `useQueryBookingTimeQuery` and pass it any options that fit your needs.
+ * When your component renders, `useQueryBookingTimeQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useQueryBookingTimeQuery({
+ *   variables: {
+ *      serviceId: // value for 'serviceId'
+ *      date: // value for 'date'
+ *   },
+ * });
+ */
+export function useQueryBookingTimeQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<QueryBookingTimeQuery, QueryBookingTimeQueryVariables>) {
+        return ApolloReactHooks.useQuery<QueryBookingTimeQuery, QueryBookingTimeQueryVariables>(QueryBookingTimeDocument, baseOptions);
+      }
+export function useQueryBookingTimeLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<QueryBookingTimeQuery, QueryBookingTimeQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<QueryBookingTimeQuery, QueryBookingTimeQueryVariables>(QueryBookingTimeDocument, baseOptions);
+        }
+export type QueryBookingTimeQueryHookResult = ReturnType<typeof useQueryBookingTimeQuery>;
+export type QueryBookingTimeLazyQueryHookResult = ReturnType<typeof useQueryBookingTimeLazyQuery>;
+export type QueryBookingTimeQueryResult = ApolloReactCommon.QueryResult<QueryBookingTimeQuery, QueryBookingTimeQueryVariables>;
 export const RegisterDocument = gql`
     mutation Register($username: String!, $email: String!, $password: String!, $confirmPassword: String!) {
   register(username: $username, email: $email, password: $password, confirmPassword: $confirmPassword) {
@@ -1426,6 +1545,7 @@ export const ServiceByCategoryDocument = gql`
   ServiceByCategory(category: $category) {
     id
     name
+    category
     description
     coutryId
     stateId
@@ -1434,7 +1554,16 @@ export const ServiceByCategoryDocument = gql`
     Adress
     rating
     price
+    payoutSchedule
+    customerBillingStatement
+    latitude
+    longitude
     ownerId
+    profilPicture
+    picturesUrl
+    adresseVisible
+    averageTime
+    category
   }
 }
     `;
@@ -1513,8 +1642,8 @@ export type ServicesUserQueryHookResult = ReturnType<typeof useServicesUserQuery
 export type ServicesUserLazyQueryHookResult = ReturnType<typeof useServicesUserLazyQuery>;
 export type ServicesUserQueryResult = ApolloReactCommon.QueryResult<ServicesUserQuery, ServicesUserQueryVariables>;
 export const SignS3Document = gql`
-    mutation signS3($filename: String!, $filetype: String!, $id: String!) {
-  signS3(filename: $filename, filetype: $filetype, id: $id) {
+    mutation signS3($filename: String!, $filetype: String!) {
+  signS3(filename: $filename, filetype: $filetype) {
     url
     signedRequest
   }
@@ -1537,7 +1666,6 @@ export type SignS3MutationFn = ApolloReactCommon.MutationFunction<SignS3Mutation
  *   variables: {
  *      filename: // value for 'filename'
  *      filetype: // value for 'filetype'
- *      id: // value for 'id'
  *   },
  * });
  */

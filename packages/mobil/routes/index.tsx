@@ -5,7 +5,7 @@ import AppLoading from "expo/build/launch/AppLoading";
 import * as React from "react";
 import { ActivityIndicator } from "react-native";
 import { RouteProps } from "react-router-native";
-import { creationPage } from "../screenStack/creation";
+import { AuthPages } from "../screenStack/creation";
 import { drawer } from "../screenStack/drawers";
 import { AuthContext } from "../shareFuction/userContext";
 
@@ -22,15 +22,14 @@ const getFont = () =>
 export const Routes: React.FC<RouteProps> = ({}) => {
 	const [loading, setLoading] = React.useState(true);
 	const [fontLoaded, setFontisLoaded] = React.useState(false);
-	const { user, me, token, homeScreen } = React.useContext(AuthContext);
+	const { user, token, homeScreen, me, logout } = React.useContext(AuthContext);
 	React.useEffect(() => {
 		SecureStore.getItemAsync("sid")
 			.then((tk) => {
 				if (tk) {
-					// decode it
+					console.log("tk", tk);
 					homeScreen(tk);
 					me();
-					console.log("me", user);
 					setLoading(false);
 				} else {
 					setLoading(false);
@@ -38,9 +37,15 @@ export const Routes: React.FC<RouteProps> = ({}) => {
 			})
 			.catch((err) => {
 				console.log(err);
+				console.log(
+					"errors                                                     ",
+					err.networkError.result.errors
+				);
+				logout();
+
 				setLoading(false);
 			});
-	}, []);
+	}, [user]);
 
 	if (loading) {
 		return <ActivityIndicator size="large" style={{ flex: 1 }} />;
@@ -48,7 +53,7 @@ export const Routes: React.FC<RouteProps> = ({}) => {
 	if (fontLoaded) {
 		return (
 			<NavigationContainer>
-				{token ? drawer() : creationPage()}
+				{token ? drawer() : AuthPages()}
 			</NavigationContainer>
 		);
 	} else {

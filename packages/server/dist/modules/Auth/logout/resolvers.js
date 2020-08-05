@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Logout = void 0;
 const removeUserSession_1 = require("./removeUserSession");
 exports.Logout = {
     Mutation: {

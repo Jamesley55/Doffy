@@ -9,14 +9,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.changePassword = void 0;
 const User_1 = require("./../../../entity/User");
 const bcrypt = require("bcryptjs");
-const resolvers_1 = require("../forgotPassword/resolvers");
 const redis_1 = require("../../../redis");
 const redisPrefix_1 = require("../../../Utils/constant/redisPrefix");
 exports.changePassword = {
     Mutation: {
-        changePassword: (_, { token, password }) => __awaiter(void 0, void 0, void 0, function* () {
+        changePassword: (_, { token, password }, { req }) => __awaiter(void 0, void 0, void 0, function* () {
             const userId = yield redis_1.redis.get(redisPrefix_1.forgetPasswordPrefix + token);
             if (!userId) {
                 return null;
@@ -26,9 +26,14 @@ exports.changePassword = {
                 return null;
             }
             user.password = yield bcrypt.hash(password, 10);
-            yield redis_1.redis.del(resolvers_1.forgotPassword + token);
+            yield redis_1.redis.del(redisPrefix_1.forgetPasswordPrefix + token);
             user.save();
-            return user;
+            return {
+                id: user.id,
+                username: user.username,
+                email: user.email,
+                sessionId: req.sessionID,
+            };
         }),
     },
 };

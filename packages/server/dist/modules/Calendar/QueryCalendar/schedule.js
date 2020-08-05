@@ -9,9 +9,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const service_1 = require("../../../entity/service");
-const findingSchedule_1 = require("./findingSchedule");
+exports.Schedule = void 0;
 const calendar_1 = require("../../../entity/calendar");
+const service_1 = require("../../../entity/service");
+const milisecondTohours_1 = require("../../../Sharefonction/milisecondTohours");
+const findingSchedule_1 = require("./findingSchedule");
 exports.Schedule = (ServiceId) => __awaiter(void 0, void 0, void 0, function* () {
     const services = yield service_1.Service.findOne({ where: { id: ServiceId } });
     const id = services === null || services === void 0 ? void 0 : services.calendarId;
@@ -25,32 +27,32 @@ exports.Schedule = (ServiceId) => __awaiter(void 0, void 0, void 0, function* ()
     const sundayScheduleuuid = yield findingSchedule_1.findingSchedule(calendar === null || calendar === void 0 ? void 0 : calendar.sundayScheduleUuid);
     const schedule = {
         mondaySchedule: {
-            StartTime: mondayScheduleuuid === null || mondayScheduleuuid === void 0 ? void 0 : mondayScheduleuuid.startingTime,
-            EndTime: mondayScheduleuuid === null || mondayScheduleuuid === void 0 ? void 0 : mondayScheduleuuid.EndTime,
+            StartTime: milisecondTohours_1.getHours(mondayScheduleuuid === null || mondayScheduleuuid === void 0 ? void 0 : mondayScheduleuuid.startingTime),
+            EndTime: milisecondTohours_1.getHours(mondayScheduleuuid === null || mondayScheduleuuid === void 0 ? void 0 : mondayScheduleuuid.EndTime),
         },
         tuesdaySchedule: {
-            StartTime: tuesdayScheduleuuid === null || tuesdayScheduleuuid === void 0 ? void 0 : tuesdayScheduleuuid.startingTime,
-            EndTime: tuesdayScheduleuuid === null || tuesdayScheduleuuid === void 0 ? void 0 : tuesdayScheduleuuid.EndTime,
+            StartTime: milisecondTohours_1.getHours(tuesdayScheduleuuid === null || tuesdayScheduleuuid === void 0 ? void 0 : tuesdayScheduleuuid.startingTime),
+            EndTime: milisecondTohours_1.getHours(tuesdayScheduleuuid === null || tuesdayScheduleuuid === void 0 ? void 0 : tuesdayScheduleuuid.EndTime),
         },
         wednesdaySchedule: {
-            StartTime: wednesdayScheduleuuid === null || wednesdayScheduleuuid === void 0 ? void 0 : wednesdayScheduleuuid.startingTime,
-            EndTime: wednesdayScheduleuuid === null || wednesdayScheduleuuid === void 0 ? void 0 : wednesdayScheduleuuid.EndTime,
+            StartTime: milisecondTohours_1.getHours(wednesdayScheduleuuid === null || wednesdayScheduleuuid === void 0 ? void 0 : wednesdayScheduleuuid.startingTime),
+            EndTime: milisecondTohours_1.getHours(wednesdayScheduleuuid === null || wednesdayScheduleuuid === void 0 ? void 0 : wednesdayScheduleuuid.EndTime),
         },
         thursdaySchedule: {
-            StartTime: thursdayScheduleuuid === null || thursdayScheduleuuid === void 0 ? void 0 : thursdayScheduleuuid.startingTime,
-            EndTime: thursdayScheduleuuid === null || thursdayScheduleuuid === void 0 ? void 0 : thursdayScheduleuuid.EndTime,
+            StartTime: milisecondTohours_1.getHours(thursdayScheduleuuid === null || thursdayScheduleuuid === void 0 ? void 0 : thursdayScheduleuuid.startingTime),
+            EndTime: milisecondTohours_1.getHours(thursdayScheduleuuid === null || thursdayScheduleuuid === void 0 ? void 0 : thursdayScheduleuuid.EndTime),
         },
         fridaySchedule: {
-            StartTime: fridayScheduleuuid === null || fridayScheduleuuid === void 0 ? void 0 : fridayScheduleuuid.startingTime,
-            EndTime: fridayScheduleuuid === null || fridayScheduleuuid === void 0 ? void 0 : fridayScheduleuuid.EndTime,
+            StartTime: milisecondTohours_1.getHours(fridayScheduleuuid === null || fridayScheduleuuid === void 0 ? void 0 : fridayScheduleuuid.startingTime),
+            EndTime: milisecondTohours_1.getHours(fridayScheduleuuid === null || fridayScheduleuuid === void 0 ? void 0 : fridayScheduleuuid.EndTime),
         },
         saturdaySchedule: {
-            StartTime: saturdayScheduleuuid === null || saturdayScheduleuuid === void 0 ? void 0 : saturdayScheduleuuid.startingTime,
-            EndTime: saturdayScheduleuuid === null || saturdayScheduleuuid === void 0 ? void 0 : saturdayScheduleuuid.EndTime,
+            StartTime: milisecondTohours_1.getHours(saturdayScheduleuuid === null || saturdayScheduleuuid === void 0 ? void 0 : saturdayScheduleuuid.startingTime),
+            EndTime: milisecondTohours_1.getHours(saturdayScheduleuuid === null || saturdayScheduleuuid === void 0 ? void 0 : saturdayScheduleuuid.EndTime),
         },
         sundaySchedule: {
-            StartTime: sundayScheduleuuid === null || sundayScheduleuuid === void 0 ? void 0 : sundayScheduleuuid.startingTime,
-            EndTime: sundayScheduleuuid === null || sundayScheduleuuid === void 0 ? void 0 : sundayScheduleuuid.EndTime,
+            StartTime: milisecondTohours_1.getHours(sundayScheduleuuid === null || sundayScheduleuuid === void 0 ? void 0 : sundayScheduleuuid.startingTime),
+            EndTime: milisecondTohours_1.getHours(sundayScheduleuuid === null || sundayScheduleuuid === void 0 ? void 0 : sundayScheduleuuid.EndTime),
         },
         monday: calendar === null || calendar === void 0 ? void 0 : calendar.monday,
         tuesday: calendar === null || calendar === void 0 ? void 0 : calendar.tuesday,

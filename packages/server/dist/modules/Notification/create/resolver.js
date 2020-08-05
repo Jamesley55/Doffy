@@ -9,8 +9,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const constant_1 = require("../PubSub/constant");
+exports.createNotification = void 0;
 const notification_1 = require("../../../entity/notification");
+const constant_1 = require("../PubSub/constant");
 exports.createNotification = {
     Mutation: {
         createNotification: (_, { input }, { pubsub, session }) => __awaiter(void 0, void 0, void 0, function* () {

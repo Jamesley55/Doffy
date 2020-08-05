@@ -9,9 +9,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const notification_1 = require("../../../entity/notification");
+exports.UpdateBooking = void 0;
 const booking_1 = require("../../../entity/booking");
+const notification_1 = require("../../../entity/notification");
 const User_1 = require("../../../entity/User");
+const Convert24h_1 = require("../../../Sharefonction/Convert24h");
+const milisecondTohours_1 = require("../../../Sharefonction/milisecondTohours");
 const constant_1 = require("../../Notification/PubSub/constant");
 exports.UpdateBooking = {
     Mutation: {
@@ -19,21 +22,25 @@ exports.UpdateBooking = {
             const notif = yield notification_1.Notification.findOne({
                 where: { id: NotificationId },
             });
+            if (notif)
+                notif.bookRequest = false;
+            notif === null || notif === void 0 ? void 0 : notif.save();
             if (notif && response)
                 notif.RequestAccepted = response;
             const bookingId = notif === null || notif === void 0 ? void 0 : notif.bookingId;
             const booking = yield booking_1.Booking.findOne({ where: { id: bookingId } });
             if (booking) {
+                const d = new Date(booking.date);
                 if (response) {
                     booking.confirm = true;
                     booking.status = true;
                     const userId = session.userId;
                     const user = yield User_1.User.findOne({ where: { id: userId } });
                     const databaseNotification = yield notification_1.Notification.create({
-                        bookRequest: true,
+                        bookRequest: false,
                         message: {
                             Title: "booking request accepted",
-                            Body: `${user === null || user === void 0 ? void 0 : user.username}  has accept your booking request on ${booking === null || booking === void 0 ? void 0 : booking.date} between ${booking === null || booking === void 0 ? void 0 : booking.startService} and ${booking === null || booking === void 0 ? void 0 : booking.endService}`,
+                            Body: `${user === null || user === void 0 ? void 0 : user.username}  has accept your booking request on ${d.toUTCString()} between ${Convert24h_1.tConv24(milisecondTohours_1.getHours(booking === null || booking === void 0 ? void 0 : booking.startService))} and ${Convert24h_1.tConv24(milisecondTohours_1.getHours(booking === null || booking === void 0 ? void 0 : booking.endService))}`,
                         },
                         recipientId: notif === null || notif === void 0 ? void 0 : notif.senderId,
                         senderId: session.userId,
@@ -51,10 +58,10 @@ exports.UpdateBooking = {
                     const userId = session.userId;
                     const user = yield User_1.User.findOne({ where: { id: userId } });
                     const databaseNotification = yield notification_1.Notification.create({
-                        bookRequest: true,
+                        bookRequest: false,
                         message: {
                             Title: "booking request refused",
-                            Body: `${user === null || user === void 0 ? void 0 : user.username}  has refused your booking request on ${booking === null || booking === void 0 ? void 0 : booking.date} between ${booking === null || booking === void 0 ? void 0 : booking.startService} and ${booking === null || booking === void 0 ? void 0 : booking.endService}`,
+                            Body: `${user === null || user === void 0 ? void 0 : user.username}  has refused your booking request on ${d.toUTCString()} between ${Convert24h_1.tConv24(milisecondTohours_1.getHours(booking === null || booking === void 0 ? void 0 : booking.startService))} and ${Convert24h_1.tConv24(milisecondTohours_1.getHours(booking === null || booking === void 0 ? void 0 : booking.endService))}`,
                         },
                         recipientId: notif === null || notif === void 0 ? void 0 : notif.senderId,
                         senderId: session.userId,

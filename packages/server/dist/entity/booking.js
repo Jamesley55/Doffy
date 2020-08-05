@@ -9,6 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Booking = void 0;
 const typeorm_1 = require("typeorm");
 const transaction_1 = require("./transaction");
 const service_1 = require("./service");
@@ -70,6 +71,10 @@ __decorate([
     typeorm_1.Column("boolean", { default: false }),
     __metadata("design:type", Boolean)
 ], Booking.prototype, "status", void 0);
+__decorate([
+    typeorm_1.Column("decimal", { default: "0" }),
+    __metadata("design:type", Number)
+], Booking.prototype, "Total", void 0);
 __decorate([
     typeorm_1.OneToOne(() => transaction_1.Transaction),
     typeorm_1.JoinColumn(),

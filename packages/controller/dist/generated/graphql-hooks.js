@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.useUpdateServiceMutation = exports.UpdateServiceDocument = exports.useUpdateBookingMutation = exports.UpdateBookingDocument = exports.useSignS3Mutation = exports.SignS3Document = exports.useServicesUserLazyQuery = exports.useServicesUserQuery = exports.ServicesUserDocument = exports.useServiceByCategoryLazyQuery = exports.useServiceByCategoryQuery = exports.ServiceByCategoryDocument = exports.useSearchServicesUserLazyQuery = exports.useSearchServicesUserQuery = exports.SearchServicesUserDocument = exports.useRegisterMutation = exports.RegisterDocument = exports.useQueryBookingTimeLazyQuery = exports.useQueryBookingTimeQuery = exports.QueryBookingTimeDocument = exports.useQueryBookingLazyQuery = exports.useQueryBookingQuery = exports.QueryBookingDocument = exports.useNewNotificationSubscription = exports.NewNotificationDocument = exports.useNotificationLazyQuery = exports.useNotificationQuery = exports.NotificationDocument = exports.useMessageLazyQuery = exports.useMessageQuery = exports.MessageDocument = exports.useMeLazyQuery = exports.useMeQuery = exports.MeDocument = exports.useLogoutMutation = exports.LogoutDocument = exports.useLoginMutation = exports.LoginDocument = exports.useForgotPasswordMutation = exports.ForgotPasswordDocument = exports.useFindUrlMutation = exports.FindUrlDocument = exports.useFindServiceCalendarLazyQuery = exports.useFindServiceCalendarQuery = exports.FindServiceCalendarDocument = exports.useDeleteServiceMutation = exports.DeleteServiceDocument = exports.useCreateServiceMutation = exports.CreateServiceDocument = exports.useCreateNotificationMutation = exports.CreateNotificationDocument = exports.useCreateMessageMutation = exports.CreateMessageDocument = exports.useCreateBookingMutation = exports.CreateBookingDocument = exports.useChangePasswordMutation = exports.ChangePasswordDocument = exports.CacheControlScope = void 0;
 const graphql_tag_1 = require("graphql-tag");
 const ApolloReactHooks = require("@apollo/react-hooks");
 var CacheControlScope;
@@ -180,6 +181,7 @@ exports.MeDocument = graphql_tag_1.default `
       id
       email
       username
+      userType
       service {
         id
         name
@@ -256,13 +258,16 @@ exports.useMessageLazyQuery = useMessageLazyQuery;
 exports.NotificationDocument = graphql_tag_1.default `
     query notification {
   notification {
+    id
+    bookRequest
+    createdDate
+    recipientId
+    senderId
+    createdDate
     message {
       Title
       Body
     }
-    senderId
-    recipientId
-    createdDate
   }
 }
     `;
@@ -274,6 +279,26 @@ function useNotificationLazyQuery(baseOptions) {
     return ApolloReactHooks.useLazyQuery(exports.NotificationDocument, baseOptions);
 }
 exports.useNotificationLazyQuery = useNotificationLazyQuery;
+exports.NewNotificationDocument = graphql_tag_1.default `
+    subscription newNotification($recipientId: String!) {
+  newNotification(recipientId: $recipientId) {
+    id
+    bookRequest
+    createdDate
+    recipientId
+    senderId
+    createdDate
+    message {
+      Title
+      Body
+    }
+  }
+}
+    `;
+function useNewNotificationSubscription(baseOptions) {
+    return ApolloReactHooks.useSubscription(exports.NewNotificationDocument, baseOptions);
+}
+exports.useNewNotificationSubscription = useNewNotificationSubscription;
 exports.QueryBookingDocument = graphql_tag_1.default `
     query QueryBooking($serviceId: String!, $date: String!) {
   QueryBooking(serviceId: $serviceId, date: $date) {
@@ -296,6 +321,19 @@ function useQueryBookingLazyQuery(baseOptions) {
     return ApolloReactHooks.useLazyQuery(exports.QueryBookingDocument, baseOptions);
 }
 exports.useQueryBookingLazyQuery = useQueryBookingLazyQuery;
+exports.QueryBookingTimeDocument = graphql_tag_1.default `
+    query QueryBookingTime($serviceId: String!, $date: String!) {
+  QueryBookingTime(serviceId: $serviceId, date: $date)
+}
+    `;
+function useQueryBookingTimeQuery(baseOptions) {
+    return ApolloReactHooks.useQuery(exports.QueryBookingTimeDocument, baseOptions);
+}
+exports.useQueryBookingTimeQuery = useQueryBookingTimeQuery;
+function useQueryBookingTimeLazyQuery(baseOptions) {
+    return ApolloReactHooks.useLazyQuery(exports.QueryBookingTimeDocument, baseOptions);
+}
+exports.useQueryBookingTimeLazyQuery = useQueryBookingTimeLazyQuery;
 exports.RegisterDocument = graphql_tag_1.default `
     mutation Register($username: String!, $email: String!, $password: String!, $confirmPassword: String!) {
   register(username: $username, email: $email, password: $password, confirmPassword: $confirmPassword) {
@@ -360,6 +398,7 @@ exports.ServiceByCategoryDocument = graphql_tag_1.default `
   ServiceByCategory(category: $category) {
     id
     name
+    category
     description
     coutryId
     stateId
@@ -368,7 +407,16 @@ exports.ServiceByCategoryDocument = graphql_tag_1.default `
     Adress
     rating
     price
+    payoutSchedule
+    customerBillingStatement
+    latitude
+    longitude
     ownerId
+    profilPicture
+    picturesUrl
+    adresseVisible
+    averageTime
+    category
   }
 }
     `;
@@ -411,8 +459,8 @@ function useServicesUserLazyQuery(baseOptions) {
 }
 exports.useServicesUserLazyQuery = useServicesUserLazyQuery;
 exports.SignS3Document = graphql_tag_1.default `
-    mutation signS3($filename: String!, $filetype: String!, $id: String!) {
-  signS3(filename: $filename, filetype: $filetype, id: $id) {
+    mutation signS3($filename: String!, $filetype: String!) {
+  signS3(filename: $filename, filetype: $filetype) {
     url
     signedRequest
   }

@@ -1,14 +1,15 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import * as React from "react";
-import { firstPage3 } from "../routes/firstPage3/src/screens/firstPage3";
-import { help } from "../routes/help/src/screens/help";
-import { payout } from "../routes/payout/src/screens/payout";
-import { picDownload } from "../routes/picDownload/src/screens/picDownload";
-import { pricePage } from "../routes/pricePage/src/screens/pricePage";
-import { schedulePage } from "../routes/schedulePage/src/screens/schedulePage";
-import { sellerSteps } from "../routes/sellerSteps/src/screens/sellerSteps";
-import { serviceProvider } from "../routes/serviceProvider/src/screens/serviceProvider";
-const Stack = createStackNavigator();
+import { help } from "../routes/otherPages/help/screens/help";
+import { firstPage3 } from "../routes/sellerStack/firstPage3/screens/firstPage3";
+import { InformationService } from "../routes/sellerStack/Information/screens/InformationService";
+import { payout } from "../routes/sellerStack/payout/screens/payout";
+import { picDownload } from "../routes/sellerStack/picDownload/screens/picDownload";
+import { schedulePage } from "../routes/sellerStack/schedulePage/screens/schedulePage";
+import { sellerSteps } from "../routes/sellerStack/sellerSteps/screens/sellerSteps";
+import { serviceProvider } from "../routes/sellerStack/serviceProvider/screens/serviceProvider";
+import { SellerParamList } from "./Tydefs/sellerParamList";
+const Stack = createStackNavigator<SellerParamList>();
 
 export const sellerPage = () => (
 	<Stack.Navigator
@@ -17,7 +18,7 @@ export const sellerPage = () => (
 		<Stack.Screen name="Page3" component={firstPage3} />
 		<Stack.Screen name="sellerSteps" component={sellerSteps} />
 		<Stack.Screen name="schedulePage" component={schedulePage} />
-		<Stack.Screen name="pricePage" component={pricePage} />
+		<Stack.Screen name="InformationPage" component={InformationService} />
 		<Stack.Screen name="picDownload" component={picDownload} />
 		<Stack.Screen name="help" component={help} />
 		<Stack.Screen name="payout" component={payout} />

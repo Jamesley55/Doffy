@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.forgotPassword = void 0;
 const User_1 = require("../../../entity/User");
 const redis_1 = require("../../../redis");
 const redisPrefix_1 = require("../../../Utils/constant/redisPrefix");
@@ -23,7 +24,7 @@ exports.forgotPassword = {
             }
             const token = generate_1.generate(9);
             console.log(token);
-            yield redis_1.redis.hmset(redisPrefix_1.forgetPasswordPrefix + token, user.id, "ex", 60 * 60 * 24);
+            yield redis_1.redis.set(redisPrefix_1.forgetPasswordPrefix + token, user.id, "ex", 60 * 60 * 24);
             yield sendPasswordMail_1.sendPasswordEmail(email, token);
             return true;
         }),

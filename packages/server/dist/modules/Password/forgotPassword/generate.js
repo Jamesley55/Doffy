@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.generate = void 0;
 function generate(n) {
     const add = 1;
     let max = 12 - add;

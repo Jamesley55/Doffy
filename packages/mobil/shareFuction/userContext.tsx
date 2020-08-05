@@ -1,32 +1,44 @@
-import { useRegisterMutation } from "@doffy/controller";
+import {
+	MeDocument,
+	NewNotificationDocument,
+	useNotificationQuery,
+	useRegisterMutation,
+} from "@doffy/controller";
 import {
 	useLoginMutation,
 	useLogoutMutation,
-	useMeQuery,
 } from "@doffy/controller/src/generated/graphql-hooks";
 import * as SecureStore from "expo-secure-store";
 import * as React from "react";
+import { Error, MeQuery } from "../../controller/src/generated/graphql-hooks";
+import { client } from "../src/apollo";
+import { sendNotif } from "./pushNotificationPermision";
+
 type User = null | string | undefined;
+type loginRegister = Promise<
+	| ({ __typename?: "Error" | undefined } & Pick<Error, "path" | "message">)
+	| null
+>;
+
 export const AuthContext = React.createContext<{
 	token: string | null;
 	user: User;
-	register: (
-		values: any
-	) => Promise<
-		| ({ __typename?: "Error" | undefined } & Pick<Error, "path" | "message">)
-		| null
-	>;
+	userType: User;
+	id: User;
+	register: (values: any) => loginRegister;
 	homeScreen: (token: string) => void;
 	me: () => void;
-	login: (values: any) => void;
+	login: (values: any) => loginRegister;
 	logout: () => void;
 }>({
 	token: null,
 	user: null,
+	userType: null,
+	id: null,
 	register: async () => null,
 	homeScreen: () => null,
-	me: () => {},
-	login: async () => {},
+	me: async () => {},
+	login: async () => null,
 	logout: () => {},
 });
 
@@ -34,18 +46,46 @@ interface AuthProviderProps {}
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 	const [user, setUser] = React.useState<string | null | undefined>(null);
+	const [userType, setUserType] = React.useState<string | null | undefined>(
+		null
+	);
+
 	const [token, setToken] = React.useState<string | null>(null);
+	const [id, setId] = React.useState<string | null>(null);
 
 	const [registerMutation] = useRegisterMutation();
 	const [loginMutation] = useLoginMutation();
 	const [logoutMutation] = useLogoutMutation();
-	const { data } = useMeQuery();
-	const meData = data;
+	const { subscribeToMore } = useNotificationQuery();
+	React.useEffect(() => {
+		if (id) {
+			subscribeToMore({
+				document: NewNotificationDocument,
+				variables: { recipientId: id },
+				updateQuery: (prev, { subscriptionData }: any) => {
+					if (!subscriptionData.data) return prev;
+					else {
+						sendNotif("new Notif", undefined);
+						return {
+							...prev,
+							notification: [
+								...prev.notification,
+								subscriptionData.data.notification,
+							],
+						};
+					}
+				},
+			});
+		}
+	}, [id]);
+
 	return (
 		<AuthContext.Provider
 			value={{
 				token,
 				user,
+				userType,
+				id,
 				register: async (values: any) => {
 					const register = await registerMutation({
 						variables: values,
@@ -69,9 +109,35 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 				homeScreen: (tk: string) => {
 					setToken(tk);
 				},
-				me: () => {
-					const username = meData?.me?.user?.username;
-					setUser(username);
+				me: async () => {
+					let Me: any = "";
+					try {
+						Me = await client.query<MeQuery>({
+							query: MeDocument,
+							fetchPolicy: "no-cache",
+						});
+					} catch (e) {
+						console.log("ta mere la pute wesh ");
+						// logoutMutation();
+						// setToken(null);
+						// await SecureStore.deleteItemAsync("sid");
+					}
+					if (
+						!Me.data?.me?.user?.username ||
+						!Me.data?.me?.user?.username === undefined
+					) {
+						// logoutMutation();
+						// setToken(null);
+						// await SecureStore.deleteItemAsync("sid");
+					}
+					// tslint:disable-next-line: no-shadowed-variable
+					const User: any = Me.data?.me?.user?.username;
+					const UserType: any = Me.data?.me?.user.userType;
+					const Id: any = Me.data?.me?.user.id;
+
+					setId(Id);
+					setUserType(UserType);
+					setUser(User);
 				},
 				login: async (values: any) => {
 					console.log("entrer dans login");

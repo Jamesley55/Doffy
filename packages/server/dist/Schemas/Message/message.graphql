@@ -1,0 +1,28 @@
+type Message {
+  content: String!
+  senderId: String!
+  recipientId: String!
+  createdAt: String!
+}
+
+type Subscription {
+  newMessage(recipientId: String!): Message!
+}
+
+type Query {
+  messages: [Message!]!
+}
+
+input MessageInput {
+  content: String!
+  recipientId: String!
+}
+type Mutation {
+  createMessage(message: MessageInput): Boolean!
+}
+
+schema {
+  query: Query
+  mutation: Mutation
+  subscription: Subscription
+}

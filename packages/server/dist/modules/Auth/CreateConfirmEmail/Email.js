@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Email = void 0;
 function Email(username, url) {
     const email = `<!DOCTYPE html>
   <html>

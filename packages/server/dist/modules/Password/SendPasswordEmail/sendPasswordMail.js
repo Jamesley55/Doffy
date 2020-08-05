@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.sendPasswordEmail = void 0;
 const nodemailer = require("nodemailer");
 require("dotenv/config");
 const User_1 = require("../../../entity/User");

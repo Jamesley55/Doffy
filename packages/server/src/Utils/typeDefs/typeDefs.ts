@@ -1,6 +1,6 @@
 import { importSchema } from "graphql-import";
 
-const SchemaPath = "./src/Schemas/";
+const SchemaPath = "./src/Schemas/Problem";
 const AuthPath = "./src/Schemas/Auth";
 const MessagePath = "./src/Schemas/Message";
 const NotificationPath = "./src/Schemas/Notification";
@@ -10,14 +10,14 @@ const ServicePath = "./src/Schemas/Service";
 const BookingPath = "./src/Schemas/Bookings";
 
 export const typeDefs = importSchema([
-  `${AuthPath}/login.graphql`,
-  `${AuthPath}/logout.graphql`,
-  `${AuthPath}/register.graphql`,
-  `${SchemaPath}/pathProblem.graphql`,
-  `${MessagePath}/message.graphql`,
-  `${PasswordPath}/password.graphql`,
-  `${PicturePath}/pictures.graphql`,
-  `${ServicePath}/service.graphql`,
-  `${NotificationPath}/notification.graphql`,
-  `${BookingPath}/booking.graphql`,
+	`${AuthPath}/login.graphql`,
+	`${AuthPath}/logout.graphql`,
+	`${AuthPath}/register.graphql`,
+	`${SchemaPath}/pathProblem.graphql`,
+	`${MessagePath}/message.graphql`,
+	`${PasswordPath}/password.graphql`,
+	`${PicturePath}/pictures.graphql`,
+	`${ServicePath}/service.graphql`,
+	`${NotificationPath}/notification.graphql`,
+	`${BookingPath}/booking.graphql`,
 ]);

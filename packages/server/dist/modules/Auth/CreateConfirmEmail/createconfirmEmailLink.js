@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.createConfirmEmailLink = void 0;
 const uuid_1 = require("uuid");
 const redisPrefix_1 = require("../../../Utils/constant/redisPrefix");
 exports.createConfirmEmailLink = (url, userId, redis) => __awaiter(void 0, void 0, void 0, function* () {

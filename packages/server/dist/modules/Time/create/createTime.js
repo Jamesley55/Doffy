@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.scheduleTime = void 0;
 const times_1 = require("../../../entity/times");
 exports.scheduleTime = (startingTime, EndTime) => __awaiter(void 0, void 0, void 0, function* () {
     const scheduleDay = yield times_1.ScheduleTime.create({

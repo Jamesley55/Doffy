@@ -1,14 +1,15 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import * as React from "react";
-import { firstPage } from "../routes/firstPage/src/screens/firstPage";
-import { LoginConnector } from "../routes/login/src/loginConnector";
-import { RegisterConnector } from "../routes/register/src/registerConnector";
-import { serviceHomePage } from "../routes/serviceHomePage/src/screens/serviceHomePage";
-import { welcomePage } from "../routes/welcomePage/src/screens/welcomePage";
+import { firstPage } from "../routes/AuthPages/firstPage/screens/firstPage";
+import { LoginConnector } from "../routes/AuthPages/login/loginConnector";
+import { RegisterConnector } from "../routes/AuthPages/register/registerConnector";
+import { serviceHomePage } from "../routes/AuthPages/serviceHomePage/screens/serviceHomePage";
+import { welcomePage } from "../routes/AuthPages/welcomePage/screens/welcomePage";
+import { AuthParamList } from "./Tydefs/AuthParamList";
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator<AuthParamList>();
 
-export const creationPage = () => (
+export const AuthPages = () => (
 	<Stack.Navigator
 		screenOptions={{ header: () => null, gestureEnabled: false }}
 	>
