@@ -8,8 +8,8 @@ import { BlueButton } from "../../../../Component/BlueBotton";
 import { MaterialSwitch2 } from "../../../../Component/MaterialSwitch2";
 import { SellerStackNavProps } from "../../../../screenStack/Tydefs/sellerParamList";
 import { ServiceCreationContext } from "../../../../shareFuction/serviceCreation";
-import { pricePagestyles } from "../../Information/style/styles";
-import { SchedulePagestyles } from "../style/style";
+import pricePagestyles from "../../Information/style/styles";
+import SchedulePagestyles from "../style/style";
 export function schedulePage({
 	navigation,
 }: SellerStackNavProps<"schedulePage">) {

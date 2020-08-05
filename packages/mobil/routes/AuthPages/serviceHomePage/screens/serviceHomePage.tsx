@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import Icon from "react-native-vector-icons/Entypo";
 import { AuthStackNavProps } from "../../../../screenStack/Tydefs/AuthParamList";
-import { serviceHomePageStyle } from "../style/style";
+import serviceHomePageStyle from "../style/style";
 
 export function serviceHomePage({
 	route,

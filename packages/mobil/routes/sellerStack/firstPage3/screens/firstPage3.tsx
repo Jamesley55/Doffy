@@ -6,7 +6,7 @@ import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import IoniconsIcon from "react-native-vector-icons/Ionicons";
 import { BlueButton } from "../../../../Component/BlueBotton";
 import { SellerStackNavProps } from "../../../../screenStack/Tydefs/sellerParamList";
-import { firstPage3Style } from "../style/style";
+import firstPage3Style from "../style/style";
 
 export function firstPage3({ navigation }: SellerStackNavProps<"Page3">) {
 	return (

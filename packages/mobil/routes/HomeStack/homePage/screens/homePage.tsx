@@ -7,7 +7,7 @@ import { TabsStackNavProps } from "../../../../screenStack/Tydefs/tabsParamsList
 import { registerForPushNotificationsAsync } from "../../../../shareFuction/pushNotificationPermision";
 import { serviceByCategoryContext } from "../../../../shareFuction/serviceByCategory";
 import { AuthContext } from "../../../../shareFuction/userContext";
-import { HomePageStyle } from "../style/style";
+import HomePageStyle from "../style/style";
 
 export function HomePage({ navigation }: TabsStackNavProps<"homepage">) {
 	const { me, user } = React.useContext(AuthContext);

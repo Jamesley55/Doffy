@@ -1,6 +1,6 @@
 import { FindServiceCalendarQuery } from "@doffy/controller";
 import * as React from "react";
-import { Alert, SafeAreaView, Text, View } from "react-native";
+import { Alert, NativeModules, SafeAreaView, Text, View } from "react-native";
 import { FlatList, ScrollView } from "react-native-gesture-handler";
 import { BlueButton } from "../../../../Component/BlueBotton";
 import { Checkbox } from "../../../../Component/checkBox";
@@ -13,8 +13,9 @@ import { HomeStackNavProps } from "../../../../screenStack/Tydefs/homeParamList"
 import { BookingContext } from "../../../../shareFuction/booking";
 import { milisecond } from "../../../../shareFuction/convertionMilisecond";
 import { Availability } from "../personallComponent/Availability";
-import { requestPageStyle } from "../styles/style";
-
+import requestPageStyle from "../styles/style";
+const { PlatformConstants } = NativeModules;
+const deviceType = PlatformConstants.interfaceIdiom;
 export function requestPage({
 	navigation,
 	route,
@@ -81,7 +82,7 @@ export function requestPage({
 					<Text style={requestPageStyle.Title}>Select Service</Text>
 					<View style={requestPageStyle.selectService}>
 						<Checkbox handle={handleService} />
-						<View style={{ width: 300 }}>
+						<View style={requestPageStyle.typeService}>
 							<Text style={requestPageStyle.Text}>{route.params.category}</Text>
 							<Text>Average Time: {route.params.averageTime} minute </Text>
 						</View>
@@ -89,7 +90,7 @@ export function requestPage({
 					</View>
 					<Text style={requestPageStyle.Title}>Select Date and Time</Text>
 					<ScheduleDoffy onDateSelected={onDateSelected} />
-					<View style={{ width: "100%", height: 50, backgroundColor: "white" }}>
+					<View style={requestPageStyle.timeSelector}>
 						{(dateArrayTime?.length as number) > 0 ? (
 							<FlatList
 								horizontal={true}
@@ -121,7 +122,7 @@ export function requestPage({
 						) : (
 							<Text
 								style={{
-									marginTop: "4%",
+									marginTop: deviceType === "phone" ? "4%" : "1%",
 									textAlign: "center",
 									textAlignVertical: "center",
 									marginVertical: 5,
@@ -133,17 +134,9 @@ export function requestPage({
 					</View>
 					<Text style={requestPageStyle.Title}>Payement</Text>
 
-					<View
-						style={{
-							width: "100%",
-							height: 24,
-							backgroundColor: "white",
-							justifyContent: "space-between",
-							flexDirection: "row",
-						}}
-					>
+					<View style={requestPageStyle.payementRect}>
 						<Checkbox handle={handlePayement} />
-						<View style={{ marginRight: 300, justifyContent: "center" }}>
+						<View style={requestPageStyle.inShop}>
 							<Text style={requestPageStyle.Text}> In shop </Text>
 						</View>
 					</View>

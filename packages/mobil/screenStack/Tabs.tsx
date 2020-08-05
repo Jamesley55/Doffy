@@ -6,6 +6,7 @@ import {
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import * as React from "react";
+import { NativeModules } from "react-native";
 import {
 	DirectMessage,
 	Message,
@@ -20,6 +21,8 @@ import { TabsParamList } from "./Tydefs/tabsParamsList";
 const Tabs = createBottomTabNavigator<TabsParamList>();
 const Stack = createStackNavigator();
 
+const { PlatformConstants } = NativeModules;
+const deviceType = PlatformConstants.interfaceIdiom;
 export const Notif = () => (
 	<Stack.Navigator screenOptions={{ gestureEnabled: false }}>
 		<Stack.Screen name="notification" component={Notification} />
@@ -37,6 +40,7 @@ export const tabs = () => (
 		tabBarOptions={{
 			activeTintColor: "tomato",
 			inactiveTintColor: "gray",
+			style: { height: deviceType === "phone" ? "10%" : "8%" },
 		}}
 		screenOptions={({ route }) => ({
 			tabBarIcon: ({ color, size }) => {

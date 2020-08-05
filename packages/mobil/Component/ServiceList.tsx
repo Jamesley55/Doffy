@@ -5,10 +5,11 @@ import {
 	Button,
 	FlatList,
 	ImageBackground,
+	NativeModules,
 	Text,
 	TouchableOpacity,
 } from "react-native";
-import { HomePageStyle } from "../routes/HomeStack/homePage/style/style";
+import HomePageStyle from "../routes/HomeStack/homePage/style/style";
 import { getHours } from "../shareFuction/milisecondTohours";
 interface Props {
 	navigation: any;
@@ -17,16 +18,8 @@ interface Props {
 	Loading?: any;
 }
 
-const LeftAction = () => {
-	return (
-		<TouchableOpacity
-			style={{ backgroundColor: "green" }}
-			onPress={() => console.log("hello")}
-		>
-			<Text>Hello</Text>
-		</TouchableOpacity>
-	);
-};
+const { PlatformConstants } = NativeModules;
+const deviceType = PlatformConstants.interfaceIdiom;
 export class List extends React.PureComponent<Props> {
 	state = {
 		imageLoaded: false,
@@ -40,7 +33,16 @@ export class List extends React.PureComponent<Props> {
 		if (data.length === 0) {
 			return (
 				<View>
-					<Text style={{ textAlign: "center" }}>
+					<Text
+						style={[
+							{ textAlign: "center" },
+							deviceType !== "phone" && {
+								fontSize: 20,
+								marginBottom: 30,
+								marginTop: 30,
+							},
+						]}
+					>
 						They're currently no {this.props.Type} in your Area
 					</Text>
 					<Button

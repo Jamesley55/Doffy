@@ -10,7 +10,7 @@ import { Platform } from "react-native";
 const host =
 	Platform.OS === "ios"
 		? "http://ec2-18-217-78-249.us-east-2.compute.amazonaws.com:3000/graphql"
-		: "http://10.0.2.2:4000";
+		: "http://ec2-18-217-78-249.us-east-2.compute.amazonaws.com:3000/graphql";
 
 const httpLink = new HttpLink({
 	uri: host,
