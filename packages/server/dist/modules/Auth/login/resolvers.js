@@ -40,16 +40,6 @@ exports.loginResolver = {
                     ],
                 };
             }
-            if (!user.confirm) {
-                return {
-                    errors: [
-                        {
-                            path: "email",
-                            message: errorMessages_1.confirmEmailError,
-                        },
-                    ],
-                };
-            }
             session.userId = user.id;
             if (req.sessionID) {
                 yield redis.lpush(`${constant_1.userSessionIdPrefix}${user.id}`, req.sessionID);

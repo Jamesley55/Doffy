@@ -1,0 +1,8 @@
+To upload the app on app store since transporter app is bugging 
+I will use this command 
+{ xcrun altool --upload-app 
+-f /Users/jamesleyjoseph/Project/VersionOfApp/IOS/version1-4.ipa 
+-u Jamesleyjoseph5@gmail.com -p xctp-lvlg-qmqm-hgff
+}
+or use the command   expo upload:ios with a generated
+password from https://appleid.apple.com/account/manage

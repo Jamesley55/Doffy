@@ -48,10 +48,12 @@ export const StartServer = async () => {
 			resave: false,
 			saveUninitialized: false,
 			cookie: {
-				httpOnly: true,
-				secure: process.env.NODE_ENV === "production",
+				httpOnly: false,
+				// Todo write a more secure express session
+				// secure: process.env.NODE_ENV === "production",
 				maxAge: 1000 * 60 * 60 * 24 * 12 * 365, // 7 years
 			},
+			proxy: true,
 		})
 	);
 

@@ -11,14 +11,19 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createService = void 0;
 const service_1 = require("../../../entity/service");
-const createscheduleTimes_1 = require("../../Time/schedule/createscheduleTimes");
 const User_1 = require("../../../entity/User");
+const createscheduleTimes_1 = require("../../Time/schedule/createscheduleTimes");
 exports.createService = {
     Mutation: {
         createService: (_, { inputService, ScheduleBool, ScheduleTime }, { session }) => __awaiter(void 0, void 0, void 0, function* () {
-            const { name, category, description, coutryId, stateId, cityId, Taxes, Adress, price, payoutSchedule, customerBillingStatement, latitude, longitude, } = inputService;
+            console.log("entrer dans inpiut");
+            console.log("name", inputService.name);
+            const { name, category, description, coutryId, stateId, cityId, Taxes, Adress, price, payoutSchedule, customerBillingStatement, latitude, longitude, profilPicture, picturesUrl, averageTime, adresseVisible, } = inputService;
+            console.log("name", inputService.category);
             const ownerId = session.userId;
             const calendar = yield createscheduleTimes_1.createTime(ScheduleBool, ScheduleTime);
+            const list = [];
+            list.push(picturesUrl);
             yield service_1.Service.create({
                 name,
                 category,
@@ -35,6 +40,10 @@ exports.createService = {
                 longitude,
                 ownerId,
                 calendar,
+                picturesUrl: list,
+                profilPicture,
+                adresseVisible,
+                averageTime,
             }).save();
             const userType = "serviceProvider";
             yield User_1.User.update({ id: ownerId }, { userType });

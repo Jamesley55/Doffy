@@ -45,6 +45,7 @@ exports.Me = {
                     notification,
                     messages,
                     sessionId: req.sessionID,
+                    userType: user === null || user === void 0 ? void 0 : user.userType,
                 },
                 service,
                 sessionId: req.sessionID,

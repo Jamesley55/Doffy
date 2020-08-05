@@ -11,10 +11,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Service = void 0;
 const typeorm_1 = require("typeorm");
-const User_1 = require("./User");
-const calendar_1 = require("./calendar");
 const booking_1 = require("./booking");
+const calendar_1 = require("./calendar");
 const rating_1 = require("./rating");
+const User_1 = require("./User");
 let Service = class Service extends typeorm_1.BaseEntity {
 };
 __decorate([
@@ -30,9 +30,13 @@ __decorate([
     __metadata("design:type", String)
 ], Service.prototype, "category", void 0);
 __decorate([
-    typeorm_1.Column("simple-array", { nullable: true, array: true }),
+    typeorm_1.Column("varchar", { nullable: true, array: true }),
     __metadata("design:type", Array)
-], Service.prototype, "pictureUrl", void 0);
+], Service.prototype, "picturesUrl", void 0);
+__decorate([
+    typeorm_1.Column("varchar", { nullable: false }),
+    __metadata("design:type", String)
+], Service.prototype, "profilPicture", void 0);
 __decorate([
     typeorm_1.Column("varchar", { length: 255 }),
     __metadata("design:type", String)
@@ -59,11 +63,15 @@ __decorate([
     __metadata("design:type", calendar_1.Calendar)
 ], Service.prototype, "calendar", void 0);
 __decorate([
+    typeorm_1.Column("boolean", { default: false }),
+    __metadata("design:type", Boolean)
+], Service.prototype, "adresseVisible", void 0);
+__decorate([
     typeorm_1.Column("int", { default: 2700000 }),
     __metadata("design:type", Number)
 ], Service.prototype, "averageTime", void 0);
 __decorate([
-    typeorm_1.Column("boolean"),
+    typeorm_1.Column("boolean", { nullable: true }),
     __metadata("design:type", Boolean)
 ], Service.prototype, "Taxes", void 0);
 __decorate([
@@ -83,19 +91,19 @@ __decorate([
     __metadata("design:type", Number)
 ], Service.prototype, "price", void 0);
 __decorate([
-    typeorm_1.Column("text"),
+    typeorm_1.Column("text", { nullable: true }),
     __metadata("design:type", String)
 ], Service.prototype, "payoutSchedule", void 0);
 __decorate([
-    typeorm_1.Column("text"),
+    typeorm_1.Column("text", { nullable: true }),
     __metadata("design:type", String)
 ], Service.prototype, "customerBillingStatement", void 0);
 __decorate([
-    typeorm_1.Column("double precision"),
+    typeorm_1.Column("double precision", { nullable: true }),
     __metadata("design:type", Number)
 ], Service.prototype, "latitude", void 0);
 __decorate([
-    typeorm_1.Column("double precision"),
+    typeorm_1.Column("double precision", { nullable: true }),
     __metadata("design:type", Number)
 ], Service.prototype, "longitude", void 0);
 __decorate([

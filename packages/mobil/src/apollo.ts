@@ -9,7 +9,7 @@ import { Platform } from "react-native";
 
 const host =
 	Platform.OS === "ios"
-		? "https://97d76d4120d6.ngrok.io/graphql"
+		? "http://ec2-18-217-78-249.us-east-2.compute.amazonaws.com:3000/graphql"
 		: "http://10.0.2.2:4000";
 
 const httpLink = new HttpLink({
@@ -17,7 +17,7 @@ const httpLink = new HttpLink({
 });
 
 const wsLink = new WebSocketLink({
-	uri: `ws://97d76d4120d6.ngrok.io/graphql`,
+	uri: `ws://ec2-18-217-78-249.us-east-2.compute.amazonaws.com:3000/graphql`,
 	options: {
 		reconnect: true,
 	},

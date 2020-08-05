@@ -11,31 +11,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createBooking = void 0;
 const booking_1 = require("../../../entity/booking");
-const service_1 = require("../../../entity/service");
-const calculateTaxes_1 = require("./calculateTaxes");
-const day_1 = require("./day");
 const notification_1 = require("../../../entity/notification");
-const constant_1 = require("../../Notification/PubSub/constant");
+const service_1 = require("../../../entity/service");
 const User_1 = require("../../../entity/User");
-const overLappingAppointement_1 = require("./overLappingAppointement");
+const Convert24h_1 = require("../../../Sharefonction/Convert24h");
+const milisecondTohours_1 = require("../../../Sharefonction/milisecondTohours");
+const constant_1 = require("../../Notification/PubSub/constant");
+const calculateTaxes_1 = require("./calculateTaxes");
 exports.createBooking = {
     Mutation: {
         createBooking: (_, { serviceId, date, startService }, { pubsub, session }) => __awaiter(void 0, void 0, void 0, function* () {
             const service = yield service_1.Service.findOne({ where: { id: serviceId } });
-            const averageTime = service === null || service === void 0 ? void 0 : service.averageTime;
-            const start = startService;
-            const endservice = averageTime + start;
-            const response = yield overLappingAppointement_1.overLappingAppointements(start, endservice, averageTime, serviceId, date);
-            console.log("response", response);
-            if (response === null) {
-                return {
-                    errors: {
-                        path: "overLappingAppointements",
-                        message: "theres no appointment available around the time you selected ",
-                    },
-                };
-            }
-            const isbetween = yield day_1.week(date, response.start, service);
             let total;
             let taxes;
             if ((service === null || service === void 0 ? void 0 : service.Taxes) === true) {
@@ -48,29 +34,38 @@ exports.createBooking = {
                 taxes = 0;
             }
             let createbooking;
-            if (isbetween) {
+            const booking = yield booking_1.Booking.findOne({
+                where: {
+                    serviceId,
+                    date,
+                    startService,
+                    endService: startService + (service === null || service === void 0 ? void 0 : service.averageTime),
+                },
+            });
+            console.log("booking", booking);
+            if (!booking) {
                 let Total;
                 if (service && taxes)
                     Total = service.price + taxes;
                 createbooking = yield booking_1.Booking.create({
                     serviceId,
                     date,
-                    startService: response.start,
-                    endService: response.end,
+                    startService,
+                    endService: startService + (service === null || service === void 0 ? void 0 : service.averageTime),
                     price: service === null || service === void 0 ? void 0 : service.price,
                     taxes,
                     depositAmount: service === null || service === void 0 ? void 0 : service.depositAmount,
                     isRefund: service === null || service === void 0 ? void 0 : service.isRefund,
                     Total,
                 }).save();
-                console.log(createbooking);
+                let d = new Date(date);
                 const senderId = session.userId;
                 const sender = yield User_1.User.findOne({ where: { id: senderId } });
                 const databaseNotification = yield notification_1.Notification.create({
                     bookRequest: true,
                     message: {
                         Title: "new booking request",
-                        Body: `${sender === null || sender === void 0 ? void 0 : sender.username} wants to take an appointement with you `,
+                        Body: `${sender === null || sender === void 0 ? void 0 : sender.username} wants to take an appointement with you on ${d.toUTCString()} between ${Convert24h_1.tConv24(milisecondTohours_1.getHours(startService))} and ${Convert24h_1.tConv24(milisecondTohours_1.getHours(startService + (service === null || service === void 0 ? void 0 : service.averageTime)))} `,
                     },
                     recipientId: service === null || service === void 0 ? void 0 : service.ownerId,
                     senderId: session.userId,

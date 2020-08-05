@@ -21,9 +21,9 @@ exports.findNotification = {
             let MessageQB = typeorm_1.getConnection()
                 .getRepository(notification_1.Notification)
                 .createQueryBuilder("n");
-            MessageQB = MessageQB.andWhere("n.senderId = :senderId", {
-                senderId,
-            }).orWhere("n.recipientId = :recipientId", { recipientId });
+            MessageQB = MessageQB.andWhere("n.recipientId = :recipientId", {
+                recipientId,
+            }).addOrderBy("n.createdDate", "DESC");
             const response = yield MessageQB.getMany();
             console.log(response);
             return response;

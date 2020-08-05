@@ -1,29 +1,13 @@
 import * as React from "react";
-import {
-	ActivityIndicator,
-	Image,
-	ScrollView,
-	Text,
-	TouchableOpacity,
-} from "react-native";
+import { ActivityIndicator, Image, ScrollView, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import MaterialButtonHamburger from "../../../../Component/MaterialButtonHamburger";
 import List from "../../../../Component/ServiceList";
 import { TabsStackNavProps } from "../../../../screenStack/Tydefs/tabsParamsList";
+import { registerForPushNotificationsAsync } from "../../../../shareFuction/pushNotificationPermision";
 import { serviceByCategoryContext } from "../../../../shareFuction/serviceByCategory";
 import { AuthContext } from "../../../../shareFuction/userContext";
 import { HomePageStyle } from "../style/style";
-
-const LeftAction = () => {
-	return (
-		<TouchableOpacity
-			style={{ backgroundColor: "green" }}
-			onPress={() => console.log("hello")}
-		>
-			<Text>Hello</Text>
-		</TouchableOpacity>
-	);
-};
 
 export function HomePage({ navigation }: TabsStackNavProps<"homepage">) {
 	const { me, user } = React.useContext(AuthContext);
@@ -48,7 +32,9 @@ export function HomePage({ navigation }: TabsStackNavProps<"homepage">) {
 	const [Aesthetician, setAesthetician] = React.useState<any[]>([]);
 
 	me();
-
+	registerForPushNotificationsAsync()
+		.then(() => {})
+		.catch((e) => console.log(e));
 	React.useEffect(() => {
 		BarbershopQuery()
 			.then((index: any) => {

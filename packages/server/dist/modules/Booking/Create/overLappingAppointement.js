@@ -10,15 +10,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.overLappingAppointements = void 0;
-const booking_1 = require("../../../entity/booking");
 const typeorm_1 = require("typeorm");
+const booking_1 = require("../../../entity/booking");
 function overLappingAppointements(start, endservice, averageTime, serviceId, date) {
     return __awaiter(this, void 0, void 0, function* () {
         const intervalUn = yield booking_1.Booking.findOne({
             where: { serviceId, date, startService: typeorm_1.Between(start, endservice) },
         });
         if (intervalUn) {
-            let endService = intervalUn.startService - 5;
+            let endService = intervalUn.startService;
             let startService = endService - averageTime;
             const intervalDeux = yield booking_1.Booking.findOne({
                 where: { serviceId, date, endService: typeorm_1.Between(startService, endService) },
@@ -30,7 +30,7 @@ function overLappingAppointements(start, endservice, averageTime, serviceId, dat
                 };
             }
             else {
-                startService = intervalUn.endService + 5;
+                startService = intervalUn.endService;
                 endService = startService + averageTime;
                 const interValTrois = yield booking_1.Booking.findOne({
                     where: {

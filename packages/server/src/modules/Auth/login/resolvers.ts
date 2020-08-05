@@ -3,7 +3,7 @@ import * as bcrypt from "bcryptjs";
 import { User } from "../../../entity/User";
 import { MutationLoginArgs } from "../../../types/graphql-hooks";
 import { userSessionIdPrefix } from "../../shared/constant";
-import { confirmEmailError, invalidLogin } from "./errorMessages";
+import { invalidLogin } from "./errorMessages";
 
 // Iresolver is there to add types to the
 // ts project
@@ -39,16 +39,16 @@ export const loginResolver: IResolvers = {
 					],
 				};
 			}
-			if (!user.confirm) {
-				return {
-					errors: [
-						{
-							path: "email",
-							message: confirmEmailError,
-						},
-					],
-				};
-			}
+			// if (!user.confirm) {
+			// 	return {
+			// 		errors: [
+			// 			{
+			// 				path: "email",
+			// 				message: confirmEmailError,
+			// 			},
+			// 		],
+			// 	};
+			// }
 			session.userId = user.id;
 
 			if (req.sessionID) {

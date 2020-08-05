@@ -15,7 +15,7 @@ exports.findUrl = {
     Mutation: {
         findUrl: (_, { serviceId }) => __awaiter(void 0, void 0, void 0, function* () {
             const service = yield service_1.Service.findOne({ where: { id: serviceId } });
-            return service === null || service === void 0 ? void 0 : service.pictureUrl;
+            return service === null || service === void 0 ? void 0 : service.picturesUrl;
         }),
     },
 };

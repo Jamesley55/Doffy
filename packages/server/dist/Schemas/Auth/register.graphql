@@ -1,55 +1,56 @@
 # import Error from "errors.graphql"
 
 type RegisterResponse {
-  errors: [Error!]
-  sessionId: String
+	errors: [Error!]
+	sessionId: String
 }
 
 type Mutation {
-  register(
-    username: String!
-    email: String!
-    password: String!
-    confirmPassword: String!
-  ): RegisterResponse!
+	register(
+		username: String!
+		email: String!
+		password: String!
+		confirmPassword: String!
+	): RegisterResponse!
 }
 
 # import User from "user.graphql"
 
 type User {
-  username: String
-  email: String
-  service: Service
-  notification: [Notification!]
-  messages: [Message!]
+	username: String
+	email: String
+	service: Service
+	notification: [Notification!]
+	messages: [Message!]
+	userType: String
 }
 
 type Service {
-  id: String
-  name: String
-  pictureUrl: String
-  category: String
-  description: String
-  coutryId: String
-  stateId: String
-  cityId: String
-  Taxes: Boolean
-  Adress: String
-  rating: Int
-  price: Float
-  payoutSchedule: String
-  customerBillingStatement: String
-  latitude: Float
-  longitude: Float
-  ownerId: String
+	id: String
+	name: String
+	pictureUrl: String
+	category: String
+	description: String
+	coutryId: String
+	stateId: String
+	cityId: String
+	Taxes: Boolean
+	Adress: String
+	rating: Int
+	price: Float
+	payoutSchedule: String
+	customerBillingStatement: String
+	latitude: Float
+	longitude: Float
+	ownerId: String
 }
 
 type Me {
-  user: User
-  sessionId: String
-  service: [Service]
+	user: User
+	sessionId: String
+	service: [Service]
 }
 
 type Query {
-  me: Me
+	me: Me
 }

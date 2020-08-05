@@ -11,8 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Notification = void 0;
 const typeorm_1 = require("typeorm");
-const User_1 = require("./User");
 const notificationMessage_1 = require("./notificationMessage");
+const User_1 = require("./User");
 let Notification = class Notification extends typeorm_1.BaseEntity {
 };
 __decorate([

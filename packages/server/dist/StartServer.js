@@ -54,10 +54,10 @@ exports.StartServer = () => __awaiter(void 0, void 0, void 0, function* () {
         resave: false,
         saveUninitialized: false,
         cookie: {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === "production",
+            httpOnly: false,
             maxAge: 1000 * 60 * 60 * 24 * 12 * 365,
         },
+        proxy: true,
     }));
     confirm_1.ConfirmEmail();
     const cors = {

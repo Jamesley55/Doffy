@@ -1,4 +1,9 @@
-import { MeDocument, useRegisterMutation } from "@doffy/controller";
+import {
+	MeDocument,
+	NewNotificationDocument,
+	useNotificationQuery,
+	useRegisterMutation,
+} from "@doffy/controller";
 import {
 	useLoginMutation,
 	useLogoutMutation,
@@ -7,6 +12,7 @@ import * as SecureStore from "expo-secure-store";
 import * as React from "react";
 import { Error, MeQuery } from "../../controller/src/generated/graphql-hooks";
 import { client } from "../src/apollo";
+import { sendNotif } from "./pushNotificationPermision";
 
 type User = null | string | undefined;
 type loginRegister = Promise<
@@ -50,6 +56,29 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 	const [registerMutation] = useRegisterMutation();
 	const [loginMutation] = useLoginMutation();
 	const [logoutMutation] = useLogoutMutation();
+	const { subscribeToMore } = useNotificationQuery();
+	React.useEffect(() => {
+		if (id) {
+			subscribeToMore({
+				document: NewNotificationDocument,
+				variables: { recipientId: id },
+				updateQuery: (prev, { subscriptionData }: any) => {
+					if (!subscriptionData.data) return prev;
+					else {
+						sendNotif("new Notif", undefined);
+						return {
+							...prev,
+							notification: [
+								...prev.notification,
+								subscriptionData.data.notification,
+							],
+						};
+					}
+				},
+			});
+		}
+	}, [id]);
+
 	return (
 		<AuthContext.Provider
 			value={{
@@ -89,17 +118,17 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 						});
 					} catch (e) {
 						console.log("ta mere la pute wesh ");
-						logoutMutation();
-						setToken(null);
-						await SecureStore.deleteItemAsync("sid");
+						// logoutMutation();
+						// setToken(null);
+						// await SecureStore.deleteItemAsync("sid");
 					}
 					if (
 						!Me.data?.me?.user?.username ||
 						!Me.data?.me?.user?.username === undefined
 					) {
-						logoutMutation();
-						setToken(null);
-						await SecureStore.deleteItemAsync("sid");
+						// logoutMutation();
+						// setToken(null);
+						// await SecureStore.deleteItemAsync("sid");
 					}
 					// tslint:disable-next-line: no-shadowed-variable
 					const User: any = Me.data?.me?.user?.username;
@@ -108,7 +137,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
 					setId(Id);
 					setUserType(UserType);
-
 					setUser(User);
 				},
 				login: async (values: any) => {

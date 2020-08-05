@@ -37,9 +37,9 @@ exports.fileUpload = {
             if (id) {
                 const service = yield service_1.Service.findOne({ where: { id } });
                 if (service) {
-                    const list = service.pictureUrl;
+                    const list = service.picturesUrl;
                     list.push(url);
-                    service.pictureUrl = list;
+                    service.picturesUrl = list;
                     service === null || service === void 0 ? void 0 : service.save();
                 }
             }

@@ -1,5 +1,4 @@
-import { useNotificationQuery } from "@doffy/controller";
-import { NewNotificationDocument } from "@doffy/controller/src/generated/graphql-hooks";
+import { AntDesign } from "@expo/vector-icons";
 import * as Notifications from "expo-notifications";
 import * as React from "react";
 import {
@@ -14,22 +13,14 @@ import { TabsStackNavProps } from "../../../../screenStack/Tydefs/tabsParamsList
 import { BookingContext } from "../../../../shareFuction/booking";
 import { IntercommunicationContext } from "../../../../shareFuction/IntercommunicationContext";
 import { AuthContext } from "../../../../shareFuction/userContext";
-
-Notifications.setNotificationHandler({
-	handleNotification: async () => ({
-		shouldShowAlert: true,
-		shouldPlaySound: false,
-		shouldSetBadge: false,
-	}),
-});
-
 export function Notification({
 	navigation,
 }: TabsStackNavProps<"notification">) {
 	Notifications.getPermissionsAsync();
 
-	const { subscribeToMore } = useNotificationQuery();
-	const { NotificationQuery } = React.useContext(IntercommunicationContext);
+	const { NotificationQuery, subscribtionNotif } = React.useContext(
+		IntercommunicationContext
+	);
 	const [loading, setLoading] = React.useState(true);
 
 	const [array, setArray] = React.useState<any[]>([null]);
@@ -48,29 +39,9 @@ export function Notification({
 			});
 	}, [loading]);
 	React.useEffect(() => {
-		Notifications.addNotificationReceivedListener(() => {
-			return { array };
-		});
+		subscribtionNotif(id, setLoading as any);
 	}, []);
-	React.useEffect(() => {
-		subscribeToMore({
-			document: NewNotificationDocument,
-			variables: { recipientId: id },
-			updateQuery: (prev, { subscriptionData }: any) => {
-				if (!subscriptionData.data) return prev;
-				else {
-					setLoading(true);
-					return {
-						...prev,
-						notification: [
-							...prev.notification,
-							subscriptionData.data.notification,
-						],
-					};
-				}
-			},
-		});
-	}, []);
+
 	if (loading) {
 		return <ActivityIndicator style={{ flex: 1 }} />;
 	}
@@ -197,6 +168,14 @@ export function Notification({
 									>
 										{item.message.Body}
 									</Text>
+									{item.bookRequest && (
+										<AntDesign
+											style={{ alignSelf: "flex-end" }}
+											name="exclamationcircleo"
+											size={12}
+											color="black"
+										/>
+									)}
 								</TouchableOpacity>
 							</Swipeable>
 						);

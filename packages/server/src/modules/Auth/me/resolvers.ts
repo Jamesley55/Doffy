@@ -43,6 +43,7 @@ export const Me: IResolvers = {
 				service,
 				sessionId: req.sessionID,
 			};
+
 			return userService;
 		},
 	},
