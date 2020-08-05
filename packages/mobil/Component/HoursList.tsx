@@ -1,5 +1,6 @@
 import * as React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import requestPageStyle from "../routes/bookingPages/requestPage/styles/style";
 
 interface Props {
 	backgroundColor?: any;
@@ -23,23 +24,13 @@ export class HoursList extends React.PureComponent<Props> {
 					onPress={this.props.onPress}
 				>
 					<View
-						style={{
-							backgroundColor:
-								(this.props.backgroundColor ? "green" : "white") || "white",
-							height: 30,
-							width: 80,
-							borderRadius: 30,
-							alignSelf: "center",
-							marginLeft: 5,
-							marginRight: 5,
-							shadowOffset: {
-								height: 1,
-								width: 1,
+						style={[
+							{
+								backgroundColor:
+									(this.props.backgroundColor ? "green" : "white") || "white",
 							},
-							shadowColor: "#000",
-							shadowOpacity: 0.35,
-							shadowRadius: 5,
-						}}
+							requestPageStyle.hoursList,
+						]}
 					>
 						<Text
 							style={{

@@ -3,7 +3,7 @@ import { Linking, SafeAreaView, Text, View } from "react-native";
 import EntypoIcon from "react-native-vector-icons/Entypo";
 import FeatherIcon from "react-native-vector-icons/Feather";
 import { AuthContext } from "../../../../shareFuction/userContext";
-import { helpStyles } from "../style/style";
+import helpStyles from "../style/style";
 
 const Tel = "14387638617";
 export function help({ navigation }) {

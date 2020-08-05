@@ -1,6 +1,6 @@
 import * as React from "react";
 import { FlatList, ImageBackground, Text, View } from "react-native";
-import { requestPageStyle } from "../routes/bookingPages/requestPage/styles/style";
+import requestPageStyle from "../routes/bookingPages/requestPage/styles/style";
 interface Props {
 	data: any;
 }

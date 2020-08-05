@@ -2,7 +2,7 @@ import * as React from "react";
 import { Image, SafeAreaView, Text, TouchableOpacity } from "react-native";
 import MaterialButtonDark from "../../../../Component/MaterialButtonDark";
 import { AuthStackNavProps } from "../../../../screenStack/Tydefs/AuthParamList";
-import { welcomePageStyle } from "../style/style";
+import welcomePageStyle from "../style/style";
 
 export function welcomePage({ navigation }: AuthStackNavProps<"welcomePage">) {
 	return (

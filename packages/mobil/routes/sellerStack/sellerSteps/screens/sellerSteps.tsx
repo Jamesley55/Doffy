@@ -6,7 +6,7 @@ import IoniconsIcon from "react-native-vector-icons/Ionicons";
 import { BlueButton } from "../../../../Component/BlueBotton";
 import { SellerStackNavProps } from "../../../../screenStack/Tydefs/sellerParamList";
 import { AuthContext } from "../../../../shareFuction/userContext";
-import { firstPage3Style } from "../../firstPage3/style/style";
+import firstPage3Style from "../../firstPage3/style/style";
 import { sellerStepsStyle } from "../style/style";
 
 export function sellerSteps({

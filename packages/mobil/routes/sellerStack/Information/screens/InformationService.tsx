@@ -9,7 +9,7 @@ import { Input } from "../../../../Component/Input";
 import { MaterialSwitch2 } from "../../../../Component/MaterialSwitch2";
 import { SellerStackNavProps } from "../../../../screenStack/Tydefs/sellerParamList";
 import { ServiceCreationContext } from "../../../../shareFuction/serviceCreation";
-import { pricePagestyles } from "../style/styles";
+import pricePagestyles from "../style/styles";
 
 export function InformationService({
 	navigation,

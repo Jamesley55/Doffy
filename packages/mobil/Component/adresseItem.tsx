@@ -1,6 +1,14 @@
 import * as React from "react";
-import { StyleProp, Text, TextInput, TextStyle, View } from "react-native";
-
+import {
+	NativeModules,
+	StyleProp,
+	Text,
+	TextInput,
+	TextStyle,
+	View,
+} from "react-native";
+const { PlatformConstants } = NativeModules;
+const deviceType = PlatformConstants.interfaceIdiom;
 interface Props {
 	value: any;
 	onChange: any;
@@ -12,7 +20,25 @@ class AddressItem extends React.PureComponent<Props> {
 	render() {
 		return (
 			<View>
-				<Text>{this.props.label}</Text>
+				<Text
+					style={
+						deviceType === "phone"
+							? {
+									marginLeft: 10,
+									fontSize: 16,
+									marginBottom: 10,
+									marginTop: 10,
+							  }
+							: {
+									marginLeft: 20,
+									fontSize: 20,
+									marginBottom: 15,
+									marginTop: 15,
+							  }
+					}
+				>
+					{this.props.label}
+				</Text>
 				<TextInput
 					keyboardAppearance="dark"
 					returnKeyType="done"

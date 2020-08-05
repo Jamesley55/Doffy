@@ -22,7 +22,7 @@ import { SellerStackNavProps } from "../../../../screenStack/Tydefs/sellerParamL
 import { formatFilename } from "../../../../shareFuction/formatFileName";
 import { ServiceCreationContext } from "../../../../shareFuction/serviceCreation";
 import { uploadToS3 } from "../../../../shareFuction/uploadS3";
-import { picDownloadStyle } from "../style/style";
+import picDownloadStyle from "../style/style";
 
 export function picDownload({
 	navigation,

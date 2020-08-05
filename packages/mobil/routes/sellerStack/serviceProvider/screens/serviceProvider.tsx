@@ -13,7 +13,7 @@ import IoniconsIcon from "react-native-vector-icons/Ionicons";
 import { BlueButton } from "../../../../Component/BlueBotton";
 import { SellerStackNavProps } from "../../../../screenStack/Tydefs/sellerParamList";
 import { ServiceCreationContext } from "../../../../shareFuction/serviceCreation";
-import { serviceProviderStyle } from "../style/style";
+import serviceProviderStyle from "../style/style";
 export function serviceProvider({
 	navigation,
 }: SellerStackNavProps<"serviceProvider">) {

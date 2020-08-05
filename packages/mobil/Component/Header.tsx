@@ -2,7 +2,7 @@ import * as React from "react";
 import { Image, View } from "react-native";
 import EntypoIcon from "react-native-vector-icons/Entypo";
 import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
-import { requestPageStyle } from "../routes/bookingPages/requestPage/styles/style";
+import requestPageStyle from "../routes/bookingPages/requestPage/styles/style";
 interface Props {
 	navigation: any;
 }

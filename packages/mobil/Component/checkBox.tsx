@@ -17,6 +17,7 @@ export class Checkbox extends React.PureComponent<Props> {
 				style={{
 					borderRadius: 30,
 					marginLeft: 10,
+					marginTop: "1%",
 				}}
 				onPress={() => {
 					this.state.values

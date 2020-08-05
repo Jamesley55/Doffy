@@ -4,7 +4,7 @@ import * as React from "react";
 import { ImageBackground, Text, TouchableOpacity, View } from "react-native";
 import { tConv24 } from "../../../../shareFuction/Convert24h";
 import { openMap } from "../../../../shareFuction/openMaps";
-import { requestPageStyle } from "../styles/style";
+import requestPageStyle from "../styles/style";
 interface Props {
 	adresseVisible: boolean;
 	state: string;
@@ -77,13 +77,7 @@ export class Availability extends React.PureComponent<Props> {
 										</Text>
 									</View>
 									<TouchableOpacity
-										style={{
-											backgroundColor: "rgba(230, 230, 230,1)",
-											height: 50,
-											width: 150,
-											marginRight: 10,
-											borderRadius: 100,
-										}}
+										style={requestPageStyle.openInGoogle}
 										onPress={() => openMap(Adresse, city, state)}
 									>
 										<Text style={requestPageStyle.openGoogle}>

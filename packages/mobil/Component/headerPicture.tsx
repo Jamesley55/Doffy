@@ -1,7 +1,7 @@
 import * as React from "react";
 import { ImageBackground, Text, TouchableOpacity, View } from "react-native";
 import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
-import { requestPageStyle } from "../routes/bookingPages/requestPage/styles/style";
+import requestPageStyle from "../routes/bookingPages/requestPage/styles/style";
 
 interface Props {
 	profilPic: string;
