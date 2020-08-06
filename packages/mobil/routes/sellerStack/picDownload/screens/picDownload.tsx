@@ -1,3 +1,4 @@
+import { BlueButton } from "@doffy/common";
 import { useSignS3Mutation } from "@doffy/controller/src/generated/graphql-hooks";
 import { Entypo } from "@expo/vector-icons";
 import Constants from "expo-constants";
@@ -17,7 +18,6 @@ import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import EntypoIcon from "react-native-vector-icons/Entypo";
 import IoniconsIcon from "react-native-vector-icons/Ionicons";
 import MaterialIconsIcon from "react-native-vector-icons/MaterialIcons";
-import { BlueButton } from "../../../../Component/BlueBotton";
 import { SellerStackNavProps } from "../../../../screenStack/Tydefs/sellerParamList";
 import { formatFilename } from "../../../../shareFuction/formatFileName";
 import { ServiceCreationContext } from "../../../../shareFuction/serviceCreation";

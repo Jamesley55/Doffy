@@ -1,10 +1,10 @@
+import { BlueButton } from "@doffy/common";
 import * as React from "react";
 import { Alert, SafeAreaView, Text, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import EntypoIcon from "react-native-vector-icons/Entypo";
 import IoniconsIcon from "react-native-vector-icons/Ionicons";
 import { AddressInput } from "../../../../Component/adressInput";
-import { BlueButton } from "../../../../Component/BlueBotton";
 import { Input } from "../../../../Component/Input";
 import { MaterialSwitch2 } from "../../../../Component/MaterialSwitch2";
 import { SellerStackNavProps } from "../../../../screenStack/Tydefs/sellerParamList";

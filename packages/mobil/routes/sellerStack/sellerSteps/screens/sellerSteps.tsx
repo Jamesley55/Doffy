@@ -1,9 +1,9 @@
+import { BlueButton } from "@doffy/common";
 import * as React from "react";
 import { Image, SafeAreaView, Text, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import EntypoIcon from "react-native-vector-icons/Entypo";
 import IoniconsIcon from "react-native-vector-icons/Ionicons";
-import { BlueButton } from "../../../../Component/BlueBotton";
 import { SellerStackNavProps } from "../../../../screenStack/Tydefs/sellerParamList";
 import { AuthContext } from "../../../../shareFuction/userContext";
 import firstPage3Style from "../../firstPage3/style/style";

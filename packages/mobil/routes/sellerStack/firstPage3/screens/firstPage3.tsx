@@ -1,13 +1,12 @@
+import { BlueButton } from "@doffy/common";
 import * as React from "react";
 import { SafeAreaView, Text, View } from "react-native";
 import EntypoIcon from "react-native-vector-icons/Entypo";
 import FeatherIcon from "react-native-vector-icons/Feather";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import IoniconsIcon from "react-native-vector-icons/Ionicons";
-import { BlueButton } from "../../../../Component/BlueBotton";
 import { SellerStackNavProps } from "../../../../screenStack/Tydefs/sellerParamList";
 import firstPage3Style from "../style/style";
-
 export function firstPage3({ navigation }: SellerStackNavProps<"Page3">) {
 	return (
 		<SafeAreaView style={firstPage3Style.container}>

@@ -1,3 +1,4 @@
+import { BlueButton } from "@doffy/common";
 import * as React from "react";
 import {
 	Alert,
@@ -10,7 +11,6 @@ import {
 import { ScrollView } from "react-native-gesture-handler";
 import EntypoIcon from "react-native-vector-icons/Entypo";
 import IoniconsIcon from "react-native-vector-icons/Ionicons";
-import { BlueButton } from "../../../../Component/BlueBotton";
 import { SellerStackNavProps } from "../../../../screenStack/Tydefs/sellerParamList";
 import { ServiceCreationContext } from "../../../../shareFuction/serviceCreation";
 import serviceProviderStyle from "../style/style";

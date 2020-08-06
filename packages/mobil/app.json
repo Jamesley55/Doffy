@@ -28,6 +28,13 @@
 		},
 		"notification": {
 			"icon": "./assets/icon.png"
+		},
+		"web": {
+			"build": {
+				"babel": {
+					"include": ["react-native-elements", "react-native-web"]
+				}
+			}
 		}
 	}
 }
