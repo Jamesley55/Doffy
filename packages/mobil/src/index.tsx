@@ -1,7 +1,7 @@
 import * as Notifications from "expo-notifications";
 import * as React from "react";
 import { ApolloProvider } from "react-apollo";
-import { AppRegistry, AppState, Vibration } from "react-native";
+import { AppState, Vibration } from "react-native";
 import { Providers } from "../routes/providers";
 import { client } from "./apollo";
 
@@ -37,5 +37,3 @@ export default class Index extends React.PureComponent {
 		);
 	}
 }
-
-AppRegistry.registerComponent("Appname", () => Index);
