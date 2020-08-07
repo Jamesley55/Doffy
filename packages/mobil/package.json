@@ -12,8 +12,8 @@
 	},
 	"dependencies": {
 		"@apollo/react-hooks": "^3.1.4",
-		"@doffy/common": "^1.0.13",
-		"@doffy/controller": "^1.0.13",
+		"@doffy/common": "^1.0.14",
+		"@doffy/controller": "^1.0.14",
 		"@expo/vector-icons": "^10.0.0",
 		"@react-native-community/datetimepicker": "^2.6.0",
 		"@react-native-community/masked-view": "0.1.10",
@@ -92,7 +92,7 @@
 		"typescript": "~3.9.5"
 	},
 	"private": true,
-	"version": "1.0.13",
+	"version": "1.0.14",
 	"author": "Jamesley Joseph",
 	"license": "MIT"
 }
