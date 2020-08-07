@@ -1,4 +1,4 @@
-import { BlueButton } from "@doffy/common";
+import { BlueButton } from "@doffy/component";
 import { useSignS3Mutation } from "@doffy/controller/src/generated/graphql-hooks";
 import { Entypo } from "@expo/vector-icons";
 import Constants from "expo-constants";

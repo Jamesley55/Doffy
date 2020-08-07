@@ -1,4 +1,4 @@
-import { BlueButton } from "@doffy/common";
+import { BlueButton } from "@doffy/component";
 import * as React from "react";
 import {
 	Alert,
