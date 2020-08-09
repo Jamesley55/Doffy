@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MaterialFixedLabelTextbox = void 0;
 const React = require("react");
 const react_native_1 = require("react-native");
 class MaterialFixedLabelTextbox extends React.PureComponent {
@@ -26,7 +25,6 @@ const styles = react_native_1.StyleSheet.create({
         paddingTop: 16,
         paddingBottom: 8,
         fontSize: 16,
-        fontFamily: "roboto-regular",
         lineHeight: 16,
     },
     inputStyle: {
@@ -38,7 +36,6 @@ const styles = react_native_1.StyleSheet.create({
         paddingBottom: 8,
         paddingLeft: 30,
         fontSize: 16,
-        fontFamily: "roboto-regular",
         lineHeight: 16,
     },
 });

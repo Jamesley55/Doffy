@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Input = void 0;
 const React = require("react");
 const react_native_1 = require("react-native");
 class Input extends React.PureComponent {

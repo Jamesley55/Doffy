@@ -52,7 +52,6 @@ const styles = StyleSheet.create({
 	caption: {
 		color: "#fff",
 		fontSize: 14,
-		fontFamily: "roboto-regular",
 	},
 });
 

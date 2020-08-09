@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MaterialButtonDark = void 0;
 const React = require("react");
 const react_native_1 = require("react-native");
 class MaterialButtonDark extends React.PureComponent {
@@ -35,7 +34,6 @@ const styles = react_native_1.StyleSheet.create({
     caption: {
         color: "#fff",
         fontSize: 14,
-        fontFamily: "roboto-regular",
     },
 });
 exports.default = MaterialButtonDark;

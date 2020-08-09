@@ -60,7 +60,7 @@ export const StartServer = async () => {
 	ConfirmEmail();
 	const cors = {
 		credentials: true,
-		origin: "http://localhost:19002/",
+		origin: ["http://localhost:19002/", "http://localhost:3000/"],
 	};
 
 	server.applyMiddleware({

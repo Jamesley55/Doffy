@@ -42,7 +42,6 @@ const styles = StyleSheet.create({
 		paddingTop: 16,
 		paddingBottom: 8,
 		fontSize: 16,
-		fontFamily: "roboto-regular",
 		lineHeight: 16,
 	},
 	inputStyle: {
@@ -54,7 +53,6 @@ const styles = StyleSheet.create({
 		paddingBottom: 8,
 		paddingLeft: 30,
 		fontSize: 16,
-		fontFamily: "roboto-regular",
 		lineHeight: 16,
 	},
 });

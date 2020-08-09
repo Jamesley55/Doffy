@@ -1,0 +1,64 @@
+{
+	"name": "@doffy/web",
+	"private": true,
+	"dependencies": {
+		"@doffy/common": "^1.0.14",
+		"@doffy/component": "^1.0.14",
+		"@doffy/controller": "^1.0.14",
+		"@testing-library/jest-dom": "^4.2.4",
+		"@testing-library/react": "^9.3.2",
+		"@testing-library/user-event": "^7.1.2",
+		"@types/jest": "^24.0.0",
+		"@types/node": "^12.0.0",
+		"@types/react": "^16.9.0",
+		"@types/react-dom": "^16.9.0",
+		"@types/react-native": "^0.63.4",
+		"babel-preset-expo": "^8.2.3",
+		"react": "^16.13.1",
+		"react-apollo": "3.1.3",
+		"react-art": "^16.13.1",
+		"react-dom": "^16.13.1",
+		"react-native": "^0.63.2",
+		"react-native-web": "^0.13.5",
+		"react-scripts": "3.4.1",
+		"react-scripts-ts": "^3.1.0",
+		"typescript": "~3.7.2"
+	},
+	"scripts": {
+		"start": "react-scripts-ts start",
+		"build": "react-scripts-ts build",
+		"test": "react-scripts-ts test --env=jsdom",
+		"eject": "react-scripts-ts eject",
+		"deploy": " react-scripts-ts build && cd build && netlify deploy && cd .."
+	},
+	"eslintConfig": {
+		"extends": "react-app"
+	},
+	"browserslist": {
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
+	},
+	"presets": [
+		"@babel/preset-react"
+	],
+	"plugins": [
+		"@babel/plugin-syntax-jsx"
+	],
+	"homepage": "http://realDoffy.com",
+	"version": "1.0.14",
+	"author": "Jamesley Joseph",
+	"license": "MIT",
+	"devDependencies": {
+		"@babel/plugin-syntax-jsx": "^7.10.4",
+		"@babel/preset-react": "^7.10.4",
+		"webpack-dev-server": "^3.11.0"
+	}
+}

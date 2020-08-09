@@ -1,24 +1,11 @@
 "use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) __createBinding(exports, m, p);
-};
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(require("./adresseItem"), exports);
-__exportStar(require("./adressInput"), exports);
-__exportStar(require("./BlueBotton"), exports);
-__exportStar(require("./checkBox"), exports);
-__exportStar(require("./Input"), exports);
-__exportStar(require("./InputField"), exports);
-__exportStar(require("./MaterialButtonDark"), exports);
-__exportStar(require("./MaterialButtonHamburger"), exports);
-__exportStar(require("./MaterialCheckbox5"), exports);
-__exportStar(require("./MaterialFixedLabelTextbox"), exports);
-__exportStar(require("./MaterialSwitch2"), exports);
+__export(require("./BlueBotton"));
+__export(require("./Input"));
+__export(require("./MaterialButtonDark"));
+__export(require("./MaterialFixedLabelTextbox"));
+__export(require("./MaterialSwitch2"));
 //# sourceMappingURL=index.js.map

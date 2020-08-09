@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MaterialSwitch2 = void 0;
 const React = require("react");
 const react_native_1 = require("react-native");
 class MaterialSwitch2 extends React.PureComponent {
