@@ -20,6 +20,6 @@ export const ConfirmEmail = () => {
 		await redis.del(confirmationPrefix + token);
 
 		// redisrect to the login page
-		return res.redirect("http://doffyinc.com");
+		return res.redirect("http://realDoffy.com");
 	});
 };
