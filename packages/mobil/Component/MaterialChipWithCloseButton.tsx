@@ -1,6 +1,6 @@
 import * as React from "react";
 import { StyleProp, StyleSheet, Text, TextStyle, View } from "react-native";
-import Icon from "react-native-vector-icons/";
+import { Icon } from "react-native-vector-icons/Icon";
 
 interface Props {
 	navigationPage: any;

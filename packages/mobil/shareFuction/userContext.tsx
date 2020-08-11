@@ -118,17 +118,17 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 						});
 					} catch (e) {
 						console.log("ta mere la pute wesh ");
-						// logoutMutation();
-						// setToken(null);
-						// await SecureStore.deleteItemAsync("sid");
+						logoutMutation();
+						setToken(null);
+						await SecureStore.deleteItemAsync("sid");
 					}
 					if (
 						!Me.data?.me?.user?.username ||
 						!Me.data?.me?.user?.username === undefined
 					) {
-						// logoutMutation();
-						// setToken(null);
-						// await SecureStore.deleteItemAsync("sid");
+						logoutMutation();
+						setToken(null);
+						await SecureStore.deleteItemAsync("sid");
 					}
 					// tslint:disable-next-line: no-shadowed-variable
 					const User: any = Me.data?.me?.user?.username;

@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import EvilIconsIcon from "react-native-vector-icons/EvilIcons";
 import IoniconsIcon from "react-native-vector-icons/Ionicons";
-import { welcomePageStyle } from "../routes/AuthPages/welcomePage/style/style";
+import welcomePageStyle from "../routes/AuthPages/welcomePage/style/style";
 
 interface Props {
 	navigation: any;

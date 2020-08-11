@@ -1,8 +1,8 @@
-import { BlueButton } from "@doffy/common";
 import { FindServiceCalendarQuery } from "@doffy/controller";
 import * as React from "react";
 import { Alert, NativeModules, SafeAreaView, Text, View } from "react-native";
 import { FlatList, ScrollView } from "react-native-gesture-handler";
+import { BlueButton } from "../../../../Component/BlueBotton";
 import { Checkbox } from "../../../../Component/checkBox";
 import { Header } from "../../../../Component/Header";
 import { HeaderPicture } from "../../../../Component/headerPicture";

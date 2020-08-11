@@ -1,5 +1,6 @@
 import * as React from "react";
-import { FlatList, ImageBackground, Text, View } from "react-native";
+import { FlatList, Text, View } from "react-native";
+import FastImage from "react-native-fast-image";
 import requestPageStyle from "../routes/bookingPages/requestPage/styles/style";
 interface Props {
 	data: any;
@@ -36,14 +37,17 @@ export class PhotoGalery extends React.PureComponent<Props> {
 						this.Inde(index);
 						return (
 							<View style={requestPageStyle.rect2}>
-								<ImageBackground
+								<FastImage
 									style={{
 										flex: 1,
 										width: "100%",
 										height: "100%",
 										backgroundColor: "gray",
 									}}
-									source={{ uri: item, cache: "force-cache" }}
+									source={{
+										uri: item,
+										priority: FastImage.priority.normal,
+									}}
 								>
 									{!this.state.timePassed && (
 										<View
@@ -67,7 +71,7 @@ export class PhotoGalery extends React.PureComponent<Props> {
 											</Text>
 										</View>
 									)}
-								</ImageBackground>
+								</FastImage>
 							</View>
 						);
 					}}

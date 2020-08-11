@@ -4,11 +4,11 @@ import {
 	ActivityIndicator,
 	Button,
 	FlatList,
-	ImageBackground,
 	NativeModules,
 	Text,
 	TouchableOpacity,
 } from "react-native";
+import FastImage from "react-native-fast-image";
 import HomePageStyle from "../routes/HomeStack/homePage/style/style";
 import { getHours } from "../shareFuction/milisecondTohours";
 interface Props {
@@ -82,7 +82,7 @@ export class List extends React.PureComponent<Props> {
 								}}
 								style={HomePageStyle.ListRectStyle}
 							>
-								<ImageBackground
+								<FastImage
 									style={{
 										flex: 1,
 										width: "100%",
@@ -90,23 +90,9 @@ export class List extends React.PureComponent<Props> {
 									}}
 									source={{
 										uri: link ? link : undefined,
-										cache: "force-cache",
+										priority: FastImage.priority.normal,
 									}}
-									onLoadStart={() => {
-										this.setState({ imageLoaded: false });
-									}}
-									onLoadEnd={() => {
-										this.setState({ imageLoaded: true });
-									}}
-								>
-									<ActivityIndicator
-										style={{
-											alignSelf: "center",
-											height: "100%",
-										}}
-										animating={!this.state.imageLoaded}
-									/>
-								</ImageBackground>
+								/>
 							</TouchableOpacity>
 						);
 					}}

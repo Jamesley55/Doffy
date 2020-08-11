@@ -1,7 +1,8 @@
 import { FindServiceCalendarQuery } from "@doffy/controller";
 import { LinearGradient } from "expo-linear-gradient";
 import * as React from "react";
-import { ImageBackground, Text, TouchableOpacity, View } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
+import FastImage from "react-native-fast-image";
 import { tConv24 } from "../../../../shareFuction/Convert24h";
 import { openMap } from "../../../../shareFuction/openMaps";
 import requestPageStyle from "../styles/style";
@@ -23,7 +24,7 @@ export class Availability extends React.PureComponent<Props> {
 				<Text style={[requestPageStyle.Title, { textAlign: "center" }]}>
 					{adresseVisible ? "Location & hours" : "availability"}
 				</Text>
-				<ImageBackground
+				<FastImage
 					style={adresseVisible ? requestPageStyle.map : requestPageStyle.open}
 					source={
 						adresseVisible
@@ -151,7 +152,7 @@ export class Availability extends React.PureComponent<Props> {
 							</Text>
 						</View>
 					</LinearGradient>
-				</ImageBackground>
+				</FastImage>
 			</View>
 		);
 	}

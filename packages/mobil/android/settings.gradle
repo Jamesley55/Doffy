@@ -1,9 +1,11 @@
 rootProject.name = 'Doffy'
+include ':react-native-fast-image-expo'
+project(':react-native-fast-image-expo').projectDir = new File(rootProject.projectDir, '../../../node_modules/react-native-fast-image-expo/android')
 
-apply from: '../node_modules/react-native-unimodules/gradle.groovy'
+apply from: '../../../node_modules/react-native-unimodules/gradle.groovy'
 includeUnimodulesProjects()
 
-apply from: file("../node_modules/@react-native-community/cli-platform-android/native_modules.gradle");
+apply from: file("../../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle");
 applyNativeModulesSettingsGradle(settings)
 
 include ':app'

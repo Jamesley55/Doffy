@@ -285,8 +285,10 @@ export function schedulePage({
 							},
 						]}
 						onPress={() => {
-							if (thursday) selectDate("Thursday");
-							showDatePicker();
+							if (thursday) {
+								selectDate("Thursday");
+								showDatePicker();
+							}
 						}}
 					>
 						<Text style={SchedulePagestyles.hours}>{thursdayStart}</Text>
