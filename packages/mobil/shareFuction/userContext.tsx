@@ -12,7 +12,6 @@ import * as SecureStore from "expo-secure-store";
 import * as React from "react";
 import { Error, MeQuery } from "../../controller/src/generated/graphql-hooks";
 import { client } from "../src/apollo";
-import { sendNotif } from "./pushNotificationPermision";
 
 type User = null | string | undefined;
 type loginRegister = Promise<
@@ -63,9 +62,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 				document: NewNotificationDocument,
 				variables: { recipientId: id },
 				updateQuery: (prev, { subscriptionData }: any) => {
-					if (!subscriptionData.data) return prev;
-					else {
-						sendNotif("new Notif", undefined);
+					if (!subscriptionData.data) {
+						return prev;
+					} else {
 						return {
 							...prev,
 							notification: [

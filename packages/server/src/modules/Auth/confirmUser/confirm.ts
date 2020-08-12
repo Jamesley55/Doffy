@@ -13,6 +13,10 @@ export const ConfirmEmail = () => {
 		if (!userId) {
 			return false;
 		}
+		const user = await User.findOne({ id: userId });
+		if (user?.confirm) {
+			return res.redirect("http://realDoffy.com");
+		}
 		// update the confirmation state of the user
 		await User.update({ id: userId }, { confirm: true });
 

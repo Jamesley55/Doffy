@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>OneSignal_app_groups_key</key>
+	<string>group.com.JemLee.Doffy.onesignal</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -38,9 +40,7 @@
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string/>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Give $(PRODUCT_NAME) permission to save photos</string>
+	<string></string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>AntDesign.ttf</string>
@@ -63,11 +63,6 @@
 		<string>SimpleLineIcons.ttf</string>
 		<string>Zocial.ttf</string>
 	</array>
-	<key>UIApplicationSceneManifest</key>
-	<dict>
-		<key>UIApplicationSupportsMultipleScenes</key>
-		<false/>
-	</dict>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>audio</string>
