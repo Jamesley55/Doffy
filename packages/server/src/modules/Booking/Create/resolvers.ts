@@ -5,6 +5,7 @@ import { Service } from "../../../entity/service";
 import { User } from "../../../entity/User";
 import { tConv24 } from "../../../Sharefonction/Convert24h";
 import { getHours } from "../../../Sharefonction/milisecondTohours";
+import { sendNotification } from "../../../Sharefonction/sendNotif";
 import { PUBSUB_NEW_NOTIFICATION } from "../../Notification/PubSub/constant";
 import { calculateTaxes } from "./calculateTaxes";
 
@@ -37,7 +38,6 @@ export const createBooking: IResolvers = {
 					endService: startService + service?.averageTime,
 				},
 			});
-			console.log("booking", booking);
 			if (!booking) {
 				let Total;
 				if (service && taxes) Total = service.price + taxes;
@@ -71,12 +71,25 @@ export const createBooking: IResolvers = {
 					senderId: session.userId,
 					bookingId: createbooking?.id,
 				}).save();
+				const user = await User.findOne({
+					where: { id: session.userId },
+				});
+				const massage = {
+					app_id: "75ebe6f4-83ab-4d1e-b410-675fe0933122",
+					contents: {
+						en: databaseNotification.message.Body,
+					},
+					subtitle: {
+						en: databaseNotification.message.Title,
+					},
+					include_player_ids: [user?.notificationPushToken],
+				};
+				sendNotification(massage);
 
 				pubsub.publish(PUBSUB_NEW_NOTIFICATION, {
 					newNotification: databaseNotification,
 				});
 
-				console.log("booking", createbooking.price + createbooking.taxes);
 				return {
 					booking: {
 						startService: createbooking.startService,

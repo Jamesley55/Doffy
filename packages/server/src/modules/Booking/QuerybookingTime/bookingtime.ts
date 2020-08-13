@@ -9,7 +9,6 @@ export const BookingTime: IResolvers = {
 	Query: {
 		QueryBookingTime: async (_, { serviceId, date }) => {
 			const service = await Service.findOne({ where: { id: serviceId } });
-			console.log(service);
 			const calendar = await Calendar.findOne({
 				where: { CalendarId: service?.calendarId },
 			});
@@ -38,7 +37,6 @@ export const BookingTime: IResolvers = {
 				where: { scheduleTimeId },
 			});
 
-			console.log(schedule);
 			if (schedule?.EndTime) {
 				endTime = schedule.EndTime;
 			}
@@ -55,14 +53,12 @@ export const BookingTime: IResolvers = {
 						endService: i + service?.averageTime,
 					},
 				});
-				console.log("boook", booking);
 
 				if (!booking) {
 					const h: string = getHours(i);
 					hours.push(h);
 				}
 			}
-			console.log(hours);
 
 			return hours;
 		},

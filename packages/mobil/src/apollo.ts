@@ -6,13 +6,13 @@ import { HttpLink } from "apollo-link-http";
 import { WebSocketLink } from "apollo-link-ws";
 import { getMainDefinition } from "apollo-utilities";
 
-const host = "https://e532692941ae.ngrok.io/graphql";
+const host = "https://6fc0f03820de.ngrok.io/graphql";
 const httpLink = new HttpLink({
 	uri: host,
 });
 
 const wsLink = new WebSocketLink({
-	uri: `ws://e532692941ae.ngrok.io/graphql`,
+	uri: `ws://6fc0f03820de.ngrok.io/graphql`,
 	options: {
 		reconnect: true,
 	},
