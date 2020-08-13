@@ -1,6 +1,5 @@
 /* eslint-disable react/jsx-no-undef */
 import { BlueButton } from "@doffy/component";
-import { Link } from "@react-navigation/native";
 import * as React from "react";
 import {
 	Linking,
@@ -11,7 +10,7 @@ import {
 	View,
 } from "react-native";
 
-const App: React.FC = () => {
+export const Appclone: React.FC = () => {
 	return (
 		<View>
 			<ScrollView style={{ flex: 1 }}>
@@ -68,8 +67,7 @@ const App2: React.FC = () => {
 			<View>
 				<View>
 					<TouchableOpacity>
-						<Text>touch me </Text>
-						<Link to="/serviceHomePageclone">link</Link>
+						<Text>App clone </Text>
 					</TouchableOpacity>
 					<TouchableOpacity>
 						<Text
@@ -152,4 +150,3 @@ const style = StyleSheet.create({
 		marginTop: 400,
 	},
 });
-export default App;

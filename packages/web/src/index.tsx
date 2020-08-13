@@ -1,9 +1,9 @@
 import { AppRegistry } from "react-native";
-import App from "./App";
+import { Routes } from "./Route";
 import * as serviceWorker from "./serviceWorker";
 
 // register the app
-AppRegistry.registerComponent("App", () => App);
+AppRegistry.registerComponent("App", () => Routes);
 
 AppRegistry.runApplication("App", {
 	initialProps: {},

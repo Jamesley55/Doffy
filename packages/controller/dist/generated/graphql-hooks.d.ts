@@ -32,6 +32,7 @@ export declare type Mutation = {
     createService: Scalars['Boolean'];
     DeleteService?: Maybe<Scalars['Boolean']>;
     updateService: Scalars['Boolean'];
+    setNotificationPushToken: Scalars['Boolean'];
     createNotification: Scalars['Boolean'];
     createBooking?: Maybe<BookingResponse>;
     updateBooking?: Maybe<Scalars['Boolean']>;
@@ -76,6 +77,9 @@ export declare type MutationUpdateServiceArgs = {
     inputService?: Maybe<UpdateServices>;
     ScheduleBool?: Maybe<Schedulebool>;
     ScheduleTime?: Maybe<ScheduleTime>;
+};
+export declare type MutationSetNotificationPushTokenArgs = {
+    pushToken: Scalars['String'];
 };
 export declare type MutationCreateNotificationArgs = {
     input?: Maybe<Input>;
@@ -370,6 +374,12 @@ export declare type CreateNotificationMutationVariables = Exact<{
 export declare type CreateNotificationMutation = ({
     __typename?: 'Mutation';
 } & Pick<Mutation, 'createNotification'>);
+export declare type SetNotificationPushTokenMutationVariables = Exact<{
+    pushToken: Scalars['String'];
+}>;
+export declare type SetNotificationPushTokenMutation = ({
+    __typename?: 'Mutation';
+} & Pick<Mutation, 'setNotificationPushToken'>);
 export declare type CreateServiceMutationVariables = Exact<{
     inputService?: Maybe<CreateServices>;
     ScheduleBool?: Maybe<Schedulebool>;
@@ -663,6 +673,14 @@ export declare function useCreateNotificationMutation(baseOptions?: ApolloReactH
 export declare type CreateNotificationMutationHookResult = ReturnType<typeof useCreateNotificationMutation>;
 export declare type CreateNotificationMutationResult = ApolloReactCommon.MutationResult<CreateNotificationMutation>;
 export declare type CreateNotificationMutationOptions = ApolloReactCommon.BaseMutationOptions<CreateNotificationMutation, CreateNotificationMutationVariables>;
+export declare const SetNotificationPushTokenDocument: import("graphql").DocumentNode;
+export declare type SetNotificationPushTokenMutationFn = ApolloReactCommon.MutationFunction<SetNotificationPushTokenMutation, SetNotificationPushTokenMutationVariables>;
+export declare function useSetNotificationPushTokenMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<SetNotificationPushTokenMutation, SetNotificationPushTokenMutationVariables>): ApolloReactHooks.MutationTuple<SetNotificationPushTokenMutation, Exact<{
+    pushToken: string;
+}>>;
+export declare type SetNotificationPushTokenMutationHookResult = ReturnType<typeof useSetNotificationPushTokenMutation>;
+export declare type SetNotificationPushTokenMutationResult = ApolloReactCommon.MutationResult<SetNotificationPushTokenMutation>;
+export declare type SetNotificationPushTokenMutationOptions = ApolloReactCommon.BaseMutationOptions<SetNotificationPushTokenMutation, SetNotificationPushTokenMutationVariables>;
 export declare const CreateServiceDocument: import("graphql").DocumentNode;
 export declare type CreateServiceMutationFn = ApolloReactCommon.MutationFunction<CreateServiceMutation, CreateServiceMutationVariables>;
 export declare function useCreateServiceMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<CreateServiceMutation, CreateServiceMutationVariables>): ApolloReactHooks.MutationTuple<CreateServiceMutation, Exact<{
