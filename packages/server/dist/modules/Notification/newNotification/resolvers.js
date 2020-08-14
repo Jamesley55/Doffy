@@ -7,7 +7,6 @@ exports.newNotification = {
     Subscription: {
         newNotification: {
             subscribe: apollo_server_express_1.withFilter((_, __, { pubsub }) => pubsub.asyncIterator(constant_1.PUBSUB_NEW_NOTIFICATION), (payload, variables) => {
-                console.log("recipient", variables.recipientId);
                 return payload.newNotification.recipientId === variables.recipientId;
             }),
         },

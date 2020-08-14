@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-no-undef */
 import { BlueButton } from "@doffy/component";
 import { Link } from "@react-navigation/native";
 import * as React from "react";
@@ -10,7 +9,6 @@ import {
 	TouchableOpacity,
 	View,
 } from "react-native";
-
 const App: React.FC = () => {
 	return (
 		<View>
@@ -55,8 +53,15 @@ const App: React.FC = () => {
 			</ScrollView>
 			<View style={style.appFooter}>
 				<Footer footerText="About Us" linkAddress="https://www.google.com" />
+				<Footer
+					footerText="Privacy Policy"
+					linkAddress="https://www.github.com"
+				/>
+				<Footer
+					footerText="Term of service"
+					linkAddress="https://www.github.com"
+				/>
 				<Footer footerText="Contact Us" linkAddress="https://www.yahoo.com" />
-				<Footer footerText="Site Map" linkAddress="https://www.github.com" />
 			</View>
 		</View>
 	);

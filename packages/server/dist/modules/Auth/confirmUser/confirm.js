@@ -21,9 +21,13 @@ exports.ConfirmEmail = () => {
         if (!userId) {
             return false;
         }
+        const user = yield User_1.User.findOne({ id: userId });
+        if (user === null || user === void 0 ? void 0 : user.confirm) {
+            return res.redirect("http://realDoffy.com");
+        }
         yield User_1.User.update({ id: userId }, { confirm: true });
         yield redis_1.redis.del(redisPrefix_1.confirmationPrefix + token);
-        return res.redirect("http://doffyinc.com");
+        return res.redirect("http://realDoffy.com");
     }));
 };
 //# sourceMappingURL=confirm.js.map

@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>BGTaskSchedulerPermittedIdentifiers</key>
+	<array>
+		<string>com.JemLee.Doffy</string>
+	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -37,8 +41,12 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>$(PRODUCT_NAME) needs Location access to search a more efficiant way to book a service close to your house</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>$(PRODUCT_NAME) needs Location access to search a more efficiant way to book a service close to your house</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string> $(PRODUCT_NAME) needs Location access to share photo of your work on our service</string>
 	<key>OneSignal_app_groups_key</key>
 	<string>group.com.JemLee.Doffy.onesignal</string>
 	<key>UIAppFonts</key>
@@ -65,9 +73,7 @@
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>
-		<string>audio</string>
 		<string>fetch</string>
-		<string>location</string>
 		<string>processing</string>
 		<string>remote-notification</string>
 	</array>
