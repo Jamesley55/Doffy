@@ -1,7 +1,13 @@
+import * as React from "react";
 import { AppRegistry } from "react-native";
-import { Routes } from "./Route";
+import { Routes } from "./routes/index";
 import * as serviceWorker from "./serviceWorker";
 
+export default class Index extends React.PureComponent {
+	render() {
+		return <Routes />;
+	}
+}
 // register the app
 AppRegistry.registerComponent("App", () => Routes);
 

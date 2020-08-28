@@ -31,5 +31,5 @@
 		"baseUrl": "."
 	},
 	"exclude": ["node_modules", "@types"],
-	"include": ["src"]
+	"include": ["./src/**/*.tsx", "./src/**/*.ts", "shareFuction/oneSignal.ts"]
 }

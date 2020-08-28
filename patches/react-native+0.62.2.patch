@@ -1,0 +1,41 @@
+diff --git a/node_modules/react-native/Libraries/Image/RCTLocalAssetImageLoader.mm b/node_modules/react-native/Libraries/Image/RCTLocalAssetImageLoader.mm
+index 7a55058..0dad6c4 100644
+--- a/node_modules/react-native/Libraries/Image/RCTLocalAssetImageLoader.mm
++++ b/node_modules/react-native/Libraries/Image/RCTLocalAssetImageLoader.mm
+@@ -34,6 +34,7 @@ - (BOOL)requiresScheduling
+   return NO;
+ }
+ 
++
+ - (BOOL)shouldCacheLoadedImages
+ {
+   // UIImage imageNamed handles the caching automatically so we don't want
+@@ -49,13 +50,12 @@ - (RCTImageLoaderCancellationBlock)loadImageForURL:(NSURL *)imageURL
+                                  partialLoadHandler:(RCTImageLoaderPartialLoadBlock)partialLoadHandler
+                                   completionHandler:(RCTImageLoaderCompletionBlock)completionHandler
+ {
+-  __block auto cancelled = std::make_shared<std::atomic<bool>>(false);
++__block auto cancelled = std::make_shared<std::atomic<bool>>(false);
+   RCTExecuteOnMainQueue(^{
+     if (cancelled->load()) {
+       return;
+     }
+-
+-    UIImage *image = RCTImageFromLocalAssetURL(imageURL);
++     UIImage *image = RCTImageFromLocalAssetURL(imageURL);
+     if (image) {
+       if (progressHandler) {
+         progressHandler(1, 1);
+diff --git a/node_modules/react-native/Libraries/Network/RCTNetworkTask.mm b/node_modules/react-native/Libraries/Network/RCTNetworkTask.mm
+index 1cc6252..34c3844 100644
+--- a/node_modules/react-native/Libraries/Network/RCTNetworkTask.mm
++++ b/node_modules/react-native/Libraries/Network/RCTNetworkTask.mm
+@@ -103,7 +103,7 @@ - (BOOL)validateRequestToken:(id)requestToken
+       if (RCT_DEBUG) {
+         RCTLogError(@"Missing request token for request: %@", _request);
+       }
+-      valid = NO;
++      valid = YES;
+     }
+     _requestToken = requestToken;
+   } else if (![requestToken isEqual:_requestToken]) {

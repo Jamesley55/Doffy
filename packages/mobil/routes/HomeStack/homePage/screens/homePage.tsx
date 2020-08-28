@@ -176,7 +176,11 @@ export function HomePage({ navigation }: TabsStackNavProps<"homepage">) {
 					<Text style={HomePageStyle.TitleList}>Nail Technician</Text>
 					<List navigation={navigation} data={Nail} Type="Nail Technician" />
 					<Text style={HomePageStyle.TitleList}>Aesthetician</Text>
-					<List navigation={navigation} data={Aesthetician} Type="Barbershop" />
+					<List
+						navigation={navigation}
+						data={Aesthetician}
+						Type="Aesthetician"
+					/>
 				</ScrollView>
 			</SafeAreaView>
 		);

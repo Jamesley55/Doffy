@@ -41,6 +41,10 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>$(PRODUCT_NAME) to acces your camera rool to share some preview of your work to the world</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>$(PRODUCT_NAME) to acces your micriphone to permit you to contact to your client directly via voice</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>$(PRODUCT_NAME) needs Location access to search a more efficiant way to book a service close to your house</string>
 	<key>NSLocationWhenInUseUsageDescription</key>

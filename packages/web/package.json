@@ -31,7 +31,7 @@
 		"build": "react-scripts-ts build",
 		"test": "react-scripts-ts test --env=jsdom",
 		"eject": "react-scripts-ts eject",
-		"deploy": " react-scripts-ts build && cd build && netlify deploy && cd .."
+		"deploy": " react-scripts-ts build && cd build && netlify deploy  --prod && cd .."
 	},
 	"eslintConfig": {
 		"extends": "react-app"
