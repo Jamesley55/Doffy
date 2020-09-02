@@ -4,11 +4,11 @@ import * as Font from "expo-font";
 import AppLoading from "expo/build/launch/AppLoading";
 import * as React from "react";
 import { ActivityIndicator } from "react-native";
-import { RouteProps } from "react-router-native";
 import { AuthPages } from "../screenStack/creation";
+import { context } from "./context";
 
 const linking = {
-	prefixes: ["https://realDoffy.com", "https://"],
+	prefixes: ["https://realdoffy.com/"],
 	config: {
 		screens: {
 			LandingPage: "/",
@@ -29,12 +29,17 @@ const getFont = () =>
 		"roboto-regular": require("../assets/fonts/roboto-regular.ttf"),
 	});
 
-export const Routes: React.FC<RouteProps> = ({}) => {
+export class Routes extends React.PureComponent {
 	// tslint:disable-next-line: no-unused-expression
-	<AppLoading startAsync={getFont} />;
-	return (
-		<NavigationContainer linking={linking} fallback={<ActivityIndicator />}>
-			{AuthPages()}
-		</NavigationContainer>
-	);
-};
+	static contextType = context;
+
+	render() {
+		// tslint:disable-next-line: no-unused-expression
+		<AppLoading startAsync={getFont} />;
+		return (
+			<NavigationContainer linking={linking} fallback={<ActivityIndicator />}>
+				{AuthPages()}
+			</NavigationContainer>
+		);
+	}
+}

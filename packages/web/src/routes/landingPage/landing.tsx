@@ -12,6 +12,19 @@ import {
 import { CustomStyle } from "../style/style";
 import style from "./style/style";
 const LandingPage: React.FC = () => {
+	// window.onload = function () {
+	// 	//considering there aren't any hashes in the urls already
+	// 	if (!window.location.hash) {
+	// 		//setting window location
+	// 		window.location = (window.location + "#loaded") as any;
+	// 		//using reload() method to reload web page
+	// 		window.location.reload();
+	// 	}
+	// };
+	if (window.location.href.substr(-2) !== "?r") {
+		window.location = (window.location.href + "?r") as any;
+	}
+
 	return (
 		<View style={style.contain}>
 			<View style={{ backgroundColor: "gray", height: 50 }}>
@@ -27,7 +40,7 @@ const LandingPage: React.FC = () => {
 					/>
 				</TouchableOpacity>
 			</View>
-			<View style={[style.row, { width: "100%" }]}>
+			<View style={[style.row]}>
 				<View>
 					<Text style={style.text}>
 						Download our app to book your next appointment anytime, anywhere For

@@ -1,11 +1,16 @@
 import * as React from "react";
 import { AppRegistry } from "react-native";
+import { SearchQuery } from "./routes/context";
 import { Routes } from "./routes/index";
 import * as serviceWorker from "./serviceWorker";
 
 export default class Index extends React.PureComponent {
 	render() {
-		return <Routes />;
+		return (
+			<SearchQuery>
+				<Routes />
+			</SearchQuery>
+		);
 	}
 }
 // register the app

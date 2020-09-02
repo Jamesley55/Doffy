@@ -54,7 +54,7 @@
 	"plugins": [
 		"@babel/plugin-syntax-jsx"
 	],
-	"homepage": "http://realDoffy.com",
+	"homepage": "https://realdoffy.com/",
 	"version": "1.0.14",
 	"author": "Jamesley Joseph",
 	"license": "MIT",

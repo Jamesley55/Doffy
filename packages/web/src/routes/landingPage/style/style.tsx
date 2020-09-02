@@ -89,7 +89,6 @@ type === "web"
 	  }))
 	: (style = StyleSheet.create({
 			contain: {
-				flex: 1,
 				width: WIDTH,
 				height: HEIGHT,
 			},
