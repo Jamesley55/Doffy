@@ -1,3 +1,4 @@
+// TODO: implemente an optinal algortihm for the resolver path.
 import { loginResolver } from "../../modules/Auth/login/resolvers";
 import { Logout } from "../../modules/Auth/logout/resolvers";
 import { Me } from "../../modules/Auth/me/resolvers";

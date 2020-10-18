@@ -100,7 +100,7 @@ export function picDownload({
 	React.useEffect(() => {
 		if (finish) {
 			CreateService();
-			navigation.navigate("home" as any);
+			navigation.push("home" as any);
 			setfinish(false);
 		}
 	}, [finish]);

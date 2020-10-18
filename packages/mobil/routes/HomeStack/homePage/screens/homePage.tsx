@@ -1,3 +1,4 @@
+import { useIsFocused } from "@react-navigation/native";
 import * as React from "react";
 import { ActivityIndicator, Image, ScrollView, Text } from "react-native";
 import Onesignal from "react-native-onesignal";
@@ -11,6 +12,9 @@ import HomePageStyle from "../style/style";
 
 export function HomePage({ navigation }: TabsStackNavProps<"homepage">) {
 	const { me, user, setnotificationPushToken } = React.useContext(AuthContext);
+	const isFocused = useIsFocused();
+
+	React.useEffect(() => {}, [isFocused]);
 	const {
 		BarbershopQuery,
 		TatooQuery,
@@ -32,7 +36,6 @@ export function HomePage({ navigation }: TabsStackNavProps<"homepage">) {
 	const [Aesthetician, setAesthetician] = React.useState<any[]>([]);
 
 	me();
-
 	React.useEffect(() => {
 		BarbershopQuery()
 			.then((index: any) => {
@@ -41,7 +44,6 @@ export function HomePage({ navigation }: TabsStackNavProps<"homepage">) {
 			.catch((err: any) => {
 				console.log(err);
 			});
-
 		TatooQuery()
 			.then((index: any) => {
 				settatoo(index);

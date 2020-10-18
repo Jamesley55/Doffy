@@ -8,6 +8,7 @@ import { picDownload } from "../routes/sellerStack/picDownload/screens/picDownlo
 import { schedulePage } from "../routes/sellerStack/schedulePage/screens/schedulePage";
 import { sellerSteps } from "../routes/sellerStack/sellerSteps/screens/sellerSteps";
 import { serviceProvider } from "../routes/sellerStack/serviceProvider/screens/serviceProvider";
+import { tabs } from "./Tabs";
 import { SellerParamList } from "./Tydefs/sellerParamList";
 const Stack = createStackNavigator<SellerParamList>();
 
@@ -23,5 +24,6 @@ export const sellerPage = () => (
 		<Stack.Screen name="help" component={help} />
 		<Stack.Screen name="payout" component={payout} />
 		<Stack.Screen name="serviceProvider" component={serviceProvider} />
+		<Stack.Screen name="home" component={tabs} />
 	</Stack.Navigator>
 );

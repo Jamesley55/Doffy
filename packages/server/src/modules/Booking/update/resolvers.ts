@@ -45,6 +45,7 @@ export const UpdateBooking: IResolvers = {
 						senderId: session.userId,
 						bookingId: notif?.bookingId,
 					}).save();
+					// Todo hardcoded app_id will change later
 					const massage = {
 						app_id: "75ebe6f4-83ab-4d1e-b410-675fe0933122",
 						contents: {
@@ -81,6 +82,7 @@ export const UpdateBooking: IResolvers = {
 						senderId: session.userId,
 						bookingId: notif?.bookingId,
 					}).save();
+					// hardcoded app_id will change later
 					const massage = {
 						app_id: "75ebe6f4-83ab-4d1e-b410-675fe0933122",
 						contents: {
