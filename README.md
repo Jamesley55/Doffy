@@ -86,7 +86,7 @@ and put signedRequest to "https://localhost:300/randomSignedURL"
 		ContentType: filetype,
 		ACL: "public-read",
 		};
-      const signedRequest = s3.getSignedUrl("putObject", s3Params);
+                const signedRequest = s3.getSignedUrl("putObject", s3Params);
 
 9. Run yarn build in packages/common
 
