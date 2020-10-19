@@ -10,15 +10,15 @@ export async function sendEmail(email: string, url: string) {
 		port: 465,
 		secure: true, // true for 465, false for other ports
 		auth: {
-			user: process.env.EMAIL_LEE, // generated ethereal user
-			pass: process.env.PASSWORD_LEE, // generated ethereal password
+			user: "interviewintuit@gmail.com", // generated ethereal user
+			pass: "Interview2020", // generated ethereal password
 		},
 	});
 	const userMessage = await User.findOne({ where: { email } });
 	// send mail with defined transport object
 	const recipient = userMessage?.username ? userMessage.username : "user";
 	transporter.sendMail({
-		from: process.env.EMAIL_LEE, // sender address
+		from: "interviewintuit@gmail.com", // sender address
 		to: email, // list of receivers
 		subject: "Please Confirm your Email", // Subject line
 		text: "Email confirmation", // plain text body
