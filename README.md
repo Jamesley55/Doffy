@@ -52,13 +52,13 @@ Component(Custom component built for reutilisation)
 
 7. In packages/server create a file called .env and add the following line inside:
 
-    BUCKET_NAME= your Amazone S3 bucket if you have  or else Read step #8
+    BUCKET_NAME= your Amazon S3 bucket if you have one or else Read step #8
     
-    IAM_USER_KEY= your amazone IAM KEY  if you have  or else Read step #8
+    IAM_USER_KEY= your Amazon IAM KEY  if you have one or else Read step #8
     
-    IAM_USER_SECRET= your Amazone User secret key if you have  or else Read step #8
+    IAM_USER_SECRET= your Amazon User secret key if you have one or else Read step #8
     
-    CLOUDFRONT_URL=d3bw9plfvszcnd.cloudfront.net if you have  or else Read step #8
+    CLOUDFRONT_URL= your Amazon CLOUDFRONT URL if you have one or else Read step #8
     
     Test_PORT=8000
     
@@ -72,19 +72,19 @@ Component(Custom component built for reutilisation)
 8. if you dont have an AWS S3 bucket, IAM KEY, USER SECRET KEY comment in https://github.com/Jamesley55/Doffy/blob/66da63aa9245f3c1cfad3593bcc5ea647751e438/packages/server/src/modules/Pictures/uploadS3/resolvers.ts#L11
 and put signedRequest to "https://localhost:300/randomSignedURL"
 
-     const s3 = new aws.S3({
-				accessKeyId: IAM_USER_KEY,
-				secretAccessKey: IAM_USER_SECRET,
-				signatureVersion: "v4",
-				region: "us-east-2",
-			});
+     	const s3 = new aws.S3({
+	accessKeyId: IAM_USER_KEY,
+	secretAccessKey: IAM_USER_SECRET,
+	signatureVersion: "v4",
+	region: "us-east-2",
+				});
 
-			const s3Params = {
-				Bucket: BUCKET_NAME,
-				Key: filename,
-				Expires: 60,
-				ContentType: filetype,
-				ACL: "public-read",
+	const s3Params = {
+	Bucket: BUCKET_NAME,
+	Key: filename,
+	Expires: 60,
+	ContentType: filetype,
+	ACL: "public-read",
 			};
       const signedRequest = s3.getSignedUrl("putObject", s3Params);
 
