@@ -72,20 +72,20 @@ Component(Custom component built for reutilisation)
 8. if you dont have an AWS S3 bucket, IAM KEY, USER SECRET KEY comment in https://github.com/Jamesley55/Doffy/blob/66da63aa9245f3c1cfad3593bcc5ea647751e438/packages/server/src/modules/Pictures/uploadS3/resolvers.ts#L11
 and put signedRequest to "https://localhost:300/randomSignedURL"
 
-     	const s3 = new aws.S3({
-	accessKeyId: IAM_USER_KEY,
-	secretAccessKey: IAM_USER_SECRET,
-	signatureVersion: "v4",
-	region: "us-east-2",
-				});
+		const s3 = new aws.S3({
+		accessKeyId: IAM_USER_KEY,
+		secretAccessKey: IAM_USER_SECRET,
+		signatureVersion: "v4",
+		region: "us-east-2",
+		});
 
-	const s3Params = {
-	Bucket: BUCKET_NAME,
-	Key: filename,
-	Expires: 60,
-	ContentType: filetype,
-	ACL: "public-read",
-			};
+		const s3Params = {
+		Bucket: BUCKET_NAME,
+		Key: filename,
+		Expires: 60,
+		ContentType: filetype,
+		ACL: "public-read",
+		};
       const signedRequest = s3.getSignedUrl("putObject", s3Params);
 
 9. Run yarn build in packages/common
