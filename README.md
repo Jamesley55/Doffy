@@ -99,8 +99,15 @@ and put signedRequest to "https://localhost:300/randomSignedURL"
 # Features 
 
 React Native app register/login
+
 Deploy backend and app
+
 App create Service
+
 App Book service 
+
+App find  Service Availability
+
 App Notification 
+
 logout
