@@ -62,7 +62,7 @@ exports.StartServer = () => __awaiter(void 0, void 0, void 0, function* () {
     confirm_1.ConfirmEmail();
     const cors = {
         credentials: true,
-        origin: "http://localhost:19002/",
+        origin: ["http://localhost:19002/", "http://localhost:3000/"],
     };
     server.applyMiddleware({
         app: exports.app,

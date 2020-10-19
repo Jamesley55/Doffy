@@ -11,9 +11,22 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createNotification = void 0;
 const notification_1 = require("../../../entity/notification");
+const User_1 = require("../../../entity/User");
+const sendNotif_1 = require("../../../Sharefonction/sendNotif");
 const constant_1 = require("../PubSub/constant");
 exports.createNotification = {
     Mutation: {
+        setNotificationPushToken: (_, { pushToken }, { session }) => __awaiter(void 0, void 0, void 0, function* () {
+            const user = yield User_1.User.findOne({
+                where: { id: session.userId },
+            });
+            if (user) {
+                user.notificationPushToken = pushToken;
+                user.save();
+                return true;
+            }
+            return false;
+        }),
         createNotification: (_, { input }, { pubsub, session }) => __awaiter(void 0, void 0, void 0, function* () {
             const { bookRequest, recipientId, message } = input;
             const { Title, Body } = message;
@@ -26,7 +39,20 @@ exports.createNotification = {
                 recipientId,
                 senderId: session.userId,
             }).save();
-            console.log(databaseNotification.createdDate);
+            const user = yield User_1.User.findOne({
+                where: { id: session.userId },
+            });
+            const massage = {
+                app_id: "75ebe6f4-83ab-4d1e-b410-675fe0933122",
+                contents: {
+                    en: databaseNotification.message.Body,
+                },
+                subtitle: {
+                    en: databaseNotification.message.Title,
+                },
+                include_player_ids: [user === null || user === void 0 ? void 0 : user.notificationPushToken],
+            };
+            sendNotif_1.sendNotification(massage);
             pubsub.publish(constant_1.PUBSUB_NEW_NOTIFICATION, {
                 newNotification: databaseNotification,
             });

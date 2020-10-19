@@ -7,12 +7,12 @@ import {
 import {
 	useLoginMutation,
 	useLogoutMutation,
+	useSetNotificationPushTokenMutation,
 } from "@doffy/controller/src/generated/graphql-hooks";
 import * as SecureStore from "expo-secure-store";
 import * as React from "react";
 import { Error, MeQuery } from "../../controller/src/generated/graphql-hooks";
 import { client } from "../src/apollo";
-import { sendNotif } from "./pushNotificationPermision";
 
 type User = null | string | undefined;
 type loginRegister = Promise<
@@ -25,6 +25,7 @@ export const AuthContext = React.createContext<{
 	user: User;
 	userType: User;
 	id: User;
+	setnotificationPushToken: (usertoken: string) => void;
 	register: (values: any) => loginRegister;
 	homeScreen: (token: string) => void;
 	me: () => void;
@@ -35,6 +36,7 @@ export const AuthContext = React.createContext<{
 	user: null,
 	userType: null,
 	id: null,
+	setnotificationPushToken: async (usertoken: string) => null,
 	register: async () => null,
 	homeScreen: () => null,
 	me: async () => {},
@@ -49,7 +51,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 	const [userType, setUserType] = React.useState<string | null | undefined>(
 		null
 	);
-
+	const [, userNotifcationToken] = React.useState<string | null | undefined>(
+		null
+	);
 	const [token, setToken] = React.useState<string | null>(null);
 	const [id, setId] = React.useState<string | null>(null);
 
@@ -57,15 +61,16 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 	const [loginMutation] = useLoginMutation();
 	const [logoutMutation] = useLogoutMutation();
 	const { subscribeToMore } = useNotificationQuery();
+	const [setNotificationPushToken] = useSetNotificationPushTokenMutation();
 	React.useEffect(() => {
 		if (id) {
 			subscribeToMore({
 				document: NewNotificationDocument,
 				variables: { recipientId: id },
 				updateQuery: (prev, { subscriptionData }: any) => {
-					if (!subscriptionData.data) return prev;
-					else {
-						sendNotif("new Notif", undefined);
+					if (!subscriptionData.data) {
+						return prev;
+					} else {
 						return {
 							...prev,
 							notification: [
@@ -109,6 +114,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 				homeScreen: (tk: string) => {
 					setToken(tk);
 				},
+				setnotificationPushToken: async (userToken: string) => {
+					userNotifcationToken(userToken);
+					console.log("kaka", userToken);
+					setNotificationPushToken({ variables: { pushToken: userToken } });
+				},
 				me: async () => {
 					let Me: any = "";
 					try {
@@ -118,17 +128,17 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 						});
 					} catch (e) {
 						console.log("ta mere la pute wesh ");
-						// logoutMutation();
-						// setToken(null);
-						// await SecureStore.deleteItemAsync("sid");
+						logoutMutation();
+						setToken(null);
+						await SecureStore.deleteItemAsync("sid");
 					}
 					if (
 						!Me.data?.me?.user?.username ||
 						!Me.data?.me?.user?.username === undefined
 					) {
-						// logoutMutation();
-						// setToken(null);
-						// await SecureStore.deleteItemAsync("sid");
+						logoutMutation();
+						setToken(null);
+						await SecureStore.deleteItemAsync("sid");
 					}
 					// tslint:disable-next-line: no-shadowed-variable
 					const User: any = Me.data?.me?.user?.username;

@@ -8,9 +8,7 @@ import { Notification } from "./../../../entity/notification";
 export const Me: IResolvers = {
 	Query: {
 		me: async (_, __, { session, req }) => {
-			console.log("session req", req);
 			const user = await User.findOne({ where: { id: session.userId } });
-			console.log("user", user);
 			const userId = user?.id;
 			const notification = await Notification.find({
 				where: { recipientId: userId },
@@ -43,7 +41,6 @@ export const Me: IResolvers = {
 				service,
 				sessionId: req.sessionID,
 			};
-
 			return userService;
 		},
 	},

@@ -30,6 +30,7 @@ input input {
 	message: MessageNotif
 }
 type Mutation {
+	setNotificationPushToken(pushToken: String!): Boolean!
 	createNotification(input: input): Boolean!
 }
 

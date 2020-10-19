@@ -4,6 +4,7 @@ import { Notification } from "../../../entity/notification";
 import { User } from "../../../entity/User";
 import { tConv24 } from "../../../Sharefonction/Convert24h";
 import { getHours } from "../../../Sharefonction/milisecondTohours";
+import { sendNotification } from "../../../Sharefonction/sendNotif";
 import { PUBSUB_NEW_NOTIFICATION } from "../../Notification/PubSub/constant";
 
 export const UpdateBooking: IResolvers = {
@@ -44,11 +45,22 @@ export const UpdateBooking: IResolvers = {
 						senderId: session.userId,
 						bookingId: notif?.bookingId,
 					}).save();
-					console.log("true");
-
+					// Todo hardcoded app_id will change later
+					const massage = {
+						app_id: "75ebe6f4-83ab-4d1e-b410-675fe0933122",
+						contents: {
+							en: databaseNotification.message.Body,
+						},
+						subtitle: {
+							en: databaseNotification.message.Title,
+						},
+						include_player_ids: [user?.notificationPushToken],
+					};
+					sendNotification(massage);
 					pubsub.publish(PUBSUB_NEW_NOTIFICATION, {
 						newNotification: databaseNotification,
 					});
+
 					notif?.save();
 				} else {
 					booking.confirm = false;
@@ -70,13 +82,25 @@ export const UpdateBooking: IResolvers = {
 						senderId: session.userId,
 						bookingId: notif?.bookingId,
 					}).save();
-					console.log("false");
+					// hardcoded app_id will change later
+					const massage = {
+						app_id: "75ebe6f4-83ab-4d1e-b410-675fe0933122",
+						contents: {
+							en: databaseNotification.message.Body,
+						},
+						subtitle: {
+							en: databaseNotification.message.Title,
+						},
+						include_player_ids: [user?.notificationPushToken],
+					};
+					sendNotification(massage);
 					pubsub.publish(PUBSUB_NEW_NOTIFICATION, {
 						newNotification: databaseNotification,
 					});
 				}
 			}
 			booking?.save();
+
 			return true;
 		},
 	},

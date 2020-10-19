@@ -49,7 +49,7 @@ export const StartServer = async () => {
 			saveUninitialized: false,
 			cookie: {
 				httpOnly: false,
-				// Todo write a more secure express session
+				// TODO: write a more secure express session
 				// secure: process.env.NODE_ENV === "production",
 				maxAge: 1000 * 60 * 60 * 24 * 12 * 365, // 7 years
 			},
@@ -60,7 +60,7 @@ export const StartServer = async () => {
 	ConfirmEmail();
 	const cors = {
 		credentials: true,
-		origin: "http://localhost:19002/",
+		origin: ["http://localhost:19002/", "http://localhost:3000/"],
 	};
 
 	server.applyMiddleware({

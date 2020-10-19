@@ -1,10 +1,10 @@
+import { BlueButton } from "@doffy/component";
 import * as React from "react";
 import { SafeAreaView, Text, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import EntypoIcon from "react-native-vector-icons/Entypo";
 import IoniconsIcon from "react-native-vector-icons/Ionicons";
-import { BlueButton } from "../../../../Component/BlueBotton";
 import { MaterialSwitch2 } from "../../../../Component/MaterialSwitch2";
 import { SellerStackNavProps } from "../../../../screenStack/Tydefs/sellerParamList";
 import { ServiceCreationContext } from "../../../../shareFuction/serviceCreation";
@@ -285,8 +285,10 @@ export function schedulePage({
 							},
 						]}
 						onPress={() => {
-							if (thursday) selectDate("Thursday");
-							showDatePicker();
+							if (thursday) {
+								selectDate("Thursday");
+								showDatePicker();
+							}
 						}}
 					>
 						<Text style={SchedulePagestyles.hours}>{thursdayStart}</Text>

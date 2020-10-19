@@ -1,7 +1,6 @@
 import { createConnection, getConnectionOptions } from "typeorm";
 
 export const createTypeormConn = async () => {
-	console.log("je me suis plante ici");
 	const connectionOptions = await getConnectionOptions(process.env.NODE_ENV);
 	console.log("conection option", connectionOptions);
 	if (process.env.NODE_ENV === "production") {

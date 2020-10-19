@@ -1,8 +1,8 @@
+import { BlueButton } from "@doffy/component";
 import * as React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import EntypoIcon from "react-native-vector-icons/Entypo";
 import IoniconsIcon from "react-native-vector-icons/Ionicons";
-import { BlueButton } from "../../../../Component/BlueBotton";
 import MaterialCheckbox5 from "../../../../Component/MaterialCheckbox5";
 import MaterialFixedLabelTextbox from "../../../../Component/MaterialFixedLabelTextbox";
 import { SellerStackNavProps } from "../../../../screenStack/Tydefs/sellerParamList";

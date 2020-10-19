@@ -1,16 +1,20 @@
+import { useIsFocused } from "@react-navigation/native";
 import * as React from "react";
 import { ActivityIndicator, Image, ScrollView, Text } from "react-native";
+import Onesignal from "react-native-onesignal";
 import { SafeAreaView } from "react-native-safe-area-context";
 import MaterialButtonHamburger from "../../../../Component/MaterialButtonHamburger";
 import List from "../../../../Component/ServiceList";
 import { TabsStackNavProps } from "../../../../screenStack/Tydefs/tabsParamsList";
-import { registerForPushNotificationsAsync } from "../../../../shareFuction/pushNotificationPermision";
 import { serviceByCategoryContext } from "../../../../shareFuction/serviceByCategory";
 import { AuthContext } from "../../../../shareFuction/userContext";
 import HomePageStyle from "../style/style";
 
 export function HomePage({ navigation }: TabsStackNavProps<"homepage">) {
-	const { me, user } = React.useContext(AuthContext);
+	const { me, user, setnotificationPushToken } = React.useContext(AuthContext);
+	const isFocused = useIsFocused();
+
+	React.useEffect(() => {}, [isFocused]);
 	const {
 		BarbershopQuery,
 		TatooQuery,
@@ -32,9 +36,6 @@ export function HomePage({ navigation }: TabsStackNavProps<"homepage">) {
 	const [Aesthetician, setAesthetician] = React.useState<any[]>([]);
 
 	me();
-	registerForPushNotificationsAsync()
-		.then(() => {})
-		.catch((e) => console.log(e));
 	React.useEffect(() => {
 		BarbershopQuery()
 			.then((index: any) => {
@@ -43,7 +44,6 @@ export function HomePage({ navigation }: TabsStackNavProps<"homepage">) {
 			.catch((err: any) => {
 				console.log(err);
 			});
-
 		TatooQuery()
 			.then((index: any) => {
 				settatoo(index);
@@ -95,6 +95,39 @@ export function HomePage({ navigation }: TabsStackNavProps<"homepage">) {
 			});
 		setLoading(false);
 	}, [user]);
+	React.useEffect(() => {
+		Onesignal.setLogLevel(6, 0);
+
+		// Replace 'YOUR_ONESIGNAL_APP_ID' with your OneSignal App ID.
+		Onesignal.init("75ebe6f4-83ab-4d1e-b410-675fe0933122", {
+			kOSSettingsKeyAutoPrompt: true,
+			kOSSettingsKeyInAppLaunchURL: false,
+			kOSSettingsKeyInFocusDisplayOption: 2,
+		});
+		Onesignal.inFocusDisplaying(2); // Controls what should happen if a notification is received while the app is open. 2 means that the notification will go directly to the device's notification center.
+
+		// The promptForPushNotifications function code will show the iOS push notification prompt. We recommend removing the following code and instead using an In-App Message to prompt for notification permission (See step below)
+		Onesignal.addEventListener("received", onReceived);
+		Onesignal.addEventListener("opened", onOpened);
+		Onesignal.addEventListener("ids", onIds);
+	}, []);
+
+	const onReceived = (notification) => {
+		console.log("Notification received: ", notification);
+	};
+
+	const onOpened = (openResult) => {
+		console.log("Message: ", openResult.notification.payload.body);
+		console.log("Data: ", openResult.notification.payload.additionalData);
+		console.log("isActive: ", openResult.notification.isAppInFocus);
+		console.log("openResult: ", openResult);
+	};
+
+	const onIds = (device) => {
+		setnotificationPushToken(device.userId);
+		console.log("Device info234: ", device.userId);
+	};
+
 	if (loading) {
 		return <ActivityIndicator size="large" style={{ flex: 1 }} />;
 	} else {
@@ -145,7 +178,11 @@ export function HomePage({ navigation }: TabsStackNavProps<"homepage">) {
 					<Text style={HomePageStyle.TitleList}>Nail Technician</Text>
 					<List navigation={navigation} data={Nail} Type="Nail Technician" />
 					<Text style={HomePageStyle.TitleList}>Aesthetician</Text>
-					<List navigation={navigation} data={Aesthetician} Type="Barbershop" />
+					<List
+						navigation={navigation}
+						data={Aesthetician}
+						Type="Aesthetician"
+					/>
 				</ScrollView>
 			</SafeAreaView>
 		);

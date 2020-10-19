@@ -20,7 +20,6 @@ exports.BookingTime = {
     Query: {
         QueryBookingTime: (_, { serviceId, date }) => __awaiter(void 0, void 0, void 0, function* () {
             const service = yield service_1.Service.findOne({ where: { id: serviceId } });
-            console.log(service);
             const calendar = yield calendar_1.Calendar.findOne({
                 where: { CalendarId: service === null || service === void 0 ? void 0 : service.calendarId },
             });
@@ -47,7 +46,6 @@ exports.BookingTime = {
             const schedule = yield times_1.ScheduleTime.findOne({
                 where: { scheduleTimeId },
             });
-            console.log(schedule);
             if (schedule === null || schedule === void 0 ? void 0 : schedule.EndTime) {
                 endTime = schedule.EndTime;
             }
@@ -60,13 +58,11 @@ exports.BookingTime = {
                         endService: i + (service === null || service === void 0 ? void 0 : service.averageTime),
                     },
                 });
-                console.log("boook", booking);
                 if (!booking) {
                     const h = milisecondTohours_1.getHours(i);
                     hours.push(h);
                 }
             }
-            console.log(hours);
             return hours;
         }),
     },

@@ -1,3 +1,5 @@
+// TODO : write an optinal algorithm for the typeDefinition
+
 import { importSchema } from "graphql-import";
 
 const SchemaPath = "./src/Schemas/Problem";

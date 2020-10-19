@@ -15,6 +15,7 @@ const notification_1 = require("../../../entity/notification");
 const User_1 = require("../../../entity/User");
 const Convert24h_1 = require("../../../Sharefonction/Convert24h");
 const milisecondTohours_1 = require("../../../Sharefonction/milisecondTohours");
+const sendNotif_1 = require("../../../Sharefonction/sendNotif");
 const constant_1 = require("../../Notification/PubSub/constant");
 exports.UpdateBooking = {
     Mutation: {
@@ -46,7 +47,17 @@ exports.UpdateBooking = {
                         senderId: session.userId,
                         bookingId: notif === null || notif === void 0 ? void 0 : notif.bookingId,
                     }).save();
-                    console.log("true");
+                    const massage = {
+                        app_id: "75ebe6f4-83ab-4d1e-b410-675fe0933122",
+                        contents: {
+                            en: databaseNotification.message.Body,
+                        },
+                        subtitle: {
+                            en: databaseNotification.message.Title,
+                        },
+                        include_player_ids: [user === null || user === void 0 ? void 0 : user.notificationPushToken],
+                    };
+                    sendNotif_1.sendNotification(massage);
                     pubsub.publish(constant_1.PUBSUB_NEW_NOTIFICATION, {
                         newNotification: databaseNotification,
                     });
@@ -67,7 +78,17 @@ exports.UpdateBooking = {
                         senderId: session.userId,
                         bookingId: notif === null || notif === void 0 ? void 0 : notif.bookingId,
                     }).save();
-                    console.log("false");
+                    const massage = {
+                        app_id: "75ebe6f4-83ab-4d1e-b410-675fe0933122",
+                        contents: {
+                            en: databaseNotification.message.Body,
+                        },
+                        subtitle: {
+                            en: databaseNotification.message.Title,
+                        },
+                        include_player_ids: [user === null || user === void 0 ? void 0 : user.notificationPushToken],
+                    };
+                    sendNotif_1.sendNotification(massage);
                     pubsub.publish(constant_1.PUBSUB_NEW_NOTIFICATION, {
                         newNotification: databaseNotification,
                     });

@@ -20,7 +20,6 @@ export type HomeParamList = {
 		category: string;
 	};
 	payement: undefined;
-	location: undefined;
 };
 
 export type HomeStackNavProps<T extends keyof HomeParamList> = {

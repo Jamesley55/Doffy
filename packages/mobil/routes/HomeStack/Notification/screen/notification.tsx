@@ -1,5 +1,4 @@
 import { AntDesign } from "@expo/vector-icons";
-import * as Notifications from "expo-notifications";
 import * as React from "react";
 import {
 	ActivityIndicator,
@@ -16,8 +15,6 @@ import { AuthContext } from "../../../../shareFuction/userContext";
 export function Notification({
 	navigation,
 }: TabsStackNavProps<"notification">) {
-	Notifications.getPermissionsAsync();
-
 	const { NotificationQuery, subscribtionNotif } = React.useContext(
 		IntercommunicationContext
 	);

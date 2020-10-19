@@ -8,7 +8,6 @@ import { RouteProps } from "react-router-native";
 import { AuthPages } from "../screenStack/creation";
 import { drawer } from "../screenStack/drawers";
 import { AuthContext } from "../shareFuction/userContext";
-
 const getFont = () =>
 	Font.loadAsync({
 		"armata-regular": require("../assets/fonts/armata-regular.ttf"),

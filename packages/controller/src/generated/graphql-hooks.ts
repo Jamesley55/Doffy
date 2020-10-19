@@ -33,6 +33,7 @@ export type Mutation = {
   createService: Scalars['Boolean'];
   DeleteService?: Maybe<Scalars['Boolean']>;
   updateService: Scalars['Boolean'];
+  setNotificationPushToken: Scalars['Boolean'];
   createNotification: Scalars['Boolean'];
   createBooking?: Maybe<BookingResponse>;
   updateBooking?: Maybe<Scalars['Boolean']>;
@@ -97,6 +98,11 @@ export type MutationUpdateServiceArgs = {
   inputService?: Maybe<UpdateServices>;
   ScheduleBool?: Maybe<Schedulebool>;
   ScheduleTime?: Maybe<ScheduleTime>;
+};
+
+
+export type MutationSetNotificationPushTokenArgs = {
+  pushToken: Scalars['String'];
 };
 
 
@@ -451,6 +457,16 @@ export type CreateNotificationMutationVariables = Exact<{
 export type CreateNotificationMutation = (
   { __typename?: 'Mutation' }
   & Pick<Mutation, 'createNotification'>
+);
+
+export type SetNotificationPushTokenMutationVariables = Exact<{
+  pushToken: Scalars['String'];
+}>;
+
+
+export type SetNotificationPushTokenMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'setNotificationPushToken'>
 );
 
 export type CreateServiceMutationVariables = Exact<{
@@ -914,6 +930,36 @@ export function useCreateNotificationMutation(baseOptions?: ApolloReactHooks.Mut
 export type CreateNotificationMutationHookResult = ReturnType<typeof useCreateNotificationMutation>;
 export type CreateNotificationMutationResult = ApolloReactCommon.MutationResult<CreateNotificationMutation>;
 export type CreateNotificationMutationOptions = ApolloReactCommon.BaseMutationOptions<CreateNotificationMutation, CreateNotificationMutationVariables>;
+export const SetNotificationPushTokenDocument = gql`
+    mutation setNotificationPushToken($pushToken: String!) {
+  setNotificationPushToken(pushToken: $pushToken)
+}
+    `;
+export type SetNotificationPushTokenMutationFn = ApolloReactCommon.MutationFunction<SetNotificationPushTokenMutation, SetNotificationPushTokenMutationVariables>;
+
+/**
+ * __useSetNotificationPushTokenMutation__
+ *
+ * To run a mutation, you first call `useSetNotificationPushTokenMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useSetNotificationPushTokenMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [setNotificationPushTokenMutation, { data, loading, error }] = useSetNotificationPushTokenMutation({
+ *   variables: {
+ *      pushToken: // value for 'pushToken'
+ *   },
+ * });
+ */
+export function useSetNotificationPushTokenMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<SetNotificationPushTokenMutation, SetNotificationPushTokenMutationVariables>) {
+        return ApolloReactHooks.useMutation<SetNotificationPushTokenMutation, SetNotificationPushTokenMutationVariables>(SetNotificationPushTokenDocument, baseOptions);
+      }
+export type SetNotificationPushTokenMutationHookResult = ReturnType<typeof useSetNotificationPushTokenMutation>;
+export type SetNotificationPushTokenMutationResult = ApolloReactCommon.MutationResult<SetNotificationPushTokenMutation>;
+export type SetNotificationPushTokenMutationOptions = ApolloReactCommon.BaseMutationOptions<SetNotificationPushTokenMutation, SetNotificationPushTokenMutationVariables>;
 export const CreateServiceDocument = gql`
     mutation createService($inputService: CreateServices, $ScheduleBool: Schedulebool, $ScheduleTime: ScheduleTime) {
   createService(inputService: $inputService, ScheduleBool: $ScheduleBool, ScheduleTime: $ScheduleTime)

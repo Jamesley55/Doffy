@@ -18,9 +18,7 @@ const notification_1 = require("./../../../entity/notification");
 exports.Me = {
     Query: {
         me: (_, __, { session, req }) => __awaiter(void 0, void 0, void 0, function* () {
-            console.log("session req", req);
             const user = yield User_1.User.findOne({ where: { id: session.userId } });
-            console.log("user", user);
             const userId = user === null || user === void 0 ? void 0 : user.id;
             const notification = yield notification_1.Notification.find({
                 where: { recipientId: userId },

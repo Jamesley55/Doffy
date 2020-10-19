@@ -10,10 +10,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.User = void 0;
-const notification_1 = require("./notification");
 const typeorm_1 = require("typeorm");
-const service_1 = require("./service");
 const message_1 = require("./message");
+const notification_1 = require("./notification");
+const service_1 = require("./service");
 let User = class User extends typeorm_1.BaseEntity {
 };
 __decorate([
@@ -48,6 +48,10 @@ __decorate([
     typeorm_1.Column("varchar", { nullable: true }),
     __metadata("design:type", String)
 ], User.prototype, "lastname", void 0);
+__decorate([
+    typeorm_1.Column("varchar", { nullable: true }),
+    __metadata("design:type", String)
+], User.prototype, "notificationPushToken", void 0);
 __decorate([
     typeorm_1.Column("date", { nullable: true }),
     __metadata("design:type", Date)

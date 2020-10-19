@@ -11,13 +11,16 @@
 		"docker-push": "sudo docker push doffyinc/ec2:1.0.1"
 	},
 	"devDependencies": {
-		"lerna": "^3.20.2"
+		"lerna": "^3.20.2",
+		"patch-package": "^6.2.2"
 	},
 	"nohoist": [
 		"**/react-native-elements",
 		"**/react-native-elements/**",
-		"**/react-native",
-		"**/react-native/**",
+		"**/react-native-onesignal/",
+		"**/react-native-onesignal/**",
+		"**/react",
+		"**/react/**",
 		"**/expo",
 		"**/expo/**",
 		"**/react-native-typescript-transformer",
@@ -26,17 +29,19 @@
 		"**/metro-bundler-config-yarn-workspaces/**"
 	],
 	"resolutions": {
-		"**/react": "16.13.1",
 		"**/apollo-boost": "0.4.7",
-		"**/@apollo/react-hooks": "3.1.5"
+		"**/@apollo/react-hooks": "3.1.5",
+		"react-native": "^0.63.2",
+		"@types/react-native": "0.63.2"
 	},
-	"version": "1.0.11",
+	"version": "1.0.14",
 	"main": "none",
-	"repository": "https://github.com/Jamesley55/NewApp.git",
+	"repository": "https://github.com/Jamesley55/Doffy",
 	"author": "Jamesley Joseph <jamesleyjoseph5@gmail.com>",
 	"license": "MIT",
 	"dependencies": {
 		"@apollo/react-hooks": "^3.1.5",
-		"graphql": "^15.0.0"
+		"graphql": "^15.0.0",
+		"postinstall-postinstall": "^2.1.0"
 	}
 }
