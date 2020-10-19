@@ -15,7 +15,7 @@ export const ConfirmEmail = () => {
 		}
 		const user = await User.findOne({ id: userId });
 		if (user?.confirm) {
-			return res.redirect("http://realDoffy.com");
+			return res.redirect("http://doffy.ca");
 		}
 		// update the confirmation state of the user
 		await User.update({ id: userId }, { confirm: true });
@@ -24,6 +24,6 @@ export const ConfirmEmail = () => {
 		await redis.del(confirmationPrefix + token);
 
 		// redisrect to the login page
-		return res.redirect("http://realDoffy.com");
+		return res.redirect("http://doffy.ca");
 	});
 };
