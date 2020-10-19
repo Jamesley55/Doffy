@@ -12,6 +12,7 @@ It has everything you need to run your business from anywhere: online booking th
 ► GET TO KNOW YOUR CLIENTS
 
 # Download App Here 
+
  https://apps.apple.com/app/id1510079483
 
 # Package 
@@ -30,7 +31,7 @@ controller (Components shared between web and app)
 
 Component(Custom component built for reutilisation)
 
-# Instalation
+# installation
 
 1. clone project 
 
@@ -50,14 +51,23 @@ Component(Custom component built for reutilisation)
 6. Install and start Redis
 
 7. In packages/server create a file called .env and add the following line inside:
+
     BUCKET_NAME= your Amazone S3 bucket if you have  or else Read step #8
+    
     IAM_USER_KEY= your amazone IAM KEY  if you have  or else Read step #8
+    
     IAM_USER_SECRET= your Amazone User secret key if you have  or else Read step #8
+    
     CLOUDFRONT_URL=d3bw9plfvszcnd.cloudfront.net if you have  or else Read step #8
+    
     Test_PORT=8000
+    
     DEVOP_PORT=4000
+    
     PRODUCTION_PORT=3000
+    
     Redis_HOST=localhost
+    
 
 8. if you dont have an AWS S3 bucket, IAM KEY, USER SECRET KEY comment in https://github.com/Jamesley55/Doffy/blob/66da63aa9245f3c1cfad3593bcc5ea647751e438/packages/server/src/modules/Pictures/uploadS3/resolvers.ts#L11
 and put signedRequest to "https://localhost:300/randomSignedURL"
