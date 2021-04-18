@@ -3,14 +3,6 @@ Doffy is a powerful business tool for beauty and barber professionals and it als
 
 It has everything you need to run your business from anywhere: online booking that’s easy for small business customers, a point of sale that tracks customer details, and a secure, fast payments system. It’s all in one place, and for one calendar, it’s free. 
 
-► FREE FOR INDIVIDUALS
-
-► LET CLIENTS BOOK 24/7
-
-► REDUCE NO-SHOWS
-
-► GET TO KNOW YOUR CLIENTS
-
 # Download App Here 
 
  https://apps.apple.com/app/id1510079483
@@ -21,7 +13,7 @@ This project is made up of 5 packages that share code using Yarn Workspaces.
 
 web (React-native-web/React website)
 
-app (React Native app)
+app (React Native Mobil app)
 
 server (GraphQL Typescript server)
 
@@ -29,28 +21,28 @@ common (Code shared between web, app, and server)
 
 controller (Components shared between web and app)
 
-Component(Custom component built for reutilisation)
+Component (Custom component built for reutilisation)
+
+# Requirement 
+ - npm package manager 
+ - Node.js 
+ - Yarn 
+ - Redis 
+ - PostgresQl
 
 # installation
 
-1. clone project 
-
-    https://github.com/Jamesley55/Doffy.git
+1. clone project https://github.com/Jamesley55/Doffy.git
     
-2. cd into folder
-    cd Doffy 
+2. run `Yarn install` in workspace 
     
-3. Download dependencies
-    yarn 
+3. Start PostgreSQL server
     
-4. Start PostgreSQL server
-    
-5. Create database called mainDB
-   createdb mainDB
+4. Create PostgreSQL database called mainDB
    
-6. Install and start Redis
+5. Install and start Redis
 
-7. In packages/server create a file called .env and add the following line inside:
+6. In packages/server create a file called .env and add the following line inside:
 
     BUCKET_NAME= your Amazon S3 bucket if you have one or else Read step #8
     
@@ -69,7 +61,7 @@ Component(Custom component built for reutilisation)
     Redis_HOST=localhost
     
 
-8. if you dont have an AWS S3 bucket, IAM KEY, USER SECRET KEY comment in https://github.com/Jamesley55/Doffy/blob/66da63aa9245f3c1cfad3593bcc5ea647751e438/packages/server/src/modules/Pictures/uploadS3/resolvers.ts#L11
+7. if you dont have an AWS S3 bucket, IAM KEY, USER SECRET KEY comment in https://github.com/Jamesley55/Doffy/blob/66da63aa9245f3c1cfad3593bcc5ea647751e438/packages/server/src/modules/Pictures/uploadS3/resolvers.ts#L11
 and put signedRequest to "https://localhost:300/randomSignedURL"
 
 		const s3 = new aws.S3({
@@ -88,11 +80,11 @@ and put signedRequest to "https://localhost:300/randomSignedURL"
 		};
                 const signedRequest = s3.getSignedUrl("putObject", s3Params);
 
-9. Run yarn build in packages/common
+8. Run yarn build in packages/common
 
-10. Run yarn build in packages/controller
+9. Run yarn build in packages/controller
 
-11. Run yarn build in packages/component
+10. Run yarn build in packages/component
 
  
 
