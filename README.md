@@ -36,9 +36,9 @@ Component (Custom component built for reutilisation)
     
 2. run `Yarn install` in workspace 
     
-3. Start PostgreSQL server
+3. run `brew services start postgresql` to start PostgreSQL server
     
-4. Create PostgreSQL database called mainDB
+4.  run `createdb mainDB` to create PostgreSQL database called mainDB
    
 5. Install and start Redis
 
