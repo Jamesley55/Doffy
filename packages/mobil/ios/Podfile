@@ -4,7 +4,7 @@ require_relative '../../../node_modules/react-native-unimodules/cocoapods.rb'
 require_relative '../../../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
 def add_flipper_pods!(versions = {})
-  versions['Flipper'] ||= '~> 0.33.1'
+  versions['Flipper'] ||= '~> 0.79.1'
   versions['DoubleConversion'] ||= '1.1.7'
   versions['Flipper-Folly'] ||= '~> 2.1'
   versions['Flipper-Glog'] ||= '0.3.6'
@@ -47,15 +47,12 @@ def flipper_post_install(installer)
 end
 
 target 'OneSignalNotificationServiceExtension' do
-  pod 'OneSignal', '>= 2.9.3', '< 3.0'
+  pod 'OneSignal', '>= 3.0.0', '< 4.0'
 end
+
+
 target 'Doffy' do
   # Pods for Doffy
-  
-  
-  
-
-  
  config = use_native_modules!
 
   use_react_native!(:path => config["../../../node_modules/react-native"])
