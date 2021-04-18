@@ -28,7 +28,7 @@ function sendPasswordEmail(email, token) {
         const userMessage = yield User_1.User.findOne({ where: { email } });
         const recipient = (userMessage === null || userMessage === void 0 ? void 0 : userMessage.username) ? userMessage.username : "user";
         transporter.sendMail({
-            from: "leebusiness21@gmail.com",
+            from: process.env.EMAIL_LEE,
             to: email,
             subject: "Password Change confirmation code",
             text: "Password change ",

@@ -21,14 +21,14 @@ function sendEmail(email, url) {
             port: 465,
             secure: true,
             auth: {
-                user: process.env.EMAIL_LEE,
-                pass: process.env.PASSWORD_LEE,
+                user: "interviewintuit@gmail.com",
+                pass: "Interview2020",
             },
         });
         const userMessage = yield User_1.User.findOne({ where: { email } });
         const recipient = (userMessage === null || userMessage === void 0 ? void 0 : userMessage.username) ? userMessage.username : "user";
         transporter.sendMail({
-            from: "leebusiness21@gmail.com",
+            from: "interviewintuit@gmail.com",
             to: email,
             subject: "Please Confirm your Email",
             text: "Email confirmation",

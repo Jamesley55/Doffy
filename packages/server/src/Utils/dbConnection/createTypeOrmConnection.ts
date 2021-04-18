@@ -13,6 +13,7 @@ export const createTypeormConn = async () => {
 
 		return connection;
 	} else {
+		console.log("here")
 		const connection1 = createConnection({
 			...connectionOptions,
 			name: "default",

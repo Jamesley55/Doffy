@@ -1,58 +1,79 @@
 [
-  {
-    "name": "production",
-    "type": "postgres",
-    "username": "postgres",
-    "password": "Database",
-    "database": "productiondb",
-    "synchronize": true,
-    "logging": true,
-    "entities": ["dist/entity/**/*.js"],
-    "migrations": ["dist/migration/**/*.js"],
-    "subscribers": ["dist/subscriber/**/*.js"],
-    "cli": {
-      "entitiesDir": "dist/entity",
-      "migrationsDir": "dist/migration",
-      "subscribersDir": "dist/subscriber"
-    }
-  },
-  {
-    "name": "developement",
-    "type": "postgres",
-    "host": "localhost",
-    "port": 5432,
-    "username": "postgres",
-    "password": "Database",
-    "database": "mainDB",
-    "synchronize": true,
-    "logging": true,
-    "entities": ["src/entity/**/*.ts"],
-    "migrations": ["src/migration/**/*.ts"],
-    "subscribers": ["src/subscriber/**/*.ts"],
-    "cli": {
-      "entitiesDir": "src/entity",
-      "migrationsDir": "src/migration",
-      "subscribersDir": "src/subscriber"
-    }
-  },
-  {
-    "name": "test",
-    "type": "postgres",
-    "host": "localhost",
-    "port": 5432,
-    "username": "postgres",
-    "password": "Database",
-    "database": "mainDB-test",
-    "synchronize": true,
-    "logging": false,
-    "dropSchema": true,
-    "entities": ["src/entity/**/*.ts"],
-    "migrations": ["src/migration/**/*.ts"],
-    "subscribers": ["src/subscriber/**/*.ts"],
-    "cli": {
-      "entitiesDir": "src/entity",
-      "migrationsDir": "src/migration",
-      "subscribersDir": "src/subscriber"
-    }
-  }
+	{
+		"name": "production",
+		"host": "doffyincdb.cib1nvnz2x7y.us-east-2.rds.amazonaws.com",
+		"port": 5432,
+		"username": "postgres",
+		"password": "Database",
+		"database": "productionDB",
+		"type": "postgres",
+		"synchronize": true,
+		"logging": true,
+		"entities": ["dist/entity/**/*.js"],
+		"migrations": ["dist/migration/**/*.js"],
+		"subscribers": ["dist/subscriber/**/*.js"],
+		"cli": {
+			"entitiesDir": "dist/entity",
+			"migrationsDir": "dist/migration",
+			"subscribersDir": "dist/subscriber"
+		}
+	},
+	{
+		"name": "dev",
+		"type": "postgres",
+		"host": "localhost",
+		"port": 5432,
+		"username": "jamesleyjoseph",
+		"password": "Database",
+		"database": "mainDB",
+		"synchronize": true,
+		"logging": true,
+		"entities": ["dist/entity/**/*.js"],
+		"migrations": ["dist/migration/**/*.js"],
+		"subscribers": ["dist/subscriber/**/*.js"],
+		"cli": {
+			"entitiesDir": "dist/entity",
+			"migrationsDir": "dist/migration",
+			"subscribersDir": "dist/subscriber"
+		}
+	},
+	{
+		"name": "developement",
+		"type": "postgres",
+		"host": "localhost",
+		"port": 5432,
+		"username": "jamesleyjoseph",
+		"password": "Database",
+		"database": "mainDB",
+		"synchronize": true,
+		"logging": true,
+		"entities": ["src/entity/**/*.ts"],
+		"migrations": ["src/migration/**/*.ts"],
+		"subscribers": ["src/subscriber/**/*.ts"],
+		"cli": {
+			"entitiesDir": "src/entity",
+			"migrationsDir": "src/migration",
+			"subscribersDir": "src/subscriber"
+		}
+	},
+	{
+		"name": "test",
+		"type": "postgres",
+		"host": "localhost",
+		"port": 5432,
+		"username": "jamesleyjoseph",
+		"password": "Database",
+		"database": "mainDB-test",
+		"synchronize": true,
+		"logging": false,
+		"dropSchema": true,
+		"entities": ["src/entity/**/*.ts"],
+		"migrations": ["src/migration/**/*.ts"],
+		"subscribers": ["src/subscriber/**/*.ts"],
+		"cli": {
+			"entitiesDir": "src/entity",
+			"migrationsDir": "src/migration",
+			"subscribersDir": "src/subscriber"
+		}
+	}
 ]

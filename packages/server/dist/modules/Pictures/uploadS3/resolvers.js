@@ -15,7 +15,9 @@ const service_1 = require("../../../entity/service");
 const BUCKET_NAME = process.env.BUCKET_NAME;
 const IAM_USER_KEY = process.env.IAM_USER_KEY;
 const IAM_USER_SECRET = process.env.IAM_USER_SECRET;
-const CLOUDFRONT_URL = process.env.CLOUDFRONT_URL;
+const CLOUDFRONT_URL = process.env.CLOUDFRONT_URL
+    ? process.env.CLOUDFRONT_URL
+    : "localhost:300";
 exports.fileUpload = {
     Mutation: {
         signS3: (_, { filename, filetype, id }) => __awaiter(void 0, void 0, void 0, function* () {

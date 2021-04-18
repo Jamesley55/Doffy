@@ -12,7 +12,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.createTypeormConn = void 0;
 const typeorm_1 = require("typeorm");
 exports.createTypeormConn = () => __awaiter(void 0, void 0, void 0, function* () {
-    console.log("je me suis plante ici");
     const connectionOptions = yield typeorm_1.getConnectionOptions(process.env.NODE_ENV);
     console.log("conection option", connectionOptions);
     if (process.env.NODE_ENV === "production") {

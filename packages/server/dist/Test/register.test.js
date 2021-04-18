@@ -12,14 +12,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const graphql_request_1 = require("graphql-request");
 const User_1 = require("../entity/User");
 const createTypeOrmConnection_1 = require("../Utils/dbConnection/createTypeOrmConnection");
-const host_1 = require("../Utils/host/host");
 const ErrorMessage_1 = require("../Utils/FormatYupError/ErrorMessage");
+const host_1 = require("../Utils/host/host");
 beforeAll(() => __awaiter(void 0, void 0, void 0, function* () {
     yield createTypeOrmConnection_1.createTypeormConn();
 }));
 const username = "Jamesley55";
 const email = "tom@gmail.com";
-const password = "kaka";
+const password = "userPassword";
 const mutation = (e, p) => `
  mutation {
 	register( username: "${username}"
